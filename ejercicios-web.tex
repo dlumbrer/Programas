@@ -16,7 +16,7 @@
 
 \textbf{Enunciado:}
 
-Seguramente has oido hablar muchas veces de la ``web 2.0''. ¿Qué es lo que significa esta expresión? Si puedes, cita referencias en la Red al respecto.
+Seguramente has oído hablar muchas veces de la ``web 2.0''. ¿Qué es lo que significa esta expresión? Si puedes, cita referencias en la Red al respecto.
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
@@ -114,7 +114,7 @@ Busca dónde tiene tu navegador accesible la lista de cookies que mantiene, y m�
 
 \textbf{Enunciado:}
 
-Con el módulo adecuado, pueden editarse las cookies del navegador, lo que permite manejarlas con gran flexibilidad. Utiliza uno de estos módulos (por ejemplo, Cookies Manager$+$ para Firefox) para manipular las cookies que tenga tu navegador. Utilizalo para ``transpasar'' una sesión de un navegador a otro. Por ejemplo, puedes buscar las cookies que te autentican con un servicio (el campus virtual, una red social en la que tengas cuenta, etc.), guardarlas en un fichero, transferirlas a otro ordenador con otro navegador, e instalarlas en él, para comprobar cómo puedes continuar con la sesión desde él.
+Con el módulo adecuado, pueden editarse las cookies del navegador, lo que permite manejarlas con gran flexibilidad. Utiliza uno de estos módulos (por ejemplo, Cookies Manager$+$ para Firefox) para manipular las cookies que tenga tu navegador. Utilízalo para ``traspasar'' una sesión de un navegador a otro. Por ejemplo, puedes buscar las cookies que te autentican con un servicio (el campus virtual, una red social en la que tengas cuenta, etc.), guardarlas en un fichero, transferirlas a otro ordenador con otro navegador, e instalarlas en él, para comprobar cómo puedes continuar con la sesión desde él.
 
 \textbf{Referencias}
 
@@ -296,13 +296,13 @@ También podemos extender el diseño a versiones con varios usuarios:
 \textbf{Material:}
 
 \begin{itemize}
-\item simplecalc.py. Programa con una posible solución a este ejercicio. Proporciona cuatro recursos ``calculadora'', uno para cada operación matemática (suma, resta, multiplicación, división). Cada calculadora mantiene un estado (operación matemática) que se actualiza con PUT y se consulta con GET.
-\item Vídeo que muestra el funcionamiento de simplecalc.py \\
+\item \texttt{simplecalc.py}: Programa con una posible solución a este ejercicio. Proporciona cuatro recursos ``calculadora'', uno para cada operación matemática (suma, resta, multiplicación, división). Cada calculadora mantiene un estado (operación matemática) que se actualiza con PUT y se consulta con GET.
+\item Vídeo que muestra el funcionamiento de \texttt{simplecalc.py} \\
   \url{http://vimeo.com/31427714}
-\item Vídeo que describe el programa simplecalc.py \\
+\item Vídeo que describe el programa \texttt{simplecalc.py} \\
   \url{http://vimeo.com/31430208}
-\item multicalc.py. Programa con otra posible solución a este ejercicio. Proporciona un recurso para crear calculadoras (mediante POST). Al crear una calculadora se especifica de qué tipo (operación) es. Cada calculadora mantiene un estado (operación matemática) que se actualiza con PUT y se consulta con GET. Se apoya en las clases definidas en simplecalc.py para implementar las calculadoras.
-\item webappmulti.py. Clase que proporciona la estructura básica para los dos programas anteriores (clase raíz de servicio web, de aplis, etc.)
+\item \texttt{multicalc.py}: Programa con otra posible solución a este ejercicio. Proporciona un recurso para crear calculadoras (mediante POST). Al crear una calculadora se especifica de qué tipo (operación) es. Cada calculadora mantiene un estado (operación matemática) que se actualiza con PUT y se consulta con GET. Se apoya en las clases definidas en \texttt{simplecalc.py} para implementar las calculadoras.
+\item \texttt{webappmulti.py}: Clase que proporciona la estructura básica para los dos programas anteriores (clase raíz de servicio web, de \emph{aplis}, etc.)
 \end{itemize}
 
 
@@ -376,7 +376,7 @@ Para poder hacer esto, es necesario localizar el elemento $<body>$ en la página
 <body class="all" id="main">
 \end{verbatim}
 
-Por eso no basta con identificar dónde está la cadena ``$<body>$'' en la página, sino que habrá que identificar primero dónde está ``$<body$'' y, a partir de ahí, el cierre del elemento, ``$>$''. Será justo después de ese punto donde deberán colocarse las anotaciones. Para encontrar este punto puede usarse el método find de las variables de tipo string, o expresiones regulares.
+Por eso no basta con identificar dónde está la cadena ``$<body>$'' en la página, sino que habrá que identificar primero dónde está ``$<body$'' y, a partir de ahí, el cierre del elemento, ``$>$''. Será justo después de ese punto donde deberán colocarse las anotaciones. Para encontrar este punto puede usarse el método \texttt{find} de las variables de tipo \emph{string}, o expresiones regulares.
 
 Para que los enlaces que se enlazan desde estas anotaciones funcionen, la aplicación tendrá que atender a tres nuevos recursos para cada página:
 
@@ -388,9 +388,9 @@ Para que los enlaces que se enlazan desde estas anotaciones funcionen, la aplica
 
 Naturalmente, cada página necesitará estos tres recursos, por lo tanto lo mejor será diseñar tres espacios de nombres donde estén los recursos correspondientes para cada una de las páginas. Por ejemplo, todos los recursos de recarga podrían comenzar por ``/reload/'', de forma que ``/reload/gsyc.es'' sería el recurso para recargar la página ``http://gsyc.es''.
 
-Para poder almacenar el HTTP con el servidor, es importante darse cuenta de que el que se envía al servidor lo produce la propia aplicación. Si se usa urllib, no es posible acceder directamente a lo que se está enviando, pero se puede inferir a partir de lo que se indica a urllib. Por lo tanto, cualquier petición HTTP ``razonable'' para los parámetros dados será suficiente, aunque no sea exactamente lo que envíe urllib.
+Para poder almacenar el HTTP con el servidor, es importante darse cuenta de que el que se envía al servidor lo produce la propia aplicación. Si se usa \texttt{urllib}, no es posible acceder directamente a lo que se está enviando, pero se puede inferir a partir de lo que se indica a \texttt{urllib}. Por lo tanto, cualquier petición HTTP ``razonable'' para los parámetros dados será suficiente, aunque no sea exactamente lo que envíe \texttt{urllib}.
 
-El HTTP que se recibe del servidor habrá que obtenerlo usando urllib, en la medida de lo posible.
+El HTTP que se recibe del servidor habrá que obtenerlo usando \texttt{urllib}, en la medida de lo posible.
 
 Para poder almacenar el HTTP con el cliente, es importante darse cuenta de que el que se envía al navegador lo produce la propia aplicación, por lo que basta con almacenarlo antes de enviarlo. El que se recibe del navegador habrá que obtenerlo de la petición recibida.
 
@@ -424,7 +424,7 @@ Diseñar un sistema RESTful sobre HTTP fiable para realizar una transferencia ba
 .
 \end{itemize}
 
-Indica el esquema de recursos (urls) que ofrecerá la aplicación, y los verbos (comandos) HTTP que aceptará para cada uno, y con qué semántica.
+Indica el esquema de recursos (URLs) que ofrecerá la aplicación, y los verbos (comandos) HTTP que aceptará para cada uno, y con qué semántica.
 
 %%-----------------------------------------------------------------------------
 \subsection{Gestor de contenidos multilingüe preferencias del navegador}
@@ -630,15 +630,15 @@ Modifica tu solución para ``Django cms\_put'' (ejercicio~\ref{subsec:django-cms
 
 \begin{itemize}
 \item Si el recurso está bajo ``/css/'', se almacene tal cual al recibirlo (mediante PUT) y se sirva tal cual (cuando se recibe un GET).
-\item Si el recurso tiene cualquier otro nombre, se almacene de tal forma cuando se reciba (mediante PUT) que el contenido almacenado sea el cuerpo (lo que va en el elemento $<BODY>$) de las páginas que se sirvan (cuando se reciba el GET correspondiente). Para servir las páginas utiliza una plantilla (template) que incluya el uso de la hoja de estilo ``/css/main.css'' para manejar la apariencia de todas las páginas.
+\item Si el recurso tiene cualquier otro nombre, se almacene de tal forma cuando se reciba (mediante PUT) que el contenido almacenado sea el cuerpo (lo que va en el elemento $<BODY>$) de las páginas que se sirvan (cuando se reciba el GET correspondiente). Para servir las páginas utiliza una plantilla (\emph{template}) que incluya el uso de la hoja de estilo ``/css/main.css'' para manejar la apariencia de todas las páginas.
 \end{itemize}
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
-\section{Ejercicios 05: Ajax}
+\section{Ejercicios 05: AJAX}
 
-Ejercicios con Ajax y tecnologías relacionadas.
+Ejercicios con AJAX y tecnologías relacionadas.
 
 %%-------------------------------------------------------------------------
 %%-------------------------------------------------------------------------
@@ -663,16 +663,16 @@ Una vez lo hayas entendido, modifícalo para que en lugar de usar tres fragmento
 
 \textbf{Enunciado:}
 
-Construye una aplicación con funcionalidad similar a ``SPA Sentences generator'' (ejercicio~\ref{subsec:spa-sentences-generator}), pero realizada mediante una aplicación Ajax que pide los datos a un servidor implementado en Django.
+Construye una aplicación con funcionalidad similar a ``SPA Sentences generator'' (ejercicio~\ref{subsec:spa-sentences-generator}), pero realizada mediante una aplicación AJAX que pide los datos a un servidor implementado en Django.
 
 El servidor atenderá GET sobre los recursos /first, /second y /third, dando para cada uno de ellos la parte correspondiente (primera, segunda o tercera) de una frase, devolviendo un fragmento de texto aleatorio de una lista con fragmentos que tenga para cada uno de ellos (esto es, habrá una lista para los ``primeros'' fragmentos, otra para los segundos, y otra para los terceros).
 
-La aplicación Ajax solicitará los tres fragmentos que necesita, y los compondrá mostrando la frase resultante, de forma similar a como lo hace la aplicación ``SPA Sentences generator''.
+La aplicación AJAX solicitará los tres fragmentos que necesita, y los compondrá mostrando la frase resultante, de forma similar a como lo hace la aplicación ``SPA Sentences generator''.
 
 \textbf{Material:}
 
 \begin{itemize}
-\item words\_provider.tar.gz: Proyecto Django que sirve como servidor que proporciona fragmentos de frases para la aplicación Ajax anterior. Incluye apps/sentences\_generator.html, aplicación Ajax que muestra frases componiendo fragmentos que obtiene de un sitio web, utilizando llamadas HTTP síncronas, y apps/async\_sentences\_generator.html (similar, pero con llamadas asíncronas).
+\item words\_provider.tar.gz: Proyecto Django que sirve como servidor que proporciona fragmentos de frases para la aplicación AJAX anterior. Incluye apps/sentences\_generator.html, aplicación AJAX que muestra frases componiendo fragmentos que obtiene de un sitio web, utilizando llamadas HTTP síncronas, y apps/async\_sentences\_generator.html (similar, pero con llamadas asíncronas).
 \end{itemize}
 
 %%-------------------------------------------------------------------------
@@ -868,7 +868,7 @@ Se ofrecen dos soluciones. La más simple es:
 
 \verb|02-aplicaciones-web-simples/servidor-http-simple.py|
 
-La otra, que permite conexiones desde fuera de la máquina huesped, y es capaz de reusar el puerto de forma que se puede rearrancar en cuanto muere es:
+La otra, que permite conexiones desde fuera de la máquina huésped, y es capaz de reusar el puerto de forma que se puede rearrancar en cuanto muere es:
 
 \verb|02-aplicaciones-web-simples/servidor-http-simple-2.py|
 
@@ -923,7 +923,7 @@ Construir una aplicación web que suma en dos fases. En la primera, invocamos un
 
 \textbf{Nota:}
 
-Muchos navegadores, cuando se invoca con ellos una URL, lanzan un GET para ella, y a continuación uno o varios GET para el recurso ``favicon.ico'' en el mismo sitio. Por ello, hace falta tener en cuenta este caso para que funcione la aplicación web con ellos.
+Muchos navegadores, cuando se invoca con ellos una URL, lanzan un GET para ella, y a continuación uno o varios GET para el recurso \texttt{favicon.ico} en el mismo sitio. Por ello, hace falta tener en cuenta este caso para que funcione la aplicación web con ellos.
 
 %%------------------------------------------------------------------------------------
 %%------------------------------------------------------------------------------------
@@ -932,27 +932,27 @@ Muchos navegadores, cuando se invoca con ellos una URL, lanzan un GET para ella,
 
 \textbf{Enunciado:}
 
-Reescribe el programa ``Aplicación web hola mundo'' usando clases, y reutilizándolas, haz otro que devuelva ``Adiós mundo cruel'' en lugar de ``Hola mundo''. Para ello, define una clase webApp que sirva como clase raíz, que al especializar permitirá tener aplicaciones web que hagan distintas cosas (en nuestro caso, holaApp y adiosApp).
+Reescribe el programa ``Aplicación web hola mundo'' usando clases, y reutilizándolas, haz otro que devuelva ``Adiós mundo cruel'' en lugar de ``Hola mundo''. Para ello, define una clase \texttt{webApp} que sirva como clase raíz, que al especializar permitirá tener aplicaciones web que hagan distintas cosas (en nuestro caso, \texttt{holaApp} y \texttt{adiosApp}).
 
-Esa clase webApp tendrá al menos:
+Esa clase \texttt{webApp} tendrá al menos:
 
 \begin{itemize}
-\item Un método Analyze (o Parse), que devolverá un objeto con lo que ha analizado de la petición recibida del navegador (en el caso más simple, el objeto tendrá un nombre de recurso)
-\item Un método Compute (o Process), que recibirá como argumento el objeto con lo analizado por el método anterior, y devolverá una lista con el código resultante (por ejemplo, ``200 OK'') y la página HTML a devolver
+\item Un método \texttt{Analyze} (o \texttt{Parse}), que devolverá un objeto con lo que ha analizado de la petición recibida del navegador (en el caso más simple, el objeto tendrá un nombre de recurso)
+\item Un método \texttt{Compute} (o \texttt{Process}), que recibirá como argumento el objeto con lo analizado por el método anterior, y devolverá una lista con el código resultante (por ejemplo, ``200 OK'') y la página HTML a devolver
 \item Código para inicializar una instancia que incluya el bucle general de atención a clientes, y la gestión de sockets necesaria para que funcione.
 \end{itemize}
 
-Una vez la clase webApp esté definida, en otro módulo define la clase holaApp, hija de la anterior, que especializará los métodos Parse y Process como haga falta para implementar el ``Hola mundo''.
+Una vez la clase \texttt{webApp} esté definida, en otro módulo define la clase \texttt{holaApp}, hija de la anterior, que especializará los métodos Parse y Process como haga falta para implementar el ``Hola mundo''.
 
-El código \verb|__main__| de ese módulo instanciará un objeto de clase holaApp, con lo que tendremos una aplicación ``Hola mundo'' funcionando.
+El código \verb|__main__| de ese módulo instanciará un objeto de clase \texttt{holaApp}, con lo que tendremos una aplicación ``Hola mundo'' funcionando.
 
-Luego, haz lo mismo para adiosApp.
+Luego, haz lo mismo para \texttt{adiosApp}.
 
-Conviene que en el módulo donde se defina la clase webApp se incluya también código para, en caso de ser llamado como programa principal, se cree un objeto de ese tipo, y se ejecute una aplicación web simple.
+Conviene que en el módulo donde se defina la clase \texttt{webApp} se incluya también código para, en caso de ser llamado como programa principal, se cree un objeto de ese tipo, y se ejecute una aplicación web simple.
 
 \textbf{Motivación:}
 
-Explorar el sistema de clases de Python, y a la vez construir la estructura básica de una aplicación web con un esquema muy similar al que proporciona el módulo Python SocketServer
+Explorar el sistema de clases de Python, y a la vez construir la estructura básica de una aplicación web con un esquema muy similar al que proporciona el módulo Python \texttt{SocketServer}.
 
 %%------------------------------------------------------------------------------------
 %%------------------------------------------------------------------------------------
@@ -980,11 +980,11 @@ Realizar el servidor especificado en el ejercicio ``Sumador simple'' (ejercicio~
 
 \textbf{Enunciado:}
 
-Realizar una nueva clase, similar a la que se construyó en el ejercicio ``Clase servidor de aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis}), pero preparada para servir varias aplicaciones (aplis). Cada apli se activará cuando se invoquen recursos que comiencen por un cierto prefijo.
+Realizar una nueva clase, similar a la que se construyó en el ejercicio ``Clase servidor de aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis}), pero preparada para servir varias aplicaciones (\emph{aplis}). Cada \emph{apli} se activará cuando se invoquen recursos que comiencen por un cierto prefijo.
 
-Cada una de estas aplis será a su vez una instancia de una clase con origen en una básica con los dos métodos ``parse'' y ``process'', con la misma funcionalidad que tenían en ``Clase servidor de aplicaciones''. Por lo tanto, para tener una cierta apli, se extenderá la jerarquía de clases para aplis con una nueva clase, que redefinirá ``parse'' y ``process'' según la semántica de la apli.
+Cada una de estas \emph{aplis} será a su vez una instancia de una clase con origen en una básica con los dos métodos ``parse'' y ``process'', con la misma funcionalidad que tenían en ``Clase servidor de aplicaciones''. Por lo tanto, para tener una cierta apli, se extenderá la jerarquía de clases para \emph{aplis} con una nueva clase, que redefinirá ``parse'' y ``process'' según la semántica de la apli.
 
-Para especificar qué apli se activará cuando llegue una invocación a un nombre de recurso, se creará un diccionario donde para cada prefijo se indicará la instancia de apli a invocar. Este diccionario se pasará como parámetro al instanciar la clase que sirve varias aplicaciones.
+Para especificar qué \emph{apli} se activará cuando llegue una invocación a un nombre de recurso, se creará un diccionario donde para cada prefijo se indicará la instancia de \emph{apli} a invocar. Este diccionario se pasará como parámetro al instanciar la clase que sirve varias aplicaciones.
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -1063,7 +1063,7 @@ myproject.tar.gz: Ejemplo de solución del ejercicio ``Django intro''.
 
 \textbf{Enunciado:}
 
-Realización de una aplicación Django que haga cualquier cosa, aún sin usar datos en almacenamiento estable. Por ejemplo, puede simplemente responder a ciertos recursos con páginas HTML definidas en el propio programa (en el correspondiente fichero views.py).
+Realización de una aplicación Django que haga cualquier cosa, aún sin usar datos en almacenamiento estable. Por ejemplo, puede simplemente responder a ciertos recursos con páginas HTML definidas en el propio programa (en el correspondiente fichero \texttt{views.py}).
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -1103,7 +1103,7 @@ Realizar una sistema de gestión de contenidos muy simple con Django. Correspond
 
 \textbf{Comentario:}
 
-Para realizar este ejercicio, consultar el manual de Django, donde explica cómo se comporta el objeto HTTPRequest, que es siempre primer argumento en los métodos que estamos definiendo en views.py. En particular, nos interesarán sus atributos ``method'' (que sirve para saber si nos está llegando un GET o un PUT) y ``body'', que nos da acceso a los datos (cuerpo) de la petición. A pesar de su nombre, este último atributo tiene esos datos tanto si la petición es un POST como si es un PUT. 
+Para realizar este ejercicio, consultar el manual de Django, donde explica cómo se comporta el objeto HTTPRequest, que es siempre primer argumento en los métodos que estamos definiendo en \texttt{views.py}. En particular, nos interesarán sus atributos ``method'' (que sirve para saber si nos está llegando un GET o un PUT) y ``body'', que nos da acceso a los datos (cuerpo) de la petición. A pesar de su nombre, este último atributo tiene esos datos tanto si la petición es un POST como si es un PUT. 
 
 \textbf{Material:}
 
@@ -1183,7 +1183,7 @@ Realizar el ejercicio ``Django cms\_post'' (ejercicio~\ref{subsec:django-post}) 
 \subsection{Django feed\_expander}
 \label{subsec:django-feed-expander}
 
-Utilizando Django y, en la medida que te parezca conveniente, feedparser.py y BeautifulSoup.py, realiza un servicio que expanda el contenido del canal de un usuario de Twitter. El servicio atenderá peticiones a recursos de la forma \verb|/feed/user| (siendo ``user'' el identificador de un usuario de Twitter), devolviendo una página HTML con:
+Utilizando Django y, en la medida que te parezca conveniente, \texttt{feedparser.py} y \texttt{BeautifulSoup.py}, realiza un servicio que expanda el contenido del canal de un usuario de Twitter. El servicio atenderá peticiones a recursos de la forma \verb|/feed/user| (siendo  \texttt{user} el identificador de un usuario de Twitter), devolviendo una página HTML con:
 
 \begin{itemize}
 \item Los cinco últimos \emph{tweets} del usuario.
@@ -1195,9 +1195,9 @@ Utilizando Django y, en la medida que te parezca conveniente, feedparser.py y Be
   \end{itemize}
 \end{itemize}
 
-Los canales de usuarios de Twitter están disponibles en formato RSS en URLs como \url{https://api.twitter.com/1/statuses/user_timeline.rss?screen_name=user}, para el usuario ``user''.
+Los canales de usuarios de Twitter están disponibles en formato RSS en URLs como \url{https://api.twitter.com/1/statuses/user_timeline.rss?screen_name=user}, para el usuario \texttt{user}.
 
-Pueden usarse también las bibliotecas urllib2 para la descarga de páginas mediante HTTP, y urlparse para manipular URLs (ambos son módulos estándar de Python).
+Pueden usarse también las bibliotecas \texttt{urllib2} para la descarga de páginas mediante HTTP, y urlparse para manipular URLs (ambos son módulos estándar de Python).
 
 \textbf{Referencias:}
 
@@ -1350,11 +1350,11 @@ Construcción de aplicaciones web con almacenamiento estable en base de datos.
 
 \textbf{Enunciado:}
 
-Vamos a empezar a usar bases de datos relacionales con nuestras aplicaciones web. En particular, vamos a usar el módulo Python sqlite3, que proporciona enlace con el gestor de bases de datos SQLite3, que utiliza una interfaz SQL. Estudiar test-db.py, para entender cómo se hacen operaciones básicas sobre una base de datos con Python. Modificar ese programa para que añada más registros, y comprobar con sqlitebrowser la base de datos creada.
+Vamos a empezar a usar bases de datos relacionales con nuestras aplicaciones web. En particular, vamos a usar el módulo Python sqlite3, que proporciona enlace con el gestor de bases de datos SQLite3, que utiliza una interfaz SQL. Estudiar \texttt{test-db.py}, para entender cómo se hacen operaciones básicas sobre una base de datos con Python. Modificar ese programa para que añada más registros, y comprobar con sqlitebrowser la base de datos creada.
 
 \textbf{Material:}
 
-test-db.py. Programa que crea una base de datos simple SQLite3, y luego la muestra en pantalla.
+\texttt{test-db.py}. Programa que crea una base de datos simple SQLite3, y luego la muestra en pantalla.
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -2942,7 +2942,7 @@ Más información sobre parsedate() en la documentación del módulo email.utils
 
 Para que el navegador interprete adecuadamente una hoja de estilo, puede ser conveniente fijar el tipo de contenidos de la respuesta HTTP en la que la aplicación la envía al navegador. En otras palabras, asegurar que cuando el navegador reciba la hoja CSS, le venga adecuadamente marcada como de tipo ``text/css'' (y no ``text/html'' o similar, que es como vendrá marcado normalmente lo que responda la aplicación).
 
-En código, bastaría con poner la cabecera ``Content-Type'' adecuada al objeto que tiene la respuesta HTTP que devolverá la función que atiende a la URL para servir la hoja CSS (normalmente, en views.py):
+En código, bastaría con poner la cabecera ``Content-Type'' adecuada al objeto que tiene la respuesta HTTP que devolverá la función que atiende a la URL para servir la hoja CSS (normalmente en \texttt{views.py}):
 
 \begin{verbatim}
 myResponse = HttpResponse(cssText)
@@ -3110,7 +3110,7 @@ Más información sobre parsedate() en la documentación del módulo email.utils
 
 Para que el navegador interprete adecuadamente una hoja de estilo, puede ser conveniente fijar el tipo de contenidos de la respuesta HTTP en la que la aplicación la envía al navegador. En otras palabras, asegurar que cuando el navegador reciba la hoja CSS, le venga adecuadamente marcada como de tipo ``text/css'' (y no ``text/html'' o similar, que es como vendrá marcado normalmente lo que responda la aplicación).
 
-En código, bastaría con poner la cabecera ``Content-Type'' adecuada al objeto que tiene la respuesta HTTP que devolverá la función que atiende a la URL para servir la hoja CSS (normalmente, en views.py):
+En código, bastaría con poner la cabecera ``Content-Type'' adecuada al objeto que tiene la respuesta HTTP que devolverá la función que atiende a la URL para servir la hoja CSS (normalmente en \texttt{views.py}):
 
 \begin{verbatim}
 myResponse = HttpResponse(cssText)
