@@ -1,0 +1,1962 @@
+%% ejercicios.tex
+%%
+
+%% Ejercicios (comunes para DAT y AT), 2013-2014. Los actualizamos en AT,
+%% y en DAT se mantiene un enlace simbólico. No todos los ejercicios se ven
+%% como obligatorios en las dos asignaturas
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\chapter{Enunciados de prácticas: aplicaciones simples}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{Calculadora SPA}
+\label{sec:voluntaria-calculadora}
+
+\textbf{Enunciado:}
+
+Esta práctica consistirá en la creación de una calculadora que funcione como una SPA (single page application), compuesta por un documento HTML, una hoja de estilo CSS y un fichero JavaScript.
+
+La calculadora deberá realizar al menos las cuatro operaciones aritméticas básicas. Tendrá teclas (o similar) para poder escribir al menos: números (del 0 al 9), la operación a realizar, ``='' (para obtener el resultado), ``C'' (para borrar). Tendrá también una pantalla donde se mostrará lo que se va escribiendo con las teclas de la propia calculadora, pero que permitirá también usar el teclado del ordenador. En esta pantalla se verán también los resultados de las operaciones. Bastará con que la calculadora funcione con enteros positivos, aunque se valorará que lo haga con enteros de cualquier signo, y aún mejor, con números reales.
+
+El documento HTML incluirá elementos con marcadores (y si es caso contenidos) para los distintos elementos de la calculadora. No incluirá ninguna referencia al estilo de los elementos, y tendrá una sola inclusión de la hoja de estilo CSS mencionada. Esta hoja de estilo tendrá toda la información de estilo necesaria, incluyendo, en su caso, la que pueda requerir el programa JavaScript. El documento HTML incluirá, en su cabecera, elementos con referencias a las bibliotecas JavaScript que se usen (en principio, jQuery) y al fichero JavaScript que se realice para implementar la funcionalidad de la calculadora. No habrá más código JavaScript en otros elementos del documento HTML. En caso de querer usar alguna otra biblioteca además de jQuery, consultar con los profesores.
+
+La aplicación, como se ha dicho, tendrá que funcionar como una SPA. Esto es, una vez descargados los tres elementos (documento HTML, hoja CSS y fichero JavaScript) no hará falta nada más para que funcione dentro de un navegador.
+
+Se valorará que la aplicación tenga un aspecto de calculadora lo más logrado posible, y que la funcionalidad, cumpliendo este enunciado, sea también lo más lograda y completa posible.
+
+\textbf{Entrega:}
+
+La práctica se entregará en la actividad de entrega, que se encontrará en el sitio web de la asignatura.
+
+Se entregará un fichero tar.gz o .zip que contenga los tres ficheros mencionados (HTML, CSS, JavaScript) más cualquier biblioteca JavaScript que pueda hacer falta (normalmente, sólo jQuery) para que la aplicación funcione. El fichero HTML se llamará ``calculadora.html'', y el fichero que se entregue estará construido de tal forma que una vez se haya descomprimido, bastará con cargar este fichero HTML en el navegador para que la calculadora funcione.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{Socios}
+\label{sec:voluntaria-socios}
+
+\textbf{Enunciado:}
+
+Vamos a construir parte del interfaz de usuario de la aplicación Socios, una nueva red social. En particular, vamos a representar en el navegador la información que nos va a llegar en varios documentos JSON. Para simular lo suficiente para poder realizar la interfaz de usuario, estos documentos JSON serán ficheros estáticos que se servirán al navegador con el resto de la aplicación, que estará compuesta por un fichero HTML, otro JavaScript y otro CSS.
+
+Los documentos JSON mencionados son los siguientes:
+
+\begin{itemize}
+\item timeline.json: Mensajes de los socios del usuario, en modo resumen (ver detalle más abajo).
+\item update.json: Mensajes de los socios que aún no se ha mostrado en el timeline.
+\item myline.json: Mensajes del usuario, puestos en el pasado.
+\end{itemize}
+
+Para cada mensaje, los documentos JSON tendrán al menos la siguiente información:
+
+\begin{itemize}
+\item Autor: nombre del autor del mensaje.
+\item Avatar: url del avatar (imagen) del autor del mensaje.
+\item Título: título del mensaje.
+\item Contenido: contenido del mensaje.
+\item Fecha: fecha en que fue escrito el mensaje.
+\end{itemize}
+
+Opcionalmente, para cada mensaje se podrá ofrecer otra información adicional, como coordenadas de geolocalización, urls de anexos (attachements), etc.
+
+Además de estos documentos JSON con la información de mensajes, se servirán vía HTTP las imágenes (avatares) que se citen en ellos, y los tres documentos básicos de la aplicación: uno HTML, otro CSS y otro JavaScript.
+
+La aplicación mostrará en pestañas (tabs) diferentes la siguiente información:
+
+\begin{itemize}
+\item Timeline del usuario: mensajes de sus socios, según listado en timeline.json. Además, una vez mostrados estos mensajes, se buscará update.js. Si tiene alguna noticia, se mostrará una nota al principio del timeline indicando el número de mensajes pendientes. Cuando se pulse en esa nota, se desplegarán los mensajes pendientes que estaban en update.js.
+\item Mensajes enviados por el usuario, según listado en myline.json
+\end{itemize}
+
+En principio, de cada mensaje se mostrará sólo el nombre del autor, su avatar, y el título del mensaje. Se ofrecerá un botón para desplegar todo el mensaje: si se pulsa, se desplegará el resto de la información.
+
+Se podrán realizar otras mejoras a este comportamiento básico.
+
+\textbf{Entrega:}
+
+La práctica se entregará en la actividad de entrega, que se encontrará en el sitio web de la asignatura.
+
+Se entregará un archivo tar.gz o .zip que contenga:
+
+\begin{itemize}
+\item Un fichero README que resuma las mejoras, si las hay, y explique cualquier peculiaridad de la entrega.
+\item Los tres ficheros mencionados (HTML, CSS, JavaScript).
+\item Los ficheros JSON especificados.
+\item Los ficheros de avatar (imágenes) necesarios.
+\item Cualquier biblioteca JavaScript que pueda hacer falta (normalmente, sólo jQuery y jQueryUI) para que la aplicación funcione.
+\end{itemize}
+
+El fichero HTML se llamará ``socios.html'', y el archivo que se entregue estará construido de tal forma que una vez se haya descomprimido, bastará con servirlo mediante un servidor HTTP, y cargar en un navegador este fichero HTML, para que la vista de nuestros socios (y todo el interfaz de usuario) funcione.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\chapter{Enunciados de prácticas: proyectos finales}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{Mashup de servicios (mayo 2014)}
+\label{sec:final-14-mayo}
+
+\textbf{Enunciado:}
+
+La práctica va a consistir en la construcción de una aplicación HTML5 que permita al usuario acceder a varios servicios desde su navegador (construyendo, de facto, un mashup de servicios), relacionando la información que éstos proporcionan.
+
+La aplicación ha de utilizar al menos información de Google+, Flickr, OpenStreetMap y Nominatim (estos dos últimos mediante la biblioteca Leaflet). La aplicación ha de funcionar en el navegador, y estará compuesta por documentos HTML, CSS y JavaScript. Como herramienta básica para la maquetación se usará Bootstrap, y la interacción con el usuario y la manipulación genérica del árbol DOM se gestionará usando fundamentalmente jQuery y jQueyUI.
+
+Más en particular, la aplicación proporcionará la siguiente funcionalidad:
+
+\begin{itemize}
+\item La aplicación permitirá introducir en un formulario identificadores de usuario de Google+ (identificadores numéricos). Este formulario estará normalmente ``escondido'', representado por un icono, y se desplegará al seleccionar ese icono.
+\item Para cada identificador de usuario introducido, la aplicación recogerá de Google+ información sobre estos usuarios (al menos su nombre y su foto), los añadirá a la matriz de fotos que compondrá la parte principal de la página principal de la aplicación, y los almacenará en almacenamiento estable en el navegador. También se proporcionará la posibilidad de eliminar usuarios, seleccionando un icono al efecto asociado a cada foto (este icono se hará visible sólo al colocar el ratón sobre la foto en cuestión).
+
+\item Se permitirá seleccionar uno cualquiera de los usuarios de Google+ introducidos, seleccionando su foto de alguna forma. Al hacerlo, se mostrarán en una nueva zona (pestaña o desplegable, por ejemplo) los mensajes que hayan puesto en su línea temporal. Para cada uno de estos mensajes se mostrará al menos su contenido y las coordenadas (latitud y longitud) en que fue puesto, si esta información está disponible.
+
+\item Además, en esta nueva zona, se mostrará la localización de cada uno de los mensajes que aparezcan se mostrará (con una marca o similar) en un mapa servido por OpenStreetMap. Al cambiar el usuario seleccionado de Google+, cambiarán también las marcas de localización.
+
+\item Si se selecciona una marca en particular, se resaltarán de alguna forma la marca y el mensaje en cuestión, y se mostrarán sus coordenadas y la dirección más cercana (usando Nominatim). Esto se podrá realizar repetidamente, mostrando resaltados todos los mensajes correspondientes. Habrá alguna forma (un botón, por ejemplo) para dejar de resaltar todos los mensajes. Igualmente, se podrá resaltar un mensaje (por ejemplo, arrastrándolo sobre un icono de resalte), en cuyo caso se resaltará también la marca correspondiente, y mostrándose también las coordenadas y la dirección, como se indicó anteriormente.
+
+\item Cuando se resalte un mensaje, se mostrarán también en alguna zona de la página fotos de Flickr que tengan como etiqueta el nombre de la ciudad correspondiente con la dirección de ese mensaje. Al resaltar más mensajes, se irán sustituyendo las fotos por otras de las nuevas localizaciones. Al cambiar el usuario seleccionado de Google+, se eliminarán todas las fotos.
+\end{itemize}
+
+Cada una de las acciones que se describen se podrán decorar con transiciones u otros efectos según el interés del alumno. Además, el alumno podrá realizar otras acciones si eso le resulta conveniente (y estas otras acciones se tendrán en cuenta para la nota de la práctica).
+
+El estudiante también podrá usar otros servicios además de los ya descritos, incorporándolos a la práctica según le parezca conveniente.
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad optativa}
+
+De forma optativa, se podrá incluir cualquier funcionalidad relevante en el contexto de la asignatura. Se valorarán especialmente las funcionalidades que impliquen el uso de técnicas nuevas, o de aspectos de JavaScript, APIs, HTML y CSS3 no utilizados en los ejercicios previos, y que tengan sentido en el contexto de esta práctica y de la asignatura.
+
+Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativas:
+
+\begin{itemize}
+  \item Interfaz CSS3 cuidada
+  \item Utilizar otras APIs
+  \item Hacer que la aplicación (o parte de ella) se pueda usar off-line
+  \item Hacer que la aplicación utilice Local Storage de HTML5
+  \item Que la aplicación utilice las nuevas etiquetas semánticas de HTML5
+  \item Que la aplicación utilice las nuevas funcionalidesde de formularios de HTML5 (no visto en clase)
+  \item Utilizar el protocolo de autorización OAuth 2.0 en alguna API
+\end{itemize}
+
+\textbf{Entrega:}
+
+\textbf{Fecha límite de entrega de la práctica:} 14 de mayo de 2014.
+
+La práctica se entregará subiéndola al recurso habilitado a tal fin en el sitio Moodle de la asignatura. Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere. Los que la entreguen podrán ser llamados a realizar también una entrega presencial, que tendrá lugar en la fecha y hora exacta se les comunicará oportunamente. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
+
+Para entregar la práctica en el Moodle, cada alumno subirá al recurso habilitado a tal fin un fichero tar.gz con todo el código fuente de la práctica. El fichero se habrá de llamar practica-user.tar.gz, siendo ``user'' el nombre de la cuenta del alumno en el laboratorio. Se han de entregar los siguientes ficheros:
+
+\begin{itemize}
+\item Un fichero README que resuma las mejoras, si las hay, y explique cualquier peculiaridad de la entrega.
+\item Los ficheros de la práctica (HTML, CSS, JavaScript).
+\item Cualquier biblioteca JavaScript que pueda hacer falta (normalmente, sólo jQuery, jQueryUI y OpenLayers) para que la aplicación funcione, junto con los ficheros auxiliares que utilice, si es que los utiliza.
+\end{itemize}
+
+El fichero HTML se llamará ``redes.html'', y el archivo que se entregue estará construido de tal forma que una vez se haya descomprimido, bastará con servirlo mediante un servidor HTTP, y cargar en un navegador este fichero HTML, para que la vista de la aplicación, y todo su interfaz de usuario, funcione.
+
+Se incluirá en el fichero README los siguientes datos:
+
+\begin{itemize}
+\item Nombre de la asignatura.
+\item Nombre completo del alumno.
+\item Nombre de su cuenta en el laboratorio.
+\item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
+\item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
+\item URL del vídeo demostración de la funcionalidad básica
+\item URL del vídeo demostración de la funcionalidad optativa, si se ha realizado funcionalidad optativa
+\end{itemize}
+
+El fichero README se incluirá también como comentario en el recurso de subida de la práctica, asegurándose de que las URLs incluidas en él son enlaces ``pinchables''.
+
+Los vídeos de demostración serán de una duración máxima de 3 minutos (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo o YouTube).
+
+Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
+
+En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar tiempos de espera) puede usarse un editor de vídeo, pero siempre deberá ser indicado que se ha hecho tal cosa con un comentario en el audio, o un texto en el vídeo. Hay muchas herramientas que permiten realizar esta edición. Por ejemplo, en GNU/Linux puede usarse OpenShot o PiTiVi.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{Mashup de servicios (mayo 2013)}
+\label{sec:final-13-mayo}
+
+\textbf{Enunciado:}
+
+La práctica va a consistir en la construcción de una aplicación HTML5 que permita al usuario acceder a varios servicios desde su navegador (construyendo, de facto, un mashup de servicios), relacionando la información que éstos proporcionan.
+
+La aplicación ha de utilizar al menos información de Google+, Flickr, OpenStreetMap y Nominatim (estos dos últimos mediante la biblioteca OpenLayers). La aplicación ha de funcionar en el navegador, y estará compuesta por documentos HTML, CSS y JavaScript.
+
+Más en particular, la aplicación proporcionará la siguiente funcionalidad:
+
+\begin{itemize}
+\item En una pestaña, la aplicación permitirá introducir en un formulario identificadores de usuario de Google+ (identificadores numéricos). La aplicación recogerá de Google+ información sobre estos usuarios (al menos su nombre y su foto), los mostrará, y los almacenará en almacenamiento estable en el navegador. También debe proporcionarse algún mecanismo para eliminar usuarios.
+
+\item En otra pestaña se proporcionará la funcionalidad descrita en los siguientes apartados.
+
+\item Se permitirá seleccionar uno de los usuarios de Google+ introducidos (preferiblemente, seleccionando su foto de alguna forma), y mostrará los mensajes que hayan puesto en su línea temporal. Para cada uno de estos mensajes se mostrará al menos su contenido, y en un elemento desplegable, las coordenadas (latitud y longitud) en que fue puesto, si esta información está disponible.
+\item La localización de cada uno de los mensajes que aparezcan se mostrará (con una marca o similar) en un mapa servido por OpenStreetMap. Al cambiar el usuario seleccionado de Google+, cambiarán también las marcas de localización.
+
+\item Si se selecciona una marca en particular, se resaltarán de alguna forma la marca y el mensaje en cuestión, y se mostrarán sus coordenadas y la dirección más cercana (usando Nominatim). Esto se podrá realizar repetidamente, mostrando resaltados todos los mensajes correspondientes. Habrá alguna forma (un botón, por ejemplo) para dejar de resaltar todos los mensajes. Igualmente, se podrá resaltar un mensaje (por ejemplo, arrastrándolo sobre un icono de resalte), en cuyo caso se resaltará también la marca correspondiente, y mostrándose también las coordenadas y la dirección, como se indicó anteriormente.
+
+\item Cuando se resalte un mensaje, se mostrarán también en alguna zona de la página fotos de Flickr que tengan como etiqueta el nombre de la ciudad correspondiente con la dirección de ese mensaje. Al resaltar más mensajes, se irán sustituyendo las fotos por otras de las nuevas localizaciones. Al cambiar el usuario seleccionado de Google+, se eliminarán todas las fotos.
+\end{itemize}
+
+Cada una de las acciones que se describen se podrán decorar con transiciones u otros efectos según el interés del alumno. Además, el alumno podrá realizar otras acciones si eso le resulta conveniente (y estas otras acciones se tendrán en cuenta para la nota de la práctica).
+
+El estudiante también podrá usar otros servicios además de los ya descritos, incorporándolos a la práctica según le parezca conveniente.
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad optativa}
+
+De forma optativa, se podrá incluir cualquier funcionalidad relevante en el contexto de la asignatura. Se valorarán especialmente las funcionalidades que impliquen el uso de técnicas nuevas, o de aspectos de JavaScript, APIs, HTML y CSS3 no utilizados en los ejercicios previos, y que tengan sentido en el contexto de esta práctica y de la asignatura.
+
+Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativas:
+
+\begin{itemize}
+  \item Interfaz CSS3 cuidada
+  \item Utilizar otras APIs
+  \item Hacer que la aplicación (o parte de ella) se pueda usar off-line
+  \item Hacer que la aplicación utilice Local Storage de HTML5
+  \item Que la aplicación utilice las nuevas etiquetas semánticas de HTML5
+  \item Que la aplicación utilice las nuevas funcionalidesde de formularios de HTML5 (no visto en clase)
+  \item Utilizar el protocolo de autorización OAuth 2.0 en alguna API
+\end{itemize}
+
+\textbf{Entrega:}
+
+%\textbf{Fecha límite de entrega de la práctica:} 22 de mayo de 2013.
+
+La práctica se entregará subiéndola al recurso habilitado a tal fin en el sitio Moodle de la asignatura. Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere. Los que la entreguen podrán ser llamados a realizar también una entrega presencial, que tendrá lugar en la fecha y hora exacta se les comunicará oportunamente. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
+
+Para entregar la práctica en el Moodle, cada alumno subirá al recurso habilitado a tal fin un fichero tar.gz con todo el código fuente de la práctica. El fichero se habrá de llamar practica-user.tar.gz, siendo ``user'' el nombre de la cuenta del alumno en el laboratorio. Se han de entregar los siguientes ficheros:
+
+\begin{itemize}
+\item Un fichero README que resuma las mejoras, si las hay, y explique cualquier peculiaridad de la entrega.
+\item Los ficheros de la práctica (HTML, CSS, JavaScript).
+\item Cualquier biblioteca JavaScript que pueda hacer falta (normalmente, sólo jQuery, jQueryUI y OpenLayers) para que la aplicación funcione, junto con los ficheros auxiliares que utilice, si es que los utiliza.
+\end{itemize}
+
+El fichero HTML se llamará ``redes.html'', y el archivo que se entregue estará construido de tal forma que una vez se haya descomprimido, bastará con servirlo mediante un servidor HTTP, y cargar en un navegador este fichero HTML, para que la vista de la aplicación, y todo su interfaz de usuario, funcione.
+
+Se incluirá en el fichero README los siguientes datos:
+
+\begin{itemize}
+\item Nombre de la asignatura.
+\item Nombre completo del alumno.
+\item Nombre de su cuenta en el laboratorio.
+\item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
+\item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
+\item URL del vídeo demostración de la funcionalidad básica
+\item URL del vídeo demostración de la funcionalidad optativa, si se ha realizado funcionalidad optativa
+\end{itemize}
+
+El fichero README se incluirá también como comentario en el recurso de subida de la práctica, asegurándose de que las URLs incluidas en él son enlaces ``pinchables''.
+
+Los vídeos de demostración serán de una duración máxima de 3 minutos (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo o YouTube).
+
+Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
+
+En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar tiempos de espera) puede usarse un editor de vídeo, pero siempre deberá ser indicado que se ha hecho tal cosa con un comentario en el audio, o un texto en el vídeo. Hay muchas herramientas que permiten realizar esta edición. Por ejemplo, en GNU/Linux puede usarse OpenShot o PiTiVi.
+
+
+\chapter{Ejercicios}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{HTML}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Espía a tu navegador}
+\label{subsec:eje-firebug}
+
+\textbf{Enunciado:}
+
+El navegador hace una gran cantidad de tareas interesantes para esta asignatura. Es muy útil poder ver cómo lo hace, y aprender de los detalles que veamos. De hecho, también, en ciertos casos, se puede modificar su comportamiento. Para todo esto, se pueden usar herramientas específicas. En nuestro caso, vamos a usar el módulo ``Firebug'' de Firefox (también disponible para otros navegadores).
+
+El ejercicio consiste en:
+
+\begin{itemize}
+\item Instalar el módulo Firebug en tu navegador
+\item Utilizarlo para ver la interacción HTTP al descargar una página web real.
+\item Utilizarlo para ver el árbol DOM de una página HTML real.
+\end{itemize}
+
+Más adelante, lo utilizaremos para otras cosas, así que si quieres jugar un rato con lo que permite hacer Firebug, mucho mejor.
+
+\textbf{Referencias}
+
+Sitio web de Firebug: \url{https://getfirebug.com/}
+
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{HTML simple}
+\label{subsec:eje-html-simple}
+
+\textbf{Enunciado:}
+
+Carga en el navegador la página HTML que utilizamos como ejemplo en este ejercicio, \verb|html.html|. Observa su código fuente, y cómo se representa (renderiza) cada elemento en pantalla.
+
+Modifica las características del CSS embebido de la página, para que tenga otro aspecto.
+
+Añade metadatos para definir ``description'', ``keywords'' y ``author''.
+
+Modifica la página para que utilice un CSS externo, y prueba con varios CSS diferentes.
+
+Modifica el contenido de la página para añadir una frase tonta más.
+
+Modifica el contenido para añadir una imagen en cualquier parte de la página.
+
+Explora la página con Firebug.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Ejemplo HTML simple: \verb|html.html|
+\end{itemize}
+
+\textbf{Comentarios adicionales:}
+
+Si quieres, puedes lanzar un servidor web muy simple, de una línea en Python, para ver desde el navegador (con Firebug) cómo se usa HTTP para acceder al fichero. Uan vez que estés en el directorio con el fichero \verb|html.html|, ejecuta la siguiente línea
+
+\begin{verbatim}
+python -m SimpleHTTPServer
+\end{verbatim}
+
+A continuación, puedes apuntar tu navegador a \url{localhost:8000/} y verás los contenidos de ese directorio, vía HTTP.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{HTML de un sitio web}
+\label{subsec:eje-html-web}
+
+\textbf{Enunciado:}
+
+Copia el documento HTML correspondiente a un servidor web, modifícalo, y sírverlo con el servidor Python de una lína. Para copiarlo, puedes usar wget, curl o la opción ``guardar enlace'' del navegador.
+
+\textbf{Comentarios adicionales:}
+
+Puedes empezar por copiar el documento HTML que corresponde con la página de la asignatura en Twitter.
+
+No todos los documentos que decidas copiar se verán igual, dependiendo fundamentalmente de que las urls de los documentos relacionados (imágenes, JavaScript, CSS) sean relativas o absolutas. Teniendo esto en cuenta, explica las diferencias que puedas encontrar.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{HTML con JavaScript}
+\label{subsec:eje-html-javascript}
+
+\textbf{Enunciado:}
+
+Carga en el navegador la hoja HTML que utilizamos como ejemplo en este ejercicio, \verb|html-javascript.html|. Observa su código fuente, y cómo se representa (renderiza) cada elemento en pantalla. Estudia el código JavaScript, y cómo se ejecuta. En particular, observa dónde se obtiene una referencia al nodo del árbol DOM donde se quiere colocar la frase, y cómo se manipula éste árbol para colocarla ahí, una vez está generada.
+
+Una vez lo hayas entendido, modifícalo para que en lugar de usar tres fragmentos para cada frase, use cuatro, cogiendo cada uno, aleatoriamente, de una lista de fragmentos.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Ejemplo HTML con JavaScript: \verb|html-javascript.html|
+\end{itemize}
+
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Manipulación de HTML desde Firebug}
+\label{subsec:eje-html-firebug}
+
+\textbf{Enunciado:}
+
+Utliza los ficheros que se indican en ``Materiales'', más abajo, cargándolos con el navegador, para manipularlos de distintas formas con Firebug:
+
+\begin{itemize}
+\item Desde el panel HTML, modifica elementos HTML de la página. Añade etiquetas, añade y modifica atributos, observa a qué parte de lo que se ven en pantalla corresponde cada elemento de la página.
+\item Desde el panel CSS, modifica elementos del documento CSS que se usa. Añade por ejemplo \verb|"text-align:center;"| a la etiqueta body, cambia algunas propiedades, observa los resultados.
+\item Desde el panel ``Consola'' ejecuta JavaScript para modificar elmentos. Por ejemplo, utiliza el siguiente:
+
+\begin{verbatim}
+console.log("Comenzando...")
+var sentence = document.getElementById("sentence");
+sentence.innerHTML = "Esta es una nueva frase"
+alert(sentence.innerHTML)
+\end{verbatim}
+\end{itemize}
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Ejemplos HTML, CSS, imagen:
+ \verb|html2.html|, \verb|html2.css| y \verb|gsyc-bg.png|
+\end{itemize}
+
+%%-----------------------------------------------------------------------------
+\section{CSS}
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Añadir selectores}
+\label{subsec:anadir-selectores}
+
+\textbf{Enunciado:}
+
+A partir del código HTML y CSS proporcionado en el Moodle (css-ejercicio1.html), añadir los selectores CSS que faltan para aplicar los estilos deseados. Cada regla CSS incluye un comentario en el que se explica los elementos a los que debe aplicarse.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Añadir reglas CSS}
+\label{subsec:anadir-reglas}
+
+\textbf{Enunciado:}
+
+A partir del código HTML proporcionado (sin estilos) en el Moodle (css-ejercicio2.html), añadir las reglas CSS necesarias para que la página resultante tenga el mismo aspecto que el de la imagen que se muestra en el Moodle (css-ejercicio2.png).
+
+En este ejercicio solamente es preciso conocer que la propiedad se llama color. Además, se ha de tener en cuenta que como valor se puede indicar directamente el nombre del color. En este ejercicio, se deben utilizar los colores: teal, red, blue, orange, purple, olive, fuchsia y green.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Márgenes y rellenos}
+\label{subsec:margenes-rellenos}
+
+\textbf{Enunciado:}
+
+A partir de los documentos HTML y CSS proporcionados en Moodle (css-ejercicio3.html y css-ejercicio3.css), determinar las reglas CSS necesarias para añadir los siguientes márgenes y rellenos:
+
+\begin{itemize}
+  \item El elemento \#cabecera debe tener un relleno de 1em en todos los lados.
+  \item El elemento \#menu debe tener un relleno de 0.5em en todos los lados y un margen inferior de 0.5em.
+  \item El resto de elementos (\#noticias, \#publicidad, \#principal, \#secundario) deben tener 0.5em de relleno en todos sus lados, salvo el elemento \#pie, que sólo debe tener relleno en la zona superior e inferior.
+  \item Los elementos .articulo deben mostrar una separación entre ellos de 1em.
+  \item Las imágenes de los artículos muestran un margen de 0.5em en todos sus lados.
+  \item El elemento \#publicidad está separado 1em de su elemento superior.
+  \item El elemento \#pie debe tener un margen superior de 1em.
+\end{itemize}
+
+(También se puede encontrar en Moodle una imagen con cómo debería ser el resultado, 
+véase el fichero css-ejercicio3-despues.gif).
+
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Bordes}
+\label{subsec:bordes}
+
+\textbf{Enunciado:}
+
+A partir de los documentos HTML y CSS proporcionados en Moodle (css-ejercicio4.html y css-ejercicio4.css), determinar las reglas CSS necesarias para añadir los siguientes bordes:
+
+\begin{enumerate}
+  \item Eliminar el borde gris que muestran por defecto todos los elementos.
+  \item El elemento \#menu debe tener un borde inferior de 1 píxel y azul (\#004C99).
+  \item El elemento \#noticias muestra un borde de 1 píxel y gris claro (\#C5C5C5).
+  \item El elemento \#publicidad debe mostrar un borde discontinuo de 1 píxel y de color \#CC6600.
+  \item El lateral formado por el elemento \#secundario muestra un borde de 1 píxel y de color \#CC6600.
+  \item El elemento \#pie debe mostrar un borde superior y otro inferior de 1 píxel y color gris claro \#C5C5C5.
+\end{enumerate}
+
+(También se puede encontrar en Moodle una imagen con cómo debería ser el resultado, 
+véase el fichero css-ejercicio4-despues.gif).
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Colores e imágenes de fondo}
+\label{subsec:colores}
+
+\textbf{Enunciado:}
+
+A partir de los documentos HTML y CSS proporcionados en Moodle (css-ejercicio5.html, css-ejercicio5.css, css-ejercicio5-fondo.gif y css-ejercicio5-logo.gif), determinar las reglas CSS necesarias para añadir los siguientes colores e imágenes de fondo:
+
+\begin{enumerate}
+  \item Los elementos \#noticias y \#pie tiene un color de fondo gris claro (\#F8F8F8).
+  \item El elemento \#publicidad muestra un color de fondo amarillo claro (\#FFF6CD).
+  \item Los elementos $<h2>$ del lateral \#secundario muestran un color de fondo \#DB905C y un pequeño padding de .2em.
+  \item El fondo del elemento \#menu se construye mediante una pequeña imagen llamada css-ejercicio5-fondo.gif.
+  \item El logotipo del sitio se muestra mediante una imagen de fondo del elemento $<h1>$ contenido en el elemento \#cabecera (la imagen se llama css-ejercicio5-logo.gif).
+\end{enumerate}
+
+(También se puede encontrar en Moodle una imagen con cómo debería ser el resultado, 
+véase el fichero css-ejercicio5-despues.gif).
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Tipografía}
+\label{subsec:tipografia}
+
+\textbf{Enunciado:}
+
+A partir del código HTML y CSS proporcionados en el Moodle (css-ejercicio6.html, css-ejercicio6.css), determinar las reglas CSS necesarias para añadir las siguientes propiedades a la tipografía de la página:
+
+\begin{enumerate}
+  \item La fuente base de la página debe ser: color negro, tipo Arial, tamaño 0.9em, interlineado 1.4.
+  \item Los elementos $<h2>$ de .articulo se muestran en color \#CC6600, con un tamaño de letra de 1.6em, un interlineado de 1.2 y un margen inferior de 0.3em.
+  \item Los elementos del \#menu deben mostrar un margen a su derecha de 1em y los enlaces deben ser de color blanco y tamaño de letra 1.3em.
+  \item El tamaño del texto de todos los contenidos de \#lateral debe ser de 0.9em.   
+\item La fecha de cada noticia debe ocupar el espacio de toda su línea y mostrarse en color gris claro \#999. El elemento $<h3>$ de \#noticias debe mostrarse de color \#003366.
+  \item El texto del elemento \#publicidad es de color gris oscuro \#555 y todos los enlaces de color \#CC6600.
+  \item Los enlaces contenidos dentro de .articulo son de color \#CC6600 y todos los párrafos muestran un margen superior e inferior de 0.3em.
+  \item Añadir las reglas necesarias para que el contenido de \#secundario se vea como en la imagen que se muestra.
+  \item Añadir las reglas necesarias para que el contenido de \#pie se vea como en la imagen que se muestra.
+\end{enumerate}
+
+(También se puede encontrar en Moodle una imagen con cómo debería ser el resultado, 
+véase el fichero css-ejercicio6-despues.gif).
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Creación de una cabecera de página}
+\label{subsec:cabecera}
+
+\textbf{Enunciado:}
+
+Crea una cabecera de una página web con las siguientes características:
+
+\begin{itemize}
+  \item Que cubra todo el ancho de la pantalla
+  \item Que de fondo tenga la imagen css-ejercicio7.jpg (sin repetición)
+  \item Que tenga la misma altura que la imagen
+  \item Con el siguiente color de fondo: \#233C9B
+  \item Sin márgenes ni padding
+  \item El color de letra ha de ser blanco, centrado, negrita y de tamaño grande (p.ej. 3em) y algo de padding superior.
+%  position: relative;
+\end{itemize}
+
+¿Qué habría que cambiar para que el texto estuviera centrado también horizontalmente?
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Creación de un pie de página}
+\label{subsec:pie}
+
+\textbf{Enunciado:}
+
+\begin{itemize}
+  \item Que cubra todo el ancho de la pantalla
+  \item Que de fondo tenga el color \#192666
+  \item Que tenga una altura de 40px
+  \item Que tenga algo de padding superior
+  \item Sin padding, pero con un margen inferior de 50px
+  \item Que cubra todo el texto (nota: usar clear) % clear: both;
+  \item El color de letra ha de ser \#6685CC y el texto ha de estar centrado
+%  position: relative;
+\end{itemize}
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Menú de navegación}
+\label{subsec:menuNavegacion}
+
+\textbf{Enunciado:}
+
+A partir de un listado, crear un menú de navegación horizontal. Los elementos del menú son:
+
+\begin{itemize}
+  \item Principal (enlace a la propia página)
+  \item URJC (enlace a la página principal de la URJC)
+  \item ETSIT (enlace a la página de la ETSIT - URJC)
+  \item GSyC (enlace a la página del GSyC)
+  \item DAT (enlace a la página Moodle de la asignatura)
+\end{itemize}
+
+El listado no ha de tener viñeta y cubrir el 100\% de la pantalla.
+
+Habrá un identificador menú con las siguientes características:
+
+\begin{itemize}
+  \item Color de fondo: \#192666
+  \item Ningún margen, pero algo de padding superior
+\end{itemize}
+
+Cada enlace del menú tendrá, entre otras, las siguientes propiedades:
+
+\begin{itemize}
+  \item Color de fondo: \#253575
+  \item El texto ha de tener el color \#B5C4E3 y estar en negrita
+\end{itemize}
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Diseño a 2 columnas con cabecera y pie de página}
+\label{subsec:2columnas}
+
+\textbf{Enunciado:}
+
+A la cabecera, menú y pie del ejemplo anterior, añádele un nuevo div contenedor de igual tamaño horizontal que la imagen de cabecera. Dentro de este div se ubicarán la cabecera, el menú, el contenido y el pie.
+
+El contenido contará con dos columnas. La primera columna ha de tener las siguientes características:
+
+\begin{itemize}
+  \item float: left;
+  \item Ancho de 530px
+  \item Margen superior e inferior de 15px, algo de padding
+\end{itemize}
+
+La segunda columna, por su parte, será de la siguiente manera:
+
+\begin{itemize}
+  \item float: left;
+  \item Ancho de 200px
+  \item Algo de margen superior, pero sin padding
+  \item Color de fondo \#CEDBF9 e imagen css-ejercicio10-fondo-columna.gif sin repetición
+\end{itemize}
+
+El listado de la segunda columna ha de tener:
+\begin{itemize}
+  \item Un margen superior e inferior de 15px
+  \item Sin padding
+\end{itemize}
+
+Cada elemento de la lista, tendrá un borde inferior de 1px sólido de color \#E0E8FA.
+
+Cada enlace, será de la siguiente manera:
+
+\begin{itemize}
+  \item Padding: 3px 0 3px 22px;
+  \item Imagen de fondo: css-ejercicio10-icono-elemento.gif, 8px, no-repeat;
+  \item Sin decoración de texto
+\end{itemize}
+
+Cuando se pase por encima con el ratón, el color de fondo cambiará a \#E0E8FA y el del texto a color \#192666.
+
+Finalmente, toda la página debería estar centrada, con un margen superior de 30 px.
+
+El resultado final ha de ser similar al que se muestra en el fichero css-ejercicio10-resultado.jpg.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Una caja CSS2}
+\label{subsec:caja-css2}
+
+\textbf{Enunciado:}
+
+Crea una página web con un elemento div con identificador ''sandbox'', que contenga una cabecera con el texto ''Prueba CSS3'' (siendo CSS3 una abreviatura) y un párrafo con el texto ''Los cambios se realizan sobre este elemento.'' Indica que se usará una hoja de estilo externa y guarda la página.
+
+Crea una hoja de estilo llamada css3\_1.css para que el fondo de página sea azul. Además, los elementos han de tener las siguientes propiedades:
+
+\begin{itemize}
+  \item div con identificador ''sandbox'':
+  \begin{itemize}
+    \item Fuente: "goudy-bookletter-1911-1", "goudy-bookletter-1911-2", "Baskerville", "Georgia", serif;
+    \item Borde sólido de 1 píxel y rgb(21,11,11)
+    \item Con overflow oculto
+    \item Márgenes 40px 0 0 30px
+    \item Padding: 20px
+    \item Width: 440px
+    \item z-index: 2
+    \item Color negro y tamaño de fuente 16px
+  \end{itemize}
+  \item cabecera
+  \begin{itemize}
+    \item Márgenes: 0 0 20px 0
+    \item Tamaño de fuente: font-size: 56px
+    \item Espacio entre palabras: 2px
+  \end{itemize}
+  \item abbr
+  \begin{itemize}
+    \item Cursor como "help"
+    \item Tamaño de fuente 30\% más grande que el normal
+    \item Color \#ff2166;
+    \item subrayado de 1px discontinuo y de color \#888
+  \end{itemize}
+  \item p
+  \begin{itemize}
+    \item Tamaño de la fuente 30px
+    \item Altura de la línea: 50px
+    \item Sin márgenes y con ancho automático
+  \end{itemize}
+\end{itemize}
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_1.png.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Bordes redondeados}
+\label{subsec:bordes-redondeados}
+
+\textbf{Enunciado:}
+
+Modifica la hoja de estilo del ejercicio anterior (la puedes llamar css3\_2.css)
+para incluir bordes redondeados con un radio de 15px. Incluye la notación específica para navegadores, si fuera conveniente. Aumenta el tamaño del borde
+para que el efecto sea más evidente.
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_2.png.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Sombra de texto}
+\label{subsec:sombra-texto}
+
+\textbf{Enunciado:}
+
+Modifica la hoja de estilo del ejercicio anterior (la puedes llamar css3\_3.css) para añadir sombra de 1px de blur y de color \#333 a la fuente de la abreviatura. No hace falta que el elemento tenga sombra horizontal ni vertical.
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_3.png.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Sombra de borde}
+\label{subsec:sombra-borde}
+
+\textbf{Enunciado:}
+
+Modifica la hoja de estilo del ejercicio anterior (la puedes llamar css3\_4.css) para tener sombra de la caja. La sombra ha de tener 20px de difuminado y blanca.
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_4.png.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Fondo semitransparente}
+\label{subsec:fondo-semitransparente}
+
+\textbf{Enunciado:}
+
+Modifica la hoja de estilo del ejercicio anterior (la puedes llamar css3\_5.css) para que el fondo de la caja sea del color rgb(180, 180, 144). Indica que el canal ''alpha'' sea de 0.6. Juega con el canal ''alpha'' para ver qué efectos visuales se pueden conseguir.
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_5.png.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Fondo en gradiente}
+\label{subsec:gradiente}
+
+\textbf{Enunciado:}
+
+Modifica la hoja de estilo css3\_4.css (la puedes llamar css3\_6.css) para conseguir un fondo de caja con gradiente. El gradiente ha de ser lineal, de arriba a abajo y del color \#444444 al color \#999999.
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_6.png.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Alpha en los bordes}
+\label{subsec:alpha-bordes}
+
+\textbf{Enunciado:}
+
+Modifica la hoja de estilo del ejercicio anterior (la puedes llamar css3\_7.css) para que el borde del ''sandbox'' tenga un ''alpha'' de 0.2 y el color de letra en ''sandbox'' tenga un alpha de 0.6.
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_7.png.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Rotación}
+\label{subsec:rotacion}
+
+\textbf{Enunciado:}
+
+Modifica la hoja de estilo del ejercicio anterior (la puedes llamar css3\_8.css) para que la caja se encuentre rotada 7.5 grados. Deberás añadir un margen apropiado para que el resultado quede visualmente aceptable.
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_8.png.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Escalado}
+\label{subsec:escalado}
+
+\textbf{Enunciado:}
+
+Modifica la hoja de estilo del ejercicio anterior (la puedes llamar css3\_9.css) para que la caja tenga un 80\% del tamaño original.
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_9.png.
+
+%%-----------------------------------------------------------------------------
+\subsection{Rotación en el eje de las Y}
+\label{subsec:rotacionY}
+
+\textbf{Enunciado:}
+
+Modifica la hoja de estilo del ejercicio ''Alpha con bordes'' que habíamos guardado como css3\_7.css (la nueva la puedes llamar css3\_10.css) para que el contenido de la caja rote 180 grados en el eje de las Y.
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_10.png.
+
+
+
+%%-----------------------------------------------------------------------------
+\subsection{Animación}
+\label{subsec:animacion}
+
+\textbf{Enunciado:}
+
+Modifica la hoja de estilo del ejercicio ''Alpha con bordes'' que habíamos guardado como css3\_7.css (la nueva la puedes llamar css3\_11.css) para incluir una animación sencilla. La animación tendrá un valor de opacidad 0 a los 0 segundos, de 0.5 a los 2.5 segundos y de 1 a los 5 segundos. Para realizar la animación, hace falta definir un elemento @keyframes.
+
+Visualmente, el resultado ha de ser similar al del fichero css3\_7.png, pero al principio al página web estará vacía y a los 2.5 segundos se mostrará la caja con una opacidad de 0.5.
+
+
+%%-----------------------------------------------------------------------------
+\subsection{Transiciones}
+\label{subsec:transiciones}
+
+\textbf{Enunciado:}
+
+Replicar el ejemplo ''Example E: On a roll'' con transiciones CSS3 que se puede encontrar en: http://www.css3.info/preview/css3-transitions/. Modificar el ejemplo para que la caja empiece en la derecha y sea de color amarillo, y termine en la izquierda siendo de color verde.
+
+
+%%-----------------------------------------------------------------------------
+\subsection{Tu hoja de estilo CSS3}
+\label{subsec:concurso}
+
+\textbf{Enunciado:} Toma la página urjc.html que podrás encontrar en la carpeta CSS3 dentro de P2\_CSS y añade las instrucciones CSS (incluidas CSS3) que creas conveniente (puedes añadir imágenes también).
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{Bootstrap}
+
+\subsection{Inspeccionando Bootstrap}
+\label{subsec:inspeccionando_bootstrap}
+
+\textbf{Enunciado:} Descárgate la última versión de Bootstrap en tu ordenador.
+Inspecciona qué elementos se han descargado en las carpetas. Deberás reconocer
+hojas de estilo CSS, Javascript y ficheros con fuentes e iconos.
+
+\subsection{Una sencilla página con Bootstrap}
+\label{subsec:bootstrap_sencillo}
+
+\textbf{Enunciado:} Descárgate la plantilla básica de Bootstrap y 
+crea un página web simple añadiendo elementos que te ofrece la plataforma.
+
+
+\subsection{Utilizando el Jumbotron de Bootstrap}
+\label{subsec:jumbotron}
+
+\textbf{Enunciado:} Parte del esquema ``Narrow jumbotron'' que ofrece Bootstrap
+y modifica la página para
+que pudiera utilizarse como la página de inicio de la Universidad Rey Juan
+Carlos.
+
+\subsection{Utilizando el Carousel de Bootstrap}
+\label{subsec:carousel}
+
+\textbf{Enunciado:} Parte del Esquema ``Carousel'' y modifica la página para que
+pueda utilizarse como la página de inicio de la ETSIT. Añade al menos cuatro 
+imágenes al carrusel.
+
+
+\subsection{Tu hoja de estilo CSS3 (con Bootstrap)}
+\label{subsec:concurso2}
+
+\textbf{Enunciado:} Toma la página urjc.html que podrás encontrar en la carpeta CSS3 dentro de P2\_CSS y utilizando el framework Bootstrap (puedes ayudarte de BootTheme), crea una página web con estilo.
+
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{JavaScript}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Iteración sobre un objecto}
+\label{subsec:eje-js-iteracion-objeto}
+
+\textbf{Enunciado:}
+
+Define el siguiente objeto:
+
+\begin{verbatim}
+movie={title: 'The Godfather',
+    'releaseInfo': {'year': 1972, rating: 'PG'}
+}
+\end{verbatim}
+
+Escribe un iterador que muestre el nombre y valor de sus propiedades.
+
+\textbf{Comentarios:}
+
+Puedes empezar a trabajar sobre el siguiente código:
+
+\begin{verbatim}
+for (i in movie) {
+    console.log(i);
+    console.log(movie[i]);
+    for (ii in i) {
+        console.log(ii)
+        console.log(movie[i][ii])
+    }
+}
+\end{verbatim}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Vacía página}
+\label{subsec:eje-js-vacia-pagina}
+
+\textbf{Enunciado:}
+
+Escribe una función JavaScript que vacíe el contenido de una página HTML cualquiera, dejando sólo un elmento $<body>$ vacío.
+
+A continuación, puedes ser más selectivo, escribiendo una función que vacíe todos los elementos con una etiqueta dada.
+
+\textbf{Comentarios:}
+
+Una posible solución a la primera parte es la siguiente:
+
+\begin{verbatim}
+p = document.getElementsByTagName('body');
+p[0].innerHTML='';
+\end{verbatim}
+
+Para la segunda parte, se puede utilizar una función como la siguiente. Pero ojo, esta función podría no funcionar bien si hay elementos con el tag a borrar anidados dentro de otros elementos con el mismo tag: podría borrar antes los nodos más altos del árbol, de forma que cuando va a borrar los anidados (más bajos), ya no existen. Se anima al alumno a explorar soluciones para estos casos.
+
+\begin{verbatim}
+function Empty (tag) {
+    elements = document.getElementsByTagName(tag);
+    for (element in elements) {
+        elements[element].innerHTML='';
+    }
+}
+\end{verbatim}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{De lista a lista ordenada}
+\label{subsec:eje-js-lista-ordenada}
+
+\textbf{Enunciado:}
+
+Utilizando codigo JavaScript, modifica una página HTML convirtiendo todos los elementos $<ul>$ en elementos $<ol>$.
+
+\textbf{Comentarios:}
+
+Se pueden buscar soluciones a partir del próximo código:
+
+\begin{verbatim}
+document.getElementsByTagName('body')
+for ... {
+    element.innerHTML.replace(/<ul>/, '<ol>')
+    element.innerHTML.replace(/</ul>/, '</ol>')
+}
+\end{verbatim}
+
+Pero serían mejores soluciones (y se anima al alumno a buscarlas) las que sustituyan los nodos $<ul>$ por nodos $<ol>$ con el mismo contenido.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Función que cambia un elemento HTML}
+\label{subsec:eje-js-cambia-elemento}
+
+\textbf{Enunciado:}
+
+Escribe una función JavaScript que acepte dos argumentos: un identificador de elemento HTML, y una cadena de texto HTML. La función, cuando sea ejecutada, buscará ese elemento en la página HTML que está cargada en el navegador, y cambiará su contenido HTML por el que indique el segundo argumento.
+
+\textbf{Comentarios:}
+
+Una posible solución es la siguiente:
+
+\begin{verbatim}
+function changer (id, newValue) {
+    var element = document.getElementById(id);
+    element.innerHTML = newValue;
+}
+\end{verbatim}
+
+Suponiendo que haya un elemento con identificador ``sentence'' en la página HTML cargada en el navegador, puedes probarla ejecutando, por ejemplo, las siguientes sentencias (ejecuta primero una y luego otra, para ver lo que hace cada una:
+
+\begin{verbatim}
+changer("sentence", "Hasta luego")
+changer("sentence", "<ul><li>Lo que hay que...</li>
+  <li>...ver</li></ul>")
+\end{verbatim}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Sumador JavaScript muy simple}
+\label{subsec:eje-js-sumador-muy-simple}
+
+
+\textbf{Enunciado:}
+
+Utilizando la función creada en el ejercicio ``Función que cambia un elemento HTML'' (ejercicio~\ref{subsec:eje-js-cambia-elemento}), escribir una función que realice una suma. Para ello, partimos de una página HTML que tenga el siguiente código:
+
+\begin{verbatim}
+<p>Adder...<span id='op'>5+3</span>
+<span id="res"></span> <a href="">Add!</a></p>
+\end{verbatim}
+
+El objetivo es que cuando se pulse sobre ``Add!'' aparezca a continuación de ``5+3'' la cadena ``=8'' (siendo 8 la suma de los dos operandos). Para ello la función a escribir aceptará como parámetros dos cadena de texto, que serán el identificador del elemento HTML donde está la operación, y el del elemento donde se escribirá el resultado.
+
+Se considera que la operación estará siempre en formato ``primer número, +, segundo número''. La función tendrá que buscar la operación, identificar los operandos en ella (por ejemplo, usando ``split''), realizar la suma y, utilizando la función de cambio de un elemento HTML, escribir el contenido en el elemento HTML del resultado.
+
+Resolver el problema incluyendo todo lo necesario en una página HTML
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Ejemplo de solución: fichero \verb|calculator.html|.
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Sumador JavaScript muy simple con sumas aleatorias}
+\label{subsec:eje-js-sumador-aleatorio}
+
+
+\textbf{Enunciado:}
+
+Realiza un sumador como el descrito en el ejercicio ``Sumador JavaScript muy simple'' (ejercicio~\ref{subsec:eje-js-sumador-muy-simple}), pero de forma que se incluya un texto en el que, si se pica con el ratón, se genere una nueva suma con dos sumandos aleatorios.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Ejemplo de solución: fichero \verb|calculator-random.html|.
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Mostrador aleatorio de imágenes}
+\label{subsec:eje-js-imagenes-aleatorio}
+
+
+\textbf{Enunciado:}
+
+Escribe una página HTML con el código JavaScript asociado necesario, de forma que cuando se pica con el ratón sobre un texto, se muestre una imagen aleatoria entre una lista de urls de imágenes que se encuentra en la propia página.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Ejemplo de solución: fichero \verb|photos-random.html|.
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{JSFiddle}
+\label{subsec:eje-js-jsfiddle}
+
+\textbf{Enunciado:}
+
+Utiliza el servicio gratuido ofrecido por JSFiddle para ejecutar alguna de las prácticas anteriores que incluyen código HTML y JavaScript.
+
+Cuando te funcione, sálvalo (consiguiendo así una url única), y pásale la url resultante a otro compañero, para que lo vea. Haz tú lo mismo con la url que te pase un compañero.
+
+\textbf{Materiales:}
+
+Servicio JSFiddle: \url{http://jsfiddle.net/}
+
+\textbf{Comentarios:}
+
+En JSFIDDLE se puede probar código JavaScript actuando sobre HTML y CSS de forma cómoda. Luego, ese mismo código puede componerse en una única página HTML, o en varios documentos (por ejemplo, un documento HTML que referencie un documento CSS y otro JavaScript.
+
+
+%%---------------------------------------------------------------------
+\subsection{Greasemonkey}
+\label{subsec:eje-js-greasemonkey}
+
+\textbf{Enunciado:}
+
+Instala el módulo ``Greasemonkey'' para Firefox, e instálale un script que escriba un texto sobre el logo de la página principal de google.com cuando ésta se cargue.
+
+A continuación, instala un script de UserScripts.org, pruébalo, mira (y trata de entender) su código.
+
+Realiza un script JavaScript que se pueda ejecutar con GreaseMonkey (recuerda ponerla la extensión user.js). Indica cuál es el sitio (o los sitios) con el que funciona. Incluye en el propio script una o varias reglas "include" para que se ejecute sólo cuando se cargue una página relevante.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Módulo Greasemonkey: \\
+  \url{https://addons.mozilla.org/firefox/addon/greasemonkey/}
+
+\item Introducción a GreaseMoneky: \\
+  \url{http://wiki.greasespot.net/Greasemonkey_Manual}
+
+\item Scripts para GreaseMoneky: \\
+  \url{http://userscripts.org}
+
+\end{itemize}
+
+\textbf{Comentarios:}
+
+Una vez instalado Greasemonkey, puedes crear un fichero google.user.js con un contenido como el que ves a continuación. Al cargarlo desde Firefox, si Greasemonkey está activado te preguntará si quieres instalarlo. Una vez instalado, se ejecutará automáticamente, escribiendo sobre el logo cuando se cargue la página principal de google.com.
+
+\begin{verbatim}
+function changer (id, newValue) {
+    var element = document.getElementById(id);
+    element.innerHTML = newValue;
+}
+
+changer ("hplogo", "<H1>Hola</H1>");
+\end{verbatim}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Calculadora binaria simple}
+\label{subsec:eje-js-calc-binaria-1}
+
+
+\textbf{Enunciado:}
+
+Escribe una aplicacion JavaScript que implemente una calculadora binaria simple. Esta calculadora sólo realizará sumas de números binarios de una cifra (esto es, 0 ó 1). La interfaz de usuario estará compuesta de los siguientes elementos:
+
+\begin{itemize}
+\item Un ``1'', que será un enlace. Cuando se pulse sobre él, aparecerá un ``1'' en el ``display'' (ver más abajo).
+\item Un ``0'', que será un enlace. Cuando se pulse sobre él, aparecerá un ``0'' en el ``display'' (ver más abajo).
+\item Un ``+'', que será un enlace. Cuando se pulse sobre él, se almacenará lo que haya en el ``display'' (un ``0'' o un ``1'') como primer sumando, y se borrará a continuación el contenido del ``display''.
+\item Un ``='', que será un enlace. Cuando se pulse sobre él, se utlizará lo que haya en el``display'' (un ``0'' o un ``1'') como segundo sumando, se sumará al primer sumando (que debería estar almacenado) y se mostrará el resultado en el ``display''.
+\item Un ``display'', que mostrará lo indicado en los apartados anteriores.
+\end{itemize}
+
+\textbf{Comentarios}
+
+Para empezar, puede hacerse la calculadora sin tener en cuenta las condiciones de error (por ejemplo, que se pulse ``+'' sin que haya nada en el ``display''. Más adelante, se puede mejorar el código para que gestione adecuadamente estas condiciones de error.
+
+Es importante darse cuenta de que cuando se almacene el primer sumando, ha de ser en una variable que esté disponible cuando posteriormente se realice la suma. En particular, es conveniente recordar que las variables locales a una función desaparecen cuando termina la ejecución de la función.
+
+Al terminar la funcionalidad del ejercicio, se puede utilizar CSS (por ejemplo, propiedades como el color de fondo) para dar una apariencia un poco más adecuada a la calculadora.
+
+%% \textbf{Materiales:}
+
+%% \begin{itemize}
+%% \item Ejemplo de solución: fichero \verb|calc-binario-1.html|.
+%% \end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Prueba de addEventListener para leer contenidos de formularios}
+\label{subsec:eje-js-addeventlistener-form}
+
+\textbf{Enunciado:}
+
+En esta práctica se va a utlizar el método addEventListener para leer los cambios que se realicen en un campo de texto de un formulario, de forma que a continuación puedan escribirse en otra parte de la página.
+
+Para ello, se escribirá en HTML un formulario con un campo de texto, y un código JavaScript que consiga que según un usuario vaya escribiendo en el campo de texto, lo mismo que escribe vaya mostrándose en otra parte de la página.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item element.addEventListener en la documentación de Mozilla: \\
+  \url{https://developer.mozilla.org/en/docs/DOM/element.addEventListener}
+\item Advanced event registration models: \\
+  \url{http://www.quirksmode.org/js/events_advanced.html} \\
+  (modelo ``W3C'')
+\item Ejemplo de solución (con función anónima): \\
+  Fichero \verb|form.html|
+\item Ejemplo de solución (con función con nombre): \\
+  Fichero \verb|form-2.html|
+\item Ejemplo de solución (usando ``onload''): \\
+  Fichero \verb|form-3.html|
+\item Ejemplo de solución (evitanto el uso de ``this''): \\
+  Fichero \verb|form-4.html|
+\item Ejemplo de solución (poniendo el código JavaScript en un fichero): \\
+  Ficheros \verb|form-5.html|, \verb|form-5.js|
+\end{itemize}
+
+\textbf{Comentarios:}
+
+addEventListener permite asociar funciones que atiendan a eventos a los elementos que lanzan estos eventos. En este caso, lo usaremos para asociar el elemento ``input'' del campo de texto del formulario a una función que escriba, cuando sea invocada, el contenido (valor) en ese momento de ese campo de texto. Como el evento ``input'' se dispara cada vez que haya un cambio en el campo de texto, el resultado será que todo lo que se escriba en el campo de texto se repetirá en otra parte de la página.
+
+Se recomienda hacerlo primero con una función anónima como argumento a addEventListener, y a continuación con una función con nombre.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Colores con addEventListener}
+\label{subsec:eje-js-addeventlistener-colores}
+
+\textbf{Enunciado:}
+
+En esta práctica se va a utlizar el método addEventListener para visualizar colores según se escribe su código en el campo de texto de un formulario.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Ejemplo de solución: Fichero \verb|form-background.html|
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{JQuery}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Uso de jQuery}
+\label{subsec:eje-jquery-uso}
+
+\textbf{Enunciado:}
+
+Utiliza jQuery, según se indica en el apartado ``How jQuery Works'' del manual ``About jQuery'' para realizar una página HTML tal que cuando se pulse cualquiera de sus enlaces se muestre una ventana emergente que diga ``Hola''. 
+
+\textbf{Comentarios:}
+
+Normalmente, la versión de jQuery a usar por ahora será la de ``producción'', que tiene el código ``minimizado''. Por ejemplo, \verb|jquery-1.11.0.min.js|
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Sitio de jQuery: \url{http://jquery.com}
+\item Documentación sobre jQuery: \url{http://jquery.com}
+\item Descarga de jQuery: \url{http://jquery.com/download/}
+\item Learn jQuery: \url{http://learn.jquery.com/}
+\item About jQuery: \url{http://learn.jquery.com/about-jquery/}
+\item Ejemplo de solución: Fichero \verb|hello.html|, \verb|hello.js|
+\item Ejemplo de solución (usando jQuery en una CDN):
+  Fichero \verb|hello-2.html|
+\item Ejemplo de solución (con varios elementos ``a''):
+  Fichero \verb|hello-3.html|
+\item Ejemplo de solución (no siguiendo los enlaces):
+  Fichero \verb|hello-4.html|, \verb|hello-4.js|
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Cambio de colores con jQuery}
+\label{subsec:eje-jquery-colores}
+
+\textbf{Enunciado:}
+
+Utiliza jQuery para cambiar los colores de fondo de todos los elementos HTML con un cierto identificador, utilizando una clase CSS.
+
+Igualmente, para todos los elementos ``li'' del identificador anterior, que cambien el texto a otro color.
+
+Igualmente, para el último de los elementos ``li'' anteriores, que al pasar el ratón por encima cambie a color verde, y deje de tenerlo al dejar de estar el ratón encima (hover).
+
+\textbf{Comentarios:}
+
+Puede usarse ``starterkit.html'', que ya tiene clases ``red'', ``blue'' y ``green'' que pone el color de fondo a rojo y el color de texto a azul y verde, respectivamente, y el identificador ``\#orderedlist''.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item \verb|starterkit.html|, \verb|starterkit.js|, \verb|starterkit-custom.js|
+\item Ejemplo de solución: Fichero \verb|colors.js|
+  (para sustituir al ``custom.js'' del StarterKit)
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Texto con jQuery}
+\label{subsec:eje-jquery-texto}
+
+\textbf{Enunciado:}
+
+Vamos a seguir usando el \verb|starterkit.html| (ver ``Cambio de colores con jQuery'', ejercicio~\ref{subsec:eje-jquery-colores}).
+
+Utiliza JQuery para añadir texto a cada elemento ``li'' que estén dentro del elemento con identificador ``\#orderedlist''. 
+
+Ahora, consigue que cuando se entre con el ratón sobre los elementos ``li'' bajo ``\#orderedlist2'', se escriba un mensaje a su lado, y otro distinto al salir.
+
+Por último, cambia el texto de los elementos ``dd'' cuando se entre con el ratón sobre ellos, volviendo a su texto original al salir.
+
+\textbf{Comentarios:}
+
+Para añadir texto a varios ``li'' bajo ``\#orderedlist'' puedes usar la función ``each'', aplicada a cada elemento encontrado usando ``find''.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Ejemplo de solución: Fichero \verb|add-text-3.js|
+  (para sustituir al ``starterkit-custom.js'' de \verb|starterkit.html|)
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Difuminado (fading) con JQuery}
+\label{subsec:eje-jquery-fading}
+
+\textbf{Enunciado:}
+
+Vamos a seguir usando el \verb|starterkit.html| (ver ``Cambio de colores con jQuery'', ejercicio~\ref{subsec:eje-jquery-colores}).
+
+Utiliza JQuery para difuminar el texto de los elementos ``dt'' cuando se pulse el ratón sobre ellos.
+
+A continuación, escribe el texto difuminado, añadiéndolo al elemento ``h3'' (además de difuminarlo) cuando se pulse el ratón sobre los mismos elementos.
+
+Por último, haz reaparecer el texto difuminado, con un difuminado inversio, al pulsar sobre el elemento ``h3''
+
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Ejemplo de solución: Fichero \verb|fading-3.js|
+  (para sustituir al ``starterkit-custom.js'' de \verb|starterkit.html|)
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Ejemplos simples con Ajax}
+\label{subsec:eje-jquery-ajax}
+
+\textbf{Enunciado:}
+
+Escribe un programa que, una vez está cargado el árbol DOM de una página HTML, realice la petición HTTP de un documento con un texto, y lo incluya en el elemento con un cierto identificador de dicha página HTML. Para realizar la petición del documento, utiliza la función ajax() de jQuery.
+
+Realiza lo mismo, pero ahora de forma que la petición del documento se realice cuando el usaurio pulsa el ratón sobre otro elemento.
+
+\textbf{Comentarios:}
+
+Puede utlizarse para realizar las pruebas el servidor HTTP Python de una línea que se describe en el ejercicio ``HTML simple'' (\ref{subsec:eje-html-simple}).
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item jQuery API Documentation: jQuery.ajax(): \\
+  \url{http://api.jquery.com/jQuery.ajax/}
+\item Ejemplo de solución: Fichero \verb|ajax.tar.gz|
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Ejemplo simple con Ajax y JSON}
+\label{subsec:eje-jquery-json}
+
+\textbf{Enunciado:}
+
+Escribe un programa que, cuando se pulse el ratón sobre un cierto elemento de una página HTML, realice la petición HTTP de un documento JSON, y lo incluya a continuación del elemento con un cierto identificador de dicha página HTML. Para realizar la petición del documento JSON, utiliza la función getJSON() de jQuery.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item jQuery API Documentation: jQuery.getJSON(): \\
+  \url{http://api.jquery.com/jQuery.getJSON/}
+\item Ejemplo de solución: Fichero \verb|json-data.tar.gz|
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Generador de frases aleatorias}
+\label{subsec:eje-jquery-frases-aleatorias}
+
+\textbf{Enunciado:}
+
+Escribe un programa que al arrancar muestre una frase en una página HTML. Cuando se pulse sobre la frase, muestre otra, y así sucesivamente. Para generar las frases, cuando se cargue la página HTML se pedirá un documento JSON que tendrá tres listas de ``partes'' de frases. La primera lista tendrá posibles comienzos de frases, la segunda lista tendrá posibles partes medias de una frase, y la tercera tendrá posibles finales. Cada vez que haya que mostrar una frase, se elegirá aleatoriamente un elemento de cada una de las tres listas, y se generará la frase con ellas. Para realizar la petición del documento JSON, utiliza la función getJSON() de jQuery.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item jQuery API Documentation: jQuery.getJSON(): \\
+  \url{http://api.jquery.com/jQuery.getJSON/}
+\item Ejemplo de solución: Fichero \verb|json-data.tar.gz|
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Utilización de JSONP}
+\label{subsec:eje-jquery-jsonp}
+
+\textbf{Enunciado:}
+
+Escribe un programa que, usando la API de Flickr, y en particular el documento JSONP que incluye información sobre las últimas fotos que se han etiquetado con la etiqueta ``fuenlabrada'', muestre estas fotos cuando se pica en pantalla sobre un cierto elemento.
+
+Mejora tu programa para que admita que el usuario escriba en una caja la eitqueta, o lista de etiquetas que quiera, y el programa muestre las últimas fotos con esas etiquetas.
+
+\textbf{Comentarios:}
+
+Puedes ver un ejemplo muy similar en la página de documentación de jQuery sobre getJSON.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item JSONP en Wikipedia: \\
+  \url{http://en.wikipedia.org/wiki/JSONP}
+\item jQuery API Documentation: jQuery.getJSON(): \\
+  \url{http://api.jquery.com/jQuery.getJSON/}
+\item Documentación de la API de Flickr: \\
+  \url{http://www.flickr.com/services/api/}
+\item Acceso a fichero JSONP con las últimas fotos de Flickr con etiqueta ``fuenlabrada'': \\
+  \url{http://api.flickr.com/services/feeds/photos_public.gne?tags=fuenlabrada&tagmode=any&format=json&jsoncallback=?}
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{HTML5}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{La misma página, pero en HTML5}
+\label{subsec:lo-mismo-pero-diferente}
+
+\textbf{Enunciado}: Modifica la página html5-original.html que sigue el estándar HTML4
+(con su correspondiente hoja de estilo CSS en el archivo html5-style-original.css)
+para que incluya las nuevas etiquetas de HTML5. El resultado se puede ver en los
+ficheros html5-final.html y html5-style-final.css. Todos los ficheeros necesarios se
+pueden encontrar en Moodle.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Diagrama de coordenadas con canvas}
+\label{subsec:diagrama-coordenadas}
+
+\textbf{Enunciado}: Crea un diagrama de coordenadas como el que se muestra en la imagen diagramacoordenadas.png (disponible en Moodle) mediante el uso de HTML5 canvas.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Un Paint sencillo}
+\label{subsec:paint-sencillo}
+
+\textbf{Enunciado}: Utilizando el elemento canvas, crea un Paint sencillo que pueda pintar en el canvas mientras se mantiene el botón del ratón pulsado en los colores rojo, verde, azul, negro y blanco. Además, añade un botón para borrar el canvas.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Un Paint con brocha}
+\label{subsec:paint-brocha}
+
+\textbf{Enunciado}: Modifica el ejercicio anterior (''Un Paint sencillo'', ejercicio~\ref{subsec:paint-sencillo}) para que el usuario puede elegir también el tamaño de la brocha con la que pintar. Además, el título ''Un Paint sencillo'' ha de modificarse a ''Un Paint algo más complicado'' y ha de situarse encima del canvas.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Estudia un juego sencillo con canvas}
+\label{subsec:estudia-juego}
+
+\textbf{Enunciado}: Estudia con detenimiento el juego sencillo realizado
+con canvas y javascript \emph{simple\_canvas\_game} que puedes encontrar en el Moodle de la asignatura. Pon especial atención en las siguientes cuestiones:
+
+\begin{itemize}
+  \item Cómo se cargan las imágenes
+  \item Cómo se modelan los elementos (los objetos del juego)
+  \item Cómo se utilizan las pulsaciones de teclas para cambiar el estado
+  \item Cómo es el \emph{loop} principal del juego
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Modifica el juego sencillo con canvas}
+\label{subsec:modifica-juego}
+
+\textbf{Enunciado}: Partiendo del juego sencillo anterior, realiza las 
+siguientes modificaciones:
+
+\begin{itemize}
+  \item Impide que la princesa si situe entre los árboles
+  \item Impide que el héroe salga del recinto arbolado
+  \item Añade piedras, que el héroe ha de sortear para llegar a la princesa
+  \item Ten en cuenta de que no puede haber una piedra suficientemente cerca de la posición de la princesa, ni en la posición inicial del príncipe
+  \item Añade monstruos que si tocan al héroe, lo matan
+  \item Añade lógica para que cada 10 princesas cogidas, se "pase" al siguiente
+nivel (con más piedras y/o monstruos más veloces)
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Juego con estado}
+\label{subsec:juego-con-estado}
+
+\textbf{Enunciado}: Partiendo del juego sencillo realizado con el canvas HTML5 (ejercicio~\ref{subsec:modifica-juego}), realiza las modificaciones oportunas para que guarde el estado de una partida y un jugador pueda volver a ese estado posteriormente.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Juego sin conexión}
+\label{subsec:juego-sin-conexion}
+
+\textbf{Enunciado}: Partiendo del juego con estado (ejercicio~\ref{subsec:juego-con-estado}), realiza las modificaciones pertinentes para que el juego pueda jugarse sin conexión a Internet.
+
+Recuerda que para ello, puedes hacer uso de que el servidor Apache sirve todo aquéllo que coloquemos en el directorio ~/public\_html de nuestro home, como http://watson.gsyc.es/~login/ (donde login es tu nombre de usuario en los laboratorios). Para que funcione correctamente, recuerda que tanto tu home como el public\_html y todos los ficheros dentro de public\_html deben tener permisos para que Apache pueda leerlos.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Modernizr: Comprobación de funcionalidad HTML5}
+\label{subsec:modernizr}
+
+\textbf{Enunciado}: Bájate e instálate la biblioteca de Javascript Modernizr, que se utiliza para comprobar si la funcionalidad de HTML5 está soportada por el navegador (prueba con Firefox y con Konqueror). Comprueba si el navegador tiene la siguiente funcionalidad:
+
+\begin{itemize}
+  \item canvas
+  \item video
+  \item video en formato ogg
+  \item almacenamiento local
+  \item apliaciones sin conexión
+  \item geolocalización
+\end{itemize}  
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Audio y vídeo con HTML5}
+\label{subsec:audio-video}
+
+\textbf{Enunciado}: Utiliza Modernizr para ver si el navegador soporta vídeo y vídeo en los diferentes formatos. Descárgate un vídeo en formato WebM o otro en formato OGG (extensión ogv) de la web y crea una página que lo muestre. Finalmente, estudia el código utilizado en YouTube para empotrar un vídeo con HTML5 en varios formatos en \url{http://diveintohtml5.info/video.html#example}, incluyendo el código para que se use Flash en el caso de que no estén soportados. Compara esta aproximación con la que hemos utilizado con Modernizr.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Geolocalización con HTML5}
+\label{subsec:geolocalizacion}
+
+\textbf{Enunciado}: Utiliza la API de HTML5 para geolocalización para determinar tu posición. Utiliza la API de HTML5 para geolocalización para determinar tu posición e imprímela en la página web. Comprueba que tu navegador tiene implementada la funcionalidad de geolocalización con Modernizr. Puede que para realizar este ejercicio tengas que utilizar Google Chrome. Además, si quieres, puedes mostrar tu localización geográfica actual en un mapa, siguiendo las instrucciones que podrás encontrar en: \url{http://www.w3schools.com/html/html5_geolocation.asp}.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Las antípodas}
+\label{subsec:antipodas}
+
+\textbf{Enunciado}: Crea una página web que a partir de tu geolocalización, muestre en la ventana del navegador las siguientes dos imágenes: tu localización y la de las antípodas. Para mostrar la imagen geográfica, puedes hacer uso de la API de Google Maps. Así, la URL http://maps.googleapis.com/maps/api/staticmap?center=latitud,longitud\&zoom=14\&size=400x300\&sensor=false devuelve una imagen de tamaño 400x300 píxeles centrado en las coordenadas latitud y longitud.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Cálculo de números primos con Web Workers}
+\label{subsec:webworker-primos}
+
+\textbf{Enunciado}: Estudia el fichero webworkers.html que encontrarás en la carpeta P5\_HTML5 en el Moodle de la asignatura (dentro de la subcarpeta web\_workers). Comprueba cómo al introducir un número muy grande, el interfaz del navegador deja de ser responsivo. Implementa un webworker para que el cálculo de los primos se realice en \emph{background} y el interfaz no pierda responsividad.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Cliente de eco con WebSocket}
+\label{subsec:websocket-cliente-eco}
+
+\textbf{Enunciado}: Inspecciona y ejecuta el archivo websocket\_echo.html para ver el funcionamiento de los WebSockets. Comprueba la URI del servidor de WebSockets, los eventos que se lanzan, así como el funcionamiento general del cliente de eco.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Cliente y servidor de eco con WebSocket}
+\label{subsec:websocket-cliente-servidor-eco}
+
+\textbf{Enunciado}: En Moodle encontrarás SimpleWebSocketServer.py, que implementa un servidor de WebSockets sencillo (también tiene una variante segura). En SimpleExampleServer.py se hereda del servidor WebSocket para crear servidores específicos. El que vamos a tratar en este ejercicio es el servidor de eco. Para ello, ejecuta SimpleExampleServer.py en modo eco y pruébalo con la página HTML SimpleWebSocketClient.html. Modifica el servidor para que imprima por pantalla lo que recibe y envía. Asimismo, modifica el cliente para que no sólo muestre en la página lo que recibe, sino también lo que envía.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Cliente y servidor de chat con WebSocket}
+\label{subsec:websocket-cliente-servidor-chat}
+
+\textbf{Enunciado}: Basándote en SimpleExampleServer.py, modifica SimpleWebSocketClient.html para tener un chat que utilice el protocolo WebSocket. Comprueba el tráfico intercambiado entre cliente y servidor con las herramientas para desarrolladores de los navegadores.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Canal con obsesión horaria}
+\label{subsec:websocket-canal-obsesion-horaria}
+
+\textbf{Enunciado}: Basándote en la implementación de chat de SimpleExampleServer.py, modifica el servidor para que sea un servicio de chat que además:
+\begin{itemize}
+  \item Cada minuto en punto, envíe un mensaje a los conectados dando la hora.
+  \item Responda a los conectados con la hora, cuando éstos se lo pidan mediante un mensaje \emph{getTime}.
+\end{itemize}
+
+Recuerda que puedes hacer uso de la biblioteca \emph{time} de Python.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{Otras bibliotecas JavaScript}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{JQueryUI: Instalación y prueba}
+\label{subsec:otras-jquery-instal}
+
+\textbf{Enunciado:}
+
+Instala la biblioteca JQueryUI personalizada (customized), incluyendo todas las opciones. Sirve el directorio donde se ha instalado con el servidor Python de una línea, y carga el documento index.html en el navegador, para ver una muestra de los widgets que proporciona la biblioteca.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Learn jQuery, capítulo sobre JQuery UI: \\
+  \url{http://learn.jquery.com/jquery-ui/}
+\item jQuery: \url{http://jqueryui.com/}
+\item jQuery UI API Documentation: \url{http://api.jqueryui.com/}
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{JQueryUI: Uso básico}
+\label{subsec:otras-jquery-basico}
+
+\textbf{Enunciado:}
+
+Comenzaremos por crear un ``selector de fechas'' (date-picker), que despliega un calendario. Para introducir datos en el sector, se podrá desplegar el calendario, y la fecha elegida en él serla la que se tendrá en el selector.
+
+A continuación, pondremos un menú con un submenú, jugando un poco con las distintas opciones que nos proporciona el elemento correspondiente de jQueryUI.
+
+Por último, pondremos un objeto ``dropable'' y dos ``dragable''. Cuando cualquiera de los elementos ``dragable'' se suelte sobre el ``dropable'', cambiará el color y el texto de este último. Cuando se arrastra el ``dragable'' sacándolo del ``dropable'' volverá a cambiar su color y texto, para quedar como estaban. Haz que uno de los ``dragable'' vuelva automáticamente a su sitio cuando lo sueltes (poniéndole la propiedad adecuada).
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Learn jQuery, capítulo sobre JQuery UI: \\
+  \url{http://learn.jquery.com/jquery-ui/}
+\item jQuery: \url{http://jqueryui.com/}
+\item jQuery UI API Documentation: \url{http://api.jqueryui.com/}
+%\item Ejemplo de solución: Fichero \verb|json-data.tar.gz|
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{JQueryUI: Juega con JQueryUI}
+\label{subsec:otras-jquery-juega}
+
+\textbf{Enunciado:}
+
+Prepara una interfaz de usuario que muestre la potencia de JQueryUI. En la medida de lo posible, trata de que sea similar a una interfaz de usuario de una aplicación real: un escritorio, un sitio web para comprar viajes, una aplicación para interaccionar con una red social, etc. Procura experimentar con los elementos que proporciona JQueryUI, y trata de que se muestren de forma adecuada sus capacidades.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{JQueryUI: Clon de 2048}
+\label{subsec:otras-jquery-2048}
+
+\textbf{Enunciado:}
+
+2048 es un juego que se puede implementar con relativa facilidad como una SPA (single page application). Realiza tu propia versión de ese juego (o de uno parecido) usando jQuery y jQueryUI.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Versión ``original'' del juego 2048: \\
+  \url{http://gabrielecirulli.github.io/2048/}
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Elige un plugin de jQuery}
+\label{subsec:otras-jquery-plugin}
+
+\textbf{Enunciado:}
+
+Elige un plugin de jQuery, y has una aplicación que lo use. Puedes elegir el que quieras, pero será más fácil si no requiere de nada específico en el lado del servidor, y si encuentas que la biblioteca tiene un cierto nivel de madurez, disponibilidad de documentación, demos, etc.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Plugins de jQuery: \\
+  \url{http://plugins.jquery.com/}
+\end{itemize}
+
+\textbf{Comentarios:}
+
+Puedes empezar por probar las demos de la biblioteca, y hacer una aplicación mínima que corresponda con una de ellas. Luego, puedes integrar la biblioteca en cualquier otra de las prácticas que has hecho hasta el momento.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{APIs JavaScript}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Leaflet: Instalación y prueba}
+\label{subsec:apis-leaflet-instal}
+
+\textbf{Enunciado:}
+
+Instala la biblioteca Leaflet, tratando de tener sólo los ficheros y directorios que hacen falta para que funcionen las aplicaciones que la usen. Utiliza la información en la ``Leaflet Quick Start Guide'' para mostrar un mapa en el navegador de la zona alrededor del campus de la URJC en Fuenlabrada, con un marcador con popup sobre el Aulario III.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Leaflet: \url{http://leafletjs.com}
+\item Leaflet Quick Start Guide: \\
+  \url{http://leafletjs.com/examples/quick-start.html}
+\item Documentación sobre Leaflet (tutorials): \\
+  \url{http://leafletjs.com/examples.html}
+\item Documentación sobre Leaflet (API): \\
+  \url{http://leafletjs.com/reference.html}
+\item Coordenadas del Aulario III: latitur 40.2838, longitud -3.8215
+\item OpenStreetMap tile usage policy: \\
+  \url{http://wiki.openstreetmap.org/wiki/Tile_usage_policy}
+\item MapQuest-OSM Tiles + MapQuest Open Aerial Tiles: \\
+  \url{http://developer.mapquest.com/web/products/open/map}
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Leaflet: Coordenadas}
+\label{subsec:apis-leaflet-coordenadas}
+
+\textbf{Enunciado:}
+
+Mejora tu solución del ejercicio ``Leaflet: Instalación y prueba'' (\ref{subsec:apis-leaflet-instal}) añadiendo lo necesario para que cuando el usuario pulse en un punto del mapa, se muestre un popup con las coordenadas (latitud y longitud) de ese punto.
+
+\textbf{Comentarios:}
+
+Puedes empezar mostrando una alerta, y luego trabajar con el popup.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Leaflet: Aplicación móvil}
+\label{subsec:apis-leaflet-movil}
+
+\textbf{Enunciado:}
+
+Mejora tu solución del ejercicio ``Leaflet: Coordenadas'' (\ref{subsec:apis-leaflet-coordenadas}), haciendo que el mapa se muestre a pantalla completa, colocado sobre tu situación actual (que se muestre como un círculo con un tamaño squivalente a la exactitud de la localización), y de forma que funcione en móviles.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Leaflet on Mobile: \\
+  \url{http://leafletjs.com/examples/mobile.html}
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Leaflet: GeoJSON}
+\label{subsec:apis-leaflet-geojson}
+
+\textbf{Enunciado:}
+
+Sobre tu solución para alguno de los ejercicios anteriores (si es posible, ``Leaflet: Aplicación móvil''~\ref{subsec:apis-leaflet-movil}, si no ``Leaflet: Coordenadas''~\ref{subsec:apis-leaflet-coordenadas}), coloca una capa con marcadores procedentes de un fichero GeoJSON. El mapa deberá quedar enfocado de forma que se vean los marcadores.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Using GeoJSON with Leaflet: \\
+  \url{http://leafletjs.com/examples/geojson.html}
+\item Fichero GeoJSON con localización de edificios de la URJC: \\
+  \verb|buildings-urjc.json|
+\end{itemize}
+
+\textbf{Comentarios:}
+
+Atención al orden de las coordenadas en el objecto LatLong de Leaflet (primero latitud, luego longitud) y en la propiedad ``coordinates'' de GeoJSON (primero longitud, luego latitud).
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Leaflet: Coordenadas y búsqueda de direcciones}
+\label{subsec:apis-leaflet-nominatim}
+
+\textbf{Enunciado:}
+
+Realiza una aplicación que muestre un mapa de OpenStreetMap, usando Leaflet, con un formulario en el que se pueda introducir el nombre de un lugar. Cuando se introduzca uno, se mostrará un listado de los cinco primeros lugares que ofrezca Nominatim para ese nombre de lugar, de forma que al pulsar sobre cualquiera de ellos, el mapa se centre en ese lugar.
+
+\textbf{Materiales:}
+
+Los mismos que el ejercicio ``Leaflet: Instalación y prueba'' (\ref{subsec:apis-leaflet-instal}), y además:
+
+\begin{itemize}
+\item Nominatim: \\
+  \url{http://nominatim.openstreetmap.org/}
+\item Address lookups with Leaflet and Nominatim: \\
+  \url{http://derickrethans.nl/leaflet-and-nominatim.html}
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Leaflet: Fotos de Flickr}
+\label{subsec:apis-leaflet-flickr}
+
+\textbf{Enunciado:}
+
+Realizar una aplicación que muestre un mapa de OpenStreetMap, usando Leaflet, con un formulario en el que se pueda introducir el nombre de un lugar. Cuando se introduzca uno, se mostrará un listado de los cinco primeros lugares que ofrezca Nominatim para ese nombre de lugar, de forma que al pulsar sobre cualquiera de ellos, el mapa se centre en ese lugar. Además, en ese momento se abrirá un panel donde se mostrarán varias fotos de Flickr que tengan como etiqueta el nombre de lugar.
+
+Para hacer este ejercicio se usará la interfaz JSONP de Flickr.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Llamadas para obtener canales (feeds) de Flickr (incluye cómo obtener JSONP como respuesta): \\
+  \url{http://www.flickr.com/services/feeds/}
+\item Ejemplo de llamada JSONP con jQuery: \\
+  \url{http://api.jquery.com/jQuery.getJSON/}
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{OpenLayers: Instalación y prueba}
+\label{subsec:apis-openlayers-instal}
+
+\textbf{Enunciado:}
+
+Instala la biblioteca OpenLayers, tratando de tener sólo los ficheros y directorios que hacen falta para que funcionen las aplicaciones que la usen. Coloca en el mismo directorio los ficheros de la demo openlayers.html, y sirve este directorio con el servidor Python de una línea. Carga el documento openlayers.html en el navegador, para ver la demo (se mostrará un mapa, con una capa formada por teselas procedentes de OpenStreetMap).
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item OpenLayers: \url{http://openlayers.org}
+\item OpenLayers examples: \\
+  \url{http://openlayers.org/dev/examples}
+\item Documentación de la OpenLayers API: \\
+  \url{http://dev.openlayers.org/releases/OpenLayers-2.7/doc/apidocs}
+\item Demo: Ficheros \verb|openlayers.html|, \verb|openlayers.css| y \verb|openlayers.js|
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{OpenLayers: Capas y marcadores}
+\label{subsec:apis-openlayers-capas}
+
+\textbf{Enunciado:}
+
+Modifica el resultado del ejercicio ``OpenLayers: Instalación y prueba'' (ejercicio~\ref{subsec:apis-openlayers-instal}) para:
+
+\begin{itemize}
+\item Añadir una capa de teselas de Bing (por ejemplo, del mapa de satélite), de forma que se pueda seleccionar ésta o la de OpenStreetMap para verla en el mapa.
+\item Añadir un marcador en una posición del mapa.
+\item Opcionalmente, incluir un formulario en la página que permita indicar unas coordenadas, de forma que se añada un marcador en el mapa en esas coordenadas.
+\item Opcionalmente, incluir una zona en la página HTML que muestre las coordenadas de un punto que se seleccione en el mapa.
+\end{itemize}
+
+\textbf{Materiales:}
+
+Los mismos que el ejercicio ``OpenLayers: Instalación y prueba'' (\ref{subsec:apis-openlayers-instal}), y además:
+
+\begin{itemize}
+\item Solución (parcial): Ficheros \verb|openlayers-marker.html|, \verb|openlayers-marker.js|, \verb|openlayers-bing.html| y \verb|openlayers-bing.js|
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{OpenLayers: Coordenadas y búsqueda de direcciones}
+\label{subsec:apis-openlayers-coordenadas}
+
+\textbf{Enunciado:}
+
+Realiza una aplicación que muestre un mapa de OpenStreetMap, tal que cada vez que se pique sobre él con el ratón, muestre en una leyenda exterior al mapa:
+
+\begin{itemize}
+\item Las coordenadas (latitud y longitud) en grados.
+\item La dirección correspondiente a esas corrdenadas (utlizando el servicio proporcionado por Nominatim)
+\end{itemize}
+
+\textbf{Materiales:}
+
+Los mismos que el ejercicio ``OpenLayers: Instalación y prueba'' (\ref{subsec:apis-openlayers-instal}), y además:
+
+\begin{itemize}
+\item Nominatim: \url{http://nominatim.openstreetmap.org/}
+\item Solución: Ficheros \verb|openlayers-find.html|, \verb|openlayers-find.js| y \verb|openlayers.css|
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{OpenLayers: Fotos de Flickr}
+\label{subsec:apis-flickr}
+
+\textbf{Enunciado:}
+
+Realizar una aplicación que realice una búsqueda en el servicio Flickr, de forma que muestre las fotos que tengan la etiqueta especificada. Esta etiqueta será parte del propio código JavaScript (pero se podría implementar también con un formulario, de forma que lo pueda elegir el usuario). Para hacer este ejercicio se usará la interfaz JSONP de Flickr.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Llamadas para obtener canales (feeds) de Flickr (incluye cómo obtener JSONP como respuesta): \\
+  \url{http://www.flickr.com/services/feeds/}
+\item Ejemplo de llamada JSONP con jQuery: \\
+  \url{http://api.jquery.com/jQuery.getJSON/}
+\item Solución: Ficheros \verb|flickr.html|, \verb|flickr.js| y \verb|flickr.css|
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Open Web Apps: Aplicación para FirefoxOS}
+\label{subsec:apis-ffxos}
+
+\textbf{Enunciado:}
+
+Crea una Open Web App para FirefoxOS basándote en una de las prácticas realizadas con Leaflet. Prueba a instalarla en el simulador de FirefoxOS de Firefox, y si puedes, en un dispositivo Android (mediante instalación desde el navergador Firefox).
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Uso del FirefoxOS App Manager: \\
+  \url{https://developer.mozilla.org/en-US/Firefox_OS/Using_the_App_Manager}
+\item Para entrar al App Manager en Firefox: \\
+  \url{about:app-manager}
+\item Instalación del FirefoxOS simulator: \\
+  \url{https://ftp.mozilla.org/pub/mozilla.org/labs/fxos-simulator/}
+\item Icon archive: \\
+  \url{http://www.iconarchive.com}
+\item Ejemplo de Open Web App lista para instalar: \\
+  \url{http://gsyc.es/~jgb/ffxos-apps/index.html}
+\end{itemize}
+
+\textbf{Comentarios:}
+
+Para usar el simulador de FirefoxOS de la forma que se indica en los materiales, es necesario tener una versión de Firefox igual o mayor que la 26, e instalar el plugin correspondiente (Firefox simulator). Se recomienda instalar la versión 1.4 de este simulador.
+
+Para probar la app en un dispositivo Android, es necesario tener instalada en él una versión de Firefox igual o mayor que la 28.
+
+Para convertir la aplicación en una Open Web App, no hace falta mucho más que crearle un fichero manifest.webapp adecuado. Ejemplo de manifest.webapp:
+
+\begin{verbatim}
+{
+  "name": "My_Locator",
+  "description": "My damn simple locator",
+  "launch_path": "/map.html",
+  "icons": {
+    "128": "/map-icon.png"
+  },
+  "developer": {
+    "name": "Jesus M. Gonzalez-Barahona",
+    "url": "http://gsyc.es/~jgb"
+  },
+  "default_locale": "en",
+  "permissions": {
+    "geolocation": {
+      "description": "Access to your position"
+      }
+  },
+  "chrome": { "navigation": true }
+}
+\end{verbatim}
+
+Una vez la aplicación ha sido probada en el simulador, puede colocarse en un directorio para su instalación directa desde Firefox, creando un fichero .zip con todo lo que incluye, y los ficheros package.manifest e index.html adecuados.
+
+Ejemplo de package.manifest:
+
+\begin{verbatim}
+{
+    "name": "My_Locator",
+    "package_path" : "http://gsyc.es/~jgb/ffxos-apps/map.zip",
+    "version": "1",
+    "developer": {
+        "name": "Jesus M. Gonzalez-Barahona",
+        "url": "http://gsyc.es/~jgb"
+    }
+}
+\end{verbatim}
+
+Ejemplo de index.html:
+
+\begin{verbatim}
+<html>
+  <body>
+    <p>My Open Web Apps</p>
+    <script>
+      // This URL must be a full url.
+      var manifestUrl = 'http://gsyc.es/~jgb/ffxos-apps/package.manifest';
+      var req = navigator.mozApps.installPackage(manifestUrl);
+      req.onsuccess = function() {
+        alert(this.result.origin);
+      };
+      req.onerror = function() {
+        alert(this.error.name);
+      };
+    </script>
+  </body>
+</html>
+\end{verbatim}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{Ejercicios finales}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Juego de las parejas}
+\label{subsec:finales-parejas}
+
+\textbf{Enunciado:}
+
+Realiza una aplicación HTML5 que sirva para jugar las parejas. Al empezar el juego, aparecerán en pantalla una matriz de cuatro por cuatro con 16 palabras (una en cada posición de la matriz), iguales dos a dos. Esto es, en realidad habrá 8 palabras repetidas: cada una aparecerá dos veces.
+
+Cuando el usuario pulse la opción de comenzar, se ocultarán todas. El usuario seleccionará una posición de la matriz, que se revelará. Luego, pulsará otra, que se revelará también. Luego el jugador tendrá que pulsar en ``Listo''. Si ambas palabras eran iguales, ambas quedarán reveladas hasta que termine el juego. Si eran distintas, quedarán ocultadas. A continuación el usuari oseleccionará una nueva posición, y seguirá jugando hasta que todas las palabras queden reveladas, o hasta que pulse ``Nuevo juego'', en cuyo caso volverá a emprezar.
+
+\begin{itemize}
+\item Se puede usar un plazo, en lugar de un botón, antes de pasar a seleccionar un nuevo par de palabras.
+\item Se pueden utlizar imágenes, en lugar de palabras.
+\item Se pueden arrastrar las casillas una sobre otra, en lugar de seleccionar las dos.
+\end{itemize}
+
+
+\textbf{Comentarios:}
+
+Se recomienda usar, en lo posible, jQuery y JQueryUI.
+
+
