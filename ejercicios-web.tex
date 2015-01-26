@@ -3,11 +3,42 @@
 
 %% Ejercicios (comunes para SAT y SARO), 2013-2014.
 
+%%---------------------------------------------------------------------------
+%%---------------------------------------------------------------------------
+%%---------------------------------------------------------------------------
+\section{Entrega de prácticas incrementales}
+\label{sec:eje-entrega-practicas-incr}
+
+Para la entrega de prácticas incrementales se utilizarán repositorios git públicos alojados en GitHub. Para cada práctica entregable los profesores abrirán un repositorio público en el proyecto CursosWeb~\footnote{\url{https://github.com/CursosWeb}}, con un nombre que comenzará por ``X--Serv--'', seguirá con el nombre del tema en el que se inscribe la práctica (por ejemplo, ``Python'' para el tema de introducción a Python) y el identificador del ejercicio (por ejemplo, ``Calculadora''). Este repositorio incluirá un fichero README.md, con el enunciado de la práctica, y cualquier otro material que los profesores estimen conveniente.
+
+Cada alumno dispondrá de una cuenta en GitHub, que usará a efectos de entrega de prácticas. Esta cuenta deberá ser apuntada en una lista, en el sitio de la asignatura en el campus virtual, cuando los profesores se lo soliciten. Si el alumno desea que no sea fácil trazar su identidad a partir de esta cuenta, puede elegir abrir una cuenta no ligada a sus datos personales: a efectos de valoración, los profesores utilizará la lista anterior. Si el alumno lo desea, puede usar la misma cuenta en GitHub para otros fines, además de para la entrega de prácticas.
+
+Para trabajar en una práctica, los alumnos comenzarán por realizar una copia (fork) de cada uno de estos repositorios. Esto se realiza en GitHub, visitando (tras haberse autenticado con su cuenta de usuario de GitHub para entrega de prácticas) el repositorio con la práctica, y pulsando sobre la opción de realizar un fork. Una vez esto se haya hecho, el alumno tendrá un fork del repositorio en su cuenta, con los mismos contenidos que el repositorio original de la práctica. Visitando este nuevo repositorio, el alumno podrá conocer la url para clonarlo, con lo que podrá realizar su clon (copia) local, usando la orden \verb|git clone|.
+
+A partir de este momento, el alumno creará los ficheros que necesite en su copia local, los irá marcando como cambios con \verb|git commit| (usando previamente \verb|git add|, si es preciso, para añadirlos a los ficheros considerados por git), y cuando lo estime conveniente, los subirá a su repositorio en GitHub usando \verb|git push|.
+
+Por lo tanto, el flujo normal de trabajo de un alumno con una nueva práctica será:
+
+\begin{verbatim}
+[En GitHub: visita el repositorio de la práctica en CursosWeb,
+y le hace un fork, creando su propia copia del repositorio]
+
+git clone url_copia_propia
+
+[Se cera el directorio copia_propia, copia local del repositorio propio]
+
+cd copia_propia
+git add ... [ficheros de la práctica]
+git commit .
+git push
+\end{verbatim}
+
+Conviene visitar el repositorio propio en GitHub, para comprobar que efectivamente los cambios realizados en la copia local se han propagado adecuadamente a él, tras haber invocado \verb|git push|.
+
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 \section{Ejercicios 01: Conceptos básicos de aplicaciones web}
-
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
