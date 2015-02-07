@@ -865,8 +865,8 @@ excepciones?
 \textbf{Enunciado:}
 
 Crea un programa que sirva de calculadora y que incluya las funciones
-básicas (sumar, restar, multiplicar y dividir). El programa ha de poder ejecutarse desde la línea de comandos de la siguiente manera: python calculadora.py
-función operador1 operador1. No olvides capturar las excepciones.
+básicas (sumar, restar, multiplicar y dividir). El programa ha de poder ejecutarse desde la línea de comandos de la siguiente manera: \texttt{python calculadora.py
+función operando1 operando2}. No olvides capturar las excepciones.
 
 \newpage
 
@@ -896,13 +896,8 @@ La práctica también sirve para introducir el esquema típico de prueba (carga 
 
 \textbf{Material:}
 
-Se ofrecen dos soluciones. La más simple es:
+Se ofrecen dos soluciones en \verb|https://github.com/CursosWeb/X-Serv-14.1-WebServer|. La más simple es \verb|servidor-http-simple.py|. La otra, \verb|servidor-http-simple-2.py|, permite conexiones desde fuera de la máquina huésped, y es capaz de reusar el puerto de forma que se puede rearrancar en cuanto muere.
 
-\verb|02-aplicaciones-web-simples/servidor-http-simple.py|
-
-La otra, que permite conexiones desde fuera de la máquina huésped, y es capaz de reusar el puerto de forma que se puede rearrancar en cuanto muere es:
-
-\verb|02-aplicaciones-web-simples/servidor-http-simple-2.py|
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
@@ -923,13 +918,13 @@ Basándose en la aplicación ``Hola mundo'' construida para el ejercicio~\ref{su
 
 \textbf{Material:}
 
-Soluciones de referencia:
+%Soluciones de referencia:
 
-\begin{itemize}
-\item \verb|02-aplicaciones-web-simples/servidor-http-simple-img.py|
-\item \verb|02-aplicaciones-web-simples/servidor-http-simple-404.py|
-\item \verb|02-aplicaciones-web-simples/servidor-http-simple-301.py|
-\end{itemize}
+%\begin{itemize}
+%\item \verb|02-aplicaciones-web-simples/servidor-http-simple-img.py|
+%\item \verb|02-aplicaciones-web-simples/servidor-http-simple-404.py|
+%\item \verb|02-aplicaciones-web-simples/servidor-http-simple-301.py|
+%\end{itemize}
 
 %%------------------------------------------------------------------------------------
 %%------------------------------------------------------------------------------------
@@ -938,7 +933,7 @@ Soluciones de referencia:
 
 \textbf{Enunciado:}
 
-Construcción de una aplicación web que devuelve URLs aleatorias. Cada vez que os conectéis al servidor, aparezca en el navegador ``Hola. ¿Quieres mas?'', donde ``Quieres mas'' es un enlace a una URL aleatoria bajo \verb|localhost:1234| (esto es, por ejemplo, \url{http://localhost:1234/324324234}). Esa URL ha de ser distinta cada vez que un navegador se conecte a la aplicación.
+Construcción de una aplicación web que devuelva URLs aleatorias. Cada vez que os conectéis al servidor, debe aparecer en el navegador ``Hola. Dame otra'', donde ``Dame otra'' es un enlace a una URL aleatoria bajo \verb|localhost:1234| (esto es, por ejemplo, \url{http://localhost:1234/324324234}). Esa URL ha de ser distinta cada vez que un navegador se conecte a la aplicación.
 
 \textbf{Motivación:}
 
