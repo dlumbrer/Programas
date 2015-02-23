@@ -320,6 +320,7 @@ Desarrollar una versión RESTful de ``Sumador simple'' (ejercicio~\ref{subsec:su
 
 Hay varias formas de hacer el diseño, pero por ejemplo, cada sumando podría ser un recurso, y el resultado obtenerse en un tercero (o bien como respuesta al actualizar el segundo sumando). Cada suma podría también realizarse en un espacio de nombres de recurso distinto (con su propio primer sumando, segundo sumando y resultado).
 
+
 %%-----------------------------------------------------------------------------
 \subsection{Calculadora simple versión REST}
 \label{subsec:calc-simple-rest}
@@ -960,6 +961,24 @@ Construcción de una aplicación web que devuelva URLs aleatorias. Cada vez que 
 \textbf{Motivación:}
 
 Explorar una aplicación web como extensión muy simple de ``Aplicación web hola mundo''.
+
+%%-----------------------------------------------------------------------------
+\subsection{Aplicación redirectora}
+\label{subsec:aplweb-redirectora}
+
+\textbf{Enunciado:}
+
+Construir un programa en Python que sirva cualquier invocación que se le realice con una redirección (códigos de resultado HTTP en el rango 3xx) a otro recurso (aleatorio) de si mismo. 
+
+\textbf{Comentarios:}
+
+Este programa se realiza muy fácilmente a partir de la solución de ``Aplicación web generadora de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-urls-aleatorias}).
+
+Para poder observar con más facilidad en el navegador lo que está ocurriendo, se puede hacer que la aplicación devuelva, en el cuerpo de la respuesta HTTP, un texto HTML indicando que se va a realizar una redirección, y a qué url va a realizarse. Para que este mensaje sea visible durante un tiempo razonable, se puede hacer que la aplicación, al recibir una petición, se quede ``parada'' durante unos segundos antes de contestar con la redirección.
+
+\textbf{Motivación:}
+
+Entender cómo funciona la redirección, y cómo reacciona un navegador ante ella.
 
 %%------------------------------------------------------------------------------------
 %%------------------------------------------------------------------------------------
