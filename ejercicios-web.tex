@@ -1453,8 +1453,6 @@ Escribe y prueba la clase contentDBAppUsersStrict, que será igual que ``Gestor 
 \subsection{Práctica 1 (entrega voluntaria)}
 \label{subsec:practica-vol-1-2013}
 
-\textbf{Fecha recomendada de entrega:} Antes del 15 de marzo.
-
 Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs. La aplicación funcionará únicamente con datos en memoria: se supone que cada vez que la aplicación muera y vuelva a ser lanzada, habrá perdido todo su estado anterior. La aplicación tendrá que realizarse según un esquema de clases similar al explicado en clase.
 
 El funcionamiento de la aplicación será el siguiente:
@@ -1466,9 +1464,9 @@ El funcionamiento de la aplicación será el siguiente:
 
 Si el POST no trae una qs que se haya podido generar en el formulario, devolverá una página HTML con un mensaje de error.
 
-Si la url especificada en el formulario comienza por ``http://'' o ``https://'', se considerará que ésa es la url a acortar. Si no es así, se le añadirá ``http://'' por delante, y se considerará que esa es la url a acortar. Por ejemplo, si en el formulario se escribe ``http://gsyc.es'', la url a acortar será ``http://gsyc.es''. Si se escribe ``gsyc.es'', la url a acortar será ``http://gsyc.es''.
+Si la URL especificada en el formulario comienza por ``http://'' o ``https://'', se considerará que ésa es la url a acortar. Si no es así, se le añadirá ``http://'' por delante, y se considerará que esa es la url a acortar. Por ejemplo, si en el formulario se escribe ``http://gsyc.es'', la url a acortar será ``http://gsyc.es''. Si se escribe ``gsyc.es'', la URL a acortar será ``http://gsyc.es''.
 
-Para determinar la url acortada, utilizará un número entero secuencial, comenzando por 0, para cada nueva petición de acortamiento de una URL que se reciba. Si se recibe una petición para una URL ya acortada, se devolverá la URL acortada que se devolvió en su momento.
+Para determinar la URL acortada, utilizará un número entero secuencial, comenzando por 0, para cada nueva petición de acortamiento de una URL que se reciba. Si se recibe una petición para una URL ya acortada, se devolverá la URL acortada que se devolvió en su momento.
 
 Así, por ejemplo, si se quiere acortar
 
@@ -1482,7 +1480,7 @@ y en el cuerpo de esa petición HTTP irá la qs
 
 \verb|url=http://docencia.etsit.urjc.es|
 
-si el campo donde el usuario puede escribir en el formulario tiene el nombre ``url''. Normalmente, esta invocación POST se realizará rellenando el formulario que ofrece la aplicación.
+si el campo donde el usuario puede escribir en el formulario tiene el nombre ``URL''. Normalmente, esta invocación POST se realizará rellenando el formulario que ofrece la aplicación.
 
 Como respuesta, la aplicación devolverá (en el cuerpo de la respuesta HTTP) la URL acortada, por ejemplo
 
@@ -1526,7 +1524,7 @@ Se recomienda realizar la aplicación en varios pasos:
 
 \begin{itemize}
 \item Comenzar por reconocer ``GET /'', y devolver el formulario correspondiente.
-\item Reconocer ``POST /'', y devolver la página HTML correspondiente (con la url real y la acortada).
+\item Reconocer ``POST /'', y devolver la página HTML correspondiente (con la URL real y la acortada).
 \item Reconocer ``GET /num'' (para cualquier número num), y realizar la redirección correspondiente.
 \item Manejar las condiciones de error y realizar el resto de la funcionalidad.
 \end{itemize}
@@ -2239,16 +2237,16 @@ Interfaz pública: recursos a servir como páginas HTML completas (pensadas para
 \begin{itemize}
 \item /: Página principal de MiRevista. Mostrará la lista de las revistas disponibles, ordenadas por fecha de actualización, en orden inverso (las revistas actualizadas más recientemente, primero). Para cada revista se mostrará su título (como un enlace a la página de la revista), el nombre de su usuario y la fecha de su última actualización (fecha en que se añadió una noticia a esa revista por última vez). Si a una revista aún no se le hubiera puesto título, este título será ``Revista de usuario'', donde ``usuario'' es el identificador de usuario del usuario en cuestión.
 
-\item /usuario: Página de la revista de un usuario. Si la url es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará las 10 noticias de la revista de ese usuario (no puede haber más de 10, como se indicará más adelante). Para cada noticia se mostrará la ``información pública de noticia'', ver más adelante.
+\item /usuario: Página de la revista de un usuario. Si la URL es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará las 10 noticias de la revista de ese usuario (no puede haber más de 10, como se indicará más adelante). Para cada noticia se mostrará la ``información pública de noticia'', ver más adelante.
 
 \item /usuario/rss: Canal RSS para la revista de ese usuario.
 
 \item /ayuda: Página con información HTML explicando el funcionamiento de MiRevista.
 \end{itemize}
 
-Además, todas las páginas de la interfaz pública incluirán un menú desde el que se podrá acceder la ayuda (url /ayuda) con el texto ``Ayuda''.
+Además, todas las páginas de la interfaz pública incluirán un menú desde el que se podrá acceder la ayuda (URL /ayuda) con el texto ``Ayuda''.
 
-Además, todas las página que no sean la principal tendrán otra opción de menú para la url /, con el texto ``Revistas''.
+Además, todas las página que no sean la principal tendrán otra opción de menú para la URL /, con el texto ``Revistas''.
 
 Interfaz privada: recursos a servir como páginas HTML completas para usuarios registrados (una vez se han autenticado).
 
@@ -2258,7 +2256,7 @@ Interfaz privada: recursos a servir como páginas HTML completas para usuarios r
 
   \begin{itemize}
   \item Para cada canal se mostrará el nombre del canal (apuntando a la página de ese canal en MiRevista, ver más adelante), el logo del canal, el número de mensajes disponibles para el canal, y la fecha en que fue actualizado por última vez.
-  \item Además, en esta página se mostrará un formulario en el que se podrá introducir una url, que se interpretará como la url de un nuevo canal. Esta será la forma de añadir un nuevo canal para que esté disponible en el sitio. Cuando se añada un nuevo canal se tratarán de actualizar sus contenidos a partir de la url indicada: si esta operación falla (bien porque la url no está disponible, bien porque no se puede interpretar su contenido como un documento RSS), no se añadirá el canal como disponible. En cualquier caso, tras tratar de añadir un nuevo canal se volverá a ver la página /canales en el navegador.
+  \item Además, en esta página se mostrará un formulario en el que se podrá introducir una URL, que se interpretará como la URL de un nuevo canal. Esta será la forma de añadir un nuevo canal para que esté disponible en el sitio. Cuando se añada un nuevo canal se tratarán de actualizar sus contenidos a partir de la URL indicada: si esta operación falla (bien porque la URL no está disponible, bien porque no se puede interpretar su contenido como un documento RSS), no se añadirá el canal como disponible. En cualquier caso, tras tratar de añadir un nuevo canal se volverá a ver la página /canales en el navegador.
   \end{itemize}
 
 \item /canales/num: Página de un canal en MiRevista. ``num'' es el número de orden en que se hizo disponible (si fue el segundo canal que se hizo disponible en el sitio, será /canales/2). Mostrará:
@@ -2313,7 +2311,7 @@ Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativ
 
 \item Comentarios a revistas. Cada usuario registrado puede comentar cualquier revista del sitio. Estos comentarios se podrán ver luego en la página de la revista.
 
-\item Autodescubrimiento de canales. Dada una url (de un blog, por ejemplo), busca si en ella hay algún enlace que parece un canal. Si es así, ofrécelo al usuario para que lo pueda elegir. Esto se puede usar, por ejemplo, en la página que muestra el listado de canales, como una opción más para elegir canales (``especifica un blog para buscar sus canales'').
+\item Autodescubrimiento de canales. Dada una URL (de un blog, por ejemplo), busca si en ella hay algún enlace que parece un canal. Si es así, ofrécelo al usuario para que lo pueda elegir. Esto se puede usar, por ejemplo, en la página que muestra el listado de canales, como una opción más para elegir canales (``especifica un blog para buscar sus canales'').
 \end{itemize}
 
 
@@ -2400,11 +2398,11 @@ Funcionamiento general:
 \begin{itemize}
 \item Los usuarios serán dados de alta en MiPlaneta mediante el módulo ``Admin Site'' de Django. Una vez estén dados de alta, serán considerados ``usuarios registrados''.
 
-\item Los usuarios registrados podrán especificar en MiPlaneta su número de usuario en el Moodle de la ETSIT. Por ejemplo, si la página de perfil de un usuario en el Moodle de la ETSIT es \url{http://docencia.etsit.urjc.es/moodle/user/profile.php?id=8} (llamaremos a la página a la que apunta esta url la ``página del usuario en el Moodle de la ETSIT'') su número de usuario es 8. Puede obtenerse el número de usuario en el Moodle de la ETSIT a través de los enlaces a ese usuario en los mensajes que pone en sus foros, por ejemplo.
+\item Los usuarios registrados podrán especificar en MiPlaneta su número de usuario en el Moodle de la ETSIT. Por ejemplo, si la página de perfil de un usuario en el Moodle de la ETSIT es \url{http://docencia.etsit.urjc.es/moodle/user/profile.php?id=8} (llamaremos a la página a la que apunta esta URL la ``página del usuario en el Moodle de la ETSIT'') su número de usuario es 8. Puede obtenerse el número de usuario en el Moodle de la ETSIT a través de los enlaces a ese usuario en los mensajes que pone en sus foros, por ejemplo.
 
-\item Cada usuario registrado podrá indicar el blog que le representa en MiPlaneta. Para ello, especificará la url del canal RSS correspondiente a ese blog.
+\item Cada usuario registrado podrá indicar el blog que le representa en MiPlaneta. Para ello, especificará la URL del canal RSS correspondiente a ese blog.
 
-\item Habrá una url para actualizar los contenidos.
+\item Habrá una URL para actualizar los contenidos.
 
 \item Cualquier navegador podrá acceder a la interfaz pública del sitio, que ofrecerá los artículos en la base de datos e información pública para cada usuario.
 \end{itemize}
@@ -2433,7 +2431,7 @@ Interfaz privada: recursos a servir como páginas HTML completas para usuarios r
 \item Todos los recursos de la interfaz pública.
 \item /conf: Configuración de usuario. Tendrá un formulario en el que se podrá especificar:
   \item Un número de usuario del Moodle de la ETSIT
-  \item La url del canal RSS de un blog
+  \item La URL del canal RSS de un blog
   \item El color de fondo de todas las páginas del blog
   \item El color del texto normal de todas las páginas del blog
 \end{itemize}
@@ -2490,7 +2488,7 @@ Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativ
 
 \item Soporte para logos. Cada blog o artículo de un blog se presentará junto con un logo que represente al blog en cuestión.
 
-\item Autodescubrimiento de canales. Dada una url (de un blog, por ejemplo), busca si en ella hay algún enlace que parece un canal. Si es así, ofrécelo al usuario para que lo pueda elegir. Esto se puede usar, por ejemplo, en la página de configuración de usuario, como una opción más para elegir canales (``especifica un blog para buscar sus canales'').
+\item Autodescubrimiento de canales. Dada una URL (de un blog, por ejemplo), busca si en ella hay algún enlace que parece un canal. Si es así, ofrécelo al usuario para que lo pueda elegir. Esto se puede usar, por ejemplo, en la página de configuración de usuario, como una opción más para elegir canales (``especifica un blog para buscar sus canales'').
 \end{itemize}
 
 
