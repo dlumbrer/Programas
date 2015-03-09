@@ -65,7 +65,7 @@ Además de estos documentos JSON con la información de mensajes, se servirán v
 La aplicación mostrará en pestañas (tabs) diferentes la siguiente información:
 
 \begin{itemize}
-\item Timeline del usuario: mensajes de sus socios, según listado en timeline.json. Además, una vez mostrados estos mensajes, se buscará update.js. Si tiene alguna noticia, se mostrará una nota al principio del timeline indicando el número de mensajes pendientes. Cuando se pulse en esa nota, se desplegarán los mensajes pendientes que estaban en update.js.
+\item Timeline del usuario: mensajes de sus socios, según listado en timeline.json. Además, una vez mostrados estos mensajes, se buscará update.json. Si tiene alguna noticia, se mostrará una nota al principio del timeline indicando el número de mensajes pendientes. Cuando se pulse en esa nota, se desplegarán los mensajes pendientes que estaban en update.json.
 \item Mensajes enviados por el usuario, según listado en myline.json
 \end{itemize}
 
@@ -75,7 +75,7 @@ Se podrán realizar otras mejoras a este comportamiento básico.
 
 \textbf{Entrega:}
 
-La práctica se entregará en la actividad de entrega, que se encontrará en el sitio web de la asignatura.
+La práctica se entregará según se describe en el apartado~\ref{sec:eje-entrega-practicas-incr}, utlizando la rama gh-pages para que sea visible directamente como sitio web (ver detalles en dicho apartado).
 
 Se entregará un archivo tar.gz o .zip que contenga:
 
@@ -296,6 +296,12 @@ git push
 \end{verbatim}
 
 Conviene visitar el repositorio propio en GitHub, para comprobar que efectivamente los cambios realizados en la copia local se han propagado adecuadamente a él, tras haber invocado \verb|git push|.
+
+\section{Uso de la rama gh-pages}
+
+La rama gh-pages en cualquier repositorio de GitHub tiene un significado especial: GitHab entenderá que ha de servir, como sitio web (esto es, como recursos HTTP) cualquier contenido que tenga esa rama. Por ejemplo, el contenido de la rama gh-pages del repositorio prueba del usuario jgbarah se podrá consultar con la siguiente url:
+
+\url{http://jgbarah.github.io/prueba}
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
