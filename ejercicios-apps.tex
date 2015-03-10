@@ -297,13 +297,15 @@ git push
 
 Conviene visitar el repositorio propio en GitHub, para comprobar que efectivamente los cambios realizados en la copia local se han propagado adecuadamente a él, tras haber invocado \verb|git push|.
 
-\section{Uso de la rama gh-pages}
+\subsection{Uso de la rama gh-pages}
 
 La rama gh-pages en cualquier repositorio de GitHub tiene un significado especial: GitHub entenderá que ha de servir, como sitio web (esto es, como recursos HTTP) cualquier contenido que tenga esa rama. Por ejemplo, el contenido de la rama gh-pages del repositorio prueba del usuario jgbarah se podrá consultar con la siguiente url:
 
 \url{http://jgbarah.github.io/prueba}
 
-Para crear esta rama, se pueden ejecutar las siguientes órdenes en la consola (se supone que ya se está en un repositorio de entrega de prácitcas, en el que se está trabajando en la rama master):
+Es importante entender que GitHub no sirve directorios. Si en el repositorio prueba anterior no hay un fichero index.html, GitHub indicará que no se puede servir. Si lo hay, se mostrará su contenido al pedir el recurso /. En otras palabras, GitHub servirá los recursos que no terminen en /. En caso de que se le pida uno que termine en / (esto es, normalmente, los que corresponden con directorios), buscará un fichero index.html en él, y si lo hay lo servirá. Si no lo hay, mostrará una página de error. Por este motivo, normalmente para las prácticas entregadas, el fichero HTML principal se deberá denominar index.html.
+
+Para crear la rama gh-pages, se pueden ejecutar las siguientes órdenes en la consola (se supone que ya se está en un repositorio de entrega de prácitcas, en el que se está trabajando en la rama master):
 
 \begin{verbatim}
 [Primero, nos aseguramos de que estamos en la rama master,
@@ -354,6 +356,50 @@ Usando ``rebase'':
 \end{verbatim}
 
 Cuando hayas realizado la entrega de las prácticas en la rama gh-pages (y por favor, también en la rama master), no olvides comprobar en GitHub que los cambios aparecen en la rama gh-master, y en el sitio web correspondiente a tu repositorio.
+
+\subsection{Uso de la rama gh-pages con dos clones}
+
+Una forma de organizarse cuando se use la rama gh-pages es usando dos clones del repositorio de entrega: uno para la rama master, y otro para la rama gh-pages. Si se decide utilizar esta forma de funcionamiento, se comenará normalmente, clonando el fork del repositorio de entrega en GitHub. Se trabajará en ese clon normalmente, en la rama master. Cuando se quiera tener una rama gh-pages, se hará lo siguiente:
+
+\begin{verbatim}
+[En el clon normal, trabajando sobre master, se envían los cambios
+    a GitHub, después de haber hecho los commits convenientes.]
+> git push
+[Se crea un nuevo clon del mismo repositorio, en el directorio
+    practica-gh-pages]
+> cd ..
+> git clone url_repo practica-gh-pages
+[Se crea en este nuevo clon la rama gh-pages]
+> cd practica-gh-pages
+> git checkout -b gh-pages
+[Se sube ahora la nueva rama a GitHub]
+> git push origin gh-pages
+\end{verbatim}
+
+A partir de este momento, en el repositorio en GitHub están las dos ramas (master y gh-pages), ambas con el mismo contenido. Localmente, habrán quedado dos directorios, uno con la rama master, y otro con la rama gh-pages.
+
+Si se quiere seguir trabajando en la rama master, se hará normalmente en el directorio local correspondiente, subiendo los cambios a GitHub (con push) cuando sea conveniente. Cuando se quiera sincronizar en la rama gh-pages con el estado actual de master, se podrá hacer sobre el directorio con la rama gh-pages:
+
+\begin{verbatim}
+> cd practica-gh-pages
+> git fetch
+> git rebase master
+> git push origin
+\end{verbatim}
+
+Alternativamente a rebase, se puede realizar un merge, como se indicó más arriba.
+
+\subsection{Más información sobre GitHub Pages}
+
+Hay más información sobre GitHub Pages y  el uso de la rama gh-pages en:
+
+\begin{itemize}
+\item GitHub Pages: \\
+  \url{http://pages.github.com/}
+\item User, organization and project pages (el uso que estamos haciendo es el de ``project pages''): \\
+  \url{http://help.github.com/articles/user-organization-and-project-pages/}
+\end{itemize}
+
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
