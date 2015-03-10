@@ -299,9 +299,61 @@ Conviene visitar el repositorio propio en GitHub, para comprobar que efectivamen
 
 \section{Uso de la rama gh-pages}
 
-La rama gh-pages en cualquier repositorio de GitHub tiene un significado especial: GitHab entenderá que ha de servir, como sitio web (esto es, como recursos HTTP) cualquier contenido que tenga esa rama. Por ejemplo, el contenido de la rama gh-pages del repositorio prueba del usuario jgbarah se podrá consultar con la siguiente url:
+La rama gh-pages en cualquier repositorio de GitHub tiene un significado especial: GitHub entenderá que ha de servir, como sitio web (esto es, como recursos HTTP) cualquier contenido que tenga esa rama. Por ejemplo, el contenido de la rama gh-pages del repositorio prueba del usuario jgbarah se podrá consultar con la siguiente url:
 
 \url{http://jgbarah.github.io/prueba}
+
+Para crear esta rama, se pueden ejecutar las siguientes órdenes en la consola (se supone que ya se está en un repositorio de entrega de prácitcas, en el que se está trabajando en la rama master):
+
+\begin{verbatim}
+[Primero, nos aseguramos de que estamos en la rama master,
+   que aparecera con asterisco]
+> git branch
+* master
+[Creamos la rama gh-pages, que tendrá lo mismo que hay
+   ahora en master]
+> git checkout -b gh-pages
+[Subimos la rama a GitHub]
+> git push origin gh-pages
+\end{verbatim}
+
+A partir de este momento, deberíamos poder ver la nueva rama en GitHub, y las páginas HTML que haya en la rama gh-pages deberían poder verse directamente vía la url indicada más arriba.
+
+Si a partir de este momento se quiere trabajar en master, primero habrá que cambiar a la rama master de nuevo:
+
+\begin{verbatim}
+[Volvemos a la rama master]
+> git checkout master
+[Ahora seguimos trabajando en la rama master]
+\end{verbatim}
+
+Cuando queramos actualizar la rama gh-pages con los cambios que hemos hecho en master, tendremos que usar ``rebase'' o ``merge''. Usando ``merge'':
+
+\begin{verbatim}
+[Cambiamos a la rama gh-pages]
+> git checkout gh-pages
+[Pasamos los cambios de master a la rama actual (gh-pages)]
+> git merge master
+[Subimos los cambios a GitHub]
+> git push origin gh-pages
+[Volvemos a la rama master para seguir trabajando]
+> git checkout master
+\end{verbatim}
+
+Usando ``rebase'':
+
+\begin{verbatim}
+[Cambiamos a la rama gh-pages]
+> git checkout gh-pages
+[Pasamos los cambios de master a la rama actual (gh-pages)]
+> git rebase master
+[Subimos los cambios a GitHub]
+> git push origin gh-pages
+[Volvemos a la rama master para seguir trabajando]
+> git checkout master
+\end{verbatim}
+
+Cuando hayas realizado la entrega de las prácticas en la rama gh-pages (y por favor, también en la rama master), no olvides comprobar en GitHub que los cambios aparecen en la rama gh-master, y en el sitio web correspondiente a tu repositorio.
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
