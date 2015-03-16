@@ -1096,7 +1096,7 @@ Instala la versión de Django que utilizaremos en prácticas.
 
 \textbf{Comentarios:}
 
-Utilizaremos la versión Django 1.7.4
+Utilizaremos la versión Django 1.7.*
 
 \textbf{Material:}
 
@@ -1113,11 +1113,11 @@ Utilizaremos la versión Django 1.7.4
 
 \textbf{Enunciado:}
 
- Realización de un proyecto Django de prueba (myproject), siguiendo el ejemplo de las transparencias ``Introducción a Django''. Creación de las tablas de su base de datos, con Django, y consulta de la base de datos creada con sqlitebrowser.
+Realización de un proyecto Django de prueba (myproject), siguiendo el ejemplo de las transparencias ``Introducción a Django''. Creación de las tablas de su base de datos, con Django, y consulta de la base de datos creada con sqlitebrowser.
 
 \textbf{Material:}
 
-myproject.tar.gz: Ejemplo de solución del ejercicio ``Django intro''.
+Se puede encontrar un ejemplo de solución del ejercicio ``Django intro'' en el siguiente repositorio en GitHub: \url{https://github.com/CursosWeb/X-Serv-15.5-Django-Intro}.
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -1148,11 +1148,16 @@ calc.tar.gz: Ejemplo de solución del ejercicio ``Django calc''
 
 \textbf{Enunciado:}
 
-Realizar una sistema de gestión de contenidos muy simple con Django. Corresponderá con la funcionalidad de ``contentApp'' (ejercicio~\ref{subsec:contentapp}), almacenando los contenidos en una base de datos.
+Realizar una sistema de gestión de contenidos muy simple con Django. Corresponderá con la funcionalidad de ``contentApp'' (ejercicio~\ref{subsec:contentapp}), almacenando los contenidos en una base de datos. La aplicación Django se ha de llamar \texttt{cms}.
 
-\textbf{Material:}
+El ejercicio ha de entregarse en el siguiente repositorio en GitHub: 
+\url{https://github.com/CursosWeb/X-Serv-15.5-Django-CMS}. El repositorio contiene
+un archivo check.py para comprobar que se han entregado todos los fichero necesarios (básicamente todos los ficheros con código Python del proyecto (\texttt{manage.py} y los contenidos en el directorio \texttt{myproject} y de la aplicación en \texttt{cms}, así como la base de datos en un fichero \texttt{db.sqlite3}), además de comprobar que el código en
+\texttt{views.py} sigue con las reglas de estilo de Python (PEP8).
 
-cms.tar.gz: Ejemplo de solución del ejercicio ``Django cms''
+%\textbf{Material:}
+%
+%cms.tar.gz: Ejemplo de solución del ejercicio ``Django cms''
 
 
 %%----------------------------------------------------------------------------
@@ -1162,15 +1167,21 @@ cms.tar.gz: Ejemplo de solución del ejercicio ``Django cms''
 
 \textbf{Enunciado:}
 
-Realizar una sistema de gestión de contenidos muy simple con Django. Corresponderá con la funcionalidad de ``contentPutApp'' (ejercicio~\ref{subsec:contentputapp}), almacenando los contenidos en una base de datos. En otras palabras, será como ``Django cms'' (ejercicio~\ref{subsec:django-cms}), añadiendo la funcionalidad de que el usuario pueda poner contenidos mediante PUT, tal y como se explicó en el ejercicio de ``contentPutApp''.
+Realizar una sistema de gestión de contenidos muy simple con Django. Corresponderá con la funcionalidad de ``contentPutApp'' (ejercicio~\ref{subsec:contentputapp}), almacenando los contenidos en una base de datos. En otras palabras, será como ``Django cms'' (ejercicio~\ref{subsec:django-cms}), añadiendo la funcionalidad de que el usuario pueda poner contenidos mediante PUT, tal y como se explicó en el ejercicio de ``contentPutApp''. La aplicación Django se ha de llamar \texttt{cms_put}.
+
 
 \textbf{Comentario:}
 
 Para realizar este ejercicio, consultar el manual de Django, donde explica cómo se comporta el objeto HTTPRequest, que es siempre primer argumento en los métodos que estamos definiendo en \texttt{views.py}. En particular, nos interesarán sus atributos ``method'' (que sirve para saber si nos está llegando un GET o un PUT) y ``body'', que nos da acceso a los datos (cuerpo) de la petición. A pesar de su nombre, este último atributo tiene esos datos tanto si la petición es un POST como si es un PUT. 
 
-\textbf{Material:}
+El ejercicio ha de entregarse en el siguiente repositorio en GitHub: 
+\url{https://github.com/CursosWeb/X-Serv-15.6-Django-CMS_PUT}. El repositorio contiene
+un archivo check.py para comprobar que se han entregado todos los fichero necesarios (básicamente todos los ficheros con código Python del proyecto (\texttt{manage.py} y los contenidos en el directorio \texttt{myproject} y de la aplicación en \texttt{cms}, así como la base de datos en un fichero \texttt{db.sqlite3}), además de comprobar que el código en
+\texttt{views.py} sigue con las reglas de estilo de Python (PEP8).
 
-cms\_put.tar.gz: Ejemplo de solución del ejercicio ``Django cms\_put''.
+%\textbf{Material:}
+%
+%cms\_put.tar.gz: Ejemplo de solución del ejercicio ``Django cms\_put''.
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -1716,7 +1727,7 @@ En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar 
 %%----------------------------------------------------------------------------
 \subsection{Notas y comentarios}
 
-La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas (Django 1.6.2).
+La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas (Django 1.7.*).
 
 La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
 
@@ -2349,7 +2360,7 @@ En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar 
 %%----------------------------------------------------------------------------
 \subsection{Notas y comentarios}
 
-La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas (Django 1.4.5).
+La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas (Django 1.7.*).
 
 La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
 
