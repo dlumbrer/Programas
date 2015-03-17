@@ -1633,7 +1633,7 @@ Recuerda que para ello, puedes hacer uso de que el servidor Apache sirve todo aq
 \subsection{Modernizr: Comprobación de funcionalidad HTML5}
 \label{subsec:modernizr}
 
-\textbf{Enunciado}: Bájate e instálate la biblioteca de Javascript Modernizr, que se utiliza para comprobar si la funcionalidad de HTML5 está soportada por el navegador (prueba con Firefox y con Konqueror). Comprueba si el navegador tiene la siguiente funcionalidad:
+\textbf{Enunciado}: Bájate e instálate la biblioteca de Javascript \texttt{Modernizr}, que se utiliza para comprobar si la funcionalidad de HTML5 está soportada por el navegador (prueba con Firefox y con Konqueror, el navegador de KDE últimamente con menos desarrollo). Comprueba si el navegador tiene la siguiente funcionalidad:
 
 \begin{itemize}
   \item canvas
@@ -1657,7 +1657,7 @@ Recuerda que para ello, puedes hacer uso de que el servidor Apache sirve todo aq
 \subsection{Geolocalización con HTML5}
 \label{subsec:geolocalizacion}
 
-\textbf{Enunciado}: Utiliza la API de HTML5 para geolocalización para determinar tu posición. Utiliza la API de HTML5 para geolocalización para determinar tu posición e imprímela en la página web. Comprueba que tu navegador tiene implementada la funcionalidad de geolocalización con Modernizr. Puede que para realizar este ejercicio tengas que utilizar Google Chrome. Además, si quieres, puedes mostrar tu localización geográfica actual en un mapa, siguiendo las instrucciones que podrás encontrar en: \url{http://www.w3schools.com/html/html5_geolocation.asp}.
+\textbf{Enunciado}: Utiliza la API de HTML5 para geolocalización para determinar tu posición. Comprueba que tu navegador tiene implementada la funcionalidad de geolocalización con Modernizr. Muestra tu localización geográfica actual en un mapa utilizando los mapas de OpenStreetMap. En caso de que el navegador no tenga implementada esta funcionalidad (utiliza \texttt{Modernizr} para comprobarlo), utiliza un \texttt{polyfill}.
 
 
 %%---------------------------------------------------------------------
@@ -1665,7 +1665,9 @@ Recuerda que para ello, puedes hacer uso de que el servidor Apache sirve todo aq
 \subsection{Las antípodas}
 \label{subsec:antipodas}
 
-\textbf{Enunciado}: Crea una página web que a partir de tu geolocalización, muestre en la ventana del navegador las siguientes dos imágenes: tu localización y la de las antípodas. Para mostrar la imagen geográfica, puedes hacer uso de la API de Google Maps. Así, la URL http://maps.googleapis.com/maps/api/staticmap?center=latitud,longitud\&zoom=14\&size=400x300\&sensor=false devuelve una imagen de tamaño 400x300 píxeles centrado en las coordenadas latitud y longitud.
+\textbf{Enunciado}: Crea una página web que a partir de tu geolocalización, muestre en la ventana del navegador las siguientes dos imágenes: tu localización y la de las antípodas. Utiliza \texttt{Modernizr} para comprobar si el navegador tiene implementada la funcionalidad de geolocalización y un \texttt{polyfill} en el caso de que no sea así (p.ej., en Konqueror).
+
+% Para mostrar la imagen geográfica, puedes hacer uso de la API de Google Maps. Así, la URL http://maps.googleapis.com/maps/api/staticmap?center=latitud,longitud\&zoom=14\&size=400x300\&sensor=false devuelve una imagen de tamaño 400x300 píxeles centrado en las coordenadas latitud y longitud.
 
 
 %%---------------------------------------------------------------------
