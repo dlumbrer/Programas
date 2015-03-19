@@ -1675,14 +1675,14 @@ Recuerda que para ello, puedes hacer uso de que el servidor Apache sirve todo aq
 \subsection{Cálculo de números primos con Web Workers}
 \label{subsec:webworker-primos}
 
-\textbf{Enunciado}: Estudia el fichero webworkers.html que encontrarás en la carpeta P5\_HTML5 en el Moodle de la asignatura (dentro de la subcarpeta web\_workers). Comprueba cómo al introducir un número muy grande, el interfaz del navegador deja de ser responsivo. Implementa un webworker para que el cálculo de los primos se realice en \emph{background} y el interfaz no pierda responsividad.
+\textbf{Enunciado}: Estudia el fichero webworkers.html que encontrarás en el repositorio \url{https://github.com/CursosWeb/X-Nav-5.7.13-WebWorkers} de GitHub. Comprueba cómo al introducir un número muy grande, el interfaz del navegador deja de ser responsivo. Implementa un \texttt{webworker} para que el cálculo de los primos se realice en \emph{background} y el interfaz no pierda responsividad.
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
 \subsection{Cliente de eco con WebSocket}
 \label{subsec:websocket-cliente-eco}
 
-\textbf{Enunciado}: Inspecciona y ejecuta el archivo websocket\_echo.html para ver el funcionamiento de los WebSockets. Comprueba la URI del servidor de WebSockets, los eventos que se lanzan, así como el funcionamiento general del cliente de eco.
+\textbf{Enunciado}: Inspecciona y ejecuta el archivo \texttt{websocket\_echo.html} que encontrarás en el repositorio \url{https://github.com/CursosWeb/X-Nav-5.7.14-WebSocket-Echo} de GitHub para ver el funcionamiento de los \texttt{WebSockets}. Comprueba la \texttt{URI} del servidor de \texttt{WebSockets}, los eventos que se lanzan, así como el funcionamiento general del cliente de eco.
 
 
 %%---------------------------------------------------------------------
@@ -1690,7 +1690,11 @@ Recuerda que para ello, puedes hacer uso de que el servidor Apache sirve todo aq
 \subsection{Cliente y servidor de eco con WebSocket}
 \label{subsec:websocket-cliente-servidor-eco}
 
-\textbf{Enunciado}: En Moodle encontrarás SimpleWebSocketServer.py, que implementa un servidor de WebSockets sencillo (también tiene una variante segura). En SimpleExampleServer.py se hereda del servidor WebSocket para crear servidores específicos. El que vamos a tratar en este ejercicio es el servidor de eco. Para ello, ejecuta SimpleExampleServer.py en modo eco y pruébalo con la página HTML SimpleWebSocketClient.html. Modifica el servidor para que imprima por pantalla lo que recibe y envía. Asimismo, modifica el cliente para que no sólo muestre en la página lo que recibe, sino también lo que envía.
+\textbf{Enunciado}: En el repositorio \url{https://github.com/CursosWeb/X-Nav-5.7.15-WebSocket-EchoServer} de GitHub encontrarás el script en Python \texttt{SimpleWebSocketServer.py}, que implementa un servidor de \texttt{WebSockets} sencillo (también tiene una variante segura). 
+
+En \texttt{SimpleExampleServer.py} se hereda del servidor WebSocket para crear servidores específicos. El que vamos a tratar en este ejercicio es el servidor de eco. Para ello, ejecuta \texttt{SimpleExampleServer.py} en modo \emph{eco} y pruébalo con la página HTML \texttt{SimpleWebSocketClient.html}.
+
+Modifica el servidor (en \texttt{SimpleExampleServer.py}) para que imprima por pantalla lo que recibe y envía. Asimismo, modifica el cliente (en \texttt{SimpleWebSocketClient.html}) para que no sólo muestre en la página lo que recibe, sino también lo que envía.
 
 
 %%---------------------------------------------------------------------
@@ -1698,7 +1702,9 @@ Recuerda que para ello, puedes hacer uso de que el servidor Apache sirve todo aq
 \subsection{Cliente y servidor de chat con WebSocket}
 \label{subsec:websocket-cliente-servidor-chat}
 
-\textbf{Enunciado}: Basándote en SimpleExampleServer.py, modifica SimpleWebSocketClient.html para tener un chat que utilice el protocolo WebSocket. Comprueba el tráfico intercambiado entre cliente y servidor con las herramientas para desarrolladores de los navegadores.
+\textbf{Enunciado}: Basándote en el script \texttt{SimpleExampleServer.py}, modifica \texttt{SimpleWebSocketClient.html} para tener un chat que utilice el protocolo \texttt{WebSocket}. Comprueba el tráfico intercambiado entre cliente y servidor con las herramientas para desarrolladores de los navegadores. 
+
+Parte del código que encontrarás en el repositorio GitHub  \url{https://github.com/CursosWeb/X-Nav-5.7.16-WebSocket-Chat}.
 
 
 %%---------------------------------------------------------------------
@@ -1706,13 +1712,15 @@ Recuerda que para ello, puedes hacer uso de que el servidor Apache sirve todo aq
 \subsection{Canal con obsesión horaria}
 \label{subsec:websocket-canal-obsesion-horaria}
 
-\textbf{Enunciado}: Basándote en la implementación de chat de SimpleExampleServer.py, modifica el servidor para que sea un servicio de chat que además:
+\textbf{Enunciado}: Basándote en la implementación de chat de \texttt{SimpleExampleServer.py} del ejercicio anterior, modifica el servidor para que sea un servicio de \emph{chat} que además:
 \begin{itemize}
   \item Cada minuto en punto, envíe un mensaje a los conectados dando la hora.
   \item Responda a los conectados con la hora, cuando éstos se lo pidan mediante un mensaje \emph{getTime}.
 \end{itemize}
 
 Recuerda que puedes hacer uso de la biblioteca \emph{time} de Python.
+
+Para realizar (y entregar) este ejercicio, haz un \emph{fork} del repositorio GitHub \url{https://github.com/CursosWeb/X-Nav-5.7.17-WebSocket-TimeChat}.
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
