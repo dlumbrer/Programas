@@ -2042,14 +2042,77 @@ Realizar una aplicación que realice una búsqueda en el servicio Flickr, de for
 \item Solución: Ficheros \verb|flickr.html|, \verb|flickr.js| y \verb|flickr.css|
 \end{itemize}
 
+
+
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
-\subsection{Open Web Apps: Aplicación para FirefoxOS}
+%%---------------------------------------------------------------------
+\section{APIs de Google}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Conociendo la Google API Console}
+\label{subsec:conociendo-google-api-console}
+
+\textbf{Enunciado:} Crea un proyecto para utilizar la Google API Console.
+
+\begin{itemize}
+  \item Selecciona los servicios de Google+ API y URL Shortener API
+  \item Obtén tu \emph{project key}
+  \item Añade como \emph{referer} http://watson.gsyc.es/
+  \item Incluye información de autorización vía OAuth2.0, también para http://watson.gsyc.es/
+  \item Échale un ojo a los menús de informes y cuotas que te da la API Console.
+\end{itemize}
+
+Nota: Para realizar este ejercicio (y los siguientes), necesitarás tener
+una cuenta en Google.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Tu Perfil vía la API de Google+}
+\label{subsec:tu-perfil-en-googleplus}
+
+\textbf{Enunciado:} Crea una página web que interatúe con la API de Google+ para obtener tu nombre y tu avatar. Puedes partir del fichero en el repositorio de GitHub \url{https://github.com/CursosWeb/X-Nav-5.10.2-Perfil-Google-Plus}. Al menos, habrás de realizar los siguientes cambios:
+
+\begin{itemize}
+  \item Introduce tu llave para las APIs de Google
+  \item Introduce tu nombre de usuario (o identificador) en Google+
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Tomando datos de la API de Google+}
+\label{subsec:tomando-datos-googleplus}
+
+\textbf{Enunciado:} Crea una página web que interatúe con la API de Google+ para obtener la lista de actividades de un usuario de Google+. Puedes partir del fichero en el repositorio de GitHub \url{https://github.com/CursosWeb/X-Nav-5.10.3-Datos-Google-Plus}. Al menos, habrás de realizar los siguientes cambios:
+
+\begin{itemize}
+  \item Introduce tu llave para las APIs de Google
+  \item Introduce tu nombre de usuario (o identificador) en Google+ de alguien con actividad. Puedes utilizar los siguientes identificadores en el caso de que tu usuario de Google+ no sea uno con actividad:
+  \begin{itemize}
+    \item 108086881826934773478
+    \item 103846222472267112072
+  \end{itemize}
+  \item Muestra las actividades en el HTML (anidando una lista en la página web)
+  \item Muetra la información de localización geográfica, si ésta existiera
+\end{itemize}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{Firefox OS}
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Open Web Apps: Aplicación para Firefox OS}
 \label{subsec:apis-ffxos}
 
 \textbf{Enunciado:}
 
-Crea una Open Web App para FirefoxOS basándote en una de las prácticas realizadas con Leaflet. Prueba a instalarla en el simulador de FirefoxOS de Firefox, y si puedes, en un dispositivo Android (mediante instalación desde el navergador Firefox).
+Crea una Open Web App para Firefox OS basándote en una de las prácticas realizadas con Leaflet. Prueba a instalarla en el simulador de Firefox OS de Firefox, y si puedes, en un dispositivo Android (mediante instalación desde el navegador Firefox).
 
 \textbf{Materiales:}
 
@@ -2132,6 +2195,8 @@ Ejemplo de index.html:
   </body>
 </html>
 \end{verbatim}
+
+
 
 
 %%---------------------------------------------------------------------
