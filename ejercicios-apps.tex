@@ -1958,6 +1958,51 @@ Para hacer este ejercicio se usará la interfaz JSONP de Flickr.
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
+\subsection{GitHub.js: Datos de un repositorio}
+\label{subsec:apis-github-repo}
+
+\textbf{Enunciado:}
+
+Utiliza la biblioteca JavaScript github.js para obtener los datos básicos de un repositorio de GitHub, dados su nombre y el nombre del usuario que es dueño de él.
+
+El funcionamiento concreto será el siguiente:
+
+\begin{itemize}
+\item Al cargar la aplicación, se verá un formulario en el que se podrá introducir el token de autenticación (ver más abajo).
+\item Al introducir el token, la aplicación lo utilizará para crear un nuevo objeto GitHub, y mostrará un nuevo formulario en el que se podrá escribir un nombre de usuario de GitHub y el de uno de sus repositorios.
+\item Al introducir estos datos (usuario, nombre de repositorio), la aplicación lo utilizará para crear un nuevo objeto para acceder al repositorio.
+\item Cuando la aplicación haya conseguido los datos del repositorio, mostrará alguno de ellos (por ejemplo la descripción del repositorio, la fecha de creación, su nombre completo).
+\end{itemize}
+
+\textbf{Comentarios:}
+
+Para que la biblioteca pueda acceder a la API HTTP de GitHub, hace falta autenticarse ante esta API. Para ello, puedes generar un token (ver más abajo enlace a documentación al respecto), y utilizarlo con el mecanismo de autenticación OAuth, que es uno de los soportados por la biblioteca. Cuando generes este token, ten la precaución de especificar el ámbito ``public repositories'', para que de acceso a leer y escribir en repositorios públicos. Y ten en cuenta, una vez generado, que ese token da acceso a escribir y leer los repositorios sobre los que tengas permisos en GitHub, por lo que en gran medida deberías custodiarlo como tu contraseña. En particular, no lo incluyas en el código que subas a ningún sitio público, ya que sería una acción muy similar a publicar tu contraseña.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Biblioteca GitHub.js: \\
+  \url{https://github.com/michael/github}
+\item Dirección para obtener la biblioteca GitHub.js lista para su uso: \\
+  \url{https://raw.githubusercontent.com/michael/github/master/github.js}
+\item Instrucciones para crear un token de autenticación en GitHub: \\
+  \url{https://help.github.com/articles/creating-an-access-token-for-command-line-use/}
+\item GitHUB API v3: \\
+  \url{https://developer.github.com/v3}
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{GitHub.js: Crea un fichero}
+\label{subsec:apis-github-file}
+
+\textbf{Enunciado:}
+
+Amplía el ejercicio ``GitHub.js: Datos de un repositorio'' (\ref{subsec:apis-github-repo}) para que además de dar los datos de un repositorio, cree en él un fichero. Para ello, incluye un nuevo formulario en el que escribirás el contenido que tendrá ese fichero, y su nombre. Cuando la aplicación los reciba, creará un nuevo fichero en la rama ``master'' del repositorio especificado, con ese contenido.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
 \subsection{OpenLayers: Instalación y prueba}
 \label{subsec:apis-openlayers-instal}
 
@@ -2243,7 +2288,7 @@ Ejemplo de index.html:
 
 \textbf{Enunciado:}
 
-Realiza una aplicación HTML5 que sirva para jugar las parejas. Al empezar el juego, aparecerán en pantalla una matriz de cuatro por cuatro con 16 palabras (una en cada posición de la matriz), iguales dos a dos. Esto es, en realidad habrá 8 palabras repetidas: cada una aparecerá dos veces.
+Realiza una aplicación HTML5 que sirva para jugar a las parejas. Al empezar el juego, aparecerán en pantalla una matriz de cuatro por cuatro con 16 palabras (una en cada posición de la matriz), iguales dos a dos. Esto es, en realidad habrá 8 palabras repetidas: cada una aparecerá dos veces.
 
 Cuando el usuario pulse la opción de comenzar, se ocultarán todas. El usuario seleccionará una posición de la matriz, que se revelará. Luego, pulsará otra, que se revelará también. Luego el jugador tendrá que pulsar en ``Listo''. Si ambas palabras eran iguales, ambas quedarán reveladas hasta que termine el juego. Si eran distintas, quedarán ocultadas. A continuación el usuari oseleccionará una nueva posición, y seguirá jugando hasta que todas las palabras queden reveladas, o hasta que pulse ``Nuevo juego'', en cuyo caso volverá a emprezar.
 
