@@ -1586,6 +1586,194 @@ Repositorio GitHub de entrega: \\
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
+\section{Práctica final (2015, mayo)}
+\label{practica-final-2015-05}
+
+La práctica final de la asignatura consiste en la creación de una aplicación web que aglutine información sobre actividades culturales y de ocio que tienen lugar en el municipio de Madrid. A continuación se describe el funcionamiento y arquitectura general de la aplicación, la funcionalidad mínima que debe proporcionar, y otra funcionalidad optativa que podrá tener.
+
+La aplicación consiste en descargarse datos de tráfico (disponbiles públicamente en formato XML) y ofrecer estos datos a los usuarios de la aplicación para que puedan gestionar la información de la manera con consideren más conveniente. De esta manera, un escenario típico es el de un usuario que a partir de las actividades existentes, incluya en su perfil las que le interesen. Así, este usuario tendrá una página personal con sus actividades.
+
+%%----------------------------------------------------------------------------
+\subsection{Arquitectura y funcionamiento general}
+
+Arquitectura general:
+
+\begin{itemize}
+
+\item La práctica se construirá como un proyecto Django, que incluirá una o varias aplicaciones Django que implementen la funcionalidad requerida.
+
+\item Para el almacenamiento de datos persistente se usará SQLite3, con tablas definidas según modelos en Django.
+
+\item Se usará la aplicación Django ``Admin Site'' para crear cuenta a los usuarios en el sistema, y para la gestión general de las bases de datos necesarias. Todas las bases de datos que mantenga DeLorean tendrá que ser accesible vía este ``Admin Site''.
+
+\item Se utilizarán plantillas Django (a ser posible, una jerarquía de plantillas, para que la práctica tenga un aspecto similar) para definir las páginas que se servirán a los navegadores de los usuarios. Estas plantillas incluirán en todas las páginas al menos:
+  \begin{itemize}
+  \item Un banner (imagen) del sitio, en la parte superior.
+  \item Un menú de opciones.
+  \item Una caja para entrar (hacer login en el sitio), o para salir (si ya se ha entrado). En caso de que no se haya entrado en una cuenta, esta caja permitirá al visitante introducir su identificador de usuario y su contraseña. En caso de que ya se haya entrado, esta caja mostrará el identificador del usuario y permitirá salir de la cuenta (logout).
+  \item Un pie de página con una nota de copyright.
+  \end{itemize}
+
+Cada una de estas partes estará marcada con propiedades ``id'' en HTML, para poder ser referenciadas en hojas de estilo CSS.
+
+\item Se utilizarán hojas de estilo CSS para determinar la apariencia de la práctica. Estas hojas definirán al menos el color y el tamaño de la letra, y el color de fondo de cada una de las partes (elementos) marcadas con id que se indican en el apartado anterior.
+\end{itemize}
+
+Funcionamiento general:
+
+\begin{itemize}
+\item Los usuarios serán dados de alta en la práctica mediante el módulo ``Admin Site'' de Django. Una vez estén dados de alta, serán considerados ``usuarios registrados''.
+
+\item Los usuarios registrados podrán crear su selección de actividades de cultura y de ocio. Para ello, dispondrán de una página personal. Llamaremos a esta página la ``página del usuario''.
+
+\item La selección de incidencias en su página personal la realizará cada usuario a partir de información sobre actividades de ocio y cultura ya disponibles en el sitio.
+
+\item Las actividades de ocio y cultura se actualizarán sólo cuando un usuario indique que quiere que se actualicen.
+
+\item Cualquier navegador podrá acceder a la interfaz pública del sitio, que ofrecerá la página personal de cada usuario, para todos los usuarios del sitio.
+
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad mínima}
+
+Las actividades de ocio y de cultura se toman de interpretar la información pública ofrecida por el Ayuntamiento de Madrid en el Portal de Datos Abiertos, y que es la siguiente:
+    \begin{itemize}
+      \item Actividades Culturales y de Ocio Municipal en los próximos 100 días: \\
+        \url{http://goo.gl/809BPF}
+    \end{itemize}
+
+Como información pública de cada actividad de ocio o de cultura se mostrará:
+
+\begin{itemize}
+  \item El título de la actividad de ocio o de cultura
+  \item El tipo de evento
+  \item El precio del evento
+  \item La fecha y hora del evento
+  \item La duración del evento
+  \item Si es un evento de larga duración
+  \item La URL con información adicional
+  \item La fecha en que el vento fue seleccionado para la página personal del usuario (junto al texto ``elegida en'').
+\end{itemize}
+
+Interfaz pública: recursos a servir como páginas HTML completas (pensadas para ser vistas en el navegador) para cualquier visitante (sea usuario registrado o no):
+
+\begin{itemize}
+\item /: Página principal de la práctica. Mostrará un listado de las diez actividades de ocio y cultura más próximas en el tiempo, y posteriormente otro listado con las páginas personales disponibles. Para cada página personal mostrará el título (como un enlace a la página personal), el nombre de su usuario y una pequeña descripción. Si a una página personal aún no se le hubiera puesto título, este título será ``Página de usuario'', donde ``usuario'' es el identificador de usuario del usuario en cuestión.
+
+\item /usuario: Página personal de un usuario. Si la URL es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará las actividades de ocio y de cultura seleccionadas por ese usuario (aunuque no puede haber más de 10 a la vez, como se indicará más adelante). Para cada actividad de ocio y de cultura se mostrará al menos el título y la fecha de los eventos (con un enlace a la página /actividad de cada evento, ver más adelante).
+
+\item /actividad: Página de una actividad de cultura o de ocio. Mostrará la información obtenida del XML del portal de datos abierto del Ayuntamiento de Madrid. Además, se mostrará su  ``información adicional''.
+
+\item /usuario/rss: Canal RSS para las incidencias seleccionadas por ese usuario.
+
+\item /ayuda: Página con información HTML explicando el funcionamiento de la práctica.
+
+\item /todas: Página con todas las actividades de ocio y de cultura. En la parte superior de la página, existirá un formulario que permite filtrar estas actividades según varios campos, como, por ejemplo, la fecha, la duración, el precio o el título.
+\end{itemize}
+
+Todas las páginas de la interfaz pública incluirán un menú desde el que se podrá acceder a todas las incidiencias (URL /todas) con el texto ``Todas'' y a la ayuda (URL /ayuda) con el texto ``Ayuda''. Todas las página que no sean la principal tendrán otra opción de menú para la URL /, con el texto ``Inicio''.
+
+
+Interfaz privada: recursos a servir como páginas HTML completas para usuarios registrados (una vez se han autenticado).
+
+\begin{itemize}
+  \item Todos los recursos de la interfaz pública.
+  \item /actividades: Además de la información que se muestra de manera pública:
+  \begin{itemize}
+    \item Se mostrará el número de actividades de ocio y de cultura disponibles para el canal, y la fecha en que fue actualizado por última vez.
+    \item Existirá un botón para actualizar las actividades a partir del canal de actividades. Si se pulsa este botón, se tratarán de actualizar las incidencias accediendo al canal de incidencias del Ayuntamiento de Madrid. Al terminar la operación se volverá a mostrar esta misma página, actualizada.
+    \item La lista de actividades disponibles en el canal de actividades, incluyendo para cada una la ``información adicional', ver más adelante.
+    \item Junto a cada actividad de la lista, se incluirá un botón que permitirá elegir la incidencia para la página personal del usuario autenticado. Tras añadir una actividad a la página del usuario, se volverá a ver en el navegador la página /actividad.
+  \end{itemize}
+
+  \item En la página /usuario que corresponde al usuario autenticado se mostrará, además de lo ya mencionado para la interfaz pública, un formulario en el que se podrá especificar la siguiente información:
+
+  \begin{itemize}
+    \item Los parámetros CSS para el usuario autenticado (al menos los indicados anteriormente para ser manejados por un documento CSS). Si el usuario los cambia, a partir de ese momento deberá verse el sitio con los nuevos valores, y para ello deberá servirse un nuevo documento CSS.
+    \item El título de su página personal.
+  \end{itemize}
+\end{itemize}
+
+%Si es preciso, se añadirán más recursos (pero sólo si es realmente preciso) para poder satisfacer los requisitos especificados.
+
+Dados los recursos mencionados anteriormente, no se permitirán los nombres de usuario ``actividad'', ``ayuda'' ni ``todas'' (pero no hay que hacer ninguna comprobación para esto: se asume que no se darán de alta esos usuarios en el Admin Site).
+
+
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad optativa}
+
+De forma optativa, se podrá incluir cualquier funcionalidad relevante en el contexto de la asignatura. Se valorarán especialmente las funcionalidades que impliquen el uso de técnicas nuevas, o de aspectos de Django no utilizados en los ejercicios previos, y que tengan sentido en el contexto de esta práctica y de la asignatura.
+
+Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativas:
+
+\begin{itemize}
+\item Atención al idioma indicado por el navegador. El idioma de la interfaz de usuario del planeta tendrá en cuenta lo que especifique el navegador.
+
+\item Generación de un canal RSS para los contenidos que se muestran en la página principal.
+
+\item Uso de AJAX para algún aspecto de la práctica (por ejemplo, para seleccionar una incidencia para una página de usuario).
+
+\item Puntuación de actividades. Cada visitante (registrado o no) puede dar un ``+1'' a cualquier incidencia del sitio. La suma de ``+'' que ha obtenido una incidencia se verá cada vez que se vea la incidencias en el sitio.
+
+\item Comentarios a actividades. Cada usuario registrado puede comentar cualquier actividad del sitio. Estos comentarios se podrán ver luego en la página personal.
+
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Entrega de la práctica}
+
+\textbf{Fecha límite de entrega de la práctica:} domingo, 24 de mayo de 2015 a las 23:59 (hora española peninsular).
+
+\textbf{Fecha de publicación de notas:} martes, 25 de mayo de 2015, en la plataforma Moodle.
+
+\textbf{Fecha de revisión:} viernes, 29 de mayo de 2014 a las 12:00. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
+
+La práctica se entregará realizando dos acciones:
+
+\begin{enumerate}
+  \item Rellenando un formulario web, que pedirá la siguiente información:
+  \begin{itemize}
+    \item Nombre de la asignatura.
+    \item Nombre completo del alumno.
+    \item Nombre de su cuenta en el laboratorio.
+    \item Nombres y contraseñas de los usuarios creados para la práctica. Éstos deberán incluir al menos un usuario con cuenta ``marty'' y contraseña ``marty'' y otro usuario con cuenta ``doc'' y contraseña ``doc''.
+    \item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
+    \item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
+    \item URL del vídeo demostración en YouTube que muestre la funcionalidad básica
+    \item URL del vídeo demostración en YouTube con la funcionalidad optativa, si se ha realizado funcionalidad optativa
+  \end{itemize}
+
+  \item Subiendo la práctica al recurso habilitado a tal fin en el sitio Moodle de la asignatura. Para entregar la práctica en el Moodle, cada alumno subirá al recurso habilitado a tal fin un fichero tar.gz con todo el código fuente de la práctica. El fichero se habrá de llamar practica-user.tar.gz, siendo ``user'' el nombre de la cuenta del alumno en el laboratorio.
+
+El fichero que se entregue deberá constar de un proyecto Django completo y listo para funcionar en el entorno del laboratorio, incluyendo la base de datos con datos suficientes como para poder probarlo. Estos datos incluirán al menos dos usuarios con sus datos correspondientes, y con al menos cinco actividades en su página personal.
+\end{enumerate}
+
+Los vídeos de demostración serán de una duración máxima de 3 minutos (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Se valorará negativamente que los vídeos duren más de 3 minutos (de la experiencia de cursos pasados, tres minutos es un tiempo más que suficiente si uno no entra en detalles que no son importantes). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en YouTube y deberán ser accesibles públicamente al menos hasta el 31 de mayo, fecha a partir de la cual los alumnos pueden retirar el vídeo (o indicarlo como privado).
+
+Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). Incluso hay alguna aplicación web como Screen-O-Matic. Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
+
+En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar tiempos de espera) puede usarse un editor de vídeo, pero siempre deberá ser indicado que se ha hecho tal cosa con un comentario en el audio, o un texto en el vídeo. Hay muchas herramientas que permiten realizar esta edición. Por ejemplo, en GNU/Linux puede usarse OpenShot o PiTiVi.
+
+Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere.
+
+%%----------------------------------------------------------------------------
+\subsection{Notas y comentarios}
+
+La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas (Django 1.7.*).
+
+La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
+
+Los canales (feeds) RSS que produce la aplicación web realizada en la práctica deberán funcionar al menos con el navegador Firefox (considerándolos como canales RSS) disponibles en el laboratorio.
+
+
+\newpage
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
 \section{Práctica final (2014, mayo)}
 \label{practica-final-2014-04}
 
@@ -1724,7 +1912,7 @@ Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativ
 
 \textbf{Fecha de publicación de notas:} lunes, 26 de mayo de 2014, en la plataforma Moodle.
 
-\textbf{Fecha de revisión:} miércoles, 28 de mayo de 2014 a las 12:00. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicaciń de notas.
+\textbf{Fecha de revisión:} miércoles, 28 de mayo de 2014 a las 12:00. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
 
 La práctica se entregará subiéndola al recurso habilitado a tal fin en el sitio Moodle de la asignatura. Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere. Los que la entreguen podrán ser llamados a realizar también una entrega presencial, que tendrá lugar en la fecha y hora exacta se les comunicará oportunamente. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
 
@@ -1764,6 +1952,7 @@ Los canales (feeds) RSS que produce la aplicación web realizada en la práctica
 
 
 \newpage
+
 
 
 
