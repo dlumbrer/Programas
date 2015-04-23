@@ -2319,7 +2319,34 @@ Ejemplo de index.html:
 \end{verbatim}
 
 
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{OAuth}
 
+\subsection{OAuth con GitHub}
+\label{subsec:oauth-github}
+
+\textbf{Enunciado:}
+
+Realiza una aplicación que escriba un fichero en un repositorio de GitHub, como hacíamos en ``GitHub.js: Crea un fichero'' (ejercicio~\ref{subsec:apis-github-file}), pero usando OAuth para conseguir el token de acceso a la API de GitHub.
+
+\textbf{Comentarios:}
+
+Para acceder a la API de GitHub mediante OAuth, es preciso usar OAuth con una proxy de autenticación. Puedes usar alguna de las proxies de autenticación de uso gratuito que hay disponibles en Internet, o construir una pequeña aplicación con Python o Django para que sirva como tal. En tu aplicación, puedes usar la biblioteca ``Hellojs'', que permite este tipo de autenticación sobre GitHub y otros servicios, recubriendo los detalles de OAuth.
+
+Antes de poder usar OAuth, tendrás que generar un identificador (client\_id) y un secreto (client\_secret) para tu aplicación, en GitHub (menú de configuración, opción aplicaciones). A esta operación se le llama también ``registro de la aplicación con GitHub''.
+
+Necesitarás también una url para indicar a GitHub cuál será el ``callback'' al que tendrá que redirigir una vez terminado el procedimiento de autenticación.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Biblioteca Hello.js: \\
+  \url{http://adodson.com/hello.js/}
+\item Proxy OAuth para Hello.js: \\
+  \url{https://auth-server.herokuapp.com/}
+\end{itemize}
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
