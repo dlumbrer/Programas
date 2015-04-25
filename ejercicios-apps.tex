@@ -136,6 +136,7 @@ En general, se podrá añadir cualquier funcionalidad a la aplicación, mientras
 \item Poder poner la aplicación ``en modo edición de juego'', para añadir puntos a un juego cualquiera. Para ello, se mostrarían todos los puntos de un juego. Cada punto se podŕia eliminar, o modificar el nombre asociado con él. También se podrían añadir nuevos puntos, pulsando sobre el mapa. Cuando la edición esté lista, se producirá un nuevo fichero GeoJSON con los nuevos datos, y se almacenará con el mismo nombre que tenía.
 \item Poder poner la aplicación ``en modo edición de juegos'', para poder crear nuevos juegos, eliminar juegos, editar juegos (siguiendo el procedimiento anterior), etc.
 \item Dar la opción de que cada usuario designe un repositorio GitHub en el que se almacene la puntuación de cada partida en la que juega, y poder elegir también los repositorios de otros jugadores, para poder ver sus partidas jugadas y su puntuación como parte de la aplicación.
+\item Realiza lo necesario para que la aplicación sea una Open Web App, que funcione en Firefox OS o en el navegador Firefox instalándola como app.
 \end{itemize}
 
 Todas las opciones que necesitan escribir en repositorios GitHub, requerirían autenticación previa por parte del usuario.
@@ -2346,6 +2347,14 @@ Necesitarás también una url para indicar a GitHub cuál será el ``callback'' 
   \url{http://adodson.com/hello.js/}
 \item Proxy OAuth para Hello.js: \\
   \url{https://auth-server.herokuapp.com/}
+\item OAuth en la API de GitHub: \\
+  \url{https://developer.github.com/v3/oauth/}
+\item OAuth community site: \\
+  \url{http://oauth.net/}
+\item RFC 6749: The OAuth 2.0 Authorization Framework \\
+  \url{https://tools.ietf.org/html/rfc6749}
+\item OAuth 2.0 Tutorial, por Jakob Jenkov \\
+  \url{http://tutorials.jenkov.com/oauth2/}
 \end{itemize}
 
 %%---------------------------------------------------------------------
