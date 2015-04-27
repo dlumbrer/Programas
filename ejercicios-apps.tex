@@ -97,6 +97,92 @@ El fichero HTML se llamará ``index.html'', y todo el directorio (repositorio) e
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
+\section{Adivina dónde está (mayo 2015)}
+\label{sec:final-14-mayo}
+
+\textbf{Nota: Enunciado en elaboración. Aún puede cambiar muy significativamente}
+
+La práctica consiste en la creación de una aplicación HTML5 que permita jugar a una variante del juego de las adivinanzas. Se tratará de mostrar al usuario pistas, en forma de fotografías, y que éste tenga que adivinar, marcándolo en un mapa, a que parte del mundo se refieren.
+
+\subsection{Enunciado}
+
+Concretamente, la aplicación mostrará, al arrancar, un panel con:
+
+\begin{itemize}
+\item Una zona donde se mostrarán las fotos (de una en una).
+\item Una zona donde se mostrará un mapa, para que el jugdor pueda marcar un punto, indicando que ese es el sitio a adivinar.
+\item Una zona con los controles del juego, la puntuación, etc. Los controles incluirán opciones al menos para iniciar un juego, para abortar un juego en curso para empezar uno nuevo, para seleccionar la dificultad (cada una, visible sólo en el momento adecuado). Además, habrá forma de elegir un juego entre los disponibles, para ver los juegos que se han jugado, el momento en que se jugaron y su puntuación, y a partir de esa lista volver a jugar cualquiera de ellos.
+\end{itemize}
+
+Cuando empiece el juego, el jugador verá una foto durante un cierto tiempo. Cuando termine ese tiempo, será sustuida por otra. Cuando el jugador crea que sabe a qué parte del mundo se refiere la foto, pulsará con el ratón sobre esa parte del mundo. En ese momento, la aplicación calculará la distancia entre el punto en que ha pulsado el jugador y el punto al que se refería la adivinanza, y mostrará la distancia entre ambos, y la puntuación obtenida. La puntuación obtenida se calculará multiplicando esta distancia por el número de fotos que se han mostrado.
+
+La dificultad será un número entero, que controlará el tiempo que estará visible una fotografía antes de ser sutituida por la siguiente: a más dificultad, menos tiempo estará visible cada foto.
+
+Cada juego mantendrá, como base para plantear las adivinanzas, un fichero GeoJSON, compuesto por una ``FeatureCollection'', en la que cada elemento de la colección corresponderá con un sitio a adivinar. El campo ``coordinates'' marcará la localización del punto a adivinar, y el campo ``Name'' de ``properties'', el nombre del sitio a adivinar (que sólo se mostrará al usuario al terminar cada juego). El nombre del sitio se utilizará como etiqueta (tag) en una búsqueda en Flickr, para obtener fotos relacionadas con ese nombre. Esas fotos son las que se mostrarán al jugador. Cada vez que se juege uno de estos juegos, la aplicación elegirá aleatoriamente uno de los puntos, que será el punto a adivinar.
+
+Los ficheros GeoJSON se mantendrán en un repositorio en GitHub (que será el de entrega de la práctica), en un directorio con el nombre ``juegos'', cada uno con un nombre de fichero que será el ``nombre del juego'', cuando la aplicación haya de mostrarlo. Por ejemplo, el fichero ``Capitales.json'' tendrá los puntos del juego ``Capitales'' (que podŕia tener como puntos ciudades que sean capitales de paises).
+
+Para mantener la historia de juegos pasados se utilizará el historial del navegador. Cada vez que se termine un juego, se anotará en el historial el nombre del juego, el momento en que se ha terminado, y la puntuación. Para localizar fácilmente las entradas en el historial que correspondan con el juego, se anotarán empezando por una cierta cadena de texto, por ejemplo ``Adivinanzas:''. Estos datos se utilizárán para mostrar los juegos jugados. Igualmente, si se selecciona directamente uno de esos juegos desde el historial del navegador, se comenzará a jugar ese juego.
+
+Para la maquetación de la aplicación se utilizará Bootstrap, haciendo lo posible para que la aplicación sea jugable tanto en un navegador de escritorio (con una ventana utilizable grande) como en un móvil (con una pantalla utilizable pequeña, en la que no se podrán ver todos los elementos del juego a la vez). Se utilizará, en la medida de lo razonable, CSS3 para todo lo relacionado con el aspecto de la aplicación. Se usará Leaflet para mostrar los mapas. Se podrán utiliziar otras bibliotecas JavaScript en lo que pueda ser conveniente.
+
+%%---------------------------------------------------------------------
+\subsection{Funcionalidad optativa}
+
+En general, se podrá añadir cualquier funcionalidad a la aplicación, mientras no perjudique o impida la funcionalidad básica descrita en el apartado anterior. A modo de ejemplos, se proponen las siguientes ideas:
+
+\begin{itemize}
+\item Permitir seleccionar un repositorio GitHub, del que se leerán los juegos disponibles en él.
+\item Poder poner la aplicación ``en modo edición de juego'', para añadir puntos a un juego cualquiera. Para ello, se mostrarían todos los puntos de un juego. Cada punto se podŕia eliminar, o modificar el nombre asociado con él. También se podrían añadir nuevos puntos, pulsando sobre el mapa. Cuando la edición esté lista, se producirá un nuevo fichero GeoJSON con los nuevos datos, y se almacenará con el mismo nombre que tenía.
+\item Poder poner la aplicación ``en modo edición de juegos'', para poder crear nuevos juegos, eliminar juegos, editar juegos (siguiendo el procedimiento anterior), etc.
+\item Dar la opción de que cada usuario designe un repositorio GitHub en el que se almacene la puntuación de cada partida en la que juega, y poder elegir también los repositorios de otros jugadores, para poder ver sus partidas jugadas y su puntuación como parte de la aplicación.
+\item Realiza lo necesario para que la aplicación sea una Open Web App, que funcione en Firefox OS o en el navegador Firefox instalándola como app.
+\end{itemize}
+
+Todas las opciones que necesitan escribir en repositorios GitHub, requerirían autenticación previa por parte del usuario.
+
+\subsection{Entrega}
+
+\textbf{Fecha límite de entrega de la práctica:} 16 de mayo de 2014.
+
+La práctica se entregará según se describe en el apartado~\ref{sec:eje-entrega-practicas-incr}. El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo), tanto en la rama master como en la rama gh-pages. Es muy importante que el alumno haya registrado su cuenta GitHub en el sitio de la asignatura en el campus virtual, porque si no, la práctica no podrá ser identificada.
+
+Para la entrega se utilizará un fork del repositorio siguiente: \\
+\url{https://github.com/CursosWeb/X-Nav-Practica-Adivina/}
+
+Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere. Los que la entreguen podrán ser llamados a realizar también una entrega presencial, que tendrá lugar en la fecha y hora exacta se les comunicará oportunamente. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
+
+Se han de entregar los siguientes ficheros:
+
+\begin{itemize}
+\item Un fichero README.md que resuma las mejoras, si las hay, y explique cualquier peculiaridad de la entrega.
+\item Los ficheros de la práctica (HTML, CSS, JavaScript). El fichero HTML principal se llamará ``index.html'', y estará construido de forma que bastará con cargarlo en el navegador para que funcione el programa.
+\item Cualquier biblioteca JavaScript que pueda hacer falta para que la aplicación funcione, junto con los ficheros auxiliares que utilice, si es que los utiliza.
+\end{itemize}
+
+La aplicación se probará accediendo al servidor web que monta GitHub para los contenidos de la rama gh-pages.
+
+Se incluirán en el fichero README.md los siguientes datos:
+
+\begin{itemize}
+\item Nombre de su cuenta en el laboratorio del alumno.
+\item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
+\item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
+\item URL del vídeo demostración de la funcionalidad básica
+\item URL del vídeo demostración de la funcionalidad optativa, si se ha realizado funcionalidad optativa
+\end{itemize}
+
+Asegúrate de que las URLs incluidas en este fichero están adecuadamente escritas en Markdown, de forma que la versión HTML que genera GitHub los incluya como enlaces ``pinchables''.
+
+Los vídeos de demostración serán de una duración máxima de 3 minutos (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo o YouTube).
+
+Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
+
+En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar tiempos de espera) puede usarse un editor de vídeo, pero siempre deberá ser indicado que se ha hecho tal cosa con un comentario en el audio, o un texto en el vídeo. Hay muchas herramientas que permiten realizar esta edición. Por ejemplo, en GNU/Linux puede usarse OpenShot o PiTiVi.
+
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
 \section{Mashup de servicios (mayo 2014)}
 \label{sec:final-14-mayo}
 
@@ -125,7 +211,7 @@ Cada una de las acciones que se describen se podrán decorar con transiciones u 
 
 El estudiante también podrá usar otros servicios además de los ya descritos, incorporándolos a la práctica según le parezca conveniente.
 
-%%----------------------------------------------------------------------------
+%%---------------------------------------------------------------------
 \subsection{Funcionalidad optativa}
 
 De forma optativa, se podrá incluir cualquier funcionalidad relevante en el contexto de la asignatura. Se valorarán especialmente las funcionalidades que impliquen el uso de técnicas nuevas, o de aspectos de JavaScript, APIs, HTML y CSS3 no utilizados en los ejercicios previos, y que tengan sentido en el contexto de esta práctica y de la asignatura.
@@ -2274,7 +2360,51 @@ Ejemplo de index.html:
 \end{verbatim}
 
 
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{OAuth}
 
+\subsection{OAuth con GitHub}
+\label{subsec:oauth-github}
+
+\textbf{Enunciado:}
+
+Realiza una aplicación que escriba un fichero en un repositorio de GitHub, como hacíamos en ``GitHub.js: Crea un fichero'' (ejercicio~\ref{subsec:apis-github-file}), pero usando OAuth para conseguir el token de acceso a la API de GitHub.
+
+\textbf{Comentarios:}
+
+Para acceder a la API de GitHub mediante OAuth, es preciso usar OAuth con una proxy de autenticación. Puedes usar alguna de las proxies de autenticación de uso gratuito que hay disponibles en Internet, o construir una pequeña aplicación con Python o Django para que sirva como tal. En tu aplicación, puedes usar la biblioteca ``Hellojs'', que permite este tipo de autenticación sobre GitHub y otros servicios, recubriendo los detalles de OAuth.
+
+Antes de poder usar OAuth, tendrás que generar un identificador (client\_id) y un secreto (client\_secret) para tu aplicación, en GitHub (menú de configuración, opción aplicaciones). A esta operación se le llama también ``registro de la aplicación con GitHub''.
+
+Necesitarás también una url para indicar a GitHub cuál será el ``callback'' al que tendrá que redirigir una vez terminado el procedimiento de autenticación.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Biblioteca Hello.js: \\
+  \url{http://adodson.com/hello.js/}
+\item Proxy OAuth para Hello.js: \\
+  \url{https://auth-server.herokuapp.com/}
+\item OAuth en la API de GitHub: \\
+  \url{https://developer.github.com/v3/oauth/}
+\item OAuth community site: \\
+  \url{http://oauth.net/}
+\item RFC 6749: The OAuth 2.0 Authorization Framework \\
+  \url{https://tools.ietf.org/html/rfc6749}
+\item OAuth 2.0 Tutorial, por Jakob Jenkov \\
+  \url{http://tutorials.jenkov.com/oauth2/}
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Listado de ficheros en GitHub}
+\label{subsec:oauth-github-ficheros}
+
+\textbf{Enunciado:}
+
+Modifica la aplicación ``OAuth con GitHub'' (ejercicio~\ref{subsec:oauth-github}) para que, antes de escribit un fichero en GitHub, muestre los ficheros disponibles en el repositorio en cuestión (rama ``master''), y permita indicar un nuevo nombre de fichero y un contenido para ese fichero, y lo escriba a continuación en esa rama ``master''.
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
