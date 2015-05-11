@@ -1667,7 +1667,7 @@ Interfaz pública: recursos a servir como páginas HTML completas (pensadas para
 \begin{itemize}
 \item /: Página principal de la práctica. Mostrará un listado de las diez actividades de ocio y cultura más próximas en el tiempo, y posteriormente otro listado con las páginas personales disponibles. Para cada página personal mostrará el título (como un enlace a la página personal), el nombre de su usuario y una pequeña descripción. Si a una página personal aún no se le hubiera puesto título, este título será ``Página de usuario'', donde ``usuario'' es el identificador de usuario del usuario en cuestión.
 
-\item /usuario: Página personal de un usuario. Si la URL es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará las actividades de ocio y de cultura seleccionadas por ese usuario (aunuque no puede haber más de 10 a la vez, como se indicará más adelante). Para cada actividad de ocio y de cultura se mostrará al menos el título y la fecha de los eventos (con un enlace a la página /actividad de cada evento, ver más adelante).
+\item /usuario: Página personal de un usuario. Si la URL es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará las actividades de ocio y de cultura seleccionadas por ese usuario (aunque no puede haber más de 10 a la vez; si hay más debería haber un enlace para mostrar las diez siguientes y así en adelante, siempre de diez en diez). Para cada actividad de ocio y de cultura se mostrará al menos el título y la fecha de los eventos (con un enlace a la página /actividad de cada evento, ver más adelante).
 
 \item /actividad/{id}: Página de una actividad de cultura o de ocio. Mostrará la información obtenida del XML del portal de datos abierto del Ayuntamiento de Madrid. Además, se mostrará su ``información adicional'', conseguida a partir de seguir la URL con información adicional. Esta información adicional es la que se puede encontrar si seguimos el enlace justo debajo de ``Amplíe información''. Se puede hacer uso del módulo \emph{Beautiful Soup} para llevar a cabo esta funcionalidad.
 
@@ -1688,9 +1688,9 @@ Interfaz privada: recursos a servir como páginas HTML completas para usuarios r
   \item /todas: Además de la información que se muestra de manera pública:
   \begin{itemize}
     \item Se mostrará el número de actividades de ocio y de cultura disponibles para el canal, y la fecha en que fue actualizado por última vez.
-    \item Existirá un botón para actualizar las actividades a partir del canal de actividades. Si se pulsa este botón, se tratarán de actualizar las incidencias accediendo al canal de incidencias del Ayuntamiento de Madrid. Al terminar la operación se volverá a mostrar esta misma página, actualizada.
+    \item Existirá un botón para actualizar las actividades a partir del canal de actividades. Si se pulsa este botón, se tratarán de actualizar las actividades accediendo al canal de actividades del Ayuntamiento de Madrid. Al terminar la operación se volverá a mostrar esta misma página /todas, actualizada.
     \item La lista de actividades disponibles en el canal de actividades.
-    \item Junto a cada actividad de la lista, se incluirá un botón que permitirá elegir la incidencia para la página personal del usuario autenticado. Tras añadir una actividad a la página del usuario, se volverá a ver en el navegador la página /actividad.
+    \item Junto a cada actividad de la lista, se incluirá un botón que permitirá elegir la incidencia para la página personal del usuario autenticado. Tras añadir una actividad a la página del usuario, se volverá a ver en el navegador la página /todas.
   \end{itemize}
 
   \item En la página /usuario que corresponde al usuario autenticado se mostrará, además de lo ya mencionado para la interfaz pública, un formulario en el que se podrá especificar la siguiente información:
