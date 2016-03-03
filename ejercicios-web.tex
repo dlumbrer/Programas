@@ -1513,28 +1513,28 @@ Escribe y prueba la clase contentDBAppUsersStrict, que será igual que ``Gestor 
 %% %%----------------------------------------------------------------------------
 %% %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
-\section{Prácticas de entrega voluntaria (curso 2014-2015)}
+\section{Prácticas de entrega voluntaria (curso 2015-2016)}
 
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
 \subsection{Práctica 1 (entrega voluntaria)}
-\label{subsec:practica-vol-1-2013}
+\label{subsec:practica-vol-1-2016}
 
-\textbf{Fecha recomendada de entrega:} Antes del 15 de marzo.
+\textbf{Fecha recomendada de entrega:} Antes del 15 de marzo de 2016.
 
-Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs. La aplicación funcionará únicamente con datos en memoria: se supone que cada vez que la aplicación muera y vuelva a ser lanzada, habrá perdido todo su estado anterior. La aplicación tendrá que realizarse según un esquema de clases similar al explicado en clase.
+Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs. La aplicación tendrá que realizarse según un esquema de clases similar al explicado en clase.
 
 El funcionamiento de la aplicación será el siguiente:
 
 \begin{itemize}
 \item Recurso ``/'', invocado mediante GET. Devolverá una página HTML con un formulario. En ese formulario se podrá escribir una url, que se enviará al servidor mediante POST. Además, esa misma página incluirá un listado de todas las URLs reales y acortadas que maneja la aplicación en este momento.
 
-\item Recurso ``/'', invocado mediante POST. Si el comando POST incluye una qs (query string) que corresponda con una url enviada desde el formulario, se devolverá una página HTML con la url original y la url acortada (ambas como enlaces pinchables), y se apuntará la correspondencia (ver más abajo).
+\item Recurso ``/'', invocado mediante POST. Si el comando POST incluye una \texttt{qs} (query string) que corresponda con una url enviada desde el formulario, se devolverá una página HTML con la URL original y la URL acortada (ambas como enlaces pinchables), y se apuntará la correspondencia (ver más abajo).
 
-Si el POST no trae una qs que se haya podido generar en el formulario, devolverá una página HTML con un mensaje de error.
+Si el POST no trae una \texttt{qs} que se haya podido generar en el formulario, devolverá una página HTML con un mensaje de error.
 
-Si la URL especificada en el formulario comienza por ``http://'' o ``https://'', se considerará que ésa es la url a acortar. Si no es así, se le añadirá ``http://'' por delante, y se considerará que esa es la url a acortar. Por ejemplo, si en el formulario se escribe ``http://gsyc.es'', la url a acortar será ``http://gsyc.es''. Si se escribe ``gsyc.es'', la URL a acortar será ``http://gsyc.es''.
+Si la URL especificada en el formulario comienza por ``http://'' o ``https://'', se considerará que ésa es la URL a acortar. Si no es así, se le añadirá ``http://'' por delante, y se considerará que esa es la url a acortar. Por ejemplo, si en el formulario se escribe ``http://gsyc.es'', la URL a acortar será ``http://gsyc.es''. Si se escribe ``gsyc.es'', la URL a acortar será ``http://gsyc.es''.
 
 Para determinar la URL acortada, utilizará un número entero secuencial, comenzando por 0, para cada nueva petición de acortamiento de una URL que se reciba. Si se recibe una petición para una URL ya acortada, se devolverá la URL acortada que se devolvió en su momento.
 
@@ -1546,7 +1546,7 @@ y la aplicación está en el puerto 1234 de la máquina ``localhost'', se invoca
 
 \verb|http://localhost:1234/|
 
-y en el cuerpo de esa petición HTTP irá la qs
+y en el cuerpo de esa petición HTTP irá la \texttt{qs}
 
 \verb|url=http://docencia.etsit.urjc.es|
 
@@ -1584,6 +1584,8 @@ la aplicación devolverá un HTTP REDIRECT a la URL
 
 \end{itemize}
 
+La aplicación funcionará con estado: se supone que cada vez que la aplicación muera y vuelva a ser lanzada, no perderá todo su estado anterior. Para ello, se guardarán las URLs acortadas en un fichero CSV. Al lanzar la aplicación, se leerá el fichero CSV con las URLs acortadas. Y cada vez que se incluya una nueva URL acortada en el sistema, también se guardará esta información en el fichero CSV.
+
 \textbf{Comentario}
 
 Se recomienda utilizar dos diccionarios para almacenar las URLs reales y los números de las URLs acortadas. En uno de ellos, la clave de búsqueda será la URL real, y se utilizará para saber si una URL real ya está acortada, y en su caso saber cuál es el número de la URL corta correspondiente.
@@ -1602,7 +1604,7 @@ Se recomienda realizar la aplicación en varios pasos:
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
 \subsection{Práctica 2 (entrega voluntaria)}
-\label{subsec:practica-vol-2-2013}
+\label{subsec:practica-vol-2-2015}
 
 \textbf{Fecha recomendada de entrega:} Antes del 19 de abril.
 
@@ -2134,6 +2136,109 @@ se pide:
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
 \section{Prácticas de entrega voluntaria de cursos pasados}
+
+\subsection{Prácticas de entrega voluntaria (curso 2014-2015)}
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsubsection{Práctica 1 (entrega voluntaria)}
+\label{subsec:practica-vol-1-2013}
+
+\textbf{Fecha recomendada de entrega:} Antes del 15 de marzo.
+
+Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs. La aplicación funcionará únicamente con datos en memoria: se supone que cada vez que la aplicación muera y vuelva a ser lanzada, habrá perdido todo su estado anterior. La aplicación tendrá que realizarse según un esquema de clases similar al explicado en clase.
+
+El funcionamiento de la aplicación será el siguiente:
+
+\begin{itemize}
+\item Recurso ``/'', invocado mediante GET. Devolverá una página HTML con un formulario. En ese formulario se podrá escribir una url, que se enviará al servidor mediante POST. Además, esa misma página incluirá un listado de todas las URLs reales y acortadas que maneja la aplicación en este momento.
+
+\item Recurso ``/'', invocado mediante POST. Si el comando POST incluye una qs (query string) que corresponda con una url enviada desde el formulario, se devolverá una página HTML con la url original y la url acortada (ambas como enlaces pinchables), y se apuntará la correspondencia (ver más abajo).
+
+Si el POST no trae una qs que se haya podido generar en el formulario, devolverá una página HTML con un mensaje de error.
+
+Si la URL especificada en el formulario comienza por ``http://'' o ``https://'', se considerará que ésa es la url a acortar. Si no es así, se le añadirá ``http://'' por delante, y se considerará que esa es la url a acortar. Por ejemplo, si en el formulario se escribe ``http://gsyc.es'', la url a acortar será ``http://gsyc.es''. Si se escribe ``gsyc.es'', la URL a acortar será ``http://gsyc.es''.
+
+Para determinar la URL acortada, utilizará un número entero secuencial, comenzando por 0, para cada nueva petición de acortamiento de una URL que se reciba. Si se recibe una petición para una URL ya acortada, se devolverá la URL acortada que se devolvió en su momento.
+
+Así, por ejemplo, si se quiere acortar
+
+\verb|http://docencia.etsit.urjc.es|
+
+y la aplicación está en el puerto 1234 de la máquina ``localhost'', se invocará (mediante POST) la URL
+
+\verb|http://localhost:1234/|
+
+y en el cuerpo de esa petición HTTP irá la qs
+
+\verb|url=http://docencia.etsit.urjc.es|
+
+si el campo donde el usuario puede escribir en el formulario tiene el nombre ``URL''. Normalmente, esta invocación POST se realizará rellenando el formulario que ofrece la aplicación.
+
+Como respuesta, la aplicación devolverá (en el cuerpo de la respuesta HTTP) la URL acortada, por ejemplo
+
+\verb|http://localhost:1234/3|
+
+Si a continuación se trata de acortar la URL
+
+\verb|http://docencia.etsit.urjc.es/moodle/course/view.php?id=25|
+
+mediante un procedimiento similar, se recibirá como respuesta la URL acortada
+
+\verb|http://localhost:1234/4|
+
+Si se vuelve a intentar acortar la URL
+
+\verb|http://docencia.etsit.urjc.es|
+
+como ya ha sido acortada previamente, se devolverá la misma URL corta:
+
+\verb|http://localhost:1234/3|
+
+\item Recursos correspondientes a URLs acortadas. Estos serán números con el prefijo ``/''. Cuando la aplicación reciba un GET sobre uno de estos recursos, si el número corresponde a una URL acortada, devolverá un HTTP REDIRECT a la URL real. Si no la tiene, devolverá HTTP ERROR ``Recurso no disponible''.
+
+Por ejemplo, si se recibe 
+
+\verb|http://localhost:1234/3|
+
+la aplicación devolverá un HTTP REDIRECT a la URL
+
+\verb|http://docencia.etsit.urjc.es|
+
+\end{itemize}
+
+\textbf{Comentario}
+
+Se recomienda utilizar dos diccionarios para almacenar las URLs reales y los números de las URLs acortadas. En uno de ellos, la clave de búsqueda será la URL real, y se utilizará para saber si una URL real ya está acortada, y en su caso saber cuál es el número de la URL corta correspondiente.
+
+En el otro diccionario la clave de búsqueda será el número de la URL acortada, y se utilizará para localizar las URLs reales dadas las cortas. De todas formas, son posibles (e incluso más eficientes) otras estructuras de datos.
+
+Se recomienda realizar la aplicación en varios pasos:
+
+\begin{itemize}
+\item Comenzar por reconocer ``GET /'', y devolver el formulario correspondiente.
+\item Reconocer ``POST /'', y devolver la página HTML correspondiente (con la URL real y la acortada).
+\item Reconocer ``GET /num'' (para cualquier número num), y realizar la redirección correspondiente.
+\item Manejar las condiciones de error y realizar el resto de la funcionalidad.
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsubsection{Práctica 2 (entrega voluntaria)}
+\label{subsec:practica-vol-2-2013}
+
+\textbf{Fecha recomendada de entrega:} Antes del 19 de abril.
+
+Esta práctica tendrá como objetivo la creación de una aplicación web (de nombre \emph{acorta}) simple para acortar URLs utilizando Django (proyecto \emph{project}). Su enunciado será igual que el de la práctica 1 de entrega voluntaria (ejercicio~\ref{subsec:practica-vol-1-2013}), salvo en los siguientes aspectos:
+
+\begin{itemize}
+\item Se implementará utilizando Django.
+\item Tendrá que almacenar la información relativa a las URLs que acorta en una base de datos, de forma que aunque la aplicación sea rearrancada, las URLs acortadas sigan funcionando adecuadamente.
+\end{itemize}
+
+Repositorio GitHub de entrega: \\
+\url{https://github.com/CursosWeb/X-Serv-18.2-Practica2}
 
 
 %%----------------------------------------------------------------------------
