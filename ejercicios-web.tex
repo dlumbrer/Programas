@@ -1631,7 +1631,7 @@ Repositorio GitHub de entrega: \\
 
 La práctica final de la asignatura consiste en la creación de una aplicación web que aglutine información sobre alojamientos en la ciudad de Madrid. A continuación se describe el funcionamiento y arquitectura general de la aplicación, la funcionalidad mínima que debe proporcionar, y otra funcionalidad optativa que podrá tener.
 
-La aplicación se encargará de descargar información sobre los mencionados alojamientos, disponbiles públicamente en formato XML en el portal de datos abiertos de Madrid, y de ofrecerlos a los usuarios para que puedan seleccionar los que les parezca más interesantes, y comentar sobre ellos. De esta manera, un escenario típico es el de un usuario que a partir de los alojamientos disponibles, elija los que le parezca más adecuados, y comente sobre los que quiera.
+La aplicación se encargará de descargar información sobre los mencionados alojamientos, disponibles públicamente en formato XML en el portal de datos abiertos de Madrid, y de ofrecerlos a los usuarios para que puedan seleccionar los que les parezca más interesantes, y comentar sobre ellos. De esta manera, un escenario típico es el de un usuario que a partir de los alojamientos disponibles, elija los que le parezca más adecuados, y comente sobre los que quiera.
 
 %%----------------------------------------------------------------------------
 \subsection{Arquitectura y funcionamiento general}
@@ -1644,7 +1644,7 @@ Arquitectura general:
 
 \item Para el almacenamiento de datos persistente se usará SQLite3, con tablas definidas según modelos en Django.
 
-\item Se usará la aplicación Django ``Admin Site'' para crear cuenta a los usuarios en el sistema, y para la gestión general de las bases de datos necesarias. Todas las bases de datos que mantenga DeLorean tendrá que ser accesible vía este ``Admin Site''.
+\item Se usará la aplicación Django ``Admin Site'' para crear cuenta a los usuarios en el sistema, y para la gestión general de las bases de datos necesarias. Todas las bases de datos que mantenga tendrá que ser accesible vía este ``Admin Site''.
 
 \item Se utilizarán plantillas Django (a ser posible, una jerarquía de plantillas, para que la práctica tenga un aspecto similar) para definir las páginas que se servirán a los navegadores de los usuarios. Estas plantillas incluirán en todas las páginas al menos:
   \begin{itemize}
@@ -1658,7 +1658,7 @@ Cada una de estas partes estará marcada con propiedades ``id'' en HTML, para po
 
 \item Se utilizarán hojas de estilo CSS para determinar la apariencia de la práctica. Estas hojas definirán al menos el color y el tamaño de la letra, y el color de fondo de cada una de las partes (elementos) marcadas con id que se indican en el apartado anterior.
 
-\item Se utlizará, para componer la información sobre alojamientos disponibles, la disponible en el portal de datos abiertos de la ciudad de Madrid:
+\item Se utilizará, para componer la información sobre alojamientos disponibles, la disponible en el portal de datos abiertos de la ciudad de Madrid:
 
   \begin{itemize}
   \item Descripción: \\
@@ -1682,61 +1682,62 @@ Funcionamiento general:
 
 \item Los usuarios registrados podrán crear su selección de alojamientos. Para ello, dispondrán de una página personal. Llamaremos a esta página la ``página del usuario''.
 
-\item La selección de actividades en su página personal la realizará cada usuario a partir de información sobre alojamientos ya disponibles en el sitio.
+\item La selección de alojamientos en su página personal la realizará cada usuario a partir de información sobre alojamientos ya disponibles en el sitio.
 
 \item Cualquier navegador podrá acceder a la interfaz pública del sitio, que ofrecerá la página personal de cada usuario, para todos los usuarios del sitio.
 
-\item Cualquier usuario, al ver la página de alojamientos de cualquier usuario (incluido él mismo), podrá pedir verla en otro ode los idiomas disponibles. En ese caso, la aplicación descargará el documento XML con el listado de alojamientos en el idioma elegido, buscará los alojamientos en cuestión, y usará sus datos para mostrar la misma página, pero con los datos sobre los alojamientos en ese idioma. La aplicación no almacenará estos datos en otro idioma en la base de datos, de forma que si se le vuelve a pedir lo mismo, volverá a descargar el fichero XML. 
+\item Cualquier usuario, al ver la página de alojamientos de cualquier usuario (incluido él mismo), podrá pedir verla en otro de los idiomas disponibles. En ese caso, la aplicación descargará el documento XML con el listado de alojamientos en el idioma elegido, buscará los alojamientos en cuestión, y usará sus datos para mostrar la misma página, pero con los datos sobre los alojamientos en ese idioma. La aplicación no almacenará estos datos en otro idioma en la base de datos, de forma que si se le vuelve a pedir lo mismo, volverá a descargar el fichero XML. 
 \end{itemize}
 
 
 %%----------------------------------------------------------------------------
 \subsection{Funcionalidad mínima}
 
-Los alojamientos se obtenddrán a partir de la información pública ofrecida por el Ayuntamiento de Madrid en el Portal de Datos Abiertos, en forma de ficheros XML, indicada anteriormente.
+Los alojamientos se obtendrán a partir de la información pública ofrecida por el Ayuntamiento de Madrid en el Portal de Datos Abiertos, en forma de ficheros XML, indicada anteriormente.
 
 Interfaz pública: recursos a servir como páginas HTML completas (pensadas para ser vistas en el navegador) para cualquier visitante (sea usuario registrado o no):
 
 \begin{itemize}
-\item /: Página principal de la práctica. Mostrará un listado de diez alojamientos cualquiera, elegidos de forma aleatoria entre los que haya disponibles en ese momento. Para cada uno de ellos, incluirá información sobre su nombre (que será un enlace que apuntará a la url del alojamiento en el portal esmadrid), su dirección, y una imagen suya en pequeño formato. También se mostrará un listado, en una columna lateral derecha, con enlaces a las páginas personales disponibles. Para cada página personal mostrará el título que le haya dado su usuario (como un enlace a la página personal en cuestión) y el nombre del usuario. Si a una página personal aún no se le hubiera puesto título, este título será ``Página de usuario'', donde ``usuario'' es el identificador de usuario del usuario en cuestión.
+\item /: Página principal de la práctica. Mostrará un listado de los diez alojamientos con más comentarios. Si no hubiera 10 alojamientos con comentarios, se mostrarán sólo los que tengan comentarios. Para cada uno de ellos, incluirá información sobre su nombre (que será un enlace que apuntará a la url del alojamiento en el portal esmadrid), su dirección, una imagen suya en pequeño formato, y un enlace, ``Más información'', que apuntará a la página del alojamiento en la aplicación (ver más adelante). También se mostrará un listado, en una columna lateral derecha, con enlaces a las páginas personales disponibles. Para cada página personal mostrará el título que le haya dado su usuario (como un enlace a la página personal en cuestión) y el nombre del usuario. Si a una página personal aún no se le hubiera puesto título, este título será ``Página de usuario'', donde ``usuario'' es el identificador de usuario del usuario en cuestión.
 
-\item /usuario: Página personal de un usuario. Si la URL es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará las actividades de ocio y de cultura seleccionadas por ese usuario (aunque no puede haber más de 10 a la vez; si hay más debería haber un enlace para mostrar las diez siguientes y así en adelante, siempre de diez en diez). Para cada actividad de ocio y de cultura se mostrará al menos el título y la fecha de los eventos (con un enlace a la página /actividad de cada evento, ver más adelante). Además, para cada actividad se deberá mostrar la fecha en la que fue seleccionada por el usuario.
+\item /{usuario}: Página personal de un usuario. Si la URL es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará los alojamientos seleccionados por ese usuario (aunque no puede haber más de 10 a la vez; si hay más debería haber un enlace para mostrar las diez siguientes y así en adelante, siempre de diez en diez). Para cada alojamiento se mostrará la misma información que en la página principal. Además, para cada alojamiento se deberá mostrar la fecha en la que fue seleccionada por el usuario.
 
-\item /actividad/{id}: Página de una actividad de cultura o de ocio. Mostrará toda la información obtenida del XML del portal de datos abierto del Ayuntamiento de Madrid. Además, se mostrará su ``información adicional'', conseguida a partir de seguir la URL con información adicional. Esta información adicional es la que se puede encontrar si seguimos el enlace justo debajo de ``Amplíe información''. Se puede hacer uso del módulo \emph{Beautiful Soup} para llevar a cabo esta funcionalidad.
+\item /alojamientos: Página con todos los alojamientos. Para cada uno de ellos aparecerá sólo el nombre, y un enlace a su página. En la parte superior de la página, existirá un formulario que permita filtrar estos alojamientos según varios campos, como, por ejemplo, por su categoría (por ejemplo, ``Hoteles'') y su subcategoría  (por ejemplo, ``4 estrellas'') .
 
-\item /usuario/rss: Canal RSS para las actividades seleccionadas por ese usuario.
+\item /alojamientos/{id}: Página de un alojamiento en la aplicación. Mostrará toda la información de los elementos ``basicData'' y ``geoData'' obtenida del XML del portal de datos abierto del Ayuntamiento de Madrid. Además, se mostrarán cinco fotos entre las que se pueden obtener del mismo documento XML (o menos, si en el documento no hay tantas), y todos los comentarios que se hayan puesto para este alojamiento.
+  
+\item /{usuario}/xml: Canal XML para los alojamientos seleccionados por ese usuario. El documento XML tendrá una entrada para cada alojamiento seleccionado por el usuario, y tendrá una estructura similar (pero no necesariamente igual) a la del fichero XML del portal del Ayuntamiento.
 
 \item /ayuda: Página con información HTML explicando el funcionamiento de la práctica.
 
-\item /todas: Página con todas las actividades de ocio y de cultura. En la parte superior de la página, existirá un formulario que permite filtrar estas actividades según varios campos, como, por ejemplo, la fecha, la duración, el precio o el título.
 \end{itemize}
 
-Todas las páginas de la interfaz pública incluirán un menú desde el que se podrá acceder a todas las actividades (URL /todas) con el texto ``Todas'' y a la ayuda (URL /ayuda) con el texto ``Ayuda''. Todas las página que no sean la principal tendrán otra opción de menú para la URL /, con el texto ``Inicio''.
+Todas las páginas de la interfaz pública incluirán un menú desde el que se podrá acceder a todos los alojamientos (URL /alojamientos) con el texto ``Todos'' y a la ayuda (URL /ayuda) con el texto ``Ayuda''. Todas las página que no sean la principal tendrán otra opción de menú para la URL /, con el texto ``Inicio''.
 
 
 Interfaz privada: recursos a servir como páginas HTML completas para usuarios registrados (una vez se han autenticado).
 
 \begin{itemize}
-  \item Todos los recursos de la interfaz pública.
-  \item /todas: Además de la información que se muestra de manera pública:
+\item Todos los recursos de la interfaz pública.
+\item /alojamientos/{id}: Además de la información que se muestra de manera pública:
+
   \begin{itemize}
-    \item Se mostrará el número de actividades de ocio y de cultura disponibles para el canal, y la fecha en que fue actualizado por última vez.
-    \item Existirá un botón para actualizar las actividades a partir del canal de actividades. Si se pulsa este botón, se tratarán de actualizar las actividades accediendo al canal de actividades del Ayuntamiento de Madrid. Al terminar la operación se volverá a mostrar esta misma página /todas, actualizada.
-    \item La lista de actividades disponibles en el canal de actividades.
-    \item Junto a cada actividad de la lista, se incluirá un botón que permitirá elegir la actividad para la página personal del usuario autenticado. Tras añadir una actividad a la página del usuario, se volverá a ver en el navegador la página /todas.
+  \item Un formulario para poner comentarios sobre este alojamiento. Los comentarios serán anónimos, pero sólo se podrán poner por los usuarios registrados, una vez se han autenticado. Por tanto, bastará con que este formulario esté compuesto por una caja de texto, donde se podrá escribir el comentario, y un botón para enviarlo.
+  \item Un botón para cada uno de los idiomas en que está disponible el documento XML en el portal del Ayuntamiento. En caso de que el usuario pulse uno de esos botones, la aplicación descargará el XML correspondiente al idioma seleccionado, buscará en él la información sobre el alojamiento en cuestión, y si está disponible, la mostrará en pantalla en ese idioma (además de la información que ya estaba disponible). Si el alojamiento no está disponible en ese idioma, se pondrá un mensaje indicándolo. Esta información en otros idiomas no se guardará en la base de datos.
   \end{itemize}
 
-  \item En la página /usuario que corresponde al usuario autenticado se mostrará, además de lo ya mencionado para la interfaz pública, un formulario en el que se podrá especificar la siguiente información:
-
+\item /{usuario}: Además de la información que se muestra de manera pública:
+  
   \begin{itemize}
-    \item Los parámetros CSS para el usuario autenticado (al menos los indicados anteriormente para ser manejados por un documento CSS). Si el usuario los cambia, a partir de ese momento deberá verse el sitio con los nuevos valores, y para ello deberá servirse un nuevo documento CSS.
-    \item El título de su página personal.
+  \item Un formulario para cambiar el estilo CSS de todo el sitio para ese usuario. Bastará con que se pueda cambiar el tamaño de la letra y el color de fondo. Si se cambian estos valores, quedará cambiado el documento CSS que utilizarán todas las páginas del sitio para este usuario. Este cambio será visible en cuanto se suba la nueva página CSS.
+
+  \item Un formulario para elegir el título de su página personal.
   \end{itemize}
 \end{itemize}
 
 %Si es preciso, se añadirán más recursos (pero sólo si es realmente preciso) para poder satisfacer los requisitos especificados.
 
-Dados los recursos mencionados anteriormente, no se permitirán los nombres de usuario ``actividad'', ``ayuda'' ni ``todas'' (pero no hay que hacer ninguna comprobación para esto: se asume que no se darán de alta esos usuarios en el Admin Site).
+Dados los recursos mencionados anteriormente, no se permitirán los nombres de usuario ``alojamientos'', ``ayuda'' ni ``todas'' (pero no hay que hacer ninguna comprobación para esto: se asume que no se darán de alta esos usuarios en el Admin Site).
 
 
 
@@ -1750,13 +1751,13 @@ Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativ
 \begin{itemize}
 \item Atención al idioma indicado por el navegador. El idioma de la interfaz de usuario del planeta tendrá en cuenta lo que especifique el navegador.
 
-\item Generación de un canal RSS para los contenidos que se muestran en la página principal.
+\item Generación de un canal XML para los contenidos que se muestran en la página principal.
 
-\item Uso de AJAX para algún aspecto de la práctica (por ejemplo, para seleccionar una actividad para una página de usuario).
+\item Generación de un canal RSS para los comentarios puestos en el sitio.
+  
+\item Uso de AJAX para algún aspecto de la práctica (por ejemplo, para seleccionar un alojamiento para una página de usuario).
 
-\item Puntuación de actividades. Cada visitante (registrado o no) puede dar un ``+1'' a cualquier actividad del sitio. La suma de ``+'' que ha obtenido una actividad se verá cada vez que se vea la actividad en el sitio.
-
-\item Comentarios a actividades. Cada usuario registrado puede comentar cualquier actividad del sitio. Estos comentarios se podrán ver luego en la página personal.
+\item Puntuación de alojamientos. Cada visitante (registrado o no) puede dar un ``+1'' a cualquier alojamiento del sitio. La suma de ``+'' que ha obtenido un alojamiento se verá cada vez que se vea el alojamiento en el sitio.
 
 \end{itemize}
 
@@ -1764,12 +1765,14 @@ Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativ
 %%----------------------------------------------------------------------------
 \subsection{Entrega de la práctica}
 
-\textbf{Fecha límite de entrega de la práctica:} domingo, 24 de mayo de 2015 a las 23:59 (hora española peninsular). {\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
+\textbf{Fecha límite de entrega de la práctica:} martes, 17 de mayo de 2015 a las 23:59 (hora española peninsular).
+       %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
 
-\textbf{Fecha de publicación de notas:} martes, 26 de mayo de 2015, en la plataforma Moodle.
-{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
+%\textbf{Fecha de publicación de notas:} martes, 26 de mayo de 2015, en la plataforma Moodle.
+%{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
 
-\textbf{Fecha de revisión:} viernes, 29 de mayo de 2014 a las 12:00. {\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
+%\textbf{Fecha de revisión:} viernes, 29 de mayo de 2014 a las 12:00.
+%{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
 
 La práctica se entregará realizando {\bf dos} acciones:
 
@@ -1786,9 +1789,9 @@ La práctica se entregará realizando {\bf dos} acciones:
     \item URL del vídeo demostración en YouTube con la funcionalidad optativa, si se ha realizado funcionalidad optativa
   \end{itemize}
 
-  \item Subiendo la práctica a un repositorio GitHub. El nombre del repositorio se dará al entregar la práctica. Así, para ir realizando la práctica se recomienda crearse un repositorio en GitHub con el nombre que queráis, e ir haciendo commits. Recordad que es importante ir haciendo commits de vez en cuando y que sólo al hacer push estos commits son públicos. Antes de entregar la práctica, haced un push. Y cuando la entreguéis y sepáis el nombre del repositorio, podeis cambiar el nombre del repositorio desde el interfaz web de GitHub. 
+  \item Subiendo la práctica a un repositorio GitHub. El nombre del repositorio se dará al entregar la práctica (con el formulario descrito anteriormente). Así, para ir realizando la práctica se recomienda crearse un repositorio en GitHub con el nombre que queráis, e ir haciendo commits. Recordad que es importante ir haciendo commits de vez en cuando y que sólo al hacer push estos commits son públicos. Antes de entregar la práctica, haced un push. Y cuando la entreguéis y sepáis el nombre del repositorio, podéis cambiar el nombre del repositorio desde el interfaz web de GitHub. 
   
-    El repositorio GitHub deberá contener un proyecto Django completo y listo para funcionar en el entorno del laboratorio, incluyendo la base de datos con datos suficientes como para poder probarlo. Estos datos incluirán al menos dos usuarios con sus datos correspondientes, y con al menos cinco actividades en su página personal.
+    El repositorio GitHub deberá contener un proyecto Django completo y listo para funcionar en el entorno del laboratorio, incluyendo la base de datos con datos suficientes como para poder probarlo. Estos datos incluirán al menos dos usuarios con sus datos correspondientes, con al menos cinco alojamientos en su página personal, y con al menos cinco comentarios en total.
 \end{enumerate}
 
 Los vídeos de demostración serán de una duración máxima de tres minutos (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Se valorará negativamente que los vídeos duren más de 3 minutos (de la experiencia de cursos pasados, tres minutos es un tiempo más que suficiente si uno no entra en detalles que no son importantes). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en YouTube y deberán ser accesibles públicamente al menos hasta el 31 de mayo, fecha a partir de la cual los alumnos pueden retirar el vídeo (o indicarlo como privado).
@@ -1802,11 +1805,11 @@ Los alumnos que no entreguen las práctica de esta forma serán considerados com
 %%----------------------------------------------------------------------------
 \subsection{Notas y comentarios}
 
-La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas (Django 1.7.*).
+La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas.
 
 La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
 
-Los canales (feeds) RSS que produce la aplicación web realizada en la práctica deberán funcionar al menos con el navegador Firefox (considerándolos como canales RSS) disponibles en el laboratorio.
+Los canales (feeds) RSS que produce la aplicación web realizada en la práctica deberán funcionar al menos con el navegador Firefox (considerándolos como canales RSS) disponibles en el laboratorio. Los documentos XML deberán ser correctos desde el punto de vista de la sintaxis XML, y por lo tanto reconocibles por un reconocedor XML, como por ejemplo el reconocedor del módulo xml.sax de Python.
 
 \newpage
 
