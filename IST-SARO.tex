@@ -52,9 +52,9 @@ GSyC, Universidad Rey Juan Carlos}
 
 \newpage
 
-%%------------------------------------------------------------------------------------
-%%------------------------------------------------------------------------------------
-%%------------------------------------------------------------------------------------
+%%-------------------------------------------------------------------------
+%%-------------------------------------------------------------------------
+%%-------------------------------------------------------------------------
 \section{Objetivos}
 
 En esta asignatura se pretende que el alumno obtenga conocimientos detallados sobre los servicios y aplicaciones comunes en las redes de ordenadores, y en particular en Internet. Se pretende especialmente que conozcan las tecnologías básicas que los hacen posibles.
@@ -63,10 +63,7 @@ En esta asignatura se pretende que el alumno obtenga conocimientos detallados so
 
 La asignatura tiene un enfoque eminentemente práctico. Por ello se realizará en la medido de lo posible en el laboratorio, y las prácticas realizadas (incluyendo especialmente la práctica final) tendrán gran importancia en la evaluación de la asignatura. Los conocimientos teóricos necesarios se intercalarán con los prácticos, en gran media mediante metodologías apoyadas en la resolución de problemas. En las clases teóricas se utilizan, en algunos casos, transparencias que sirven de guión. En todos los casos se recomendarán referencias (usualmente documentos disponibles en Internet) para profundizar conocimientos, y complementarias de los detalles necesarios para la resolución de los problemas prácticos. En el desarrollo diario, las sesiones docentes incluirán habitualmente tanto aspectos teóricos como prácticos.
 
-Se usa un sistema de apoyo telemático a la docencia (Moodle) para realizar actividades complementarias a las presenciales, y para organizar la documentación ofrecida a los alumnos.
-
-Asimismo, se utiliza el servicio GitHub como repositorio, tanto de los materiales de la
-asignatura, como para entregar las prácticas por parte de los alumnos.
+Se usa un sistema de apoyo telemático a la docencia (aula virtual de la URJC) para realizar actividades complementarias a las presenciales, y para organizar parte de la documentación ofrecida a los alumnos. La mayoría de los contenidos utilizados en la asignatura están disponibles o enlazados desde el sitio web CursosWeb. Asimismo, se utiliza el servicio GitHub como repositorio, tanto de los materiales de la asignatura, como para entregar las prácticas por parte de los alumnos.
 
 \newpage
 
@@ -79,11 +76,11 @@ asignatura, como para entregar las prácticas por parte de los alumnos.
 Parámetros generales:
 
 \begin{itemize}
-\item Teoría (obligatorio): 0 a 4.
+\item Teoría (obligatorio): 0 a 5.
+\item Microprácticas diarias: 0 a 1
+\item Miniprácticas preparatorias: 0 a 1
 \item Práctica final (obligatorio): 0 a 2.
 \item Opciones y mejoras de la práctica final: 0 a 3
-\item Prácticas incrementales: 0 a 1
-\item Ejercicios en foro o en GitHub: 0 a 2
 \item Nota final: Suma de notas, moderada por la interpretación del profesor
 \item Mínimo para aprobar:
       \begin{itemize}
@@ -94,10 +91,11 @@ Parámetros generales:
 
 Evaluación teoría: prueba escrita
 
-Evaluación prácticas incrementales (evaluación continua):
+Evaluación microprácticas diarias (evaluación continua):
 
 \begin{itemize}
-\item entre 0 y 2 
+\item entre 0 y 1
+\item preguntas y ejercicios en foro y entragados en GitHub
 \item es muy recomendable hacerlas
 \end{itemize}
 
@@ -114,12 +112,6 @@ Opciones y mejoras práctica final:
 
 \begin{itemize}
 \item permiten subir la nota mucho
-\end{itemize}
-
-Evaluación ejercicios (evaluación continua):
-
-\begin{itemize}
-\item preguntas y ejercicios en foro
 \end{itemize}
 
 Evaluación extraordinaria:
@@ -144,17 +136,17 @@ Programa de la asignatura (el detalle evoluciona según avanza el curso)
 \subsection{00 - Presentación}
 
 %%-----------------------------------------------------------------------
-\subsubsection{Sesión del 19 de enero (2 horas)}
+\subsubsection{Sesión del 17 de enero (2 horas)}
 
 \begin{itemize}
 \item \textbf{Presentación:} Presentación de la asignatura. Breve introducción y motivación de las aplicaciones web.
 \item \textbf{Material:} Transparencias, tema ``Presentación''.
-%\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Web 2.0'' (ejercicio~\ref{subsec:web-20}) \\
-%  Entrega recomendada: antes del 22 de enero.
+\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Web 2.0'' (ejercicio~\ref{subsec:web-20}) \\
+  Entrega recomendada: antes del 24 de enero.
 \end{itemize}
 
 %%--------------------------------------------------------------------------
-\subsubsection{Sesión del 26 de enero (0.5 horas)}
+\subsubsection{Sesión del 24 de enero (0.5 horas)}
 
 \begin{itemize}
 \item \textbf{Presentación:} Introducción a la entrega de prácticas en GitHub (seccion~\ref{sec:eje-entrega-practicas-incr}).
@@ -166,7 +158,7 @@ Programa de la asignatura (el detalle evoluciona según avanza el curso)
 
 Sesión, mantenimiento de estado, persistencia.
 
-\subsubsection{Sesión del 21 de enero (2 horas)}
+\subsubsection{Sesión del 19 de enero (2 horas)}
 
 \begin{itemize}
 \item \textbf{Ejercicio propuesto (discusión en clase):} ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda}) \\
@@ -174,14 +166,14 @@ Sesión, mantenimiento de estado, persistencia.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 28 de enero (2 horas)}
+\subsubsection{Sesión del 26 de enero (2 horas)}
 
 Páginas dinámicas (diferentes según cómo y cuándo se invocan). Cómo realizar sesiones en HTTP. Profundización en el concepto de sesión, y técnicas para conseguirla, incluyendo cookies y otros mecanismos.
 
 \begin{itemize}
 \item \textbf{Discusión de ejercicio (entrega en el foro):} ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda}) \\
   Almacenamiento en el lado del servidor y en el lado del cliente. Relación entre peticiones HTTP. Cookies como herramienta para ambas situaciones.\\
-  Entrega recomendada: antes del 27 de enero.
+  Entrega recomendada: antes del 2 de febrero.
 \item \textbf{Ejercicio:} ``Espía a tu navegador (Firefox Developer Tools)'' (ejercicio~\ref{subsec:firefox-devel})
 \item \textbf{Discusión de ejercicio:} ``Servicio horario'' \\
   (ejercicio~\ref{subsec:ej-servicio-horario}).
@@ -189,7 +181,7 @@ Páginas dinámicas (diferentes según cómo y cuándo se invocan). Cómo realiz
 
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 4 de febrero (2 horas)}
+\subsubsection{Sesión del 2 de febrero (2 horas)}
 
 Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persistente frente a caídas del servidor.
 
@@ -210,20 +202,20 @@ Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persist
 
 \begin{itemize}
 \item \textbf{Discusión de ejercicio (entrega en el foro):} ``Traza de historiales de navegación por terceras partes'' (ejercicio~\ref{subsec:navegacion-terceras-partes})  \\
-  Entrega recomendada: antes del 18 de febrero.
+  Entrega recomendada: antes del 16 de febrero.
 \item \textbf{Ejercicio (discusión en clase, entrega en el foro):} ``Trackers en páginas web'' (ejercicio~\ref{subsec:trackers-paginas-web})  \\
- Entrega recomendada: antes del 19 de febrero.
+ Entrega recomendada: antes del 16 de febrero.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 18 de febrero (2 horas)}
+\subsubsection{Sesión del 21 de febrero (2 horas)}
 
 \begin{itemize}
 \item \textbf{Discusión de ejercicio:} ``Sumador simple con varios 
 navegadores intercalados'' (ejercicio~\ref{subsec:sumador-simple-varios-intercalados}) \\
   Trabajo en grupo. Sólo se pretende llegar al pseudocódigo (lo más ``estilo Python'' que se pueda).
 \item \textbf{Discusión de ejercicio (entrega en el foro):} ``Sumador simple con rearranques'' (ejercicio~\ref{subsec:sumador-simple-rearranques}). \\
- Entrega recomendada: antes del 12 de febrero.
+ Entrega recomendada: antes del 28 de febrero.
 \end{itemize}
 
 %%----------------------------------------------------------------
@@ -233,45 +225,45 @@ navegadores intercalados'' (ejercicio~\ref{subsec:sumador-simple-varios-intercal
 Invocaciones a aplicaciones web desde aplicaciones web. Servicios web como un conjunto de aplicaciones que interoperan.
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 25 de febrero (2 horas)}
+\subsubsection{Sesión del 23 de febrero (2 horas)}
 
 \begin{itemize}
 \item \textbf{Presentación:} Introducción breve a la arquitectura REST
 \item \textbf{Material:} Transparencias, tema ``REST''
 \item \textbf{Ejercicio (discusión en clase, entrega en el foro)}: ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}). \\
   Trabajo en grupos y discusión de los detalles del ejercicio. \\
-  Entrega recomendada: antes del 3 de marzo.
+  Entrega recomendada: antes del 2 de marzo.
 \end{itemize}
 
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 3 de marzo (2 horas)}
+\subsubsection{Sesión del 2 de marzo (2 horas)}
 
 \begin{itemize}
 \item \textbf{Presentación:} Arquitectura REST
 \item \textbf{Material:} Transparencias, tema ``REST''
 \item \textbf{Ejercicio (discusión en clase, entrega en GitHub):} ``Aplicación redirectora'' (ejercicio~\ref{subsec:aplweb-redirectora}). \\
-  Entrega recomendada: antes del 10 de marzo. \\
+  Entrega recomendada: antes del 9 de marzo. \\
   Repo GitHub: \url{https://github.com/CursosWeb/X-Serv-App-Redirectora}
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 10 de marzo (2 horas)}
+\subsubsection{Sesión del 9 de marzo (2 horas)}
 
 \begin{itemize}
 \item \textbf{Ejercicio (discusión en clase, entrega en el foro):} ``Calculadora simple versión REST'' (ejercicio~\ref{subsec:calc-simple-rest}). \\
-  Entrega recomendada: antes del 5 de marzo. \\
+  Entrega recomendada: antes del 16 de marzo. \\
   Repo GitHub: \url{https://github.com/CursosWeb/X-Serv-App-Calculadora-REST}
 \item \textbf{Discusión de ejercicio:} ``Cache de contenidos'' (ejercicio~\ref{subsec:cache-contenidos}). \\
   Trabajo en grupos y discusión de los detalles del ejercicio.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 17 de marzo (2 horas)}
+\subsubsection{Sesión del 16 de marzo (2 horas)}
 
 \begin{itemize}
 \item \textbf{Ejercicio (entrega en el foro):} ``Cache de contenidos anotado'' (ejercicio~\ref{subsec:cache-contenidos-anotado}) \\
-  Entrega recomendada: antes del 12 de marzo. \\
+  Entrega recomendada: antes del 23 de marzo. \\
   Repo GitHub: \url{https://github.com/CursosWeb/X-Serv-App-Cache-Anotada}
 \end{itemize}
 
@@ -292,7 +284,7 @@ Invocaciones a aplicaciones web desde aplicaciones web. Servicios web como un co
 Explicación del patrón de diseño ``modelo-vista-controlador''.
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 7 de abril (2 horas)}
+\subsubsection{Sesión del 23 de marzo (2 horas)}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Modelo-vista-controlador''.
@@ -308,7 +300,7 @@ Explicación del patrón de diseño ``modelo-vista-controlador''.
 Uso de XML en aplicaciones web.
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 12 de abril (2 horas)}
+\subsubsection{Sesión del 30 de marzo (2 horas)}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a XML''. \\
@@ -318,17 +310,17 @@ Usos de XML, canales semánticos usando RSS y similares. Complementos de XML, JS
 \item \textbf{Material:} Transparencias ``Introducción a XML''.
 \item \textbf{Ejercicio (discusión en clase):} ``Chistes XML'' (ejercicio~\ref{subsec:xml-chistes}).
 \item \textbf{Ejercicio (entrega en GitHub):} ``Titulares de BarraPunto'' (ejercicio~\ref{subsec:xml-barrapunto}) \\
-  Entrega recomendada: antes del 17 de abril. \\
+  Entrega recomendada: antes del 6 de abril. \\
   Repo GitHub: \url{https://github.com/CursosWeb/X-Serv-XML-Barrapunto}
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 14 de abril (2 horas)}
+\subsubsection{Sesión del 6 de abril (2 horas)}
 
 \begin{itemize}
 \item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con titulares de BarraPunto'' (ejercicio~\ref{subsec:contentapp-barrapunto}). 
 \item \textbf{Ejercicio (entrega en GitHub):} ``Gestor de contenidos con titulares de BarraPunto versión Django'' (ejercicio~\ref{subsec:contentapp-barrapunto-django}) \\
-  Entrega recomendada: antes del 21 de abril. \\
+  Entrega recomendada: antes del 13 de abril. \\
   Repo GitHub: \url{https://github.com/CursosWeb/X-Serv-XML-ContentApp-Barrapunto}
 \end{itemize}
 
@@ -358,7 +350,7 @@ Usos de XML, canales semánticos usando RSS y similares. Complementos de XML, JS
 Hojas de estilo CSS, separación entre contenido y presentación.
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 21 de abril (2 horas)}
+\subsubsection{Sesión del 20 de abril (2 horas)}
 
 Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
 
@@ -367,11 +359,11 @@ Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
  \item \textbf{Material:} Transparencias, tema ``CSS''.
 \item \textbf{Demo:} Inspección de datos de aspecto y hojas CSS con Firebug en Firefox.
 \item \textbf{Ejercicio (entrega en el foro):} ``Django cms\_css simple'' (ejercicio~\ref{subsec:django-cms-css}). \\
-Entrega recomendada: antes del 28 de abril.
+Entrega recomendada: antes del 27 de abril.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 28 de abril (2 horas)}
+\subsubsection{Sesión del 27 de abril (2 horas)}
 
 Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
 
@@ -379,7 +371,7 @@ Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
 \item \textbf{Presentación:} ``Hojas de estilo CSS''. Otra información relacionada con CSS.
  \item \textbf{Material:} Transparencias, tema ``CSS''.
 \item \textbf{Ejercicio (entrega en GitHub):} ``Django cms\_css elaborado'' (ejercicio~\ref{subsec:django-cms-css-2}). \\
-  Entrega recomendada: antes del 3 de mayo. \\
+  Entrega recomendada: antes del 4 de mayo. \\
   Repo GitHub: \url{https://github.com/CursosWeb/X-Serv-CSS-Elaborado}
 \end{itemize}
 
@@ -391,7 +383,7 @@ Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
 Introducción a AJAX, \emph{mash-ups} y otros tipos de aplicaciones web con código en el lado del cliente.
 
 ----------------------------------------------------------------
-\subsubsection{Sesión del 28 de abril (2 horas)}
+\subsubsection{Sesión del XX de abril (2 horas)}
 
 
 \begin{itemize}
@@ -438,29 +430,29 @@ Programa de las prácticas de la asignatura (tentativo).
 Introducción al lenguaje de programación Python, que se utilizará para la realización de las prácticas de la asignatura.
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 26 de enero (1.5 horas)}
+\subsubsection{Sesión del 24 de enero (1.5 horas)}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, ejecución en el intérprete, strings, listas, estructuras condicionales (if else), bucles for).
 \item \textbf{Material:} Transparencias ``Introducción a Python''
 \item \textbf{Ejercicios:} ``Uso interactivo del intérprete de Python'' (ejercicio~\ref{subsec:practicas-interprete}) y ``Haz un programa en Python'' (ejercicio~\ref{subsec:eje-python-primer-programa}).
 \item \textbf{Ejercicio propuesto (entrega en el foro):} ``Tablas de multiplicar'' (ejercicio~\ref{subsec:eje-python-tablas}).
-   Entrega recomendada: antes del 27 de enero.
+   Entrega recomendada: antes del 31 de enero.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 2 de febrero (2 horas)}
+\subsubsection{Sesión del 31 de enero (2 horas)}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a Python''.
 \item \textbf{Material:} Transparencias ``Introducción a Python''
 \item \textbf{Material:} Ejercicio ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
 \item \textbf{Ejercicio propuesto (entrega en GitHub):} ``Ficheros, diccionarios y excepciones''~\ref{subsec:ficheros-dic-excep}.
-   Entrega recomendada: antes del 10 de febrero.
+   Entrega recomendada: antes del 7 de febrero.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 11 de febrero (1 hora)}
+\subsubsection{Sesión del 7 de febrero (1 hora)}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a Python''.
@@ -476,14 +468,14 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 11 de febrero (1 hora)}
+\subsubsection{Sesión del 14 de febrero (1 hora)}
 
 \begin{itemize}
  \item \textbf{Ejercicio:} ``Aplicación web hola mundo'' (ejercicio~\ref{subsec:aplweb-hola-mundo}) \\
    Se muestra la solución del ejercicio, y se comenta en clase. Se pide a los alumnos que lo ejecuten, lo modifiquen y se fijen en las cabeceras HTTP enviadas por el cliente y que el servidor muestra en pantalla (pero no hay entrega específica).
  \item \textbf{Ejercicio:} ``Variaciones de la aplicación web hola mundo'' (ejercicio~\ref{subsec:aplweb-hola-mundo-var}).
  \item \textbf{Ejercicio propuesto (entrega en GitHub):} ``Aplicación web generadora de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-urls-aleatorias}) \\
-   Entrega recomendada: antes del 17 de febrero.
+   Entrega recomendada: antes del 21 de febrero.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
@@ -496,13 +488,13 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 23 de febrero (2 horas)}
+\subsubsection{Sesión del 28 de febrero (2 horas)}
 
 \begin{itemize}
 \item \textbf{Trabajo y explicación del ejercicio:} ``Clase servidor de aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis}) \\
   Explicación de la estructura general que tienen las aplicaciones web, y fundamentos de cómo esta estructura se puede encapsular en una clase.
 \item \textbf{Ejercicio propuesto (entrega en GitHub):} ``Clase servidor de aplicaciones, generador de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-clase-urls-aleatorias}). \\
-  Entrega recomendada: antes del 1 de marzo.
+  Entrega recomendada: antes del 7 de marzo.
 \end{itemize}
 
 
@@ -512,7 +504,7 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 Construcción de algunos servidores de contenidos que permitan comprender la estructura básica de una aplicación web, y de cómo implementarlos aprovechando algunas características de Python.
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 1 de marzo (2 horas)}
+\subsubsection{Sesión del 7 de marzo (2 horas)}
 
 \begin{itemize}
 
@@ -520,11 +512,11 @@ Construcción de algunos servidores de contenidos que permitan comprender la est
 \item \textbf{Ejercicio propuesto:}  ``Clase servidor varias aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis-multi}) \\
   Explicación de la estructura principal de una clase que gestiona varias aplicaciones (o varios recursos, cada uno manejado por una aplicación)
 \item \textbf{Ejercicio propuesto:} ``Clase servidor, cuatro aplis'' (ejercicio~\ref{subsec:clase-serv-aplis-varias}).
-  \item Presentación de la primera práctica de entrega voluntaria (\ref{subsec:practica-vol-1-2016}). Entrega en GitHub. Fecha de entrega: antes del 15 de marzo.
+  \item Presentación de la primera práctica de entrega voluntaria (\ref{subsec:practica-vol-1-2016}). Entrega en GitHub. Fecha de entrega: antes del 14 de marzo.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 8 de marzo (2 horas)}
+\subsubsection{Sesión del 14 de marzo (2 horas)}
 
 
 \begin{itemize}
@@ -544,7 +536,7 @@ Construcción de algunos servidores de contenidos que permitan comprender la est
 \subsection{P4 - Introducción a Django}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 15 de marzo (2 horas)}
+\subsubsection{Sesión del 21 de marzo (2 horas)}
 
 Presentación de Django como sistema de construcción de aplicaciones web.
 
@@ -555,11 +547,11 @@ Presentación de Django como sistema de construcción de aplicaciones web.
  \item \textbf{Material:} Transparencias ``Introducción a Django''
  \item \textbf{Ejercicio (discusión en clase:} ``Django Primera Aplicación'' (ejercicio~\ref{subsec:django-primera}).
   \item \textbf{Ejercicio (entrega en GitHub:} ``Django calc'' (ejercicio~\ref{subsec:django-calc}). \\
-        Entrega recomendada: antes del 29 de marzo.
+        Entrega recomendada: antes del 28 de marzo.
 \end{itemize}
 
 %%% %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 29 de marzo (2 horas)}
+\subsubsection{Sesión del 28 de marzo (2 horas)}
 
 Primeros ejercicios con base de datos.
 
@@ -568,12 +560,12 @@ Primeros ejercicios con base de datos.
  \item \textbf{Material:} Transparencias ``Introducción a Django''
 
  \item \textbf{Ejercicio  (entrega en GitHub):} ``Django cms'' (ejercicio~\ref{subsec:django-cms}). \\
-    Entrega recomendada: antes del 5 de abril.
+    Entrega recomendada: antes del 4 de abril.
  
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 31 de marzo (2 horas)}
+\subsubsection{Sesión del 4 de abril (2 horas)}
 
 Usuarios, administración y autenticación con Django.
 
@@ -581,12 +573,12 @@ Usuarios, administración y autenticación con Django.
  \item \textbf{Presentación:} Introducción a Django (tercera parte)
  \item \textbf{Material:} Transparencias ``Introducción a Django''
   \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_put'' (ejercicio~\ref{subsec:django-cms-put}). \\
- Entrega recomendada: antes del 5 de abril.
+ Entrega recomendada: antes del 11 de abril.
 \end{itemize}
 
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 5 de abril (2 horas)}
+\subsubsection{Sesión del 18 de abril (2 horas)}
 
 \begin{itemize}
  \item \textbf{Presentación:} Introducción a Django (cuarta parte)
@@ -594,12 +586,12 @@ Usuarios, administración y autenticación con Django.
   \item \textbf{Ejercicio (discusión en GitHub):} ``Django cms\_users'' (ejercicio~\ref{subsec:django-users}). 
 \item \textbf{Ejercicio (entrega en GitHub):} ``Django cms\_users\_put'' (ejercicio~\ref{subsec:django-users-put}). 
  \item \textbf{Ejercicio (entrega en GitHub):} ``Django cms\_templates'' (ejercicio~\ref{subsec:django-templates}). \\
-  Entrega recomendada: antes del 19 de abril.
+  Entrega recomendada: antes del 25 de abril.
 \end{itemize}
 
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 19 de abril (2 horas)}
+\subsubsection{Sesión del 25 de abril (2 horas)}
 
 Fin de introducción a Django. % Formularios en Django
 
@@ -615,7 +607,7 @@ Fin de introducción a Django. % Formularios en Django
 \end{itemize}
 
 %%% %% %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 26 de abril (2 horas)}
+\subsubsection{Sesión del XX de abril (2 horas)}
 
 Uso de módulos externos con Django
 
@@ -629,6 +621,13 @@ Uso de módulos externos con Django
 \item \textbf{Presentación:} Práctica final.
 \end{itemize}
 
+
+%%----------------------------------------------------------------------------
+%% \subsubsection{Sesión del XX de abril (2 horas)}
+
+%% \begin{itemize}
+%%   \item Tutoría para la práctica final. Esta clase se aprovechará para presentar o asentar, si fuera necesario, cuestiones relacionadas con la práctica final.
+%% \end{itemize}
 
 %%----------------------------------------------------------------------------
 %% \subsubsection{Sesión del XXX de abril (2 horas)}
