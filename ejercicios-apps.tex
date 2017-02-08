@@ -1303,15 +1303,16 @@ hojas de estilo CSS, Javascript y ficheros con fuentes e iconos.
 \textbf{Enunciado:} Descárgate la plantilla básica de Bootstrap y 
 crea un página web simple añadiendo algunos elementos que te ofrece la
 plataforma, como por ejemplo, un \emph{navbar}, un \emph{jumbotron} y unos
-cuantos botones.
+cuantos botones. 
+
+Comprueba que tengas todos los archivos descargados (a veces, además de los CSS y JS de Bootstrap, has de enlazar archivos adicionales). Recuerda que para ciertas funciones (p.ej., ver los glyphicons) quizás tengas que servir las páginas con un servidor web local.
 
 
 \subsection{Utilizando el Jumbotron de Bootstrap}
 \label{subsec:jumbotron}
 
 \textbf{Enunciado:} Parte del esquema ``Jumbotron'' que ofrece Bootstrap
-y modifica la página para crear una página que se parezca visualmente a la
-página de la asignatura, pero que contenga información sobre uno de tus
+y modifica la página para crear una página que contenga información sobre uno de tus
 \emph{hobbies}.
 
 \subsection{Utilizando el Carousel de Bootstrap}
@@ -1334,8 +1335,7 @@ Para realizar el ejercicio, debes crear un \emph{fork} del repositorio del ejerc
 se conviertan en cuatro. Para ello puedes hacer un \emph{clone} o un \emph{fork} del
 repositorio \url{https://github.com/CursosWeb/CursosWeb.github.io}.
 
-Al final del ejercicio, pásale \texttt{Bootlint} para comprobar que tu diseño está libre
-de errores.
+%Al final del ejercicio, pásale \texttt{Bootlint} para comprobar que tu diseño está libre de errores.
 
 \subsection{Bootstrap responsivo}
 \label{subsec:bootstrap-responsivo}
@@ -1343,8 +1343,8 @@ de errores.
 \textbf{Enunciado:} Modifica la página web de la asignatura para que sea \emph{responsiva}. Antes de nada, añade imágenes a los apartados de programas, código, transparencias y recursos, dejando la imagen en una columna y el texto en otra. Luego, haz la página responsiva, de manera que según se vaya haciendo la pantalla más pequeña:
 
 \begin{itemize}
-  \item Las columnas de arriba deberían pasar de cuatro a dos.
-  \item Las columnas con las imágenes no se verán en dispositivos móviles.
+  \item Las columnas de arriba deberían pasar de cuatro a dos (pista: mira por \emph{clearfix}).
+  \item Las columnas con las imágenes no se verán en dispositivos móviles (utiliza \emph{.visible-xs-*}).
 \end{itemize}
    
    Para realizar este ejercicio, puedes hacer un \emph{clone} o un \emph{fork} del
