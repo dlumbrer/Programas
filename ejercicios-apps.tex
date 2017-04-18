@@ -97,11 +97,11 @@ El fichero HTML se llamará ``index.html'', y todo el directorio (repositorio) e
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
-\section{Wifi abierta en instalaciones municipales en Madrid (mayo 2017)}
+\section{Aparcamientos para residentes en Madrid (mayo 2017)}
 
 \label{sec:final-17-mayo}
 
-La práctica consiste en la creación de una aplicación HTML5 que permita explorar los lugares en Madrid que cuentan con instalaciones municipales que ofrecen servicio \emph{wifi} grautito, a partir de ahora \emph{instalaciones}, construida a partir de los datos proporcionados por el propio ayuntamiento. Se trata de mostrar los datos de la forma más atractiva posible, incluyendo una descripción (campo descripción-entidad), fotos (FIXME: no hay), su localización en un mapa, etc. También se permitirá construir colecciones personales de instalaciones, y almacenarlas de forma persistente.
+La práctica consiste en la creación de una aplicación HTML5 que permita explorar los lugares en el municipio de Madrid que cuentan con aparcamientos para residentes, a partir de ahora \emph{instalaciones}, construida a partir de los datos proporcionados por el propio ayuntamiento. Se trata de mostrar los datos de la forma más atractiva posible, incluyendo el nombre del aparcamiento (campo title), la dirección (calle, código postal), la descripción (campo organization-desc), fotos de la zona, localización en un mapa, etc. También se permitirá construir colecciones personales de aparcamientos, y almacenarlas de forma persistente.
 
 \subsection{Enunciado}
 
@@ -110,7 +110,7 @@ Concretamente, la aplicación mostrará al arrancar un panel con varias pestaña
 \begin{itemize}
   \item Un \emph{banner} (imagen) con el nombre y/o logotipo del sitio.
   \item Una zona con un mapa, donde se mostrará la localización de las instalaciones seleccionadas. Cuando se seleccione una instalación, se mostrará un marcador sobre el mapa con su nombre. Cada marcador tendrá una opción para quitarlo.
-  \item Una zona donde se mostrará una lista con todas las instalaciones. Cuando arranque la aplicación, no habrá ninguna sino que en su lugar habrá un botón para cargar el fichero JSON con todas las instalaciones (ver más adelante). Como sin instalaciones la aplicación no puede hacer gran cosa, hasta que la lista no haya sido cargada, las demás zonas de información de las instalaciones estarán desactivadas. Una vez cargado el fichero JSON, como son muchos hoteles, se mostrarán en una tabla con scroll (barra de desplazamiento) o similar.
+  \item Una zona donde se mostrará una lista con todas las instalaciones. Cuando arranque la aplicación, no habrá ninguna sino que en su lugar habrá un botón para cargar el fichero JSON con todas las instalaciones (ver más adelante). Como sin instalaciones la aplicación no puede hacer gran cosa, hasta que la lista no haya sido cargada, las demás zonas de información de las instalaciones estarán desactivadas. Una vez cargado el fichero JSON, como son muchas instalaciones, se mostrarán en una tabla con scroll (barra de desplazamiento) o similar.
   \item Una zona donde se mostrarán, de forma similar, las instalaciones de la colección seleccionada, si hay alguna (ver pestaña de colecciones).
   \item Una zona donde se mostrará la información sobre la instalación seleccionada (al menos su nombre, su dirección, y un carrusel con sus fotos, si las hay).
   \item Las instalaciones podrán seleccionarse bien picando sobre ellos en la lista, o sobre su marcador en el mapa.
@@ -126,10 +126,10 @@ En la pestaña de gestión de colecciones se mostrará:
 
 Para añadir instalaciones a una colección, se podrá ``arrastrar'' una instalación desde el listado de instalaciones al listado de la colección seleccionada.
 
-En la pestaña de gestión de alojados, se mostrará:
+En la pestaña de gestión de instalaciones, se mostrará:
 
 \begin{itemize}
-  \item La descripción (campo descripción-entidad) de la instalación seleccionada (en la pestaña principal).
+  \item El nombre, la dirección, la descripción de la instalación seleccionada (en la pestaña principal).
   \item La lista de los usuarios de Google+ asignados a esa instalación.
   \item Un botón para incluir el id de un usuario de Google+, que será la forma de asignar nuevos usuarios de Google+ a una instalación. el id del usuario Google+ se obtendrá mediante una petición WebSocket al servidor FIXME.
 \end{itemize}
@@ -146,11 +146,27 @@ Para la maquetación de la aplicación se utilizará Bootstrap, haciendo lo posi
 El fichero JSON con la lista de instalaciones que se usará será el que proporciona el Ayuntamiento de Madrid. Puede verse este fichero y una aplicación de prueba de concepto muy simple de algunos aspectos de la práctica en:
 
 \begin{itemize}
-  \item Fichero con los datos abiertos de instalaciones municipales con wifi: \\
-  \url{http://datos.madrid.es/egob/catalogo/216619-0-wifi-municipal.json}
+
+  \item Fichero con los datos abiertos de aparcamientos para residentes proporcionado por el Ayuntamiento de Madrid: \\
+    \url{http://datos.madrid.es/egob/catalogo/202584-0-aparcamientos-residentes.json}
+
+  \item Descripción del fichero: \\
+    \url{http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=e84276ac109d3410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default}
+      
   \item Copia del fichero anterior en el repositorio CursosWeb/Code de GitHub: \\
 %  \item Prueba de concepto muy sencilla: \\
 %  \url{http://cursosweb.github.io/Code/JS-APIs/misc/alojamientos/alojamientos.html}
+\end{itemize}
+
+Para obtener las fotos cercanas a una localización (latitud y longitud), se podrán utilizar las que proporciona Wikimedia Commons, utlizando urls como la siguiente:
+
+\begin{itemize}
+\item Formato JSON: \\
+  \url{https://commons.wikimedia.org/w/api.php?format=json&action=query&generator=geosearch&ggsprimary=all&ggsnamespace=6&ggsradius=500&ggscoord=40.426687899755734|-3.6996173701222492&ggslimit=10&prop=imageinfo&iilimit=1&iiprop=url&iiurlwidth=200&iiurlheight=200}
+\item Formato JSONP: \\
+  \url{https://commons.wikimedia.org/w/api.php?format=json&action=query&generator=geosearch&ggsprimary=all&ggsnamespace=6&ggsradius=500&ggscoord=40.426687899755734|-3.6996173701222492&ggslimit=10&prop=imageinfo&iilimit=1&iiprop=url&iiurlwidth=200&iiurlheight=200&callback=?}
+\item Explicación en StackOverflow: \\
+  \url{http://stackoverflow.com/questions/23990161/wikimedia-commons-api-search-images-by-latitude-longitude}
 \end{itemize}
 
 %%---------------------------------------------------------------------
@@ -159,11 +175,12 @@ El fichero JSON con la lista de instalaciones que se usará será el que proporc
 En general, se podrá añadir cualquier funcionalidad a la aplicación, mientras no perjudique o impida la funcionalidad básica descrita en el apartado anterior. A modo de ejemplos, se proponen las siguientes ideas:
 
 \begin{itemize}
-  \item Utilización de terceras APIs
+  \item Utilización de otras APIs
   \item Uso de LocalStorage
   \item Funcionalidad para que funcione off-line
   \item Realizar la autenticación en GitHub dinámicamente, usando OAuth2 de forma que el usuario se autentique con su cuenta de GitHub, y obtenga el token de esa forma.
   \item Optimizar la aplicación para que cargue más rápido.
+  \item Utilización de Flickr y otros servicios como fuente de fotos.
 \end{itemize}
 
 Todas las opciones que necesitan escribir en repositorios GitHub, requerirían autenticación previa por parte del usuario.
