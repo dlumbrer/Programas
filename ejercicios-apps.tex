@@ -105,35 +105,38 @@ La práctica consiste en la creación de una aplicación HTML5 que permita explo
 
 \subsection{Enunciado}
 
-Concretamente, la aplicación mostrará al arrancar un panel con varias pestañas. En la pestaña principal estarán:
+Concretamente, la aplicación mostrará al arrancar un \emph{banner} (imagen) con el nombre y/o logotipo del sitio y un panel con tres pestañas: la principal, la de gestión de colecciones y la de gestión de instalaciones.
 
-\begin{itemize}
-  \item Un \emph{banner} (imagen) con el nombre y/o logotipo del sitio.
+La pestaña principal contará con las siguientes \emph{zonas}:
+
+\begin{enumerate}
   \item Una zona con un mapa, donde se mostrará la localización de las instalaciones seleccionadas. Cuando se seleccione una instalación, se mostrará un marcador sobre el mapa con su nombre. Cada marcador tendrá una opción para quitarlo.
   \item Una zona donde se mostrará una lista con todas las instalaciones. Cuando arranque la aplicación, no habrá ninguna sino que en su lugar habrá un botón para cargar el fichero JSON con todas las instalaciones (ver más adelante). Como sin instalaciones la aplicación no puede hacer gran cosa, hasta que la lista no haya sido cargada, las demás zonas de información de las instalaciones estarán desactivadas. Una vez cargado el fichero JSON, como son muchas instalaciones, se mostrarán en una tabla con scroll (barra de desplazamiento) o similar.
-  \item Una zona donde se mostrarán, de forma similar, las instalaciones de la colección seleccionada, si hay alguna (ver pestaña de colecciones).
   \item Una zona donde se mostrará la información sobre la instalación seleccionada (al menos su nombre, su dirección, y un carrusel con sus fotos, si las hay).
-  \item Las instalaciones podrán seleccionarse bien picando sobre ellos en la lista, o sobre su marcador en el mapa.
-\end{itemize}
+  \item Una zona donde se mostrará las instalaciones de la colección seleccionada en la pestaña de colecciones (ver más abajo).
+\end{enumerate}
 
-En la pestaña de gestión de colecciones se mostrará:
+Las instalaciones podrán seleccionarse bien picando sobre ellas en la lista de instalaciones, en la lista de instalaciones de una colección, o sobre su marcador en el mapa.
 
-\begin{itemize}
+
+En la pestaña de gestión de colecciones se mostrará la siguiente información:
+
+\begin{enumerate}
   \item Un listado de todas las instalaciones, una vez han sido cargadas (ver pestaña principal), de forma similar a como se ven en la pestaña principal.
   \item Un listado de las colecciones que se hayan creado, y un formulario para crear una nueva colección indicando su nombre. Sobre el listado se podrá seleccionar una colección picando sobre ella.
-  \item Un listado de las instalaciones en la colección seleccionada.
-\end{itemize}
+  \item Un listado de las instalaciones en la colección seleccionada. Cuando haya una colección seleccionada y se visite la pestaña principal, se mostrarán las instalaciones de esa colección en la zona creada para tal efecto.
+\end{enumerate}
 
 Para añadir instalaciones a una colección, se podrá ``arrastrar'' una instalación desde el listado de instalaciones al listado de la colección seleccionada.
 
 En la pestaña de gestión de instalaciones, se mostrará:
 
-\begin{itemize}
+\begin{enumerate}
   \item El nombre, la dirección, la descripción de la instalación seleccionada - la instalación que se muestra es la que se ha seleccionado en la pestaña principal.
   \item La lista de los usuarios de Google+ asignados a esa instalación. Para añadir usuarios a una instalación, se podrá ``arrastrar'' un usuario desde el listado de usuarios al listado de la instalación seleccionada.
-  \item Al principio se mostrará un botón para incluir usuarios de Google+. Al presionar el botón se abrirá una conexión con un servidor WebSocket que irá enviando identificadores de usuarios de Google+, que serán incluidos en esta zona según se vayan recibiendo. Los usuarios mostrados no deben aparecer repetidos.
+  \item Una lista con usuarios de Google+ disponibles. Al principio se mostrará un botón para incluir usuarios de Google+. Al presionar el botón se abrirá una conexión con un servidor WebSocket que irá enviando identificadores de usuarios de Google+, que serán incluidos en esta zona según se vayan recibiendo. No deben aparecer usuarios repetidos.
   
-\end{itemize}
+\end{enumerate}
 
 En todas las pestañas, además, se verán dos botones, con la siguiente funcionalidad:
 
@@ -203,11 +206,9 @@ Todas las opciones que necesitan escribir en repositorios GitHub, requerirían a
 La entrega de la práctica consiste en rellenar un formulario (enlazado en el Moodle de la asignatura) y en seguir las instrucciones que se describen a continuación.
 
 \begin{enumerate}
-  \item El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo), con la rama \emph{master} configurada de tal manera que la aplicación se pueda probar accediendo al servidor web que monta GitHub. Es muy importante que el alumno haya realizado un fork del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
+  \item El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo), con la rama \emph{master} configurada de tal manera que la aplicación se pueda probar accediendo al servidor web que monta GitHub. En el formulario de entrega se pedirá la URL del repositorio GitHub utilizado por el alumno para la práctica.
 
-\url{FIXME} 
-
-Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere. Los que la entreguen podrán ser llamados a realizar también una entrega presencial, que tendrá lugar en la fecha y hora de la revisión. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
+Los alumnos que entreguen la práctica podrán ser llamados a realizar una entrega presencial, que tendrá lugar en la fecha y hora de la revisión. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
 
  \item Un vídeo de demostración de la parte obligatoria, y otro vídeo de demostración de la parte opcional, si se han realizado opciones avanzadas. Los vídeos serán de una duración máxima de 3 minutos (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo o YouTube).
 
