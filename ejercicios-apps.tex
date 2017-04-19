@@ -129,12 +129,13 @@ Para añadir instalaciones a una colección, se podrá ``arrastrar'' una instala
 En la pestaña de gestión de instalaciones, se mostrará:
 
 \begin{itemize}
-  \item El nombre, la dirección, la descripción de la instalación seleccionada (en la pestaña principal).
-  \item La lista de los usuarios de Google+ asignados a esa instalación.
-  \item Un botón para incluir el id de un usuario de Google+, que será la forma de asignar nuevos usuarios de Google+ a una instalación. el id del usuario Google+ se obtendrá mediante una petición WebSocket al servidor FIXME.
+  \item El nombre, la dirección, la descripción de la instalación seleccionada - la instalación que se muestra es la que se ha seleccionado en la pestaña principal.
+  \item La lista de los usuarios de Google+ asignados a esa instalación. Para añadir usuarios a una instalación, se podrá ``arrastrar'' un usuario desde el listado de usuarios al listado de la instalación seleccionada.
+  \item Al principio se mostrará un botón para incluir usuarios de Google+. Al presionar el botón se abrirá una conexión con un servidor WebSocket que irá enviando identificadores de usuarios de Google+, que serán incluidos en esta zona según se vayan recibiendo. Los usuarios mostrados no deben aparecer repetidos.
+  
 \end{itemize}
 
-En todas las pestañas se verán dos botones:
+En todas las pestañas, además, se verán dos botones, con la siguiente funcionalidad:
 
 \begin{itemize}
   \item Un botón para guardar las colecciones y las asignaciones de usuarios de Google+ a instalaciones. Cuando se pulse, aparecerá un formulario para rellenar un token de GitHub y el nombre de un repositorio y un fichero, y se almacenará en él toda la información, como un documento JSON.
