@@ -1316,7 +1316,7 @@ Repositorio en GitHub para entregar el ejercicio: \\
 \subsection{Django feed\_expander}
 \label{subsec:django-feed-expander}
 
-Utilizando Django y, en la medida que te parezca conveniente, \texttt{feedparser.py} y \texttt{BeautifulSoup.py}, realiza un servicio que expanda el contenido del canal de un usuario de Twitter. El servicio atenderá peticiones a recursos de la forma \verb|/feed/user| (siendo  \texttt{user} el identificador de un usuario de Twitter), devolviendo una página HTML con:
+Utilizando Django y, en la medida que te parezca conveniente, \texttt{feedparser.py} (\url{https://github.com/kurtmckee/feedparser}) y \texttt{BeautifulSoup.py} (\url{http://www.crummy.com/software/BeautifulSoup/}), realiza un servicio que expanda el contenido del canal de un usuario de Twitter. El servicio atenderá peticiones a recursos de la forma \verb|/feed/user| (siendo  \texttt{user} el identificador de un usuario de Twitter), devolviendo una página HTML con:
 
 \begin{itemize}
 \item Los cinco últimos \emph{tweets} del usuario.
@@ -1335,8 +1335,8 @@ Pueden usarse también las bibliotecas \texttt{urllib2} para la descarga de pág
 \textbf{Referencias:}
 
 \begin{itemize}
-\item Documentación sobre feedparser.py (vía WayBack Machine): \\
-  \url{http://web.archive.org/web/20110625112257/http://feedparser.org/docs/}
+\item Documentación sobre feedparser.py: \\
+  \url{https://pythonhosted.org/feedparser/}
 \item Presentación sobre feedparser.py: \\
   \url{http://www.slideshare.net/LindseySmith1/feedparser}
 \item Documentación sobre BeautifulSoup.py: \\
@@ -1345,7 +1345,7 @@ Pueden usarse también las bibliotecas \texttt{urllib2} para la descarga de pág
 
 
 Repositorio en GitHub para entregar el ejercicio: \\ 
-\url{https://github.com/CursosWeb/X-Serv-15.12-Django-feedparser}.
+\url{https://github.com/CursosWeb/X-Serv-15.12-Django-feedexpander}.
 
 
 %%----------------------------------------------------------------------------
@@ -1670,7 +1670,7 @@ Cada una de estas partes estará marcada con propiedades ``id'' en HTML, para po
 
 \item Se utilizará, para componer la información sobre aparcamientos disponibles, la disponible en el portal de datos abiertos de la ciudad de Madrid:
 
-  FIXME
+%  FIXME
   
   \begin{itemize}
   \item Descripción: \\
@@ -1792,13 +1792,13 @@ En el formulario de entrega se pide que se justifique por qué se considera func
 \subsection{Entrega de la práctica}
 
 \begin{itemize}
-  \item \textbf{Fecha límite de entrega de la práctica:} lunes, 23 de mayo de 2016 a las 02:00 (hora española peninsular)\footnote{Entiéndase la hora como domingo por la noche, ya entrado el lunes.}
+  \item \textbf{Fecha límite de entrega de la práctica:} miércoles, 24 de mayo de 2017 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como miércoles por la noche, ya entrado el jueves.}
        %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
 
-  \item \textbf{Fecha de publicación de notas:} martes, 24 de mayo de 2016, en la plataforma Moodle.
+  \item \textbf{Fecha de publicación de notas:} sábado, 27 de mayo de 2017, en la plataforma Moodle.
 %{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
 
-  \item \textbf{Fecha de revisión:} miércoles, 25 de mayo de 2016 a las 13:30.
+  \item \textbf{Fecha de revisión:} lunes, 29 de mayo de 2017 a las 13:00.
 %{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
 \end{itemize}
 
@@ -1852,6 +1852,31 @@ La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio 
 La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
 
 Los canales (feeds) RSS que produce la aplicación web realizada en la práctica deberán funcionar al menos con el navegador Firefox (considerándolos como canales RSS) disponibles en el laboratorio. Los documentos XML deberán ser correctos desde el punto de vista de la sintaxis XML, y por lo tanto reconocibles por un reconocedor XML, como por ejemplo el reconocedor del módulo xml.sax de Python.
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\section{Práctica final (2017, junio)}
+\label{practica-final-2017-06}
+
+La práctica final para la convocatoria de junio de 2017 será la misma que la descrita para la convocatoria de mayo de 2017, con las siguientes consideraciones:
+
+\begin{itemize}
+  \item Las consideraciones serán publicadas el 31 de mayo de 2017.
+\end{itemize}
+
+Las fechas de entrega, publicación y revisión de esta convocatoria quedan como siguen:
+
+\begin{itemize}
+  \item \textbf{Fecha límite de entrega de la práctica:} jueves, 29 de junio de 2017 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como jueves por la noche, ya entrado el viernes.}.
+       %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
+
+  \item \textbf{Fecha de publicación de notas:} sábado, 1 de julio de 2017, en la plataforma Moodle.
+%{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
+
+  \item \textbf{Fecha de revisión:} lunes, 3 de julio de 2017 a las 13:00.
+%{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
+\end{itemize}
 
 
 \newpage
