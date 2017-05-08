@@ -135,7 +135,14 @@ En la pestaña de gestión de instalaciones, se mostrará:
   \item El nombre, la dirección, la descripción de la instalación seleccionada - la instalación que se muestra es la que se ha seleccionado en la pestaña principal.
   \item La lista de los usuarios de Google+ asignados a esa instalación. Para añadir usuarios a una instalación, se podrá ``arrastrar'' un usuario desde el listado de usuarios al listado de la instalación seleccionada.
   \item Una lista con usuarios de Google+ disponibles. Al principio se mostrará un botón para incluir usuarios de Google+. Al presionar el botón se abrirá una conexión con un servidor WebSocket que irá enviando identificadores de usuarios de Google+, que serán incluidos en esta zona según se vayan recibiendo. No deben aparecer usuarios repetidos.
+  \item El código del servidor WebSocket se podrá descargar de \url{https://github.com/CursosWeb/PFinalWebSocketServer} y se ejecutarán de la siguiente manera desde la línea de comandos:
   
+  \begin{verbatim}
+     $ python PFinalWebSocketServer.py --port 12345
+  \end{verbatim}
+  
+  donde el puerto podría ser cualquier otro. De hecho, depende de vuestra configuración, puede que tengáis que poner como puerto el 80, por lo que debéis lanzar el servidor con \emph{sudo}.
+
 \end{enumerate}
 
 En todas las pestañas, además, se verán dos botones, con la siguiente funcionalidad:
@@ -158,6 +165,7 @@ El fichero JSON con la lista de instalaciones que se usará será el que proporc
     \url{http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=e84276ac109d3410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default}
       
   \item Copia del fichero anterior en el repositorio CursosWeb/Code de GitHub: \\
+%  \url{http://cursosweb.github.io/Code/JS-APIs/misc/alojamientos/alojamientos.html}
 %  \item Prueba de concepto muy sencilla: \\
 %  \url{http://cursosweb.github.io/Code/JS-APIs/misc/alojamientos/alojamientos.html}
 \end{itemize}
