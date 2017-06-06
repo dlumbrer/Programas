@@ -4059,6 +4059,666 @@ return myResponse
 %%--------------------------------------------------------------------------
 %%--------------------------------------------------------------------------
 %%--------------------------------------------------------------------------
+\section{Pruebas escritas pasadas}
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de ITT-SAT, 10 mayo de 2017}
+
+Se quiere construir un sitio web, Mensajitos, donde se pueden poner mensajes para que los vean otras personas. La funcionalidad básica del sitio es la siguiente:
+
+\begin{enumerate}
+\item En el sitio no hay cuentas para usuarios: toda la funcionalidad está disponible para cualquiera que lo visite.
+\item De todas formas, cualquier visitante podrá reservar un nombre que no esté ya en uso para cuando suba información al sitio. Este nombre se mantendrá mientras el visitante utilice el mismo navegador. Para ello se usará el formulario que aparece en la página principal (ver a continuación).
+\item La página principal del sitio mostrará a los visitantes un botón para crear un canal de mensajes, y un formulario para elegir un nombre (si se ha elegido ya, en lugar del formulario aparecerá el nombre elegido). El botón permitirá crear un nuevo canal (cada visitante puede crear tantos como quiera), según se indica más abajo. Además, en esta página principal cada visitante verá la lista de los canales que ha creado previamente. Tras crear un nuevo canal, o elegir un nombre, el visitante volverá a ver la página principal del sitio.
+\item Cada canal tendrá un nombre de recurso único, que se generará aleatoriamente cuando se cree. Cualquiera que conozca el nombre de recurso de un canal, podrá leer y escribir en él, simplemente accediendo a ese recurso (lo haya creado quien lo haya creado).
+\item El recurso correspondiente a cada canal mostrará una página HTML (la ``página del canal'') con los 10 últimos mensajes en el canal, un formulario para poner un nuevo mensaje, y un formulario para poner la url de una imagen (que puede estar en cualquier sitio de Internet, mientras la haga visible mediante HTTP). Cada mensaje que se muestre, se mostrará con el formato:
+
+\begin{verbatim}
+Nombre: mensaje
+\end{verbatim}
+
+Donde ``Nombre'' es el nombre del visitante (o ``Anónimo'', si no lo ha elegido), y ``mensaje'' es el mensaje en cuestión.
+
+Las urls de imágenes se considerarán también como mensajes, pero antes de mostrarlos como tales (y de almacenarlos en la base de datos), se convertirán a un elemento IMG de HTML. Por ejemplo, la imagen de url \verb|http://fotos.com/123345.jpg| se convertirá en el HTML siguiente (que se considerará el ``mensaje'' en el formato descrito anteriormente):
+
+\begin{verbatim}
+<img src="http://fotos.com/123345.jpg" style="width:200px;height:150px;">
+\end{verbatim}
+
+Tras poner un nuevo mensaje (o una imagen) en un canal, el visitante vuelve a ver de nuevo la página del canal.
+
+\item Cada canal tendrá también un recurso asociado donde se podrán descargar todos sus mensajes (incluyendo aquellos que se especificaron como imágenes) en formato XML. Este recurso aparecerá también como enlace en la página del canal. El documento XML correspondiente incluirá al menos todos los mensajes que se han escrito en el canal, el nombre del visitante que puso cada uno de ellos, la fecha en que se puso cada uno de ellos, el enlace a la página HTML del canal, la fecha en que se creó el canal, y el nombre del visitante que creó el canal (si alguno de los visitantes implicados no ha especificado un nombre, se usará ``Anónimo'').
+\item Todas las páginas HTML del sitio incluirán una imagen de cabecera (banner) que se alojará en el propio sitio.
+\end{enumerate}
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas urls (no se usarán los métodos PUT o DELETE). Coloca la información en una tabla, con las urls en una columna, los métodos en otra, y la descripción de lo que realizará la aplicación al recibirlos en la tercera. Escribe también un fichero similar al fichero urls.py de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior (1 punto).
+
+\item Describe el modelo de datos que necesitará esta aplicación. Define las tablas necesarias y los campos necesarios para la funcionalidad descrita. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero models.py en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones) (1 punto).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza cuando un visitante que accede por primera vez al sitio pone en el navegador la url de la página principal del sitio. A continuación, después de ver esta página principal, rellena el formulario para elegir un nombre. En este momento, el navegador vuelve a mostrar la página principal, ya con el nombre elegido en lugar del formulario para elegirlo. A continuación el visitante crea un nuevo canal. El escenario termina cuando el visitante vuelve a ver la página principal del sitio, con el nuevo canal ya creado. (1 punto).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza con un visitante que ya ha reservado nombre y está viendo la página de un canal que aún no tiene mensajes. El visitante rellena el formulario de imagen, poniendo la url de una imagen válida. El escenario termina cuando el visitante vuelve a ver la página del canal, ya con el nuevo mensaje generado a partir de la url de la imagen (1 punto).
+
+\item Escribe cómo podría ser el documento XML para un canal que tiene tres mensajes, uno de los cuales corresponde a la url de una imagen, para un usuario que tiene nombre (1 punto).
+\end{enumerate}
+
+En todos los escenarios, ten en cuenta que tu respuesta debe considerar toda la funcionalidad que ofrece el servicio, y permitir que ésta pueda proporcionarse. Diseña la aplicación de forma que envíe cookies al navegador sólo cuando sea necesario.
+
+En las respuestas donde describas interacciones HTTP indica para cada una de ellas claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \end{itemize}
+
+Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
+\section*{Soluciones}
+
+Hay muchas soluciones posibles. A continuación, una de ellas.
+
+\subsubsection*{Esquema REST}
+
+\begin{tabular}{|l|l|l|}
+  \hline
+  Recurso & Método & Comentario \\ \hline \hline
+  /       & GET    & Página principal (HTML) \\ \hline
+  /       & POST   & Creación de canal \\
+          &        & \verb|canal=True| \\
+          &        & Reserva de nombre \\
+          &        & \verb|nombre=nombre_visitante| \\
+          &        & Devolverá el mismo HTML que si se invoca con GET \\
+          &        & Este HTML incluirá ya un enlace al nuevo canal \\ \hline
+  /\{id\_canal\} & GET & Página del canal \verb|id_canal| (HTML) \\ \hline
+  /\{id\_canal\} & POST & Subir mensaje al canal \verb|id_canal| \\
+          &        & \verb|mensaje=texto| \\
+          &        & Subir imagen al canal \verb|id_canal| \\ 
+          &        & \verb|imagen=url| \\
+          &        & Devolverá el mismo HTML que si se invoca con GET \\ \hline
+  /\{id\_canal\}.xml & GET & Página del canal \verb|id_canal| (XML) \\ \hline
+  /banner & GET & Imagen que se usará como banner del sitio \\ \hline
+\end{tabular}
+
+\vspace{.3cm}
+
+Nota: No se indica en el enunciado, pero convendrá que la página HTML que se reciba como respuesta a un POST para crear un canal incluya, de forma prominente, un enlace a dicho canal, dado que el usuario necesita saber cuál es.
+
+\subsubsection*{urls.py}
+
+\begin{verbatim}
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.pagina_principal),
+    url(r'^banner$', views.banner),
+    url(r'^(.+\.xml)$', views.canal_xml),
+    url(r'^(.+)$', views.canal)
+]
+\end{verbatim}
+
+\subsubsection*{models.py}
+
+Versión simplificada, que cumple el enunciado:
+
+\begin{verbatim}
+from django.db import models
+
+class Visitante(models.Model):
+    nombre = models.CharField(max_length=20, null==True)
+    cookie = models.CharField(max_length=64)
+
+class Canal(models.Model):
+    recurso = models.CharField(max_length=50)
+    creador = models.ForeignKey('Visitante')
+
+class Mensaje(models.Model):
+    canal = models.ForeignKey('Canal')
+    autor = models.ForeignKey('Visitante')
+    texto = models.TextField()
+    fecha = models.DateTimeField() # Para fecha en XML
+\end{verbatim}
+
+
+\subsubsection*{Primer escenario}
+
+Todas las interacciones son entre el navegador y el sitio Mensajitos.
+
+\begin{itemize}
+\item Petición GET /
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  Set-Cookie: ....; session=session_id
+
+  [Pagina principal, HTML]
+\end{verbatim}
+
+session\_id es un identificador de sesión (o de visitante), que se puede enviar también más adelante. Como identificador de sesión que es, será normalmente una cadena de caracteres larga, generada aleatoriamente, y por tanto difícil de adivinar para quien no la conozca.
+
+\item Petición GET /banner (para cargar la imagen del banner)
+
+\begin{verbatim}
+  GET /banner HTTP/1.1
+  ...
+  Cookie: session=session_id
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Banner]
+\end{verbatim}
+
+\item Petición POST / (para enviar los datos del formulario de nombre)
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+  Cookie: session=session_id
+
+  nombre=Nombre_Usado
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Pagina principal, ya sin formulario para elegir nombre, HTML]
+\end{verbatim}
+
+La cookie que se envió anteriormente, en realidad se podría enviar aquí, pues hasta este momento no hay nada que asociar a la sesión.
+
+\item Petición POST / (para enviar los datos del botón de crear canal)
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+  Cookie: session=session_id
+
+  canal=True
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Pagina principal, ahora con el nuevo canal, HTML]
+\end{verbatim}
+
+\end{itemize}
+
+\subsubsection*{Segundo escenario}
+
+A continuación, las interacciones son entre el navegador y el sitio Mensajitos. Suponemos que la imagen del banner ya está en la caché del navegador, y por tanto no se pide. Como el navegador ya ha estado visitando el sitio y tiene nombre, ha de haber recibido la cookie de sesión. Suponemos que ``/2732434232'' es el nombre de recurso correspondiente al canal.
+
+\begin{itemize}
+\item Petición POST /2732434232 (para poner el mensaje)
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+  Cookie: session=session_id
+
+  imagen="url"
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Pagina del canal, ahora con un nuevo mensaje con el img correspondiente, HTML
+   
+   <img src="url" style="width:200px;height:150px;">]
+\end{verbatim}
+
+\end{itemize}
+
+Ahora, el navegador tendrá que pedir la imagen que se haya incluido anteriormente (url ``url''). Esta interacción será por lo tanto entre el navegador y el sitio al que apunte la url de la imagen. Suponiendo que la url sear \verb|http://sitio.com/imagen|:
+
+\begin{itemize}
+\item Petición GET /imagen (para cargar la imagen)
+
+\begin{verbatim}
+  GET /imagen HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen]
+\end{verbatim}
+
+\end{itemize}
+
+
+
+\subsubsection*{Canal XML}
+
+
+\begin{verbatim}
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<canal>
+  <recurso>http://mensajitos.com/3443344453</recurso>
+  <creado>20 de marzo de 2016 23:05:05</creado>
+  <creador>Flor de Loto</creador>
+  <mensaje>
+    <texto>Este es un mensaje</texto>
+  </mensaje>
+    <texto>
+      <img src="url" style="width:200px;height:150px;">
+    </texto>
+  <mensaje>
+  </mensaje>
+  <mensaje>
+    <texto>Este es el último mensaje</texto>
+  </mensaje>
+</canal>
+\end{verbatim}
+
+El texto para el mensaje de la imagen tendría que ponerse ``codificado'' para que no se confunda con texto XML, pero esto no se ha tenido en cuenta en esta solución..
+
+
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de IST-SARO, 10 mayo de 2017}
+
+Se quiere construir un sitio web, Fotogram, donde se pueden poner fotos para que las vean otras personas. La funcionalidad básica del sitio es la siguiente:
+
+\begin{enumerate}
+\item En el sitio no hay cuentas para usuarios: toda la funcionalidad está disponible para cualquiera que lo visite.
+\item La página principal del sitio mostrará a los visitantes un formulario para crear un nuevo canal de fotos. Este formulario permitirá elegir un nombre para el canal, y el nombre del recurso en que se servirá, que deberá ser (el nombre del recurso) uno que no esté ya en uso en el sitio. Además, en esta página principal cada visitante verá la lista de los canales que ha creado previamente, y junto a cada uno habrá un botón para borrarlo. Tras crear un nuevo canal, o borrarlo, el visitante volverá a ver la página principal del sitio.
+\item Cualquiera que conozca el nombre de recurso de un canal, podrá ver sus fotos, y poner fotos en él, simplemente accediendo a ese recurso (lo haya creado quien lo haya creado).
+\item El recurso correspondiente a cada canal mostrará una página HTML (la ``página del canal'') con las fotos puestas en ese canal y el comentario asociado a cada foto (si lo hay), y un formulario para poner una nueva foto. Este formulario permitirá especificar la url de una foto (que puede estar en cualquier sitio de Internet, mientras la haga visible mediante HTTP), y opcionalmente un comentario asociado a esa foto. Para cada foto que se muestre se mostrará la foto, el comentario asociado a ella (si lo hay) y la fecha en que se subió la foto.
+Tras poner una nueva foto en un canal, el visitante vuelve a ver de nuevo la página de ese canal.
+\item El sitio aceptará en un recurso (uno para todo el sitio, no uno por canal), no enlazado en ninguna página del mismo, un documento XML con un listado de fotos a subir a un canal, que se recibirá en el cuerpo de un POST de HTTP. El documento XML incluirá el nombre de recurso del canal donde se subirán las fotos (que deberá existir), y un listado de las fotos a subir. Para cada foto, se incluirá su url y (opcionalmente) su comentario asociado.
+\item Todas las páginas HTML del sitio incluirán una imagen de cabecera (banner) que se alojará en el sitio de url \verb|http://banners.com|.
+
+\item Se supone que la cache del navegador está deshabilitada.
+\end{enumerate}
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas urls (no se usarán los métodos PUT o DELETE). Coloca la información en una tabla, con las urls en una columna, los métodos en otra, y la descripción de lo que realizará la aplicación al recibirlos en la tercera. Escribe también un fichero similar al fichero urls.py de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior (1 punto).
+
+\item Describe el modelo de datos que necesitará esta aplicación. Define las tablas necesarias y los campos necesarios para la funcionalidad descrita. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero models.py en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones) (1 punto).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza cuando un visitante que accede por primera vez al sitio pone en el navegador la url de la página principal del sitio. A continuación, después de ver esta página principal, rellena el formulario para crear un canal. El sitio le devuelve una página donde aparecerá ya el canal recién creado en la lista de canales. El escenario termina cuando el visitante ve en su navegador la página de ese canal, tras haber pulsado sobre él en la lista (1 punto).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza cuando un visitante que accede por primera vez al sitio pone en el navegador la url de la página de un canal en el que ya hay una foto. A continuación, después de ver la página del canal en cuestión con esa foto, rellena el formulario para poner una nueva foto, indicando su url (no incluye comentario). El escenario termina cuando el visitante ve en su navegador de nuevo la página del canal, ya con la foto que acaba de poner (1 punto).
+
+\item Escribe cómo podría ser el documento XML para subir un listado de fotos a un canal (1 punto).
+\end{enumerate}
+
+En todos los escenarios, ten en cuenta que tu respuesta debe considerar toda la funcionalidad que ofrece el servicio, y permitir que ésta pueda proporcionarse. Diseña la aplicación de forma que envíe cookies al navegador sólo cuando sea necesario.
+
+En las respuestas donde describas interacciones HTTP indica para cada una de ellas claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \end{itemize}
+
+Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
+
+\subsection*{Soluciones}
+
+Hay muchas soluciones posibles. A continuación, una de ellas.
+
+\subsubsection*{Esquema REST}
+
+\begin{tabular}{|l|l|l|}
+  \hline
+  Recurso & Método & Comentario \\ \hline \hline
+  /       & GET    & Página principal (HTML) \\ \hline
+  /       & POST   & Creación de canal \\
+          &        & \verb|canal=Nombre&recurso=Recurso| \\
+          &        & Para borrar canal, misma qs, con nombre de canal vacío \\
+          &        & Devolverá el mismo HTML que si se invoca con GET \\
+          &        & Este HTML incluirá ya un enlace al nuevo canal \\
+          &        & cuando se haya creado \\ \hline
+  /\{rec\_canal\} & GET & Página del canal \verb|rec_canal| (HTML) \\ \hline
+  /\{rec\_canal\} & POST & Subir foto al canal \verb|rec_canal| \\
+          &        & \verb|foto=url&comentario=Texto| \\
+          &        & Devolverá el mismo HTML que si se invoca con GET \\ \hline
+  /subir  & POST   & Página del canal \verb|id_canal| (XML) \\ \hline
+\end{tabular}
+
+\subsubsection*{urls.py}
+
+\begin{verbatim}
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.pagina_principal),
+    url(r'^(subir)$', views.subir_xml),
+    url(r'^(.+)$', views.canal)
+]
+\end{verbatim}
+
+\subsubsection*{models.py}
+
+Versión simplificada, que cumple el enunciado:
+
+\begin{verbatim}
+from django.db import models
+
+class Visitante(models.Model):
+    cookie = models.CharField(max_length=64)
+
+class Canal(models.Model):
+    recurso = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
+    creador = models.ForeignKey('Visitante')
+
+class Foto(models.Model):
+    canal = models.ForeignKey('Canal')
+    url = models.CharField(max_length=50)
+    comentario = models.TextField()
+    fecha = models.DateTimeField()
+\end{verbatim}
+
+
+\subsubsection*{Primer escenario}
+
+Las interacciones son entre el navegador y el sitio que se indica.
+
+\begin{itemize}
+\item Petición GET / (a Fotogram)
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  Set-Cookie: ....; session=session_id
+
+  [Pagina principal, HTML]
+\end{verbatim}
+
+session\_id es un identificador de sesión (o de visitante), que se puede enviar también más adelante. Como identificador de sesión que es, será normalmente una cadena de caracteres larga, generada aleatoriamente, y por tanto difícil de adivinar para quien no la conozca.
+
+\item Petición GET /banner (a Banners)
+
+\begin{verbatim}
+  GET /banner HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Banner]
+\end{verbatim}
+
+\item Petición POST / (para enviar los datos del formulario de canal)
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+  Cookie: session=session_id
+
+  canal=Nombre&recurso=Recurso
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Pagina principal, ya con enlace al canal recién creado, HTML]
+\end{verbatim}
+
+La cookie que se envió anteriormente, en realidad se podría enviar aquí, pues hasta este momento no hay nada que asociar a la sesión.
+
+\item Petición GET /banner (a Banners)
+
+\begin{verbatim}
+  GET /banner HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Banner]
+\end{verbatim}
+
+\item Petición GET /Recurso (para ver la página del canal, a Fotogram)
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+  Cookie: session=session_id
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Pagina del canal, HTML]
+\end{verbatim}
+
+\item Petición GET /banner (a Banners)
+
+\begin{verbatim}
+  GET /banner HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Banner]
+\end{verbatim}
+
+\end{itemize}
+
+\subsubsection*{Segundo escenario}
+
+Las interacciones son entre el navegador y el sitio que se indica.
+
+\begin{itemize}
+\item Petición GET /Recurso (a Fotogram)
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+  Set-Cookie: ....; session=session2_id
+
+  [Pagina del canal, que lleva una foto, HTML]
+\end{verbatim}
+
+session2\_id es un identificador de sesión (o de visitante), que se puede enviar también más adelante (o incluso no enviar en este escenario, porque según enunciado no se traza qué visitante sube las fotos).
+
+\item Petición GET /banner (a Banners)
+
+\begin{verbatim}
+  GET /banner HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Banner]
+\end{verbatim}
+
+\item Petición GET /Foto (al sitio donde está la foto)
+
+\begin{verbatim}
+  GET /Foto HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Foto, JPEG, PNG, GIF, etc.]
+\end{verbatim}
+
+
+\item Petición POST /Recurso (a Fotogram)
+
+\begin{verbatim}
+  POST /Recurso HTTP/1.1
+  ...
+  Cookie: session=session2_id
+
+  foto=url_foto2&comentario=
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Pagina del canal, que lleva una foto, HTML]
+\end{verbatim}
+
+\item Petición GET /banner (a Banners)
+
+\begin{verbatim}
+  GET /banner HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Banner]
+\end{verbatim}
+
+\item Petición GET /Foto (al sitio donde está la foto)
+
+\begin{verbatim}
+  GET /Foto HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Foto, JPEG, PNG, GIF, etc.]
+\end{verbatim}
+
+\item Petición GET /Foto2 (al sitio donde está la segunda foto)
+
+\begin{verbatim}
+  GET /Foto2 HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Foto, JPEG, PNG, GIF, etc.]
+\end{verbatim}
+
+\end{itemize}
+
+
+\subsubsection*{Documento XML}
+
+
+\begin{verbatim}
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<fotos>
+  <recurso>/Canal</recurso>
+  <foto>
+    <url>http://sitiodefotos.com/foto1</url>
+  </foto>
+  <foto>
+    <url>http://sitiodefotos2.com/foto2</url>
+    <comentario>Esta es una foto</comentario>
+  </foto>
+  <foto>
+    <url>http://sitiodefotos3.com/foto3</url>
+    <comentario>Esta es otra foto</comentario>
+  </foto>
+</fotos>
+\end{verbatim}
+
+\newpage
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
 \section{Materiales de interés}
 
 %%--------------------------------------------------------------------------
