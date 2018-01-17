@@ -1,0 +1,607 @@
+%%
+%% $Revision: $"
+%%
+
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage[pdfborder=0 0 0]{hyperref}
+\usepackage{url}
+
+\title{Aplicaciones Telemáticas \\
+Grado en Ingeniería Telemática \\
+Programa del curso 2016/2017}
+\author{Jesús M. González Barahona, Gregorio Robles Martínez \\
+GSyC, Universidad Rey Juan Carlos}
+
+%\date{}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\chapter{Características de la asignatura}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{Datos generales}
+
+\begin{tabular}{ll}
+\textbf{Título:} & Aplicaciones Telemáticas  \\
+\textbf{Titulación:} & Grado en Ingeniería Telemática \\
+\textbf{Cuatrimestre:} & Cuarto curso, segundo cuatrimestre \\
+\textbf{Créditos:} & 6 (3 teóricos, 3 prácticos) \\
+\textbf{Horas lectivas:} & 4 horas semanales \\
+\textbf{Horario:} & miércoles, 13:00--15:00 \\
+                  & jueves, 13:00--15:00 \\
+\textbf{Profesores:}
+& Jesús M. González Barahona \\
+& \hspace{1cm}jgb @ gsyc.es \\
+& \hspace{1cm}Despacho 101, Departamental III\\
+& Gregorio Robles Martínez\\
+& \hspace{1cm}grex @ gsyc.es \\
+& \hspace{1cm}Despacho 110, Departamental III\\
+\textbf{Sedes telemáticas:} & \url{http://aulavirtual.urjc.es/} \\
+                            & \url{http://cursosweb.github.io} \\
+\textbf{Aulas:} & Laboratorio 209, Edif. Laboratorios III \\
+                & Aula 044, Edif. Departamental I (sólo presentación)\\
+\end{tabular}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\section{Objetivos}
+
+En esta asignatura se pretende que el alumno obtenga conocimientos detallados sobre los servicios y aplicaciones comunes en las redes de ordenadores, y en particular en Internet. Se pretende especialmente que conozcan las tecnologías básicas que los hacen posibles.
+
+\section{Metodología}
+
+La asignatura tiene un enfoque eminentemente práctico. Por ello se realizará en la medido de lo posible en el laboratorio, y las prácticas realizadas (incluyendo especialmente la práctica final) tendrán gran importancia en la evaluación de la asignatura. Los conocimientos teóricos necesarios se intercalarán con los prácticos, en gran media mediante metologías apoyadas en la resulución de problemas. En las clases teóricas se utilizan, en algunos casos, transparencias que sirven de guión. En todos los casos se recomendarán referencias (usualmente documentos disponibles en Internet) para profundizar conocimientos, y complementarias de los detalles necesarios para la resolución de los problemas prácticos. En el desarrollo diario, las sesiones docentes incluirán habitualmente tanto aspectos teóricos como prácticos.
+
+Se usa un sistema de apoyo telemático a la docencia (aula virtual de la URJC) para realizar actividades complementarias a las presenciales, y para organizar parte de la documentación ofrecida a los alumnos. La mayoría de los contenidos utilizados en la asignatura están disponibles o enlazados desde el sitio web CursosWeb. Asimismo, se utiliza el servicio GitHub como repositorio, tanto de los materiales de la asignatura, como para entregar las prácticas por parte de los alumnos.
+
+%%---------------------------------------------------------------------------
+%%---------------------------------------------------------------------------
+%%---------------------------------------------------------------------------
+\section{Evaluación}
+
+\textbf{Parámetros generales:}
+
+\begin{itemize}
+\item Microprácticas diarias: 0 a 1
+  \begin{itemize}
+  \item Entrega en GitHub o en foro del aula virtual
+  \item Evaluación contínua
+  \end{itemize}
+\item Miniprácticas preparatorias: 0 a 2
+  \begin{itemize}
+  \item Evaluación: funcionamiento
+  \item Consideración especial de las extensiones
+  \end{itemize}
+\item Práctica final (obligatorio): 0 a 5.
+  \begin{itemize}
+  \item Práctica básica: 0 a 2
+  \item Opciones y mejoras: 0 a 3
+  \item Evaluación: funcionamiento e implementación
+  \item Entrega telemática de materiales solicitados
+  \item Puede haber presentación presencial
+  \end{itemize}
+\item Teoría (obligatorio): 0 a 4.
+  \begin{itemize}
+  \item Evaluación: prueba escrita
+  \end{itemize}
+\item Nota final: Suma de notas, moderada por la interpretación del profesor
+\item Mínimo para aprobar:
+      \begin{itemize}
+      \item aprobado en teoría (2.5) y práctica final (1), y
+      \item 5 puntos de nota final
+      \end{itemize}
+\end{itemize}
+
+\textbf{Consideraciones sobre la práctica final:}
+
+\begin{itemize}
+\item posibilidad de examen presencial para práctica final
+\item tiene que funcionar en el laboratorio
+\item enunciado mínimo obligatorio supone 1, se llega a 2 sólo con calidad y cuidado en los detalles
+\item realización individual de la práctica
+\item las opciones y mejoras práctica final permiten subir la nota mucho
+\end{itemize}
+
+\textbf{Evaluación extraordinaria:}
+
+\begin{itemize}
+\item prueba escrita (si no se aprobó la ordinaria)
+\item nueva práctica final (si no se aprobó la ordinaria)
+\end{itemize}
+
+
+%%--------------------------------------------------------------------
+%%--------------------------------------------------------------------
+%%--------------------------------------------------------------------
+%% \section{Materiales de interés para la asignatura}
+
+
+%%--------------------------------------------------------------------
+%%--------------------------------------------------------------------
+%%--------------------------------------------------------------------
+\chapter{Programa}
+
+Programa de las prácticas de la asignatura (tentativo, irá evolucionando según avanza la asignatura).
+
+%%--------------------------------------------------------------------
+%%--------------------------------------------------------------------
+\section{Presentación}
+
+%%--------------------------------------------------------------------
+\subsection{Sesión del 18 de enero (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} Presentación de la asignatura. Breve introducción y motivación de las aplicaciones web.
+\item \textbf{Material:} Transparencias, tema ``Presentación''.
+\end{itemize}
+%%--------------------------------------------------------------------------
+\subsection{Sesión del 25 de enero (0.5 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} Introducción a la entrega de prácticas en GitHub (seccion~\ref{sec:eje-entrega-practicas-incr}).
+\end{itemize}
+
+
+
+%%--------------------------------------------------------------------
+%%--------------------------------------------------------------------
+\section{Introducción a HTML}
+
+Introducción a algunos conceptos de HTML y tecnologías relacionadas.
+
+\subsection{Sesión del 19 de enero (2 horas)}
+
+\begin{itemize}
+\item \textbf{Ejercicio (discusión en clase):} ``Página HTML simple'' (ejercicio~\ref{subsec:eje-html-simple}).
+\item \textbf{Presentación:} Introducción a HTML
+\item \textbf{Material:} Transparencias, tema ``HTML''.
+\item \textbf{Ejercicio libre:} Practica con HTML. Elige una página web y modifícala (trata de hacerlo para tod
+  os los elementos que puedas entre los vistos en la presentación).
+\item \textbf{Ejercicio (discusión en clase):} ``Manipulación de HTML desde Firefox Developer Tools'' (ejercicio~\ref{subsec:eje-html-firefox})
+\end{itemize}
+
+
+%%----------------------------------------------------------------------
+%%----------------------------------------------------------------------
+\section{Introducción a CSS}
+
+Introducción a algunos conceptos de CSS.
+
+\subsection{Sesión del 25 de enero (1.5 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} Introducción a CSS
+\item \textbf{Material:} Transparencias, tema ``CSS''.
+\item \textbf{Ejercicio (discusión en clase):} ``Añadir selectores'' (ejercicio~\ref{subsec:anadir-selectores})
+\item \textbf{Ejercicio (en clase):} ``Tipografía'' (ejercicio~\ref{subsec:tipografia})
+\item \textbf{Ejercicio (entrega en el foro):} ``Una caja CSS2'' (ejercicio~\ref{subsec:caja-css2})
+\end{itemize}
+
+\subsection{Sesión del 1 de febrero (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} CSS3
+\item \textbf{Material:} Transparencias, tema ``CSS3''.
+\item \textbf{Ejercicio (discusión en clase):} ``Una caja CSS2'' (ejercicio~\ref{subsec:caja-css2})
+\item \textbf{Ejercicio (discusión en clase):} ``Bordes redondeados'' (ejercicio~\ref{subsec:bordes-redondeados})
+\item \textbf{Ejercicio (discusión en clase):} ``Sombra de texto'' (ejercicio~\ref{subsec:sombra-texto})
+\item \textbf{Ejercicio (discusión en clase):} ``Sombra de borde'' (ejercicio~\ref{subsec:sombra-borde})
+\item \textbf{Ejercicio (discusión en clase):} ``Fondo semitransparente'' (ejercicio~\ref{subsec:fondo-semitransparente})
+\item \textbf{Ejercicio (discusión en clase):} ``Fondo en gradiente'' (ejercicio~\ref{subsec:gradiente})
+\item \textbf{Ejercicio (discusión en clase):} ``Alpha en los bordes'' (ejercicio~\ref{subsec:alpha-bordes})
+\item \textbf{Ejercicio (discusión en clase):} ``Alpha en los bordes'' (ejercicio~\ref{subsec:alpha-bordes})
+\item \textbf{Ejercicio (discusión en clase):} ``Rotación'' (ejercicio~\ref{subsec:rotacion})
+\item \textbf{Ejercicio (discusión en clase):} ``Escalado'' (ejercicio~\ref{subsec:escalado})
+\item \textbf{Ejercicio (discusión en clase):} ``Rotación en el eje Y'' (ejercicio~\ref{subsec:rotacionY})
+\item \textbf{Ejercicio (discusión en GitHub):} ``Animación'' (ejercicio~\ref{subsec:animacion})
+\item \textbf{Ejercicio (discusión en clase):} ``Transiciones'' (ejercicio~\ref{subsec:transiciones})
+\end{itemize}
+
+%%----------------------------------------------------------------------
+%%----------------------------------------------------------------------
+\section{Introducción a Bootstrap}
+
+\subsection{Sesión del 8 de febrero (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} Bootstrap
+\item \textbf{Material:} Transparencias, tema ``Bootstrap''.
+\item \textbf{Ejercicio (discusión en clase):} ``Inspeccionando Bootstrap'' (ejercicio~\ref{subsec:inspeccionando_bootstrap})
+\item \textbf{Ejercicio (discusión en clase):} ``Una sencilla página con Bootstrap'' (ejercicio~\ref{subsec:bootstrap_sencillo})
+\item \textbf{Ejercicio (entrega en GitHub):} ``Utilizando el Carousel de Bootstrap'' (ejercicio~\ref{subsec:carousel})
+
+\end{itemize}
+
+\subsection{Sesión del 15 de febrero (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} Bootstrap
+\item \textbf{Material:} Transparencias, tema ``Bootstrap''.
+\item \textbf{Ejercicio:} ``El \emph{grid} de Bootstrap'' (ejercicio~\ref{subsec:grid-bootstrap})
+\item \textbf{Ejercicio:} ``Bootstrap responsivo'' (ejercicio~\ref{subsec:bootstrap-responsivo})
+\item \textbf{Ejercicio (entrega en GitHub):} Concurso: ``Tu diseño Bootstrap'' (ejercicio~\ref{subsec:concurso-bootstrap})
+\end{itemize}
+
+
+%%----------------------------------------------------------------------
+%%----------------------------------------------------------------------
+\section{Introducción a JavaScript}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 26 de enero (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} JavaScript: objetos, tipos, strings, números, booleanos, vectores (arrays), variables.
+\item \textbf{Material:} Transparencias, tema ``JavaScript''
+\item \textbf{Ejercicios:} Ejercicios varios ejecutados en la consola de JavaScript de Firefox. Exploración de las opciones de depuración de Firebug para JavaScript.
+\end{itemize}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 8 de febrero (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} JavaScript: funciones.
+\item \textbf{Material:} Transparencias, tema ``JavaScript''
+\item \textbf{Ejercicio (discusión en clase y entrega en el foro):} ``Página HTML con JavaScript'' (ejercicio~\ref{subsec:eje-html-javascript}).
+\item \textbf{Ejercicio (discusión en clase y entrega en el foro):} ``Iteración sobre un objeto'' (ejercicio~\ref{subsec:eje-js-iteracion-objeto})
+\item \textbf{Ejercicio (discusión en clase):} ``Función que cambia un elemento HTML'' (ejercicio~\ref{subsec:eje-js-cambia-elemento})
+\item \textbf{Ejercicio (discusión en clase):} ``Vacía página'' (ejercicio~\ref{subsec:eje-js-vacia-pagina})
+\end{itemize}
+
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 9 de febrero (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} JavaScript: closures.
+\item \textbf{Material:} Transparencias, tema ``JavaScript''
+\item \textbf{Ejercicio (discusión en clase):} ``De lista a lista ordenada'' (ejercicio~\ref{subsec:eje-js-lista-ordenada})
+\item \textbf{Ejercicio (discusión en clase):} ``Sumador JavaScript muy simple'' (ejercicio~\ref{subsec:eje-js-sumador-muy-simple})
+\item \textbf{Ejercicio (discusión en clase, entrega en GitHub):} ``Sumador JavaScript muy simple con sumas aleatorias'' (ejercicio~\ref{subsec:eje-js-sumador-aleatorio}) \\
+  Entrega recomendada: antes del 16 de febrero. \\
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-JS-Sumador}
+\item \textbf{Ejercicio (discusión en clase):} ``JSFIDDLE'' (ejercicio~\ref{subsec:eje-js-jsfiddle})
+\end{itemize}
+
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 22 de febrero (2 horas)}
+
+\begin{itemize}
+\item \textbf{Ejercicio (discusión de la solucion):} ``Sumador JavaScript muy simple con sumas aleatorias'' (ejercicio~\ref{subsec:eje-js-sumador-aleatorio})
+\item \textbf{Ejercicio (discusión en clase, entrega en GitHub):} ``Mostrador aleatorio de imágenes'' (ejercicio~\ref{subsec:eje-js-imagenes-aleatorio}) \\
+  Entrega recomendada: antes del 25 de febrero \\
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-JS-Fotos} \\
+\item \textbf{Ejercicio (discusión en clase, entrega en GitHub):} ``Calculadora binaria simple'' (ejercicio~\ref{subsec:eje-js-calc-binaria-1}) \\
+  Entrega recomendada: antes del 1 de marzo \\
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-JS-Calculadora} \\
+\item \textbf{Ejercicio (discusión en clase):} ``Greasemonkey'' (ejercicio~\ref{subsec:eje-js-greasemonkey})
+\end{itemize}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 23 de febrero (2 horas)}
+
+\begin{itemize}
+\item \textbf{Ejercicio (discusión en clase):} ``Prueba de addEventListener para leer contenidos de formularios'' (ejercicio~\ref{subsec:eje-js-addeventlistener-form})
+\item \textbf{Ejercicio (discusión en clase, entrega en GitHub):} ``Colores con addEventListener'' (ejercicio~\ref{subsec:eje-js-addeventlistener-colores}) \\
+  Entrega recomendada: antes del 2 de marzo \\
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-JS-Event} \\
+\end{itemize}
+
+
+%%----------------------------------------------------------------------
+%%----------------------------------------------------------------------
+\section{Introducción a jQuery}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 2 de marzo (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} JQuery: introducción
+\item \textbf{Material:} Transparencias, tema ``jQuery''
+\item \textbf{Ejercicio (discusión en clase):} ``Uso de jQuery'' (ejercicio~\ref{subsec:eje-jquery-uso})
+\item \textbf{Ejercicio (discusión en clase, entrega en Git Hub):} ``Cambio de colores con jQuery'' (ejercicio~\ref{subsec:eje-jquery-colores}) \\
+  Entrega recomendada: antes del 9 de marzo.  \\
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-JQ-Colores} \\
+\end{itemize}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 9 de marzo (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} jQuery: continuamos
+\item \textbf{Material:} Transparencias, tema ``jQuery''
+\item \textbf{Ejercicio (discusión en clase):} ``Texto con jQuery'' (ejercicio~\ref{subsec:eje-jquery-texto}).
+\item \textbf{Ejercicio (discusión en clase):} ``Difuminado (fading) con jQuery'' (ejercicio~\ref{subsec:eje-jquery-fading}).
+\item \textbf{Presentación de minipráctica preparatoria:} ``Calculadora SPA'' (\ref{sec:voluntaria-calculadora}) \\
+  Entrega recomendada: antes del 22 de marzo. \\
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-Practica-Calculadora} \\
+\end{itemize}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 16 de marzo (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} jQuery: AJAX. Historia, motivación, el objecto XMLHTTPRequest. Uso de AJAX desde jQuery.
+\item \textbf{Material:} Transparencias, tema ``jQuery''
+\item \textbf{Ejercicio (discusión en clase, entrega en el foro):} ``Ejemplos simples con Ajax'' (ejercicio~\ref{subsec:eje-jquery-ajax}) \\
+  Entrega recomendada: antes del 23 de marzo. \\
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-JQ-Ajax}
+\end{itemize}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 23 de marzo (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} JSON, AJAX con JSON y uso de AJAX con JSON desde jQuery.
+\item \textbf{Material:} Transparencias, tema ``jQuery''
+\item \textbf{Ejercicio (discusión en clase):} ``Ejemplos simples con Ajax y JSON'' (ejercicio~\ref{subsec:eje-jquery-json}).
+\item \textbf{Ejercicio (entrega en el foro):} ``Generador de frases aleatorias'' (ejercicio~\ref{subsec:eje-jquery-frases-aleatorias}) \\
+  Entrega recomendada: antes del 19 de marzo.
+\item \textbf{Ejercicio (entrega en el foro):} ``Utilización de JSONP'' (ejercicio~\ref{subsec:eje-jquery-jsonp}) \\
+  Entrega recomendada: antes del 30 de marzo. \\
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-JQ-Flickr}
+\end{itemize}
+
+
+%%----------------------------------------------------------------------
+%%----------------------------------------------------------------------
+\section{Introducción a HTML5}
+
+Introducción a algunos conceptos de HTML5.
+
+\subsection{Sesión del 16 de febrero (2 horas)}
+
+\begin{itemize}
+ \item \textbf{Presentación:} HTML5: introducción
+ \item \textbf{Material:} Transparencias, tema ``HTML5''
+%% \item \textbf{Ejercicio (discusión en clase):} ``Lo mismo, pero diferente'' (ejercicio~\ref{subsec:lo-mismo-pero-diferente})
+%% \item \textbf{Ejercicio (entrega en el foro):} ``Diagrama de coordenadas con canvas'' (ejercicio~\ref{subsec:diagrama-coordenadas}) \\
+%%   Entrega recomendada: antes del 12 de marzo.
+%% \end{itemize}
+
+%% \subsection{Sesión del 12 de marzo (2 horas)}
+
+%% \begin{itemize}
+%% \item \textbf{Presentación:} HTML5: Canvas
+%% \item \textbf{Material:} Transparencias, tema ``HTML5''
+%% \item \textbf{Ejercicio (discusión en clase):} ``Diagrama de coordenadas con canvas'' (ejercicio~\ref{subsec:diagrama-coordenadas})
+ \item \textbf{Ejercicio (discusión en clase):} ``Un sencillo Paint'' (ejercicio~\ref{subsec:paint-sencillo})
+ \item \textbf{Ejercicio (discusión en clase):} ``Un sencillo Paint con brocha'' (ejercicio~\ref{subsec:paint-brocha}) \\
+ \item \textbf{Ejercicio (discusión en clase):} ``Un sencillo juego con canvas'' (ejercicio~\ref{subsec:estudia-juego})
+ \item \textbf{Ejercicio (entrega en el foro):} ``Mejora el juego con canvas'' (ejercicio~\ref{subsec:modifica-juego}) \\
+Entrega recomendada: antes del 23 de febrero.
+\end{itemize}
+
+\subsection{Sesión del 1 de marzo (2 horas)}
+
+\begin{itemize}
+ \item \textbf{Presentación:} HTML5: Guardar en local; aplicaciones sin conexión
+ \item \textbf{Material:} Transparencias, tema ``HTML5''
+ \item \textbf{Ejercicio (discusión en clase):} ``Juego con estado'' (ejercicio~\ref{subsec:juego-con-estado})
+ \item \textbf{Ejercicio:} ``Modernizr: Comprobación de funcionalidad HTML5'' (ejercicio~\ref{subsec:modernizr})
+ \item \textbf{Ejercicio (entrega en GitHub):} ``Geolocalización con HTML5'' (ejercicio~\ref{subsec:geolocalizacion})
+ \item \textbf{Ejercicio (entrega en GitHub):} ``Antípodas'' (ejercicio~\ref{subsec:antipodas})
+ \\
+ Entrega recomendada: antes del 8 de marzo
+\end{itemize}
+
+\subsection{Sesión del 8 de marzo (2 horas)}
+
+\begin{itemize}
+ \item \textbf{Presentación:} HTML5: Web Workers
+ \item \textbf{Material:} Transparencias, tema ``HTML5''
+ \item \textbf{Ejercicio (entrega en GitHub):} ``Cálculo de números primos con Web Workers'' (ejercicio~\ref{subsec:webworker-primos})
+ \\
+% \item \textbf{Ejercicio:} ``Audio y vídeo con HTML5'' (ejercicio~\ref{subsec:audio-video})
+Entrega recomendada: antes del 15 de marzo.
+\end{itemize}
+
+\subsection{Sesión del 15 de marzo (2 horas)}
+
+\begin{itemize}
+ \item \textbf{Presentación:} HTML5: History API
+ \item \textbf{Ejercicio (entrega en GitHub):} ``History API - Cambiando la historia con HTML5''
+(ejercicio~\ref{subsec:cambiando-historia}) \\
+ Entrega recomendada: antes del 22 de marzo.
+\end{itemize}
+
+\subsection{Sesión del 22 de marzo (2 horas)}
+
+\begin{itemize}
+ \item \textbf{Presentación:} HTML5: WebSocket
+ \item \textbf{Material:} Transparencias, tema ``HTML5''
+ \item \textbf{Ejercicio:} ``Cliente de eco con WebSocket'' (ejercicio~\ref{subsec:websocket-cliente-eco})
+ \item \textbf{Ejercicio:} ``Cliente y servidor de eco con WebSocket'' (ejercicio~\ref{subsec:websocket-cliente-servidor-eco})
+ \item \textbf{Ejercicio:} ``Cliente y servidor de chat con WebSocket'' (ejercicio~\ref{subsec:websocket-cliente-servidor-chat})
+ \item \textbf{Ejercicio (entrega en GitHub):} ``Canal con información horaria'' (ejercicio~\ref{subsec:websocket-canal-obsesion-horaria}) \\
+Entrega recomendada: antes del 29 de marzo.
+
+% \item \textbf{Presentación:} HTML5: Service Workers
+% \item \textbf{Ejercicio (discusión en clase):} ``Juego sin conexión'' (ejercicio~\ref{subsec:juego-sin-conexion}) 
+%\\
+% Entrega recomendada: antes del 29 de marzo.
+\end{itemize}
+
+
+%\subsection{Sesión del 15 de marzo (2 horas)}
+
+%\begin{itemize}
+% \item \textbf{Ejercicio (entrega en GitHub):} ``Las antípodas'' (ejercicio~\ref{subsec:antipodas})
+ 
+% \item \textbf{Presentación:} HTML5: Web Workers
+% \item \textbf{Material:} Transparencias, tema ``HTML5''
+% \item \textbf{Ejercicio (entrega en GitHub):} ``Cálculo de números primos con Web Workers'' (ejercicio~\ref%{subsec:webworker-primos})
+%  \\
+%Entrega recomendada: antes del 22 de marzo.
+% \item \textbf{Presentación:} HTML5: WebSocket
+% \item \textbf{Material:} Transparencias, tema ``HTML5''
+% \item \textbf{Ejercicio:} ``Cliente de eco con WebSocket'' (ejercicio~\ref{subsec:websocket-cliente-eco})
+% \item \textbf{Ejercicio:} ``Cliente y servidor de eco con WebSocket'' (ejercicio~\ref{subsec:websocket-cliente-servidor-eco})
+% \item \textbf{Ejercicio:} ``Cliente y servidor de chat con WebSocket'' (ejercicio~\ref{subsec:websocket-cliente-servidor-chat})
+ % \item \textbf{Ejercicio (entrega en GitHub):} ``Canal con obsesión horaria'' (ejercicio~\ref{subsec:websocket-canal-obsesion-horaria}) \\
+%Entrega recomendada: antes del 7 de abril.
+%\end{itemize}
+
+%%----------------------------------------------------------------------
+%%----------------------------------------------------------------------
+\section{Otras bibliotecas JavaScript}
+
+\subsection{Sesión del 30 de marzo (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} JQueryUI: introducción
+\item \textbf{Ejercicio (discusión en clase):} ``JQueryUI: Instalación y prueba'' (ejercicio~\ref{subsec:otras-jquery-instal})
+\item \textbf{Ejercicio (discusión en clase):} ``JQueryUI: Uso básico'' (ejercicio~\ref{subsec:otras-jquery-basico}) \\
+\item \textbf{Ejercicio (opcional, sin entrega):} ``Elige un plugin de jQuery'' (ejercicio~\ref{subsec:otras-jquery-plugin}) \\
+\item \textbf{Ejercicio (entrega en GitHub):} ``JQueryUI: Juega con JQueryUI'' (ejercicio~\ref{subsec:otras-jqueryui-juega}) \\
+  Entrega recomendada: antes del 6 de abril.
+\item \textbf{Ejercicio (opcional):} ``JQueryUI: Clon de 2048'' (ejercicio~\ref{subsec:otras-jquery-2048}) \\
+  Entrega recomendada: antes del 6 de abril.
+\item \textbf{Presentación de minipráctica preparatoria:} ``Socios'' (\ref{sec:voluntaria-socios}) \\
+  Entrega recomendada: antes del 18 de abril. \\
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-Practica-Socios}
+\end{itemize}
+
+%  Entrega recomendada: antes del 29 de abril.
+
+%%----------------------------------------------------------------------
+%%----------------------------------------------------------------------
+\section{APIs JavaScript}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 6 de abril (2 horas)}
+
+\begin{itemize}
+\item \textbf{Presentación:} Leaflet: introducción
+\item \textbf{Ejercicio (discusión en clase):} ``Leaflet: Instalación y prueba'' (ejercicio~\ref{subsec:apis-leaflet-instal})
+\item \textbf{Ejercicio (discusión en clase):} ``Leaflet: Coordenadas'' (ejercicio~\ref{subsec:apis-leaflet-coordenadas})
+\item \textbf{Ejercicio (entrega en el foro):} ``Leaflet: Aplicación móvil'' (ejercicio~\ref{subsec:apis-leaflet-movil}) \\
+  Entrega recomendada: antes del 13 de abril.
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-APIs-Leaflet}
+\end{itemize}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 20 de abril (2 horas)}
+
+\begin{itemize}
+%% \item \textbf{Presentación de proyecto final:} ``Mashup de servicios'' (\ref{sec:final-14-mayo}) \\
+%%   Entrega recomendada: antes del 14 de mayo.
+\item \textbf{Ejercicio (discusión en clase):} ``Leaflet: Coordenadas y búsqueda de direcciones'' (ejercicio \ref{subsec:apis-leaflet-nominatim}).
+\item \textbf{Ejercicio (entrega en el foro):} ``Leaflet: Fotos de Flickr'' (ejercicio \ref{subsec:apis-leaflet-flickr})  \\
+  Entrega recomendada: antes del 27 de abril. \\.
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-APIs-Map-Flickr}
+\end{itemize}
+
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 27 de abril (2 horas)}
+
+\begin{itemize}
+\item \textbf{Ejercicio (discusión en clase):} ``GitHub.js: Datos de un repositorio'' (ejercicio \ref{subsec:apis-github-repo}).
+\item \textbf{Ejercicio (entrega en GitHub):} ``GitHub.js: Crea un fichero'' (ejercicio \ref{subsec:apis-github-file})  \\
+  Entrega recomendada: antes del 4 de mayo. \\.
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-APIs-GitHub-Fichero}
+\end{itemize}
+
+
+%%----------------------------------------------------------------------
+%%----------------------------------------------------------------------
+\section{OAuth}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del XX de abril (2 horas)}
+
+\begin{itemize}
+\item \textbf{Ejercicio (discusión en clase):} ``OAuth con GitHub'' (ejercicio \ref{subsec:oauth-github}).
+\item \textbf{Ejercicio (entrega en GitHub):} ``Listado de ficheros en GitHub'' (ejercicio \ref{subsec:oauth-github-ficheros})  \\
+  Entrega recomendada: antes del XX de abril. \\
+  Repo GitHub: \url{https://github.com/CursosWeb/X-Nav-OAuth-GitHub-Fichero}
+%\item \textbf{Ejercicio (discusión en clase y enrega en el foro):} ``Open Web Apps: Aplicación para FirefoxOS'' (ejercicio \ref{subsec:apis-ffxos}).
+\end{itemize}
+
+
+%%----------------------------------------------------------------------
+%%----------------------------------------------------------------------
+\section{APIs de Google}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 29 de marzo (2 horas)}
+
+\begin{itemize}
+ \item \textbf{Presentación:} La API de los servicios de Google
+ \item \textbf{Material:} Transparencias, tema ``APIs de Google''
+ \item \textbf{Ejercicio:} ``Conociendo la Google API Console'' (ejercicio~\ref{subsec:conociendo-google-api-console})
+  \item \textbf{Ejercicio:} ``Tu Perfil vía la API de Google+'' (ejercicio~\ref{subsec:tu-perfil-en-googleplus})
+ \item \textbf{Ejercicio (entrega en GitHub):} ``Tomando datos de la API de Google+'' (ejercicio~\ref{subsec:tomando-datos-googleplus}) 
+ \\
+Entrega recomendada: antes del 5 de abril.
+\end{itemize}
+
+%%----------------------------------------------------------------------
+%%----------------------------------------------------------------------
+\section{Firefox OS}
+
+%%----------------------------------------------------------------------
+\subsection{Sesión del 12 de abril (2 horas)}
+
+\begin{itemize}
+ \item \textbf{Presentación:} Firefox OS
+ \item \textbf{Material:} Transparencias, tema ``Firefox OS''
+ \item \textbf{Ejercicio:} ``Primera aplicación con Firefox OS'' (ejercicio~\ref{subsec:app-firefoxos})
+ \item \textbf{Ejercicio:} ``Open Web Apps: Aplicación para Firefox OS'' (ejercicio~\ref{subsec:apis-ffxos}) 
+ \\
+Entrega recomendada: antes del 19 de abril.
+\end{itemize}
+
+
+%% \subsection{Sesión del 9 de abril (2 horas)}
+
+%% \begin{itemize}
+%% \item \textbf{Presentación:} OpenLayers: introducción
+%% \item \textbf{Ejercicio (discusión en clase):} ``OpenLayers: Instalación y prueba'' (ejercicio~\ref{subsec:apis-openlayers-instal})
+%% \item \textbf{Ejercicio (entrega en el foro):} ``OpenLayers: Capas y marcadores'' (ejercicio~\ref{subsec:apis-openlayers-capas}) \\
+%%   Entrega recomendada: antes del 16 de abril.
+%% \end{itemize}
+
+%% \subsection{Sesión del 29 de abril (2 horas)}
+
+%% \begin{itemize}
+%% \item \textbf{Ejercicio (discusión en clase):} ``OpenLayers: Coordenadas y búsqueda de direcciones'' (ejercicio \ref{subsec:apis-openlayers-coordenadas}).
+%% \item \textbf{Ejercicio (discusión en clase):} ``Fotos de Flickr'' (ejercicio \ref{subsec:apis-flickr}).
+%% \end{itemize}
+
+%% %%----------------------------------------------------------------------
+%% %%----------------------------------------------------------------------
+%% \section{Ejercicios finales}
+
+%% \subsubsection{Sesión del 22 de abril (2 horas)}
+
+%% \begin{itemize}
+%% \item \textbf{Ejercicio (discusión en clase y entrega en el foro):} ``Juego de las parejas'' (ejercicio \ref{subsec:finales-parejas}).
+%% \end{itemize}
+
+
+%%----------------------------------------------------------
+%%----------------------------------------------------------
+%% Enunciado de ejercicios
+%%----------------------------------------------------------
+
+\input{ejercicios-apps}
+
+\end{document}
