@@ -178,8 +178,8 @@ Con el módulo adecuado, pueden editarse las cookies del navegador, lo que permi
 Cookie Quick Manager: \url{https://addons.mozilla.org/en-US/firefox/addon/cookie-quick-manager/}
 
 
-%%------------------------------------------------------------------------------------
-%%------------------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
 \subsection{Sumador simple con varios navegadores}
 \label{subsec:sumador-simple-varios}
 
@@ -219,6 +219,66 @@ Igual que el ejercicio ``Sumador simple con varios navegadores intercalados'' (\
 \textbf{Comentario:}
 
 La aplicación web tendrá que  almacenar su estado en almacenamiento estable. Hay que detectar cuál es ese estado, y almacenarlo en  un fichero, en  una base de datos, etc.
+
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Contador simple}
+\label{subsec:contador-simple}
+
+\textbf{Enunciado:}
+
+Construir una aplicación web que funcione como contador inverso. Ofrecerá un recurso que, cuando sea invocado mediante un método GET, devolverá un número entero. La primera vez que se invoque, el número devuelto será un 5. Cuando se le invoque sucesivamente, el número obtenido se irá decrementando en uno (4, 3, 2...). Cuando se haya obtenido un 0, el siguiente número será de nuevo el 5 (esto es, el contador funciona como un contador inverso cíclico).
+
+\textbf{Comentario:}
+
+Es importante hacer énfasis en la solución en la estructura de la aplicación, tratando de estructurar el código de forma que las diferentes acciones que hará la aplicación web queden claras.
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Contador simple con varios navegadores}
+\label{subsec:contador-simple-varios}
+
+\textbf{Enunciado:}
+
+Igual que el ejercicio ``Contador simple'' (\ref{subsec:contador-simple}), pero ahora puede haber varios navegadores invocando la aplicación web. Se supone que los navegadores no se interfieren (esto es, uno completa todas sus operaciones con el contador antes de que otro la empiece).
+
+\textbf{Comentario:}
+
+No hacen falta modificaciones al código del ejercicio ``Contador simple'' (\ref{subsec:contador-simple}), si se asume que cuando se invoque el contador, éste puede empezar por cualquier número de su ciclo. Si por el contrario se quiere que comience como ``la primera vez'' (por 5) es preciso detectar que se está sirviendo a un nuevo navegador, y habrá que prever algún mecanismo al respecto.
+
+
+%%-------------------------------------------------------------------------
+%%-------------------------------------------------------------------------
+\subsection{Contador simple con varios navegadores intercalados}
+\label{subsec:contador-simple-varios-intercalados}
+
+\textbf{Enunciado:}
+
+Igual que ``Contador simple con varios navegadores'' (\ref{subsec:contador-simple-varios}), pero ahora un navegador puede comenzar a trabajar con el contador en cualquier momento, incluyendo momentos en los que otro navegador no haya terminado aún.
+
+\textbf{Comentarios:}
+
+En una primera versión, se implementa con una cookie simple que incluye el número que ha servido el contador de forma que la aplicación no tiene que almacenar el valor del contador para cada navegador.
+
+En una segunda versión, se utiliza una cookie de sesión más clásica, con un entero aleatorio, y se almacena el estado del contador correspondiente en un diccionario indexado por ese entero.
+
+En una tercera versión, se podría añadir una operación para crear un contador único para cada navegador, con un nombre de recurso propio. Cada navegador conocería su recurso, y sólo utilizaría ese. Se puede evitar que un navegador utilice un recurso que no le corresponde haciendo que su nombre no sea fácilmente descubrible.
+
+%%------------------------------------------------------------------------------------
+%%------------------------------------------------------------------------------------
+\subsection{Contador simple con rearranques}
+\label{subsec:contador-simple-rearranques}
+
+\textbf{Enunciado:}
+
+Igual que el ejercicio ``Contador simple con varios navegadores intercalados'' (\ref{subsec:contador-simple-varios-intercalados}), pero ahora desde que el navegador inicia el trabajo con el contador hasta que la completa, puede haberse caído la aplicación web.
+
+\textbf{Comentario:}
+
+La aplicación web tendrá que  almacenar su estado en almacenamiento estable. Hay que detectar cuál es ese estado, y almacenarlo en  un fichero, en  una base de datos, etc.
+
+
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
