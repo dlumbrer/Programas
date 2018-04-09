@@ -403,6 +403,115 @@ La aplicación web la gestiono desde el móvil, con una app que puede hacer GET,
 
 Se pide diseñar la API REST de esta aplicación web, identificando cuáles son los recursos relevantes, sus nombres, y describiendo todas las interacciones HTTP que soporten.
 
+\textbf{Comentarios:}
+
+Hay muchas soluciones posibles para este problema, que sobre todo pretende que se reflexione sobre las características que hacen de una interfaz HTTP una interfaz REST. Pero en cualquier caso, como mínimo hay que definir cuáles serán los recursos (y sus nombres), las operaciones sobre cada uno de ellos, y un breve comentario sobre su funcionamiento.
+
+Una posible solución sería: \\
+
+\begin{tabular}{l|l|p{10cm}}
+  Recurso & Método & Descripción \\ \hline \hline
+  /       & GET    & Lista de items en la nevera (enlaces a recursos) \\
+          & POST   & Crea un nuevo item, \verb|item=xx&cantidad=yy| \\
+  /[item] & GET    & Obten el valor (número) del alimento ``item'' \\
+          & PUT    & Actualiza el valor del alimento ``item'' \\
+          & DELETE & Borra el item (elimina el recurso) \\
+\end{tabular}
+
+Esta interfaz HTTP podría usarse desde la aplicación como se ve en los siguiente ejemplos.
+
+La primera vez que se introducen zanahorias (supongamos que se introducen 5):
+
+\begin{itemize}
+\item Petición (para ver si hay zanahorias):
+\begin{verbatim}
+GET / HTTP/1.1
+\end{verbatim}
+
+\item Respuesta:
+\begin{verbatim}
+HTTP/1.1 200 OK
+
+<a href="/leche"></a>
+<a href="/chorizo"></a>
+\end{verbatim}
+
+\item Petición (para crear el recurso para las zanahorias):
+\begin{verbatim}
+POST / HTTP/1.1
+
+item=zanahorias&cantidad=5
+\end{verbatim}
+
+\item Respuesta:
+\begin{verbatim}
+HTTP/1.1 200 OK
+
+<a href="/chorizo"></a>
+\end{verbatim}
+
+\end{itemize}
+
+Si sacamos 3 zanahorias:
+
+\begin{itemize}
+\item Petición (para ver cuántas zanahorias hay):
+\begin{verbatim}
+GET /zanahorias HTTP/1.1
+\end{verbatim}
+
+\item Respuesta:
+\begin{verbatim}
+HTTP/1.1 200 OK
+
+5
+\end{verbatim}
+
+\item Petición (para actualizar al nuevo número de zanahorias):
+\begin{verbatim}
+PUT /zanahorias HTTP/1.1
+
+2
+\end{verbatim}
+
+\item Respuesta:
+\begin{verbatim}
+HTTP/1.1 200 OK
+
+2
+\end{verbatim}
+
+\end{itemize}
+
+Si sacamos otras 2 zanahorias:
+
+\begin{itemize}
+\item Petición (para ver cuántas zanahorias hay):
+\begin{verbatim}
+GET /zanahorias HTTP/1.1
+\end{verbatim}
+
+\item Respuesta:
+\begin{verbatim}
+HTTP/1.1 200 OK
+
+2
+\end{verbatim}
+
+\item Petición (para eliminar el recurso, porque quedaría a cero):
+\begin{verbatim}
+DELETE /zanahorias HTTP/1.1
+\end{verbatim}
+
+\item Respuesta:
+\begin{verbatim}
+HTTP/1.1 200 OK
+\end{verbatim}
+
+\end{itemize}
+
+
+
 %%-----------------------------------------------------------------------------
 \subsection{Sumador simple versión REST}
 \label{subsec:sumador-simple-rest}
