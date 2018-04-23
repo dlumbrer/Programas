@@ -1818,6 +1818,229 @@ Repositorio GitHub de entrega: \\
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
+\section{Práctica final (2018, mayo)}
+\label{practica-final-2018-05}
+
+La práctica final de la asignatura consiste en la creación de una aplicación web que aglutine información sobre museos de la ciudad de Madrid. A continuación se describe el funcionamiento y arquitectura general de la aplicación, la funcionalidad mínima que debe proporcionar, y otra funcionalidad optativa que podrá tener.
+
+La aplicación se encargará de descargar información sobre los mencionados museos, disponibles públicamente en varios formatos en el portal de datos abiertos de Madrid, y de ofrecerlos a los usuarios para que puedan seleccionar los que les parezca más interesantes, y comentar sobre ellos. De esta manera, un escenario típico es el de un usuario que a partir de los museos disponibles, elija los que le parezca más adecuados, y comente sobre los que quiera.
+
+%%----------------------------------------------------------------------------
+\subsection{Arquitectura y funcionamiento general}
+
+Arquitectura general:
+
+\begin{itemize}
+
+  \item La práctica se construirá como un proyecto Django/Python3, que incluirá una o varias aplicaciones Django que implementen la funcionalidad requerida.
+
+  \item Para el almacenamiento de datos persistente se usará SQLite3, con tablas definidas en modelos de Django.
+
+  \item Se usará la aplicación Django ``Admin Site'' para crear cuenta a los usuarios en el sistema, y para la gestión general de las bases de datos necesarias. Todas las bases de datos que contenga la aplicación tendrá que ser accesible vía este ``Admin Site''.
+
+  \item Se utilizarán plantillas Django (a ser posible, una jerarquía de plantillas, para que la práctica tenga un aspecto similar) para definir las páginas que se servirán a los navegadores de los usuarios. Estas plantillas incluirán en todas las páginas al menos:
+  \begin{itemize}
+  \item Un \emph{banner} (imagen) del sitio, en la parte superior izquierda.
+  \item Una caja para entrar (hacer login en el sitio), o para salir (si ya se ha entrado).
+  \begin{itemize}
+    \item En caso de que no se haya entrado en una cuenta, esta caja permitirá al visitante introducir su identificador de usuario y su contraseña. 
+    \item En caso de que ya se haya entrado, esta caja mostrará el identificador del usuario y permitirá salir de la cuenta (logout). Esta caja aparecerá en la parte superior derecha.
+  \end{itemize}
+  \item Un menú de opciones, como barra, debajo de los dos elementos anteriores (banner y caja de entrada o salida).
+  \item Un pie de página con una nota de atribución, indicando ``Esta aplicación utiliza datos del portal de datos abiertos de la ciudad de Madrid'', y un enlace a la página con los datos, y a la descripción de los mismos (ver enlaces más abajo).
+  \end{itemize}
+
+Cada una de estas partes estará marcada con propiedades ``id'' en HTML, para poder ser referenciadas en hojas de estilo CSS.
+
+\item Se utilizarán hojas de estilo CSS para determinar la apariencia de la práctica. Estas hojas definirán al menos el color y el tamaño de la letra, y el color de fondo de cada una de las partes (elementos) marcadas con id que se indican en el apartado anterior.
+
+\item Se utilizará, para componer la información sobre museos, la disponible en el portal de datos abiertos de la ciudad de Madrid:
+
+  \item Fichero con los datos abiertos de museos proporcionado por el Ayuntamiento de Madrid: \\
+    \url{https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=118f2fdbecc63410VgnVCM1000000b205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default}
+
+  \item Copia del fichero anterior en el repositorio CursosWeb/Code de GitHub: \\
+    \url{https://github.com/CursosWeb/CursosWeb.github.io/tree/master/etc}
+\end{itemize}
+
+Funcionamiento general:
+
+\begin{itemize}
+  \item Los usuarios serán dados de alta en la práctica mediante el módulo ``Admin Site'' de Django. Una vez estén dados de alta, serán considerados ``usuarios registrados''.
+
+  \item El listado de museos se cargará a partir del fichero XML cuando un usuario indique que se carguen. Hasta que algún usuario indique por primera vez que se carguen los datos, no habrá listado de museos en la base de datos te la aplicación.
+
+  \item Los usuarios registrados podrán crear su selección de museos. Para ello, dispondrán de una página personal. Llamaremos a esta página la ``página del usuario''.
+
+  \item La selección de museos en su página personal la realizará cada usuario a partir de información sobre museos ya disponibles en el sitio.
+
+  \item Cualquier navegador podrá acceder a la interfaz pública del sitio, que ofrecerá la página personal de cada usuario, para todos los usuarios del sitio.
+
+  \item Cualquier usuario podrá indicar que quiere una vista del sitio que incluya sólo los museos (los que en XML tienen el atributo de nombre ``Accesibilidad'' con valor ``1'').
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad mínima}
+
+Los museos se obtendrán a partir de la información pública ofrecida por el Ayuntamiento de Madrid en el Portal de Datos Abiertos, en forma de ficheros XML, como se indicaba anteriormente.
+
+La {\bf interfaz pública} contiene los recursos a servir como páginas HTML completas (pensadas para ser vistas en el navegador) para cualquier visitante (sea usuario registrado o no):
+
+\begin{itemize}
+  \item /: Página principal de la práctica. Constará de un listado de museos y otro con enlaces a páginas personales:
+  
+  \begin{enumerate}
+    \item Mostrará un listado de los cinco museos con más comentarios. Si no hubiera 5 museos con comentarios, se mostrarán sólo los que tengan comentarios. Para cada museo, incluirá información sobre:
+    \begin{itemize}
+      \item su nombre (que será un enlace que apuntará a la URL del museo en el portal esmadrid), 
+      \item su dirección,
+      \item y un enlace, ``Más información'', que apuntará a la página del museo en la aplicación (ver más adelante).
+    \end{itemize}
+   
+  \item También se mostrará un listado, en una columna lateral, con enlaces a las páginas personales disponibles. Para cada página personal mostrará el título que le haya dado su usuario (como un enlace a la página personal en cuestión) y el nombre del usuario. Si a una página personal aún no se le hubiera puesto título, este título será ``Página de usuario'', donde ``usuario'' es el identificador de usuario del usuario en cuestión.
+    \item Tambień se mostrará un botón, que al pulsarlo se pasará a ver en todos los listados los museos accesibles, y sólo estos. Si se vuelve a pulsar, se volverán a ver todos los museos.
+   \end{enumerate}
+
+  \item /{usuario}: Página personal de un usuario. Si la URL es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará los museos seleccionados por ese usuario (aunque no puede haber más de 5 a la vez; si hay más debería haber un enlace para mostrar las 5 siguientes y así en adelante, siempre de 5 en 5). Para cada museo se mostrará la misma información que en la página principal. Además, para cada museo se deberá mostrar la fecha en la que fue seleccionada por el usuario.
+
+  \item /museos: Página con todos los museos. Para cada uno de ellos aparecerá sólo el nombre, y un enlace a su página. En la parte superior de la página, existirá un formulario que permita filtrar estos museos según el distrito. Para poder filtrar por distrito, se buscará en la base de datos cuáles son los distritos con museos.
+
+  \item /museos/{id}: Página de un museo en la aplicación. Mostrará toda la información razonablemente posible de XML del portal de datos abierto del Ayuntamiento de Madrid, incluyendo al menos la que se menciona en otros apartados de este enunciado, la dirección, la descripción, si es accesible o no, el barrio y el distrito, y los datos de contacto. Además, se mostrarán todos los comentarios que se hayan puesto para este museo.
+  
+  \item /{usuario}/xml: Canal XML para los museos seleccionados por ese usuario. El documento XML tendrá una entrada para cada museo seleccionado por el usuario, y tendrá una estructura similar (pero no necesariamente igual) a la del fichero XML del portal del Ayuntamiento.
+
+  \item /about: Página con información en HTML indicando la autoría de la práctica, explicando su funcionamiento.
+
+\end{itemize}
+
+Todas las páginas de la interfaz pública incluirán un menú desde el que se podrá acceder a todos los museos (URL /museos) con el texto ``Todos'' y a la ayuda (URL /about) con el texto ``About''. Todas las página que no sean la principal tendrán otra opción de menú para la URL /, con el texto ``Inicio''.
+
+La {\bf interfaz privada} contiene los recursos a servir como páginas HTML completas para usuarios registrados (una vez se han autenticado):
+
+\begin{itemize}
+  \item Todos los recursos de la interfaz pública.
+  
+  \item /museos/{id}: Además de la información que se muestra de manera pública:
+
+    \begin{enumerate}
+      \item Un formulario para poner comentarios sobre este museo. Los comentarios serán anónimos, pero sólo se podrán poner por los usuarios registrados, una vez se han autenticado. Por tanto, bastará con que este formulario esté compuesto por una caja de texto, donde se podrá escribir el comentario, y un botón para enviarlo.
+  \end{enumerate}
+
+  \item /{usuario}: Además de la información que se muestra de manera pública:
+  
+  \begin{enumerate}
+    \item Un formulario para cambiar el estilo CSS de todo el sitio para ese usuario. Bastará con que se pueda cambiar el tamaño de la letra y el color de fondo. Si se cambian estos valores, quedará cambiado el documento CSS que utilizarán todas las páginas del sitio para este usuario. Este cambio será visible en cuanto se suba la nueva página CSS.
+
+    \item Un formulario para elegir el título de su página personal.
+  \end{enumerate}
+\end{itemize}
+
+%Si es preciso, se añadirán más recursos (pero sólo si es realmente preciso) para poder satisfacer los requisitos especificados.
+
+Dados los recursos mencionados anteriormente, no se permitirán los nombres de usuario ``museos'' ni ``about'' (pero no hay que hacer ninguna comprobación para esto: se asume que no se darán de alta esos usuarios en el Admin Site).
+
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad optativa}
+
+De forma optativa, se podrá incluir cualquier funcionalidad relevante en el contexto de la asignatura. Se valorarán especialmente las funcionalidades que impliquen el uso de técnicas nuevas, o de aspectos de Django no utilizados en los ejercicios previos, y que tengan sentido en el contexto de esta práctica y de la asignatura.
+
+En el formulario de entrega se pide que se justifique por qué se considera funcionalidad optativa lo que habeis implementado. Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativas:
+
+\begin{itemize}
+  \item Inclusión de un \emph{favicon} del sitio
+  
+  \item Generación de un canal XML para los contenidos que se muestran en la página principal.
+
+  \item Generación de canales, pero con los contenidos en JSON
+
+  \item Generación de un canal RSS para los comentarios puestos en el sitio.
+  
+  \item Funcionalidad para leer los datos del Ayuntamiento en otros formatos diferentes a XML: CSV, JSON...
+  
+  \item Funcionalidad de registro de usuarios
+  
+  \item Uso de Javascript o AJAX para algún aspecto de la práctica (por ejemplo, para seleccionar un museo para una página de usuario).
+
+  \item Puntuación de museos. Cada visitante (registrado o no) puede dar un ``+1'' a cualquier museo del sitio. La suma de ``+'' que ha obtenido un museo se verá cada vez que se vea el museo en el sitio.
+  
+  \item Uso de elementos HTML5 (especificar cuáles al entregar)
+
+  \item Atención al idioma indicado por el navegador. El idioma de la interfaz de usuario del planeta tendrá en cuenta lo que especifique el navegador.
+
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Entrega de la práctica}
+
+\begin{itemize}
+  \item \textbf{Fecha límite de entrega de la práctica:} lunes, 21 de mayo de 2018 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como domingo por la noche, ya entrado en lunes.}
+       %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
+
+  \item \textbf{Fecha de publicación de notas:} miércoles, 23 de mayo de 2018, en la plataforma Moodle.
+%{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
+
+  \item \textbf{Fecha de revisión:} jueves, 24 de mayo de 2018 a las 13:00.
+%{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
+\end{itemize}
+
+La entrega de la práctica consiste en rellenar un formulario (enlazado en el Moodle de la asignatura) y en seguir las instrucciones que se describen a continuación.
+
+\begin{enumerate}
+  \item El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo). Es muy importante que el alumno haya realizado un fork del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
+
+\url{https://github.com/CursosWeb/X-Serv-Practica-Museos}
+
+Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere. Los que la entreguen podrán ser llamados a realizar también una entrega presencial, que tendrá lugar en la fecha y hora de la revisión. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
+
+Recordad que es importante ir haciendo commits de vez en cuando y que sólo al hacer push estos commits son públicos. Antes de entregar la práctica, haced un push. Y cuando la entreguéis y sepáis el nombre del repositorio, podéis cambiar el nombre del repositorio desde el interfaz web de GitHub. 
+ 
+ \item Un vídeo de demostración de la parte obligatoria, y otro vídeo de demostración de la parte opcional, si se han realizado opciones avanzadas. Los vídeos serán de una {\bf duración máxima de 3 minutos} (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo o YouTube). Los vídeos de más de tres minutos tendrán penalización.
+
+Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
+
+En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar tiempos de espera) puede usarse un editor de vídeo, pero siempre deberá ser indicado que se ha hecho tal cosa con un comentario en el audio, o un texto en el vídeo. Hay muchas herramientas que permiten realizar esta edición. Por ejemplo, en GNU/Linux puede usarse OpenShot o PiTiVi.
+
+  \item Se han de entregar los siguientes ficheros:
+
+\begin{itemize}
+  \item Un fichero README.md que resuma las mejoras, si las hay, y explique cualquier peculiaridad de la entrega (ver siguiente punto).
+  \item El repositorio GitHub deberá contener un proyecto Django completo y listo para funcionar en el entorno del laboratorio, incluyendo la base de datos con datos suficientes como para poder probarlo. Estos datos incluirán al menos dos usuarios con sus datos correspondientes, con al menos cinco museos en su página personal, y con al menos cinco comentarios en total.
+  \item Cualquier biblioteca Python que pueda hacer falta para que la aplicación funcione, junto con los ficheros auxiliares que utilice, si es que los utiliza.
+\end{itemize}
+
+  \item Se incluirán en el fichero README.md los siguientes datos (la mayoría de estos datos se piden también en el formulario que se ha de rellenar para entregar la práctica - se recomienda hacer un corta y pega de estos datos en el formulario):
+
+\begin{itemize}
+  \item Nombre y titulación.
+  \item Nombre de su cuenta en el laboratorio del alumno.
+  \item Nombre de usuario en GitHub.
+  \item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
+  \item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
+  \item URL del vídeo demostración de la funcionalidad básica
+  \item URL del vídeo demostración de la funcionalidad optativa, si se ha realizado funcionalidad optativa
+\end{itemize}
+
+Asegúrate de que las URLs incluidas en este fichero están adecuadamente escritas en Markdown, de forma que la versión HTML que genera GitHub los incluya como enlaces ``pinchables''.
+
+\end{enumerate}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Notas y comentarios}
+
+La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas.
+
+La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
+
+Los canales (feeds) RSS que produce la aplicación web realizada en la práctica deberán funcionar al menos con el navegador Firefox (considerándolos como canales RSS) disponibles en el laboratorio. Los documentos XML deberán ser correctos desde el punto de vista de la sintaxis XML, y por lo tanto reconocibles por un reconocedor XML, como por ejemplo el reconocedor del módulo xml.sax de Python.
+
+\newpage
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
 \section{Práctica final (2017, mayo)}
 \label{practica-final-2017-05}
 
