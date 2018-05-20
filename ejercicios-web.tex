@@ -4472,6 +4472,591 @@ return myResponse
 
 %%--------------------------------------------------------------------------
 %%--------------------------------------------------------------------------
+\subsection{Examen de ITT-SAT, 7 mayo de 2018}
+
+
+Se quiere construir un sitio web, MisMuseos, donde se puedan compartir valoraciones sobre museos. La funcionalidad básica del sitio es la siguiente:
+
+\begin{enumerate}
+\item Para poder utilizar el sitio hace falta un código de acceso. Los códigos de acceso son cadenas alfanuméricas de 20 caracteres, que se consiguen en los museos. Una vez se ha introducido un código de acceso correcto desde un navegador se puede acceder desde ese navegador a toda la funcionalidad del sitio. Si no, cualquier recurso del sitio devolverá un documento HTML con un formulario para introducir un código de acceso.
+
+\item Una vez se ha introducido un código válido (que llamaremos, a partir de ese momento, ``código activo'' en ese navegador), el sitio sólo proporcionará dos recursos que devuelvan un documento (salvo que haga falta alguno más para proporcionar la funcionalidad descrita en este enunciado):
+  \begin{itemize}
+  \item El recurso (página) principal, que devolverá el documento HTML que se describe más adelante.
+  \item El recurso de valoraciones realizadas, que devolverá un documento XML con un listado de las valoraciones realizadas usando el código de acceso activo en el navegador, ordenadas por fecha de valoración, e incluyendo para cada una de ellas el nombre del museo y la valoración dada.
+  \end{itemize}
+
+\item Cualquier otro recurso que se pida desde el navegador causará que se envié una redirección a la página principal.
+
+\item La página principal del sitio mostrará a los visitantes (una vez se ha introducido un código válido):
+  \begin{itemize}
+  \item Un formulario para elegir un nombre, o el nombre si ya se usó el formulario para elegirlo
+  \item Un enlace que, si se pulsa, hará que el código de acceso quede ``desactivado'' (dejando por tanto de ser un ``código activo'' en ese navegador). Cualquier nueva acción en el sitio devolverá el formulario para introducir el código de acceso.
+  \item Un listado con todos los museos que tienen MisMuseos, incluyendo para cada museo una foto, el nombre del museo, la puntuación media que le han dado los visitantes del sitio, y un formulario para valorarlo. Este formulario tendrá un botón (``Valorar'') y una caja para poner la valoración (un número entero entre 0 y 4).
+  \end{itemize}
+
+\item Además, todas las páginas HTML (incluido el formulario para introducir el código de acceso) incluirán una imagen transparente, de un píxel, que se utilizará para que MisMuseos pueda trazar el número de páginas vistas desde un mismo navegador, esté activo un código en ese navegador o no.
+
+\item Las fotos de cada museo son servidas por el sitio web de cada museo, no por MisMuseos.
+
+\item Al poner un valor en el formulario de valoración de un museo, y pulsar ``Valorar'', se añadirá una nueva valoración al museo en cuestión, si el código de acceso activo en ese navegador nunca había valorado ese museo, o cambiará la valoración anterior, si ya lo había valorado.
+
+\item Un mismo código de acceso puede ser utilizado desde varios navegadores (estar activo en ellos), en periodos diferentes o simultáneos.
+
+\item En un mismo navegador pueden estar activos varios códigos de acceso, pero  no simultáneamente. Sólo si se ``olvida'' (deja de estar activo) el que se está usando, se podrá activar otro, introduciéndolo en el formulario que se recibirá tras pulsar el enlace de ``olvidar''.
+
+\end{enumerate}
+
+\newpage
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas urls (no se usarán los métodos PUT o DELETE). Coloca la información en una tabla, con las urls en una columna, los métodos en otra, y la descripción de lo que realizará la aplicación al recibirlos en la tercera. Escribe también un fichero similar al fichero urls.py de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior (1 punto).
+
+\item Describe el modelo de datos que necesitará esta aplicación. Define las tablas necesarias y los campos necesarios para la funcionalidad descrita. Asegúrate de que incluyes en el modelo de datos la tabla o tablas necesarias para saber el número de páginas vistas por cada navegador, gracias al uso de la imagen transparente que se describe en en enunciado. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero models.py en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones) (1 punto).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza cuando un visitante que accede por primera vez al sitio pone en el navegador la url de la página principal del sitio. A continuación, después de ver esta página principal, rellena el formulario que recibe con un código de acceso válido. El escenario termina cuando el visitante vuelve a ver la página principal del sitio, pero ahora ya con el código activo, y por lo tanto viendo la lista de museos. (1 punto).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza con un visitante que ya tiene un código activo está viendo la página principal del sitio, con la lista de museos. El visitante rellena el formulario de valoración de un museo, que nunca había valorado antes con ese código, y pulsa el botón ``Valorar''. El escenario termina cuando el visitante vuelve a ver la página principal, con la lista de museos (1 punto).
+
+\item Escribe cómo podría ser el documento XML para un visitante que está usando un código con el que se han realizado valoraciones para los museos ``El Campo'', ``Reina Margarita'' y ``Tisten'' (una valoración para cada uno) (1 punto).
+\end{enumerate}
+
+En todos los escenarios, ten en cuenta que tu respuesta debe considerar toda la funcionalidad que ofrece el servicio, y permitir que ésta pueda proporcionarse. Diseña la aplicación de forma que envíe cookies al navegador sólo cuando sea necesario.
+
+En las respuestas donde describas interacciones HTTP indica para cada una de ellas claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \end{itemize}
+
+Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
+\section*{Soluciones}
+
+Hay muchas soluciones posibles. A continuación, una de ellas.
+
+\subsection*{Esquema REST}
+
+Este podría ser el esquema REST una vez se ha introducido un código válido:
+
+\begin{tabular}{|l|l|l|}
+  \hline
+  Recurso & Método & Comentario \\ \hline \hline
+  /       & GET    & Página principal (HTML) \\
+          & POST   & \verb|museo=id&val=val| \\
+          &        & (valoración de museo) \\
+          &        & o \\
+          &        & \verb|nombre=nombre| \\
+          &        & (poner nombre) \\
+          &        & Devolverá el mismo HTML que si se invoca con GET \\ \hline
+  /val.xml & GET   & Página XML con valoraciones para el código (XML) \\ \hline
+  /pixel  & GET    & Pixel para trazar páginas vistas (GIF) \\ \hline
+  /salir  & GET    & Desactivación de código \\
+          &        & Devolverá el formulario para introducir código (HTML) \\
+          &        & (según el enunciado, se invoca con un enlace, luego \\
+          &        & ha de ser GET) \\ \hline
+\end{tabular}
+
+Antes de introducirlo, todos los recursos devolverán, ante un GET, el formulario para introducir el código, salvo ``/pixel'' (que funcionaría igual) y / que para POST admitiría un código, \verb|codigo=codigo_museo| (para GET devolvería el formulario también).
+
+El recurso / podrá discriminar, si recibe un POST, si se está valorando un museo o si se está poniendo un nombre por el nombre de los campos en la query string recibida.
+
+\vspace{.3cm}
+
+Nota: Alternativamente, podría haber un recurso para valorar para cada muse, por ejemplo ``/valorar/\{museo\}'', sobre el que se haría el POST de valoración. Pero en ese caso, sería recomendable que este recurso, además de aceptar la valoración, devolviese una redirección sobre el recurso /.
+
+\subsection*{urls.py}
+
+Lo escribimos sólo para el esquema REST una vez se ha introducido el código:
+
+\begin{verbatim}
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.pagina_principal),
+    url(r'^val.xml$', views.valoraciones),
+    url(r'^pixel$', views.trazado),
+    url(r'^salir$', views.salir)
+]
+\end{verbatim}
+
+\subsection*{models.py}
+
+Versión simplificada, que cumple el enunciado, aunque podría optimizarse:
+
+\begin{verbatim}
+from django.db import models
+
+class Codigos(models.Model):
+    codigo = models.CharField(max_length=20)
+    nombre = models.CharField(max_length=100, null==True)
+
+class Museos(models.Model):
+    nombre = models.TextField()
+    id = models.IntegerField()
+    foto = models.CharField(max_length=100)
+
+class Navegadores(models.Model):
+    cookie = models.CharField(max_length=32)
+    vistas = models.IntegerField()
+
+class Activos(models.Model):
+    codigo = models.ForeignKey('Codigos')
+    navegador = models.ForeignKey('Navegadores')
+
+class Valoraciones(models.Model):
+    codigo = models.ForeignKey('Codigos')
+    museo = models.ForeignKey('Museos')
+    valoracion = models.IntegerField()
+    fecha = models.DateTimeField()
+\end{verbatim}
+
+No se incluyen los campos identificador único para cada tabla.
+
+La tabla Codigos tendrá todos los códigos válidos (que se han repartido a los museos). Esta tabla es fuente de ineficiencias, porque la mayoría de los nombres estarán vacíos (dado que corresponderán a códigos no usados o a los que no se les ha puesto nombre), por lo que en producción sería conveniente tener una tabla separada para los nombres. Pero tal y como está definida aquí, funcionaría.
+
+\subsection*{Primer escenario}
+
+Todas las interacciones son entre el navegador y el sitio MisMuseos, salvo cuando se indica otra cosa.
+
+\begin{itemize}
+\item Petición GET /
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+
+  [Formulario para codigo, HTML]
+\end{verbatim}
+
+\item Petición GET /pixel. El navegador, al cargar el documento HTML recibido, encontrará en él la referencia al pixel para trazado, y lo pedirá mediante otra interacción HTTP:
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+  Set-Cookie: ....; navegador=12345ABCDE12345ABCDE12345ABCDE12
+
+  [Imagen para trazado, GIF]
+\end{verbatim}
+
+\verb|navegador| es un identificador de navegador, que servirá para trazar las páginas vistas (suponemos que este se envía con cabeceras que lo hagan no-cacheable, de forma que pueda realizar su misión). También se utilizará, cuando se haya enviado un código válido, para saber que este navegador se ha autenticado (anotándolo en la tabla Activos).
+
+\item Petición POST / (para proporcionar el código que se ha introducido en el formulario):
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+  Cookie: navegador=12345ABCDE12345ABCDE12345ABCDE12
+
+  codigo=ABCDE12345ABCDE12345
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página principal con la lista de museos, HTML]
+\end{verbatim}
+
+Al recibir esta petición y comprobar que el código es correcto (utilizando la tabla Codigos), MisMuseos apuntará este navegador con este código en la tabla Activos, donde seguirá apuntado hasta que el usuario decida desactivar este código en su navegador.
+
+
+\item Petición GET /pixel (igual que la anterior):
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+  Cookie: navegador=12345ABCDE12345ABCDE12345ABCDE12
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+
+  [Imagen para trazado, GIF]
+\end{verbatim}
+
+En esta ocasión, ya no se recibe una cookie, sino que se envía (ya se recibió, y MisMuseos, al detectar que ya viene con la petición, no la vuelve a enviar). Al recibir esta petición, MisMuseos apuntará una nueva página vista para este navegador.
+
+\item Petición GET de la foto del museo museo (una por cada museo). Cada una de estas interacciones son {\bf con el sitio web de los museos en cuestión}.
+
+\begin{verbatim}
+  GET /url_foto HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+
+  [Foto, GIF]
+\end{verbatim}
+
+\item ...
+\end{itemize}
+
+
+\subsection*{Segundo escenario}
+
+A continuación, las interacciones son entre el navegador y el sitio MisMuseos. Suponemos, como ya se ha indicado, que la imagen se sirve como no-cacheable..
+
+\begin{itemize}
+\item Petición POST / (para realizar una valoración):
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+  Cookie: navegador=12345ABCDE12345ABCDE12345ABCDE12
+
+  museo=5&val=3
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página principal con la lista de museos, HTML]
+\end{verbatim}
+
+Al recibir esta petición, MisMuseos comprobará que el código está activo, buscando el identificador de navegador en la tabla Activos, y consiguiendo a partir de la entrada correspondiente el código. A continuación, utilizará el código para añadir una entrada a la tabla Valoraciones con el identificador del museo, el código, y la valoración.
+
+\item Petición GET /pixel (igual que las anteriores):
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+  Cookie: navegador=12345ABCDE12345ABCDE12345ABCDE12
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+
+  [Imagen para trazado, GIF]
+\end{verbatim}
+
+\end{itemize}
+
+En este caso no se han incluido las peticiones de las fotos de los museos, porque se hace la suposición razonable de que serán imágenes cacheables. En cualquier caso, si no se hace esta suposición, se pueden incluir, de la misma forma que se incluyeron anteriormente
+
+\subsection*{Canal XML}
+
+
+\begin{verbatim}
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<valoraciones>
+  <codigo>ABCDE12345ABCDE12345</codigo>
+  <lista_valoraciones>
+    <valoracion>
+      <museo>El Campo</museo>
+      <val>3</val>
+      <fecha>2018-05-03 12:20:21</fecha>
+    </valoracion>
+    <valoracion>
+      <museo>Reina Margarita</museo>
+      <val>4</val>
+      <fecha>2018-05-02 11:10:31</fecha>
+    </valoracion>
+    <valoracion>
+      <museo>Tisten</museo>
+      <val>1</val>
+      <fecha>2018-05-01 13:23:11</fecha>
+    </valoracion>
+  </lista_valoraciones>
+</valoraciones>
+\end{verbatim}
+
+En general, hay que cuidar que la valoración de cada museo sea claramente identificable que corresponde a ese museo, y las convenciones sintácticas de XML.
+
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de ITT-SARO, 17 mayo de 2018}
+
+
+Se quiere construir un sitio web, MisMuseos, donde se puedan compartir comentarios sobre museos. La funcionalidad básica del sitio es la siguiente:
+
+\begin{enumerate}
+\item El sitio está públicamente accesible para cualquiera que lo quiere consultar, sin necesidad de abrir cuenta ni ningún otro trámite.
+
+\item Además, cualquiera podrá dar un ``me gusta'' a los museos que quiera, en la página del museo (ver más abajo), pero no más de una vez desde el mismo navegador (ver página de museo, más abajo).
+
+\item Para poder poner un comentario sobre un museo, hace falta un código de acceso, disponible en ese museo. Los códigos de acceso son cadenas alfanuméricas de un solo uso, en el sentido de que quien tiene un código puede poner un comentario sobre el museo correspondiente y editarlo cuantas veces quiera desde cualquier navegador, usando ese código. Pero una vez usado para poner un comentario, ese código sólo permitirá cambiar el comentario.
+
+\item La funcionalidad ``en modio consulta'' del sitio es la siguiente:
+  \begin{itemize}
+  \item El recurso (página) principal del sitio tendrá un listado de todos los museos que se pueden consultar. Para cada museo se mostrará el nombre del museo (que será un enlace a la página del museo, ver más abajo), el último comentario para ese museo, y un icono (en formato PNG) con el número de ``me gusta'' que ha recibido ese museo.
+  \item La página de cada museo tendrá el nombre y dirección del museo, un formulario con un botón (sin icono) para indicar ``me gusta'' si no se ha pulsado ya ese botón desde ese mismo navegador, y un formulario para escribir un código de museo, si no se ha utilizado ya desde ese navegador para ese mismo museo (en ese caso, el museo estará ``en modo comentario'' (ver más abajo). Además, tendrá el listado de todos los comentarios que se hayan puesto, con cualquier código válido y desde cualquier navegador, para ese museo.
+  \end{itemize}
+
+\item La funcionalidad ``en modo comentario'' del sitio es igual, salvo que en la página de los museos donde se haya introducido un código válido desde ese navegador, en lugar del formulario para introducir el código aparecerá un formulario para introducir un comentario. Si ese código ya  se ha usado (desde cualquier navegador) para introducir un comentario, ese comentario aparecerá ``precargado'' en el formulario. El resto de la página es exactamente igual que en ``modo consulta''.
+
+\item Los iconos que se ven en las páginas del sitio están servidas por el propio sitio.
+
+\item Todas las páginas del sitio (página principal y páginas de museos) tendrán un banner (imagen en formato PNG), que será servido por un sitio tercero que llamaremos ``Servidor del banner''.
+\end{enumerate}
+
+\newpage
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas urls (no se usarán los métodos PUT o DELETE). Coloca la información en una tabla, con las urls en una columna, los métodos en otra, y la descripción de lo que realizará la aplicación al recibirlos en la tercera. Escribe también un fichero similar al fichero urls.py de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior (1 punto).
+
+\item Describe el modelo de datos que necesitará esta aplicación. Define las tablas necesarias y los campos necesarios para la funcionalidad descrita. Asegúrate de que incluyes en el modelo de datos la tabla o tablas necesarias para saber el número de páginas vistas por cada navegador, gracias al uso de la imagen transparente que se describe en en enunciado. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero models.py en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones) (1 punto).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza cuando un visitante que accede por primera vez al sitio pone en el navegador la url de la página principal del sitio. A continuación, después de ver esta página principal, pulsa sobre el enlace de un museo, y ve la página de ese museo. El escenario termina cuando el visitante está viendo la página principal de ese museo en su navegador (1 punto).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza con un visitante que ya ha rellenado, en la página de un museo, el formulario de código con un código válido, y está viendo la página de ese museo. A continuación, rellena el formulario con un comentario (no lo había rellenado nunca antes), y lo envía a MisMuseos. Y a continuación, pone un ``me gusta'' para ese mismo museo (pulsando en el botón correspondiente). El escenario termina cuando el visitante vuelve a ver la página del museo, ya sin el botón de ``me gusta'' y con el comentario pre-relleno en el formulario de comentarios (1 punto).
+
+\item Describe qué tendrá que hacer el ``Servidor del banner'' para poder saber, de forma independiente de MisMuseos, el número de navegadores únicos que están visitando MisMuseos, sin más colaboración por parte de MisMuseos que colocar un banner que él sirva en todas sus páginas (como ya se comentó en la descripción de funcionalidad de MisMuseos).
+\end{enumerate}
+
+En todos los escenarios, ten en cuenta que tu respuesta debe considerar toda la funcionalidad que ofrece el servicio, y permitir que ésta pueda proporcionarse. Diseña la aplicación de forma que envíe cookies al navegador sólo cuando sea necesario.
+
+En las respuestas donde describas interacciones HTTP indica para cada una de ellas claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \end{itemize}
+
+Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
+\section*{Soluciones}
+
+Hay muchas soluciones posibles. A continuación, una de ellas.
+
+\subsection*{Esquema REST}
+
+Este podría ser el esquema REST:
+
+\begin{tabular}{|l|l|l|}
+  \hline
+  Recurso & Método & Comentario \\ \hline \hline
+  /       & GET    & Página principal (HTML) \\ \hline
+  /\{id\_museo\} & GET   & Página de un museo \\
+          & POST   & \verb|codigo=codigo| \\
+          &        & (introducción de código de museo) \\
+          &        & \verb|megusta=True| \\
+          &        & (``me gusta'' al museo) \\
+          &        & \verb|comentario=texto| \\
+          &        & (poner un comentario sobre el museo) \\ \hline
+  /iconos/\{num\} & GET & Iconos para los números de ``me gusta'' \\ \hline
+\end{tabular}
+
+Las opciones POST para ``me gusta'' y para poner comentario a un museo devolverán 401 (no autorizado) cuando no se haya introducido un código válido para ese museo, y ``funcionarán'' de acuerdo al enunciado cuando se haya introducido.
+
+
+\subsection*{urls.py}
+
+Lo escribimos sólo para el esquema REST una vez se ha introducido el código:
+
+\begin{verbatim}
+from django.conf.urls import url
+from . import views
+
+urlpatterns = [
+    url(r'^$', views.pagina_principal),
+    url(r'^(\d+)$', views.museo),
+    url(r'^iconos/(\d+)$', views.trazado),
+]
+\end{verbatim}
+
+\subsection*{models.py}
+
+Versión simplificada, que cumple el enunciado, aunque podría optimizarse:
+
+\begin{verbatim}
+from django.db import models
+
+class Codigos(models.Model):
+    codigo = models.CharField(max_length=20)
+    museo = models.ForeignKey('Museos')
+    navegador = models.ForeignKey('Navegadores', null==True)
+
+class Museos(models.Model):
+    nombre = models.TextField()
+    id = models.IntegerField()
+    direccion = models.TextField()
+
+class Navegadores(models.Model):
+    cookie = models.CharField(max_length=32)
+
+class MeGusta(models.Model):
+    navegador = models.ForeignKey('Navegadores')
+    museo = models.ForeignKey('Museos')
+
+class Comentarios(models.Model):
+    codigo = models.ForeignKey('Codigos')
+    comentario = models.TextField()
+    fecha = models.DateTimeField()
+\end{verbatim}
+
+No se incluyen los campos identificador único para cada tabla.
+
+La tabla Codigos tendrá todos los códigos válidos (que se han repartido a los museos), cada uno con su museo correspondiente. Cuando un navegador use un código, se anotará en esta tabla.
+
+\subsection*{Primer escenario}
+
+Todas las interacciones son entre el navegador y el sitio MisMuseos, salvo cuando se indica otra cosa.
+
+\begin{itemize}
+\item Petición GET /
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+
+  [Página principal, HTML]
+\end{verbatim}
+
+
+\item Petición GET de los iconos de número de ``me gusta'' para cada uno de los museos mostrados. Habrá tantas de estas interacciones como iconos con el número de ``me gusta'' haya en los museos de la página principal. La primera de estas interacciones supone que el número de ``me gusta'' que muestra el icono es 3:
+
+\begin{verbatim}
+  GET /iconos/3 HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen con 3 "me gusta", PNG]
+\end{verbatim}
+
+
+\item Petición GET para el banner, realizada no a MisMuseos sino al ``Servidor del banner''
+
+\begin{verbatim}
+  GET /banner HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen de banner, PNG]
+\end{verbatim}
+  
+
+\item Petición GET de la página de museo, una vez el visitante ha pulsado sobre el enlace correspondiente (suponemos que el museo en cuestión tiene el identificador ``12''):
+
+\begin{verbatim}
+  GET /12 HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+
+  [Página de museo, HTML]
+\end{verbatim}
+
+\end{itemize}
+
+En este escenario no han hecho falta cookies, porque no es necesario identificar al navegador (no se introducen códigos, no se pulsa sobre ``me gusta''...)
+
+
+\subsection*{Segundo escenario}
+
+A continuación, las interacciones son entre el navegador y el sitio MisMuseos. Suponemos que el banner no es preciso volver a pedirlo, porque estará en la cache del navegador. Además, como el visitante ha introducido ya un código válido de museo, se le habrá enviado (con una cabecera ``Set--Cookie'') una cookie, para poder identificarle. Suponemos que el museo al que corresponde la página que está viendo el visitante es el ``12''.
+
+\begin{itemize}
+\item Petición POST /12 (para subir un comentario):
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+  Cookie: navegador=12345ABCDE12345ABCDE12345ABCDE12
+  
+  comentario="Me ha gustado mucho este museo"
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página del museo, con el comentario ya puesto, HTML]
+\end{verbatim}
+
+\item Petición POST /12 (para indicar ``me gusta''):
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+  Cookie: navegador=12345ABCDE12345ABCDE12345ABCDE12
+  
+  megusta=True
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página del museo, con el comentario y sin el boton "me gusta", HTML]
+\end{verbatim}
+
+\end{itemize}
+
+
+\subsection*{Trazado de navegadores únicos desde servidor de banner}
+
+Basta con que, cada vez que sirve por primera vez un banner de MisMuseos a un navegador, le envíe (con cabecera ``Set-Cookie'') una cookie con un identificador de navegador único. Cuando le llegue una petición que ya tenga cookie, no hará más que servir el banner. El número de navegadores únicos será el número de cookies servidas.
+
+
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
 \subsection{Examen de ITT-SAT, 10 mayo de 2017}
 
 Se quiere construir un sitio web, Mensajitos, donde se pueden poner mensajes para que los vean otras personas. La funcionalidad básica del sitio es la siguiente:
