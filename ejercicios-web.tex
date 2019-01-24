@@ -74,6 +74,64 @@ Para identificador de sesión, basta con un número aleatorio grande que se alma
 \item Cómo implementarlo usando el identificador de usuario y la contraseña en la cookie. Implicaciones para la seguridad. El problema de la salida de la sesión.
 \end{itemize}
 
+%%--------------------------------------------------------------------
+%%--------------------------------------------------------------------
+\subsection{Espía a tu navegador (Firefox Developer Tools)}
+\label{subsec:firefox-devel}
+
+\textbf{Enunciado:}
+
+El navegador hace una gran cantidad de tareas interesantes para esta asignatura. Es muy útil poder ver cómo lo hace, y aprender de los detalles que veamos. De hecho, también, en ciertos casos, se puede modificar su comportamiento. Para todo esto, se pueden usar herramientas específicas. En nuestro caso, vamos a usar las ``Firefox Developer Tools'', que vienen ya preinstaladas en Firefox.
+
+El ejercicio consiste en:
+
+\begin{itemize}
+\item Ojear las distintas herramientas de Firefox Developer Tools.
+\item Utilizarlas para ver la interacción HTTP al descargar una página web real.
+\item Utilizarlas para ver el árbol DOM de una página HTML real.
+\end{itemize}
+
+Más adelante, lo utilizaremos para otras cosas, así que si quieres jugar un rato con lo que permiten hacer estas herramientas, mucho mejor.
+
+\textbf{Referencias}
+
+Sitio web de Firefox Developer Tools: \\
+\url{https://developer.mozilla.org/en/docs/Tools}
+
+
+
+%%--------------------------------------------------------------------
+%%--------------------------------------------------------------------
+\subsection{Espía a tu navegador (Firebug)}
+\label{subsec:firebug}
+
+\textbf{Enunciado:}
+
+El navegador hace una gran cantidad de tareas interesantes para esta asignatura. Es muy útil poder ver cómo lo hace, y aprender de los detalles que veamos. De hecho, también, en ciertos casos, se puede modificar su comportamiento. Para todo esto, se pueden usar herramientas específicas. En nuestro caso, vamos a usar el módulo ``Firebug'' de Firefox (también disponible para otros navegadores).
+
+El ejercicio consiste en:
+
+\begin{itemize}
+\item Instalar el módulo Firebug en tu navegador
+\item Utilizarlo para ver la interacción HTTP al descargar una página web real.
+\item Utilizarlo para ver el árbol DOM de una página HTML real.
+\end{itemize}
+
+Más adelante, lo utilizaremos para otras cosas, así que si quieres jugar un rato con lo que permite hacer Firebug, mucho mejor.
+
+\textbf{Referencias}
+
+Sitio web de Firebug: \url{https://getfirebug.com/}
+
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Explora tus cookies}
+\label{subsec:explora-cookies}
+
+\textbf{Enunciado:}
+
+En este ejercicio vamos a ver las cookies que intercambia nuestro navegador con un servidor simple. El servidor que vamos a usar es \verb|cookies-server-6.py| (en la carpeta \verb|cookies|). Ejecuta el servidor, y luego, utilizando las herramientas de desarrollador de Firefox (ver ejercicio~\ref{subsec:firefox-devel}, observa las cookies que se intercambian entre este servidor y el navegador. En concreto, carga en el navegador la página principal del servidor, escribe algo en el formulario que te aparecerá, y contesta a este ejercicio escribiendo las cookies que observes en la interacción que se produce cuando le das al botón ``Submit'' para enviar al servidor el texto que has escrito.
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
@@ -105,57 +163,8 @@ En el ejercicio ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda}) u
 Comenta cuál de las dos soluciones te parece mejor, y si crees que alguna de ellas no sirve para resolver el problema. En ambos casos, indica las razones que te llevan a esa conclusión
 
 
-%%--------------------------------------------------------------------
-%%--------------------------------------------------------------------
-\subsection{Espía a tu navegador (Firefox Developer Tools)}
-\label{subsec:firefox-devel}
-
-\textbf{Enunciado:}
-
-El navegador hace una gran cantidad de tareas interesantes para esta asignatura. Es muy útil poder ver cómo lo hace, y aprender de los detalles que veamos. De hecho, también, en ciertos casos, se puede modificar su comportamiento. Para todo esto, se pueden usar herramientas específicas. En nuestro caso, vamos a usar las ``Firefox Developer Tools'', que vienen ya preinstaladas en Firefox.
-
-El ejercicio consiste en:
-
-\begin{itemize}
-\item Ojear las distintas herramientas de Firefox Developer Tools.
-\item Utilizarlas para ver la interacción HTTP al descargar una página web real.
-\item Utilizarlas para ver el árbol DOM de una página HTML real.
-\end{itemize}
-
-Más adelante, lo utilizaremos para otras cosas, así que si quieres jugar un rato con lo que permiten hacer estas herramientas, mucho mejor.
-
-\textbf{Referencias}
-
-Sitio web de Firefox Developer Tools: \\
-\url{https://developer.mozilla.org/en/docs/Tools}
-
-
-%%--------------------------------------------------------------------
-%%--------------------------------------------------------------------
-\subsection{Espía a tu navegador (Firebug)}
-\label{subsec:firebug}
-
-\textbf{Enunciado:}
-
-El navegador hace una gran cantidad de tareas interesantes para esta asignatura. Es muy útil poder ver cómo lo hace, y aprender de los detalles que veamos. De hecho, también, en ciertos casos, se puede modificar su comportamiento. Para todo esto, se pueden usar herramientas específicas. En nuestro caso, vamos a usar el módulo ``Firebug'' de Firefox (también disponible para otros navegadores).
-
-El ejercicio consiste en:
-
-\begin{itemize}
-\item Instalar el módulo Firebug en tu navegador
-\item Utilizarlo para ver la interacción HTTP al descargar una página web real.
-\item Utilizarlo para ver el árbol DOM de una página HTML real.
-\end{itemize}
-
-Más adelante, lo utilizaremos para otras cosas, así que si quieres jugar un rato con lo que permite hacer Firebug, mucho mejor.
-
-\textbf{Referencias}
-
-Sitio web de Firebug: \url{https://getfirebug.com/}
-
-
-%%------------------------------------------------------------------------------------
-%%------------------------------------------------------------------------------------
+%%------------------------------------------------------------------------------
+%%------------------------------------------------------------------------------
 \subsection{Cookies en tu navegador}
 \label{subsec:cookies-navegador}
 
