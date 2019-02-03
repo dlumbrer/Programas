@@ -135,6 +135,37 @@ En este ejercicio vamos a ver las cookies que intercambia nuestro navegador con 
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
+\subsection{Explora tus cookies (2)}
+\label{subsec:explora-cookies-2}
+
+\textbf{Enunciado:}
+
+Vamos a explorar las diferencias entre dos programas que tratan de ``recordarte''
+lo último que escribiste en un formulario. Ambos son servidores HTTP, y están en el directorio \verb|Python-Web/cookies| (en el repositorio de código de la asignatura), y son \verb|cookies-server-8.py| y \verb|cookies-server-9.py|. El ejercicio consiste en ejecutar cada uno de ellos de esta forma:
+
+\begin{itemize}
+\item Lanza el programa servidor que vas a probar.
+\item En el navegador, carga la página correspondiente al recurso principal de ese servidor.
+\item Borra las cookies que pueda haber para ese servidor.
+\item Recarga la página que tienes en el navegador
+\item En el formulario que tienes en la página, escribe ``Primero'', y envíalo al servidor. Llamaremos al resultado de este envío (la página que muestre el navegador al recibir la respuesta del servidor ``Página~1''.
+\item En el formulario que tienes ahora en la Página~1, escribe ``Segundo'', y vuelve a enviarlo al servidor. Llamaremos al resultado de este envío (la página que muestre el navegador al recibir la respuesta del servidor ``Página~2''.
+\item En el formulario que tienes ahora en la Página~2, escribe ``Tercero'', y vuelve a enviarlo al servidor. Llamaremos al resultado de este envío (la página que muestre el navegador al recibir la respuesta del servidor ``Página~3''.
+\end{itemize}
+
+Compara qué ves en Página~1, Página~2 y Página~3 en los dos casos (cuando lanzas cada uno de los dos servidores, y sigues el proceso con ellos). Trata de explicar lo que ocurre viendo en el navegador las cookies que envía el servidor en cada uno de los casos. A continuación, trata de explicarlo mirando el código de los dos servidores. Puedes utilizar la herramienta \verb|diff| para ver las diferencias en el código de ambos, si eso te ayuda.
+
+Escribe como respuesta:
+
+\begin{itemize}
+\item Las diferencias que observes entre Página~1, Página~2 y Página~3 (descritas, acompañadas de capturas de pantalla si lo ves útil).
+\item La explicación que hayas podido encontrar a las diferencias mirando las cookies en el navegador.
+\item La explicación que hayas podido encontrar a las diferencias mirando el código de los dos servidores.  
+\end{itemize}
+
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
 \subsection{Servicio horario}
 \label{subsec:ej-servicio-horario}
 
