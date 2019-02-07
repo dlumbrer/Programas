@@ -163,6 +163,16 @@ Escribe como respuesta:
 \item La explicación que hayas podido encontrar a las diferencias mirando el código de los dos servidores.  
 \end{itemize}
 
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Servidores que recuerdan}
+\label{subsec:servidores-recuerdan}
+
+\textbf{Enunciado:}
+
+En el directorio \verb|Python-Web/cookies| (en el repositorio de código de la asignatura) puedes encontrar los programas \verb|content-server-1.py| y \verb|content-server-2.py|. Ambos utilizan cookies de datos para ``recordar'' el último texto que se introdujo en el formulario que proporciona el servidor. El primero, utiliza GET para enviar al servidor el contenido del formulario, y el segundo utiliza POST.
+
+Este ejercicio consiste en entender el código de ambos programas, y escribir otros dos, \verb|content-server-3.py| y \verb|content-server-4.py|, que hagan lo mismo, pero utilizando cookies de sesión (que identifican el navegador, y utilizan el identificador para buscar el último contenido del formulario en un diccionario que mantienen).
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
