@@ -439,15 +439,14 @@ Introducimos el concepto de REST y sus reglas. Hay varias las hemos visto ya: UR
 
 Finalmente discutimos porque la web no es así, si en realidad los diseñadores de HTTP habían diseñado el protocolo para que todo fuera REST. Comentamos que con los navegadores sólo podemos hacer GETs y POSTs (y contamos que podemos utilizar los demás métodos mediante plug-ins como Poster (ver ejercicio~\ref{subsec:inst-poster}). Mostramos que, más allá de los navegadores, ya estamos en disposición de crear programas para interactuar con servidores REST, de manera que podemos comunicar máquinas entre sí siguiendo estas reglas. Discutimos las ventajas de este enfoque en esos casos.
 
+
 %%-----------------------------------------------------------------------------
-\subsection{Listado de lo que tengo en la nevera}
-\label{subsec:contenido-nevera}
+\subsection{Lista de la compra}
+\label{subsec:lista-compra}
 
 \textbf{Enunciado:}
 
-Vamos a diseñar una API REST para una aplicación que concreta el ejercicio ``Arquitectura distribuida'' (\ref{subsec:arq-distribuida}) en un caso bien simple: una aplicación web que mantenga la lista de lo que tengo en la nevera.
-
-Supongamos que esta lista está compuesta únicamente por los items que tengo en la nevera en un momento dado (zanahorias, yogures, etc.) y un número natural para cada item que tengo, que expresa su cantidad. Por ejemplo, en un momento dado, la lista podría ser:
+Vamos a diseñar una API HTTP para un servicio que permite guardar una lista de la compra. Supongamos que esta lista está compuesta únicamente por los items que quiero comprar en un momento dado (zanahorias, yogures, etc.) y un número natural para cada item que tengo, que expresa la cantidad que quiero comprar. Por ejemplo, en un momento dado, la lista podría ser:
 
 \begin{itemize}
 \item Zanahorias: 5
@@ -455,11 +454,21 @@ Supongamos que esta lista está compuesta únicamente por los items que tengo en
 \item Leche: 2
 \end{itemize}
 
-Si en este momento no tengo un determinado item en la nevera, no lo tengo en la lista. En otras palabras, no hay items con valor igual a 0.
+Puede haber items en la lista de la compra con valor 0, si se encuentra que es útil por algún motivo.
 
-La aplicación web la gestiono desde el móvil, con una app que puede hacer GET, PUT, POST y DELETE (usando HTTP). Cada vez que abro la puerta de la nevera, y meto o saco cosas de ella, utilizo la app del móvil para actualizar la lista en la aplicación web. Al hacerlo, la app del móvil siempre indica a la aplicación web la nueva cantidad que queda en la nevera. Esto es, no indica ``hay dos zanahorias más'', sino ``ahora hay 7 zanahorias''.
+Las operaciones que permitirá la API del servicio son: consultar la lista, añadir un item (con su correspondiente cantidad) a la lista, modificar la cantidad de un item en la lista, y borrar un item de la lista.
 
-Se pide diseñar la API REST de esta aplicación web, identificando cuáles son los recursos relevantes, sus nombres, y describiendo todas las interacciones HTTP que soporten.
+Se pide diseñar una API HTTP para esta aplicación (servicio) web, identificando cuáles son los recursos relevantes, las operaciones HTTP válidas sobre ellas, y describiendo la semántica de cada una de ellas.
+
+Podemos imaginar que el servicio web va a ser usado, por ejemplo, desde una aplicación en el móvil, que podrá hacer GET, PUT, POST y DELETE (usando HTTP). Cada vez que quiero apuntar o borrar algo de la lista de la compra, o quiero consultar la lista, utilizo la app del móvil para acceder, mediante HTTP, al servicio de lista de la compra.
+
+%%-----------------------------------------------------------------------------
+\subsection{Listado de lo que tengo en la nevera}
+\label{subsec:contenido-nevera}
+
+\textbf{Enunciado:}
+
+Este es un ejercicio muy similar a ``Lista de la compra'' (\ref{subsec:contenido-nevera}). Vamos a diseñar una API REST para una aplicación que concreta el ejercicio ``Arquitectura distribuida'' (\ref{subsec:arq-distribuida}) en un caso bien simple: una aplicación web que mantenga la lista de lo que tengo en la nevera. El tipo de lista será el mismo que se indica para en el ejercicio de la lista de la compra, pero ahora trataremos de que la API cumpla los principios REST.
 
 \textbf{Comentarios:}
 
