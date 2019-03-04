@@ -1656,8 +1656,10 @@ Construcción de algunos servidores de contenidos que permitan comprender la est
 
 Esta clase, basada en el esquema de clases definido en el ejercicio ``Clase servidor de aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis}), sirve el contenido almacenado en un diccionario Python. La clave del diccionario es el nombre de recurso a servir, y el valor es el cuerpo de la página HTML correspondiente a ese recurso.
 
-La solución de este ejercicio se encuentra disponible en el siguiente repositorio de GitHub:
-\url{https://github.com/CursosWeb/X-Serv-16.3-contentPutApp}.
+La solución de este ejercicio se encuentra disponible en el siguiente repositorio de 
+GitLab: \url{https://gitlab.etsit.urjc.es/grex/x-serv-16.3-contentputapp}.
+
+% GitHub:\url{https://github.com/CursosWeb/X-Serv-16.3-contentPutApp}.
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -1780,7 +1782,7 @@ Escribe y prueba la clase contentDBAppUsersStrict, que será igual que ``Gestor 
 %% %%----------------------------------------------------------------------------
 %% %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
-\section{Prácticas de entrega voluntaria (curso 2015-2016 y 2016-2017)}
+\section{Prácticas de entrega voluntaria}
 
 
 %%----------------------------------------------------------------------------
@@ -1788,9 +1790,13 @@ Escribe y prueba la clase contentDBAppUsersStrict, que será igual que ``Gestor 
 \subsection{Práctica 1 (entrega voluntaria)}
 \label{subsec:practica-vol-1-2016}
 
-\textbf{Fecha recomendada de entrega:} Antes del 15 de marzo de 2016.
+\textbf{Fecha recomendada de entrega:} Antes del 13 de marzo de 2019.
 
 Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs. La aplicación tendrá que realizarse según un esquema de clases similar al explicado en clase.
+
+El repositorio de partida es: \url{https://gitlab.etsit.urjc.es/grex/x-serv-18.1-practica1}
+
+El código ha de guardarse en un fichero llamado \emph{practica1.py}.
 
 El funcionamiento de la aplicación será el siguiente:
 
@@ -1807,7 +1813,7 @@ Para determinar la URL acortada, utilizará un número entero secuencial, comenz
 
 Así, por ejemplo, si se quiere acortar
 
-\verb|http://docencia.etsit.urjc.es|
+\verb|http://gsyc.urjc.es|
 
 y la aplicación está en el puerto 1234 de la máquina ``localhost'', se invocará (mediante POST) la URL
 
@@ -1815,7 +1821,7 @@ y la aplicación está en el puerto 1234 de la máquina ``localhost'', se invoca
 
 y en el cuerpo de esa petición HTTP irá la \texttt{qs}
 
-\verb|url=http://docencia.etsit.urjc.es|
+\verb|url=http://gsyc.urjc.es|
 
 si el campo donde el usuario puede escribir en el formulario tiene el nombre ``URL''. Normalmente, esta invocación POST se realizará rellenando el formulario que ofrece la aplicación.
 
@@ -1825,7 +1831,7 @@ Como respuesta, la aplicación devolverá (en el cuerpo de la respuesta HTTP) la
 
 Si a continuación se trata de acortar la URL
 
-\verb|http://docencia.etsit.urjc.es/moodle/course/view.php?id=25|
+\verb|http://www.urjc.es|
 
 mediante un procedimiento similar, se recibirá como respuesta la URL acortada
 
@@ -1833,7 +1839,7 @@ mediante un procedimiento similar, se recibirá como respuesta la URL acortada
 
 Si se vuelve a intentar acortar la URL
 
-\verb|http://docencia.etsit.urjc.es|
+\verb|http://gsyc.urjc.es|
 
 como ya ha sido acortada previamente, se devolverá la misma URL corta:
 
@@ -1847,11 +1853,11 @@ Por ejemplo, si se recibe
 
 la aplicación devolverá un HTTP REDIRECT a la URL
 
-\verb|http://docencia.etsit.urjc.es|
+\verb|http://gsyc.urjc.es|
 
 \end{itemize}
 
-La aplicación funcionará con estado: se supone que cada vez que la aplicación muera y vuelva a ser lanzada, no perderá todo su estado anterior. Para ello, se guardarán las URLs acortadas en un fichero CSV. Al lanzar la aplicación, se leerá el fichero CSV con las URLs acortadas. Y cada vez que se incluya una nueva URL acortada en el sistema, también se guardará esta información en el fichero CSV.
+%La aplicación funcionará con estado: se supone que cada vez que la aplicación muera y vuelva a ser lanzada, no perderá todo su estado anterior. Para ello, se guardarán las URLs acortadas en un fichero CSV. Al lanzar la aplicación, se leerá el fichero CSV con las URLs acortadas. Y cada vez que se incluya una nueva URL acortada en el sistema, también se guardará esta información en el fichero CSV.
 
 \textbf{Comentario}
 
