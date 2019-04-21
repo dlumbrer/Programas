@@ -830,7 +830,7 @@ Explicación del cálculo de Pi mediante el método Monte Carlo, incluyendo ejem
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
-\section{Ejercicios 04: Introducción a XML}
+\section{Ejercicios 03: Introducción a XML}
 
 
 %%-----------------------------------------------------------------------------
@@ -929,6 +929,54 @@ En particular, puedes implementar la consulta a BarraPunto de una de las siguien
 \end{itemize}
 
 Basta con mostrar por ejemplo los últimos tres o cinco titulares de BarraPunto (cada uno como un enlace a la URL correspondiente).
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Municipios JSON}
+\label{subsec:json-municipios}
+
+\textbf{Enunciado:}
+
+Crea un programa Python que lea el fichero \verb|municipios.json|,
+y muestra en pantalla el nombre de cada municipio y su id (campo ``url'').
+El fichero \verb|municipios.json| contiene una lista de diccionarios,
+uno por municipio, con varios campos.
+
+\textbf{Materiales:}
+
+Estos materiales pueden encontrarse en el
+directorio \verb|Python-JSON| del repositorio de código de la
+asignatura. 
+
+\begin{itemize}
+\item Fichero: \verb|municipios.json| \\
+  Originalmente, este fichero fue recogido de: \\
+  \url{https://opendata.aemet.es/opendata/api/maestro/municipios/?api_key=XXX}
+\item Solución de referencia: \verb|json-municipios.py|
+\end{itemize}
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Municipios JSON via HTTP}
+\label{subsec:json-municipios-http}
+
+\textbf{Enunciado:}
+
+Igual que ``Municipios JSON'' (ejercicio~\ref{subsec:json-municipios}),
+pero recogiendo el documento JSON de la red, vía HTTP.
+
+\textbf{Materiales:}
+
+Estos materiales pueden encontrarse en el
+directorio \verb|Python-JSON| del repositorio de código de la
+asignatura. 
+
+\begin{itemize}
+\item Documento JSON con los municipios: \\
+  \url{https://raw.githubusercontent.com/CursosWeb/Code/master/Python-JSON/municipios.json}
+\item Solución de referencia: \verb|json-municipios-http.py|
+\end{itemize}
+
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
@@ -1899,6 +1947,245 @@ Repositorio GitHub de entrega: \\
 \url{https://github.com/CursosWeb/X-Serv-18.2-Practica2}
 
 \newpage
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\section{Práctica final: MiTiempo (2019, mayo)}
+\label{practica-final-2019-05}
+
+[ \textbf{Nota importante:} Este enunciado aún tentativo, puede sufrir cambios ]
+
+La práctica final de la asignatura consiste en la creación de una aplicación web, ``MiTiempo'', que aglutine información sobre municipios de España, y especialmente información meteorológica ellos. A continuación se describe el funcionamiento y arquitectura general de la aplicación, la funcionalidad mínima que debe proporcionar, y otra funcionalidad optativa que podrá tener.
+
+La aplicación se encargará de descargar información sobre la meteorología de los municipios, disponibles públicamente en en sitio web de la AEMET, y de ofrecerla a los usuarios para que puedan monitorizar con facilidad las previsiones para  los que les parezca más interesantes, y comentar sobre ellos. De esta manera, un escenario típico es el de un usuario que elija los municipios que le parezcan de interés, y comente lo que le quiera sobre ellos.
+
+%%----------------------------------------------------------------------------
+\subsection{Arquitectura y funcionamiento general}
+
+Arquitectura general:
+
+\begin{itemize}
+
+  \item La práctica se construirá como un proyecto Django/Python3, que incluirá una o varias aplicaciones (apps) Django que implementen la funcionalidad requerida.
+
+  \item Para el almacenamiento de datos persistente se usará SQLite3, con tablas definidas en modelos de Django.
+
+  \item Se usará la aplicación Django ``Admin Site'' para crear cuenta a los usuarios en el sistema, y para la gestión general de las bases de datos necesarias. Todas las bases de datos que contenga la aplicación tendrá que ser accesible vía este ``Admin Site''.
+
+  \item Se utilizarán plantillas Django (a ser posible, una jerarquía de plantillas, para que la práctica tenga un aspecto similar) para definir las páginas que se servirán a los navegadores de los usuarios. Estas plantillas incluirán en todas las páginas al menos:
+  \begin{itemize}
+  \item Un \emph{banner} (imagen) del sitio, en la parte superior izquierda.
+  \item Una caja para entrar (hacer login en el sitio), o para salir (si ya se ha entrado).
+  \begin{itemize}
+    \item En caso de que no se haya entrado en una cuenta, esta caja permitirá al visitante introducir su identificador de usuario y su contraseña. 
+    \item En caso de que ya se haya entrado, esta caja mostrará el identificador del usuario y permitirá salir de la cuenta (logout). Esta caja aparecerá en la parte superior derecha.
+  \end{itemize}
+  \item Un menú de opciones, como barra, debajo de los dos elementos anteriores (banner y caja de entrada o salida).
+  \item Un pie de página con una nota de atribución, indicando ``Esta aplicación utiliza datos proporcionados por la AEMET'', y un enlace al sitio web de AEMET\footnote{Sitio web de AEMET: \url{https://aemet.es}}.
+  \end{itemize}
+
+Cada una de estas partes estará construida dentro de un elemento ``div'', marcada con un atributo ``id'' en HTML, para poder ser referenciadas fácilmente en hojas de estilo CSS.
+
+\item Se utilizarán hojas de estilo CSS para determinar la apariencia de la práctica. Estas hojas definirán al menos el color y el tamaño de la letra, y el color de fondo de cada una de las partes (elementos) marcadas con id que se indican en el apartado anterior.
+
+\item Se utilizará, para obtener la información sobre previsión meteorológica de cada municipio, la información disponible en AEMET:
+
+  \begin{itemize}
+  \item Ejemplo de información para un municipio, en formato XML
+    (para cada municipio, el número de cinco cifras que finaliza la url
+    se obtiene del documento descrito más abajo): \\
+    \url{http://www.aemet.es/xml/municipios/localidad_28058.xml}
+  \item Documento JSON con listado de municipios, incluyendo su nomber y
+    su identificador para localizar los documentos anteriores (campo ``id\_old''): \\
+    \url{https://raw.githubusercontent.com/CursosWeb/Code/master/Python-JSON/municipios.json}
+  \end{itemize}
+  
+\end{itemize}
+
+Funcionamiento general:
+
+\begin{itemize}
+  \item Los usuarios serán dados de alta en la práctica mediante el módulo ``Admin Site'' de Django. Una vez estén dados de alta, serán considerados ``usuarios registrados''.
+
+  \item El listado de municipios se cargará de nuevo cada vez que arranque la aplicación, a partir de un fichero que será parte del proyecto Django. El listado se mantendrá en un diccionario en memoria, y no se guardará en almacenamiento persistente.
+
+  \item Los usuarios registrados podrán crear su selección de municipios. Para ello, dispondrán de una página personal. Llamaremos a esta página la ``página del usuario''.
+
+  \item La selección de municipios en su página personal la realizará cada usuario rellenando un formulario que estará en su página de usuario. Este formulario permitirá elegir un nombre de municipio. Si el municipio coincide con uno en el listado de municipios, se considerará válido, y se añadirá a la lista de municipios seleccionados por ese usuario. Si no es así, se le indicará que el nombre del municipio es erróneo.
+
+  \item Cualquier navegador podrá acceder a la interfaz pública del sitio, que ofrecerá la página personal de cada usuario, para todos los usuarios del sitio.
+
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad mínima}
+
+La inforamción para cada municipio se obtendrá a partir de la información pública ofrecida por AEMET, en forma de ficheros XML, como se indicaba anteriormente.
+
+La {\bf interfaz pública} contiene los recursos a servir como páginas HTML completas (pensadas para ser vistas en el navegador) para cualquier visitante (sea usuario registrado o no), excepto donde se indica que se servirá una página XML:
+
+\begin{itemize}
+  \item /: Página principal de la práctica. Constará de un listado de poblaciones que han sido elegidas por algún usuario, y otro con enlaces a páginas de usuarios:
+  
+  \begin{enumerate}
+    \item Mostrará un listado de los 10 municipios con más comentarios. Si no hubiera 10 municipios con comentarios, se mostrarán sólo los que tengan comentarios. Para cada municipio, incluirá información sobre:
+    \begin{itemize}
+    \item su nombre (que será un enlace que apuntará a la URL del municipio en el sitio de AEMET)\footnote{Por ejemplo \url{http://www.aemet.es/es/eltiempo/prediccion/municipios/fuenlabrada-id28058} (donde el identificador ``fuenlabrada-id28058'' puede enconrarse en el docuento JSON con el listado de municipios como campo ``url''}, 
+      \item su altitud, latitud y longitud,
+      \item su previsión de tiempo para mañana: probabilidad de precipitación (0 a 24), temperatura máxima y mínima, y descripción (0 a 24).
+      \item y un enlace, ``Más información'', que apuntará a la página del municipio en la aplicación (ver más adelante).
+    \end{itemize}
+   
+  \item También se mostrará un listado, en una columna lateral, con enlaces a las páginas personales disponibles. Para cada página personal mostrará el título que le haya dado su usuario (como un enlace a la página personal en cuestión) y el nombre del usuario. Si a una página personal aún no se le hubiera puesto título, este título será ``Página de usuario'', donde ``usuario'' es el identificador de usuario del usuario en cuestión.
+  \item Tambień se mostrará un botón, que al pulsarlo se verán sólo los municipios con probabilidad de precipitacion mayor que cero. Si se vuelve a pulsar, se verán los que tengan ptobabilidad de precipitación igual a cero. Si se vuelve a pulsar una vez más, se volverán a ver todos los municipios.
+   \end{enumerate}
+
+  La página principial se ofrecerá también como un documento XML, que incluirá la misma lista de municipios, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la url de municipios, concatenando al final \verb|format=xml|.
+
+  \item /{usuario}: Página personal de un usuario. Si la URL es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará los municipios seleccionados por ese usuario. Para cada municipio se mostrará la misma información que en la página principal. Los municipios deben aparecer en el orden en que los ha seleccionado el usuario (primero el que fue seleccionado más recienteente).
+
+  La página de cada usuario se ofrecerá también como un documento XML, que incluirá la lista de municipios seleccionados, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la url del usuario, concatenando al final \verb|format=xml|.
+
+  \item /municipios: Página con todos los municipos que han sido seleccionados por algún usuario. Para cada uno de ellos aparecerá sólo el nombre, como un enlace a su página (ver más abajo), y el número de comentarios que se han puesto sobre él. En la parte superior de la página, habrá un formulario que permita filtrar según la temperatura máxima para mañana: se mostrarán solo los municipios que para mañana tengan previsión de temperatura máxima entre las dos que se indiquen, si se indican.
+
+    La página de municipios se ofrecerá también como un documento XML, que incluirá la misma lista de municipios, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la url de municipios, concatenando al final \verb|format=xml|.
+
+  \item /municipios/{id}: Página de un municipio en la aplicación. Mostrará toda la información razonablemente posible del documento XML obtenido de AEMET (en cuanto a predicción para mañana, en el rango 024 horas), incluyendo también al menos la que se menciona en otros apartados de este enunciado. También se incluirá un enlace a la página de este municipio en el sitio de AEMET. Además, se mostrarán todos los comentarios que se hayan puesto para este municipio. Esta información se actualizará cuando se consulte esta página de un minicipio, y a partir de este momento se mostrará actualizada en cualquier otra página del sitio. La información no se actualizará en ningún otro momento.
+ 
+  \item /info: Página con información en HTML indicando la autoría de la práctica, explicando su funcionamiento y una brevísima documentación.
+
+\end{itemize}
+
+Todas las páginas de la interfaz pública incluirán un menú desde el que se podrá acceder a todos los municipios (URL /municipios) con el texto ``Todos'' y a la ayuda (URL /info) con el texto ``Info''. Todas las página que no sean la principal tendrán otra opción de menú para la URL /, con el texto ``Inicio''.
+
+La {\bf interfaz privada} contiene los recursos a servir como páginas HTML completas para usuarios registrados (una vez se han autenticado):
+
+\begin{itemize}
+  \item Todos los recursos de la interfaz pública.
+
+  \item /municipios/{id}: Además de la información que se muestra de manera pública:
+
+    \begin{enumerate}
+    \item Un formulario para poner comentarios sobre este municipio. Los comentarios quedarán a nombre del usuario que los ponga, y sólo se podrán poner por los usuarios registrados, una vez se han autenticado. Por tanto, bastará con que este formulario esté compuesto por una caja de texto, donde se podrá escribir el comentario, y un botón para enviarlo. El sistama anotará automáticamente quién está poniendo el comentario, y mostrará esa información cada vez que muestre el comentario (con el texto ``Comentado por''.
+  \end{enumerate}
+
+  \item /{usuario}: Además de la información que se muestra de manera pública:
+  
+  \begin{enumerate}
+    \item Un formulario para cambiar el estilo CSS de todo el sitio para ese usuario. Bastará con que se pueda cambiar el tamaño y el color de la letra y el color de fondo. Si se cambian estos valores, quedará cambiado el documento CSS que utilizarán todas las páginas del sitio para este usuario. Este cambio será visible en cuanto se suba la nueva página CSS.
+
+    \item Un formulario para elegir el título de su página personal.
+
+    \item Un formulario para seleccionar un nuevo municipio. En este formulario se podrá poner el nombre de un municipio, que si existe, quedará seleccionado para este usuario.
+
+    \item Un botón ``Quitar'' que aparecerá asociado a cada municipio seleccionado, que permitirá al usuario ``deseleccionar'' el municipio de su lista.
+  \end{enumerate}
+\end{itemize}
+
+%Si es preciso, se añadirán más recursos (pero sólo si es realmente preciso) para poder satisfacer los requisitos especificados.
+
+Dados los recursos mencionados anteriormente, no se permitirán los nombres de usuario ``municipios'' ni ``info'' (pero no hay que hacer ninguna comprobación para esto: se asume que no se darán de alta esos usuarios en el Admin Site).
+
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad optativa}
+
+De forma optativa, se podrá incluir cualquier funcionalidad relevante en el contexto de la asignatura. Se valorarán especialmente las funcionalidades que impliquen el uso de técnicas nuevas, o de aspectos de Django no utilizados en los ejercicios previos, y que tengan sentido en el contexto de esta práctica y de la asignatura.
+
+En el formulario de entrega se pide que se justifique por qué se considera funcionalidad optativa lo que habeis implementado. Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativas:
+
+\begin{itemize}
+  \item Inclusión de un \emph{favicon} del sitio
+  
+  \item Visualización de las páginas en formato JSON, de forma similar a como el enunciado indica para XML.
+
+  \item Generación de un canal RSS, XML libre y/o JSON para los comentarios puestos en el sitio.
+
+  \item Incorporación de datos del canal RSS de avisos de AEMET\footnote{Canales RSS de AEMET: \url{http://www.aemet.es/es/rss_info}} a la página principal y/o a otras páginas ofrecidas por la aplicación.
+    
+  \item Funcionalidad para acceder a datos ofrecidos por AEMT via su API de datos abiertos\footnote{AEMET open data: \url{https://opendata.aemet.es}}
+  
+  \item Funcionalidad de registro de usuarios: que la aplicación proporcione la funcionalidad de registrarse en el sitio.
+  
+  \item Uso de Javascript o AJAX para algún aspecto de la práctica (por ejemplo, para seleccionar un municipio para una página de usuario).
+
+  \item Puntuación de municipios. Cada visitante (registrado o no) puede dar un ``+1'' a cualquier municipio que aparezca en el sitio. La suma de ``+'' que ha obtenido un municipio se verá cada vez que se vea el municipio en el sitio.
+  
+  \item Uso de elementos HTML5 (especificar cuáles al entregar)
+
+  \item Atención al idioma indicado por el navegador. El idioma de la interfaz de usuario del planeta tendrá en cuenta lo que especifique el navegador.
+
+  \item Despliegue de la práctica en algún sitio de Internet, de forma que pueda accederse a ella. Por ejemplo, puede considerarse desplegar en un ordenador dedicado (por ejemplo, Raspberry Pi accesible directamente desde Internet), o en servicios como Google Computing Engine\footnote{GCP Engine Free: \url{https://cloud.google.com/free/}} o Heroku\footnote{Heroku Free: \url{https://www.heroku.com/free}}.
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Entrega de la práctica}
+
+\begin{itemize}
+  \item \textbf{Fecha límite de entrega de la práctica:} lunes, 21 de mayo de 2019 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como domingo por la noche, ya entrado en lunes.}
+       %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
+
+  \item \textbf{Fecha de publicación de notas:} miércoles, 23 de mayo de 2019, en la plataforma Moodle.
+%{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
+
+  \item \textbf{Fecha de revisión:} jueves, 24 de mayo de 2019 a las 13:00.
+%{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
+\end{itemize}
+
+La entrega de la práctica consiste en rellenar un formulario (enlazado en el Moodle de la asignatura) y en seguir las instrucciones que se describen a continuación.
+
+\begin{enumerate}
+  \item El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo). Es muy importante que el alumno haya realizado un fork del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
+
+\url{https://gitlab.etsit.urjc.es/CursosWeb/X-Serv-Practica-Mitiempo}
+
+Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere. Los que la entreguen podrán ser llamados a realizar también una entrega presencial, que tendrá lugar en la fecha y hora de la revisión. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
+
+Recordad que es importante ir haciendo commits de vez en cuando y que sólo al hacer push estos commits son públicos. Antes de entregar la práctica, haced un push. Y cuando la entreguéis y sepáis el nombre del repositorio, podéis cambiar el nombre del repositorio desde el interfaz web de GitHub. 
+ 
+ \item Un vídeo de demostración de la parte obligatoria, y otro vídeo de demostración de la parte opcional, si se han realizado opciones avanzadas. Los vídeos serán de una {\bf duración máxima de 3 minutos} (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo, Twitch, o YouTube). Los vídeos de más de tres minutos tendrán penalización.
+
+Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). OBS Studio\footnote{OBS Studio: \url{https://obsproject.com/}} está disponible para varias plataformas (Linux, Windows, MacOS). Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
+
+En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar tiempos de espera) puede usarse un editor de vídeo, pero siempre deberá ser indicado que se ha hecho tal cosa con un comentario en el audio, o un texto en el vídeo. Hay muchas herramientas que permiten realizar esta edición. Por ejemplo, en GNU/Linux puede usarse OpenShot o PiTiVi.
+
+  \item Se han de entregar los siguientes ficheros:
+
+\begin{itemize}
+  \item Un fichero README.md que resuma las mejoras, si las hay, y explique cualquier peculiaridad de la entrega (ver siguiente punto).
+  \item El repositorio en el GitLab de la ETSIT deberá contener un proyecto Django completo y listo para funcionar en el entorno del laboratorio, incluyendo la base de datos con datos suficientes como para poder probarlo. Estos datos incluirán al menos dos usuarios con sus datos correspondientes, con al menos seis municipios en su página personal, al menos 12 municipios distintos seleccionados, y con al menos cinco comentarios en total.
+  \item Cualquier biblioteca Python que pueda hacer falta para que la aplicación funcione, junto con los ficheros auxiliares que utilice, si es que los utiliza.
+\end{itemize}
+
+  \item Se incluirán en el fichero README.md los siguientes datos (la mayoría de estos datos se piden también en el formulario que se ha de rellenar para entregar la práctica - se recomienda hacer un corta y pega de estos datos en el formulario):
+
+\begin{itemize}
+  \item Nombre y titulación.
+  \item Nombre de su cuenta en el laboratorio del alumno.
+  \item Nombre de usuario en GitHub.
+  \item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
+  \item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
+  \item URL del vídeo demostración de la funcionalidad básica
+  \item URL del vídeo demostración de la funcionalidad optativa, si se ha realizado funcionalidad optativa
+  \item Cuenta (login) y contraseña de los usuarios que están dados de alta en la aplicación.
+  \item URL de la aplicación desplegada (si es que se ha desplegado)
+\end{itemize}
+
+Asegúrate de que las URLs incluidas en este fichero están adecuadamente escritas en Markdown, de forma que la versión HTML que genera GitHub los incluya como enlaces ``pinchables''.
+
+\end{enumerate}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Notas y comentarios}
+
+La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas.
+
+La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
+
+Los canales (feeds) RSS que produce la aplicación web realizada en la práctica deberán funcionar al menos con el navegador Firefox (considerándolos como canales RSS) disponibles en el laboratorio. Los documentos XML deberán ser correctos desde el punto de vista de la sintaxis XML, y por lo tanto reconocibles por un reconocedor XML, como por ejemplo el del módulo xml.sax de Python. Los documentos JSON generados deberán ser correctos desde el punto de vista de la sintaxis JSON, y por lo tanto reconocibles por un reconocedor JSON, como por ejemplo el del módulo json de Python
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
