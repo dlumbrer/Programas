@@ -886,6 +886,10 @@ Descargar el fichero RSS de BarraPunto\footnote{\url{http://barrapunto.com}}, y 
 \item barrapunto.rss: Fichero con el contenido del canal RSS de BarraPunto en un momento dado.
 \end{itemize}
 
+Repositorio de entrega en GitLab: \\
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/xml-barrapunto}
+
+
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 \subsection{Gestor de contenidos con titulares de BarraPunto}
@@ -909,7 +913,7 @@ Realiza contentDBAppBarraPuntoSQL, con la misma funcionalidad que contentAppBarr
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 \subsection{Gestor de contenidos con titulares de BarraPunto versión Django}
-\label{subsec:contentapp-barrapunto-django}
+\label{subsec:django-cms-barrapunto}
 
 \textbf{Enunciado:}
 
@@ -929,6 +933,9 @@ En particular, puedes implementar la consulta a BarraPunto de una de las siguien
 \end{itemize}
 
 Basta con mostrar por ejemplo los últimos tres o cinco titulares de BarraPunto (cada uno como un enlace a la URL correspondiente).
+
+Repositorio de entrega en  GitLub: \\
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-cms-barrapunto}
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
@@ -1003,6 +1010,11 @@ body {
 
 La página ``/about'' tendrá el contenido que estimes conveniente. Ambos contenidos (el de ``/about'' y el de ``/css/main.css'') se subirán al gestor de contenidos mediante un PUT, igual que cualquier otro contenido.
 
+Explica en el fichero `README.md` del repositorio de entrega cómo has solucionado la práctica.
+
+Repositorio de entrega en GitLab: \\
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-cms-css}
+
 %%-------------------------------------------------------------------------
 %%-------------------------------------------------------------------------
 \subsection{Django cms\_css elaborado}
@@ -1016,6 +1028,9 @@ Modifica tu solución para ``Django cms\_put'' (ejercicio~\ref{subsec:django-cms
 \item Si el recurso está bajo ``/css/'', se almacene tal cual al recibirlo (mediante PUT) y se sirva tal cual (cuando se recibe un GET).
 \item Si el recurso tiene cualquier otro nombre, se almacene de tal forma cuando se reciba (mediante PUT) que el contenido almacenado sea el cuerpo (lo que va en el elemento $<BODY>$) de las páginas que se sirvan (cuando se reciba el GET correspondiente). Para servir las páginas utiliza una plantilla (\emph{template}) que incluya el uso de la hoja de estilo ``/css/main.css'' para manejar la apariencia de todas las páginas.
 \end{itemize}
+
+Repositorio de entrega en GitLab: \\
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-cms-css-2}
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
@@ -1594,8 +1609,8 @@ Repositorio en GitHub para entregar el ejercicio: \\
 
 Realizar un proyecto Django con la misma funcionalidad que ``Django cms\_users\_put'' (ejercicio~\ref{subsec:django-users-put}), pero atendiendo a una nueva familia de recursos: ``/annotated/''. Cualquier recurso que comience con ``/annotated/'' se servirá usando una plantilla, y por lo demás, con la misma funcionalidad que teníamos en ``Django cms\_users\_put'' al recibir un GET para el nombre de recurso.
 
-Repositorio en GitHub para entregar el ejercicio: \\ 
-\url{https://github.com/CursosWeb/X-Serv-15.9-Django-CMS-Templates}.
+%Repositorio en GitHub para entregar el ejercicio: \\ 
+%\url{https://github.com/CursosWeb/X-Serv-15.9-Django-CMS-Templates}.
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -1605,8 +1620,8 @@ Repositorio en GitHub para entregar el ejercicio: \\
 \textbf{Enunciado:}
  Realizar un proyecto Django con la misma funcionalidad que ``Django cms\_templates'' (ejercicio~\ref{subsec:django-templates}), pero atendiendo a una nueva familiar de recursos: ``/edit/''. Cuando se acceda con un GET a un recurso que comience por ``/edit'', la aplicación web devolverá un formulario que permita editarlo (si se detecta un usuario autenticado, y si el nombre de recurso existe como página en la base de datos de la aplicación). Ese formulario tendrá un único campo que se precargará con el contenido de esa página. Si se accede con POST a un recurso que comience por ``/edit/'', se utilizará el valor que venga en él para actualizar la página correspondiente, si el usuario está autenticado y la página existe. Además, volverá a devolver el formulario igual que con el GET, para que el usuario pueda continuar editando si así lo desea.
  
-Repositorio en GitHub: \\
-\url{https://github.com/CursosWeb/X-Serv-15.10-Django-CMS-POST}.
+Repositorio en GitLab: \\
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-cms-post}.
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -1619,8 +1634,8 @@ Realizar el ejercicio ``Django cms\_post'' (ejercicio~\ref{subsec:django-post}) 
 
 Además, se ha de intentar que un cambio en el modelo (p.ej. añadir un campo nuevo) sólo afecte al modelo y a la clase Form derivada del mismo, y pueda realizarse sin modificar ni las vistas ni las plantillas.
 
-Repositorio en GitHub para entregar el ejercicio: \\ 
-\url{https://github.com/CursosWeb/X-Serv-15.11-Django-cms-forms}.
+Repositorio en GitLab para entregar el ejercicio: \\ 
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-cms-forms}.
 
 
 %%----------------------------------------------------------------------------
@@ -1642,7 +1657,7 @@ Utilizando Django y, en la medida que te parezca conveniente, \texttt{feedparser
 
 Los canales de usuarios de Twitter están disponibles en formato RSS mediante el servicio Twitrss en URLs como \url{https://twitrss.me/twitter_user_to_rss/?user=user}, para el usuario \texttt{user}.
 
-Pueden usarse también las bibliotecas \texttt{urllib2} para la descarga de páginas mediante HTTP, y \texttt{urlparse} para manipular URLs (ambos son módulos estándar de Python).
+Pueden usarse también las bibliotecas \texttt{urllib} para la descarga de páginas mediante HTTP, y \texttt{urlparse} para manipular URLs (ambos son módulos estándar de Python).
 
 \textbf{Referencias:}
 
@@ -2127,22 +2142,22 @@ En el formulario de entrega se pide que se justifique por qué se considera func
 \subsection{Entrega de la práctica}
 
 \begin{itemize}
-  \item \textbf{Fecha límite de entrega de la práctica:} viernes, 24 de mayo de 2019 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como jueves por la noche, ya entrado en viernes.}
+  \item \textbf{Fecha límite de entrega de la práctica:} lunes, 20 de mayo de 2019 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como domingo por la noche, ya entrado en lunes.}
        %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
 
-  \item \textbf{Fecha de publicación de notas:} sábado, 25 de mayo de 2019, en la plataforma Moodle.
+  \item \textbf{Fecha de publicación de notas:} jueves, 23 de mayo de 2019, en la plataforma Moodle.
 %{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
 
-  \item \textbf{Fecha de revisión:} lunes, 27 de mayo de 2019, probablemente a las 13:00 (se confirmará en el foro).
+  \item \textbf{Fecha de revisión:} viernes, 24 de mayo de 2019 a las 13:00.
 %{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
 \end{itemize}
 
 La entrega de la práctica consiste en rellenar un formulario (enlazado en el Moodle de la asignatura) y en seguir las instrucciones que se describen a continuación.
 
 \begin{enumerate}
-  \item El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo). Es muy importante que el alumno haya realizado un fork del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
+  \item El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo). Es muy importante que el alumno haya realizado una derivación (fork) del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
 
-\url{https://gitlab.etsit.urjc.es/CursosWeb/X-Serv-Practica-Mitiempo}
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/final-mitiempo/}
 
 Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere. Los que la entreguen podrán ser llamados a realizar también una entrega presencial, que tendrá lugar en la fecha y hora de la revisión. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
 
