@@ -1988,7 +1988,7 @@ Arquitectura general:
 
   \item Para el almacenamiento de datos persistente se usará SQLite3, con tablas definidas en modelos de Django.
 
-  \item Se usará la aplicación Django ``Admin Site'' para crear cuentas a los usuarios en el sistema, y para la gestión general de las bases de datos necesarias. Todas las bases de datos que contenga la aplicación tendrán que ser accesible vía este ``Admin Site''.
+  \item Se usará la aplicación Django ``Admin Site'' para crear cuentas a los usuarios en el sistema, y para la gestión general de las bases de datos necesarias. Todas las bases de datos que contenga la aplicación tendrán que ser accesibles vía este ``Admin Site''.
 
   \item Se utilizarán plantillas Django (a ser posible, una jerarquía de plantillas, para que la práctica tenga un aspecto similar) para definir las páginas que se servirán a los navegadores de los usuarios. Estas plantillas incluirán en todas las páginas al menos:
   \begin{itemize}
@@ -2050,9 +2050,9 @@ La {\bf interfaz pública} contiene los recursos a servir como páginas HTML com
     \item Mostrará un listado de los 10 municipios con más comentarios. Si no hubiera 10 municipios con comentarios, se mostrarán sólo los que tengan comentarios. Para cada municipio, incluirá información sobre:
     \begin{itemize}
     \item su nombre (que será un enlace que apuntará a la URL del municipio en el sitio de AEMET)\footnote{Por ejemplo \url{http://www.aemet.es/es/eltiempo/prediccion/municipios/fuenlabrada-id28058} (donde el identificador ``fuenlabrada-id28058'' puede enconrarse en el docuento JSON con el listado de municipios como campo ``url''}, 
-      \item su altitud, latitud y longitud,
-      \item su previsión de tiempo para mañana: probabilidad de precipitación (0 a 24), temperatura máxima y mínima, y descripción (0 a 24).
-      \item y un enlace, ``Más información'', que apuntará a la página del municipio en la aplicación (ver más adelante).
+    \item su altitud, latitud y longitud,
+    \item su previsión de tiempo para mañana: probabilidad de precipitación (0 a 24), temperatura máxima y mínima, y descripción (0 a 24).
+    \item y un enlace, ``Más información'', que apuntará a la página del municipio en la aplicación (ver más adelante).
     \end{itemize}
    
   \item También se mostrará un listado, en una columna lateral, con enlaces a las páginas personales disponibles. Para cada página personal mostrará el título que le haya dado su usuario (como un enlace a la página personal en cuestión) y el nombre del usuario. Si a una página personal aún no se le hubiera puesto título, este título será ``Página de usuario'', donde ``usuario'' es el identificador de usuario del usuario en cuestión.
@@ -2061,13 +2061,19 @@ La {\bf interfaz pública} contiene los recursos a servir como páginas HTML com
 
   La página principial se ofrecerá también como un documento XML, que incluirá la misma lista de municipios, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL de municipios, concatenando al final \verb|format=xml|.
 
+  La página principal en formato HTML includirá un enlace a la página principal en formato XML (``Descarga como fichero XML'').
+  
   \item /{usuario}: Página personal de un usuario. Si la URL es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará los municipios seleccionados por ese usuario. Para cada municipio se mostrará la misma información que en la página principal. Los municipios deben aparecer en el orden en que los ha seleccionado el usuario (primero el que fue seleccionado más recientemente).
 
   La página de cada usuario se ofrecerá también como un documento XML, que incluirá la lista de municipios seleccionados, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL del usuario, concatenando al final \verb|format=xml|.
 
-  \item /municipios: Página con todos los municipos que han sido seleccionados por algún usuario. Para cada uno de ellos aparecerá sólo el nombre, como un enlace a su página (ver más abajo), y el número de comentarios que se han puesto sobre él. En la parte superior de la página, habrá un formulario que permita filtrar según la temperatura máxima para mañana: se mostrarán solo los municipios que para mañana tengan previsión de temperatura máxima entre las dos que se indiquen, si se indican.
+  La página de cada usuario en formato HTML includirá un enlace a la página de ese mismo usuario en formato XML (``Descarga como fichero XML'').
+
+  \item /municipios: Página con todos los municipos que han sido seleccionados por algún usuario (aunque hayan sido luego ``desseleccionados''. Para cada uno de ellos aparecerá sólo el nombre, como un enlace a su página (ver más abajo), y el número de comentarios que se han puesto sobre él. En la parte superior de la página, habrá un formulario que permita filtrar según la temperatura máxima para mañana: se mostrarán solo los municipios que para mañana tengan previsión de temperatura máxima entre las dos que se indiquen, si se indican.
 
     La página de municipios se ofrecerá también como un documento XML, que incluirá la misma lista de municipios, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL de municipios, concatenando al final \verb|format=xml|.
+
+    La página de municipios en formato HTML includirá un enlace a la página de municipios en formato XML (``Descarga como fichero XML'').
 
   \item /municipios/{id}: Página de un municipio en la aplicación. Mostrará toda la información razonablemente posible del documento XML obtenido de AEMET (en cuanto a predicción para mañana, en el rango 0 a 24 horas), incluyendo también al menos la que se menciona en otros apartados de este enunciado. También se incluirá un enlace a la página de este municipio en el sitio de AEMET. Además, se mostrarán todos los comentarios que se hayan puesto para este municipio. Esta información se actualizará cuando se consulte esta página de un minicipio, y a partir de este momento se mostrará actualizada en cualquier otra página del sitio. La información no se actualizará en ningún otro momento.
  
