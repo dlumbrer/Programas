@@ -2143,7 +2143,6 @@ En el formulario de entrega se pide que se justifique por qué se considera func
   \item Despliegue de la práctica en algún sitio de Internet, de forma que pueda accederse a ella. Por ejemplo, puede considerarse desplegar en un ordenador dedicado (por ejemplo, Raspberry Pi accesible directamente desde Internet), o en servicios como Google Computing Engine\footnote{GCP Engine Free: \url{https://cloud.google.com/free/}} o Heroku\footnote{Heroku Free: \url{https://www.heroku.com/free}}.
 \end{itemize}
 
-
 %%----------------------------------------------------------------------------
 \subsection{Entrega de la práctica}
 
@@ -2209,6 +2208,23 @@ La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio 
 La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
 
 Los canales (feeds) RSS que produce la aplicación web realizada en la práctica deberán funcionar al menos con el navegador Firefox (considerándolos como canales RSS) disponibles en el laboratorio. Los documentos XML deberán ser correctos desde el punto de vista de la sintaxis XML, y por lo tanto reconocibles por un reconocedor XML, como por ejemplo el del módulo xml.sax de Python. Los documentos JSON generados deberán ser correctos desde el punto de vista de la sintaxis JSON, y por lo tanto reconocibles por un reconocedor JSON, como por ejemplo el del módulo json de Python
+
+%%----------------------------------------------------------------------------
+\subsection{Preguntas y respuestas}
+
+A continuación, algunas preguntas relacionadas con el enunciado de esta práctica, junto con sus respuestas:
+
+\begin{itemize}
+\item ¿Puedo guardar en la base de datos los datos referentes a latitud, altitud, etc (datos que no varian nunca) y precipitación, temperatura, descripción, etc y cambiarlos cuando sea necesario (ya que estos si cambian)?
+
+  Pueden almacenarse en tablas en la base de datos los datos correspondientes a poblaciones que han sido seleccionadas por al menos un usuario. En otras palabras, cada vez que un usuario seleccione un municipio, puedes guardar en una tabla en la base de datos los datos sobre ese municipio (includos latitud y longitud). Pero no puedes analizar todos los municipios que hay en el fichero JSON e incorporar su información a la base de datos.
+
+  La información sobre un municipio que puedas almacenar en la base de datos deberá actualizarse cuando se acceda al fichero XML para ese municipio, según indica el enunciado (por ejemplo, porque un usuario selecciona ese municipio, o porque hay un acceso a su página de municipio).
+
+\item Si decido trabajar en la opción de despliegue de la aplicación, ¿dónde puedo realizar este despliegue?
+
+  El despliegue puede realizarse en caulquier ordenador que esté conectado permanentemente a Internet durante el periodo de correción, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Intener, adecaudamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), Heroku (instrucciones\footnote{Heroku Deploying with Git:\\ \url{https://devcenter.heroku.com/categories/deploying-with-git}}, características\footnote{Heroku Free Dyno Hours:\\ \url{https://devcenter.heroku.com/articles/free-dyno-hours}}) o PythonAmywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}).
+\end{itemize}
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
