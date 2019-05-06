@@ -2215,6 +2215,10 @@ Los canales (feeds) RSS que produce la aplicación web realizada en la práctica
 A continuación, algunas preguntas relacionadas con el enunciado de esta práctica, junto con sus respuestas:
 
 \begin{itemize}
+\item ¿Es necesario utilizar los mecanismos provistos por Django para el control de sesiones y autenticación?
+
+  En principio, esa es la solución recomendada. El principal problema suele ser asegurarse de que cuaquier mecanismo alternativo funciona al menos tan bien como el de Django, lo que no es en general trivial. De todas formas, salvo muy buenos motivos, la aplicación es una aplicación Django, y por lo tanto cuantas más facilidades de Django se usen (bien usadas), mejor.
+  
 \item ¿Puedo guardar en la base de datos los datos referentes a latitud, altitud, etc (datos que no varian nunca) y precipitación, temperatura, descripción, etc y cambiarlos cuando sea necesario (ya que estos si cambian)?
 
   Pueden almacenarse en tablas en la base de datos los datos correspondientes a poblaciones que han sido seleccionadas por al menos un usuario. En otras palabras, cada vez que un usuario seleccione un municipio, puedes guardar en una tabla en la base de datos los datos sobre ese municipio (includos latitud y longitud). Pero no puedes analizar todos los municipios que hay en el fichero JSON e incorporar su información a la base de datos.
