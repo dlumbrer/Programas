@@ -2225,6 +2225,17 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
 
   La información sobre un municipio que puedas almacenar en la base de datos deberá actualizarse cuando se acceda al fichero XML para ese municipio, según indica el enunciado (por ejemplo, porque un usuario selecciona ese municipio, o porque hay un acceso a su página de municipio).
 
+\item Los archivos CSS que pueden modificar los usuarios, ¿dónde y cómo debemos guardarlos?
+
+  La forma recomendada de hacerlo es mediante plantillas:
+
+  \begin{itemize}
+  \item En el directorio de plantillas incluirías una para la hoja CSS del sitio. Esa plantilla tendría como variables de plantilla los valores que quieras que los usuarios puedan cambiar (color de tipo de letra, tamaño de tipo de letra, etc.).
+  \item Además, para cada usuario, tendrás una tabla donde se almacenarán los valores para ese usuario (normalmente, una fila de la tabla por usuario).
+  \item Tendrás una vista en views.py que se encargará de generar la hoja CSS a partir de la plantilla. Esa vista es la que comprobará si la petición que está atendiendo corresponde a un usuario (en cuyo caso tendrá que obtener los valores para ese usuario de la tabla anterior), o no (en cuyo caso usará valores por defecto). Con los valores que obtenga, generará la hoja CSS a partir de la plantilla anterior.
+  \item Por último, en urls.py tendrás una línea para indicar que si te piden el recurso que sirve la hoja de estilo, llamas a la vista anterior.
+  \end{itemize}
+  
 \item Si decido trabajar en la opción de despliegue de la aplicación, ¿dónde puedo realizar este despliegue?
 
   El despliegue puede realizarse en caulquier ordenador que esté conectado permanentemente a Internet durante el periodo de correción, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Intener, adecaudamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), Heroku (instrucciones\footnote{Heroku Deploying with Git:\\ \url{https://devcenter.heroku.com/categories/deploying-with-git}}, características\footnote{Heroku Free Dyno Hours:\\ \url{https://devcenter.heroku.com/articles/free-dyno-hours}}) o PythonAmywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}).
