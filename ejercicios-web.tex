@@ -2059,19 +2059,19 @@ La {\bf interfaz pública} contiene los recursos a servir como páginas HTML com
   \item Tambień se mostrará un botón, que al pulsarlo se verán sólo los municipios con probabilidad de precipitacion mayor que cero. Si se vuelve a pulsar, se verán los que tengan ptobabilidad de precipitación igual a cero. Si se vuelve a pulsar una vez más, se volverán a ver todos los municipios.
    \end{enumerate}
 
-  La página principial se ofrecerá también como un documento XML, que incluirá la misma lista de municipios, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL de municipios, concatenando al final \verb|format=xml|.
+  La página principial se ofrecerá también como un documento XML, que incluirá la misma lista de municipios, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL de municipios, concatenando al final \verb|?format=xml|.
 
   La página principal en formato HTML includirá un enlace a la página principal en formato XML (``Descarga como fichero XML'').
   
   \item /{usuario}: Página personal de un usuario. Si la URL es ``/usuario'', es que corresponde al usuario ``usuario''. Mostrará los municipios seleccionados por ese usuario. Para cada municipio se mostrará la misma información que en la página principal. Los municipios deben aparecer en el orden en que los ha seleccionado el usuario (primero el que fue seleccionado más recientemente).
 
-  La página de cada usuario se ofrecerá también como un documento XML, que incluirá la lista de municipios seleccionados, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL del usuario, concatenando al final \verb|format=xml|.
+  La página de cada usuario se ofrecerá también como un documento XML, que incluirá la lista de municipios seleccionados, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL del usuario, concatenando al final \verb|?format=xml|.
 
   La página de cada usuario en formato HTML includirá un enlace a la página de ese mismo usuario en formato XML (``Descarga como fichero XML'').
 
   \item /municipios: Página con todos los municipos que han sido seleccionados por algún usuario (aunque hayan sido luego ``desseleccionados''. Para cada uno de ellos aparecerá sólo el nombre, como un enlace a su página (ver más abajo), y el número de comentarios que se han puesto sobre él. En la parte superior de la página, habrá un formulario que permita filtrar según la temperatura máxima para mañana: se mostrarán solo los municipios que para mañana tengan previsión de temperatura máxima entre las dos que se indiquen, si se indican.
 
-    La página de municipios se ofrecerá también como un documento XML, que incluirá la misma lista de municipios, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL de municipios, concatenando al final \verb|format=xml|.
+    La página de municipios se ofrecerá también como un documento XML, que incluirá la misma lista de municipios, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL de municipios, concatenando al final \verb|?format=xml|.
 
     La página de municipios en formato HTML includirá un enlace a la página de municipios en formato XML (``Descarga como fichero XML'').
 
@@ -2147,13 +2147,13 @@ En el formulario de entrega se pide que se justifique por qué se considera func
 \subsection{Entrega de la práctica}
 
 \begin{itemize}
-  \item \textbf{Fecha límite de entrega de la práctica:} lunes, 20 de mayo de 2019 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como domingo por la noche, ya entrado en lunes.}
+  \item \textbf{Fecha límite de entrega de la práctica:} viernes, 25 de mayo de 2019 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como jueves por la noche, ya entrado en viernes.}
        %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
 
-  \item \textbf{Fecha de publicación de notas:} jueves, 23 de mayo de 2019, en la plataforma Moodle.
+  \item \textbf{Fecha de publicación de notas de prácticas:} por definir, en el aula virtual.
 %{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
 
-  \item \textbf{Fecha de revisión:} viernes, 24 de mayo de 2019 a las 13:00.
+  \item \textbf{Fecha de revisión de prácticas:} por definir.
 %{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
 \end{itemize}
 
@@ -2239,6 +2239,10 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
 \item Si decido trabajar en la opción de despliegue de la aplicación, ¿dónde puedo realizar este despliegue?
 
   El despliegue puede realizarse en caulquier ordenador que esté conectado permanentemente a Internet durante el periodo de correción, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Intener, adecaudamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), Heroku (instrucciones\footnote{Heroku Deploying with Git:\\ \url{https://devcenter.heroku.com/categories/deploying-with-git}}, características\footnote{Heroku Free Dyno Hours:\\ \url{https://devcenter.heroku.com/articles/free-dyno-hours}}) o PythonAmywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}).
+
+\item Para las URLs de los documentos XML que ofrece MiTiempo, ¿puedo usar la terminación \verb|format=xml| en lugar de \verb|?format=xml| ?
+
+  Sí. Debido a un error, los primeros enunciados mencionaban la terminación \verb|format=xml| para estos ficheros. Por ello, el alumno puede elegir entre servirlos con ese nombre de recurso, o con el que indica la versión final del enunciado, \verb|?format=xml|. Si aún no se ha realizado la implementación de ninguna de las dos formas, se recomienda hacerlo como indica el enunciado definitivo, porque eso permitirá utilizar la misma vista (view) que se utiliza para el documento HTML correspondiente, simplemente comprobando si la petición incluye una ``query string'' (utilizando los mecanismos pertinentes de Django). Pero como se ha dicho, si el alumno prefiere implementarlo de la otra forma, se considerara de la misma manera.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
