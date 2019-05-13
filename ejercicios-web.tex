@@ -2147,13 +2147,13 @@ En el formulario de entrega se pide que se justifique por qué se considera func
 \subsection{Entrega de la práctica}
 
 \begin{itemize}
-  \item \textbf{Fecha límite de entrega de la práctica:} viernes, 25 de mayo de 2019 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como jueves por la noche, ya entrado en viernes.}
+  \item \textbf{Fecha límite de entrega de la práctica:} viernes, 24 de mayo de 2019 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como jueves por la noche, ya entrado en viernes.}
        %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
 
-  \item \textbf{Fecha de publicación de notas de prácticas:} por definir, en el aula virtual.
+  \item \textbf{Fecha de publicación de notas de prácticas:} sábado 25 de mayo, en el aula virtual.
 %{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
 
-  \item \textbf{Fecha de revisión de prácticas:} por definir.
+  \item \textbf{Fecha de revisión de prácticas:} martes 28 de mayo, a las 12:00. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
 %{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
 \end{itemize}
 
@@ -2235,6 +2235,12 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
   \item Tendrás una vista en views.py que se encargará de generar la hoja CSS a partir de la plantilla. Esa vista es la que comprobará si la petición que está atendiendo corresponde a un usuario (en cuyo caso tendrá que obtener los valores para ese usuario de la tabla anterior), o no (en cuyo caso usará valores por defecto). Con los valores que obtenga, generará la hoja CSS a partir de la plantilla anterior.
   \item Por último, en urls.py tendrás una línea para indicar que si te piden el recurso que sirve la hoja de estilo, llamas a la vista anterior.
   \end{itemize}
+
+\item ¿Qué partes de la página tiene que modificar el CSS ``customizable'' del usuario? En el enunciado de la práctica dice ``se usarán hojas CSS para cambiar al menos el tamaño y color de la letra, y el color del fondo, para los elementos marcados con un id, tal y como se especifica en el apartado anterior''. En el ``apartado anterior'' lo que se especifica es que el banner, caja de login, menú y pie de página tienen que ir cada uno en un elemento div con una id. ¿Significa esto que el CSS que personaliza el usuario se aplica solo a esos cuatro elementos, o aplica a toda la página? ¿En el caso de ser a cada uno de los cuatro elementos, debería el usuario poder modificar el color y letra de cada uno de ellos por separado, o aplicaría para los cuatro el mismo estilo?
+
+  Creemos que el enunciado no es ambiguo. Debe haber, por un lado, estilos CSS que afecten, como mínimo, al tamaño y color de la letra, y al color de fondo, de los elementos que es obligatorio marcar con un id, según indica el enunciado (efectivamente, el banner, la caja de login, etc.) Pueden llevar todos los mismos valores, o valores diferentes, como quiera quien realice la práctica, pero los estilos tienen que estar aplicados específicamente a esos ids.
+
+  Por otro lado, el usuario puede especificar unos cuantos valores para toda la página (según indica el enunciado: ``Un formulario para cambiar el estilo CSS de todo el sitio para ese usuario. Bastará con que se pueda cambiar el tamaño y el color de la letra y el color de fondo. Si se cambian estos valores, quedará cambiado el documento CSS que utilizarán todas las páginas del sitio para este usuario.`` Esto es, al indicar en el formulario valores para lo que puede personalizar el usuario (como mínimo el color de la letra y el color de fondo) estos valores se cambiarán para todo el sitio. Este color de letra y de fondo pueden aplicarse a todos los elementos que se muestren en el sitio, o sólo a algunos de ellos (por ejemplo, a todos los que no se ven afectados por los id mencionados anteriormente), según quiera el alumno. Lo importante es que el cambio afecte, en los elementos que se vean afectados, a todas las páginas del sitio. Naturalmente, si se decide cambiar por ejemplo la apariencia de todos los elementos del sitio, eso afectará también a los que tengan id Por eso quizás no sea una buena idea cambiar también estos elementos, desde el punto de vista estético, dado que quizás sea mejor que aparezcan con u  color de letra y/o de fondo diferente. Pero eso queda como decisión del alumno.
   
 \item Si decido trabajar en la opción de despliegue de la aplicación, ¿dónde puedo realizar este despliegue?
 
