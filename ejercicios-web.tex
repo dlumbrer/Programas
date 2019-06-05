@@ -2049,7 +2049,7 @@ La {\bf interfaz pública} contiene los recursos a servir como páginas HTML com
   \begin{enumerate}
     \item Mostrará un listado de los 10 municipios con más comentarios. Si no hubiera 10 municipios con comentarios, se mostrarán sólo los que tengan comentarios. Para cada municipio, incluirá información sobre:
     \begin{itemize}
-    \item su nombre (que será un enlace que apuntará a la URL del municipio en el sitio de AEMET)\footnote{Por ejemplo \url{http://www.aemet.es/es/eltiempo/prediccion/municipios/fuenlabrada-id28058} (donde el identificador ``fuenlabrada-id28058'' puede enconrarse en el docuento JSON con el listado de municipios como campo ``url''}, 
+    \item su nombre (que será un enlace que apuntará a la URL del municipio en el sitio de AEMET)\footnote{Por ejemplo \url{http://www.aemet.es/es/eltiempo/prediccion/municipios/fuenlabrada-id28058} (donde el identificador ``fuenlabrada-id28058'' puede encontrarse en el docuento JSON con el listado de municipios como campo ``url''}, 
     \item su altitud, latitud y longitud,
     \item su previsión de tiempo para mañana: probabilidad de precipitación (0 a 24), temperatura máxima y mínima, y descripción (0 a 24).
     \item y un enlace, ``Más información'', que apuntará a la página del municipio en la aplicación (ver más adelante).
@@ -2260,7 +2260,8 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
 La práctica final para la convocatoria de junio de 2019 será la misma que la descrita para la convocatoria de mayo de 2019, con las siguientes consideraciones:
 
 \begin{itemize}
-  \item 
+  \item En vez de ``\emph{La página principal se ofrece rá también como un documento XML, que incluirá la misma lista de municipios, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL de municipios, concatenando al final} \verb|?format=xml|' ahora será ``\emph{La página principal se ofrecerá también como un documento JSON, que incluirá la misma lista de municipios, y un enlace al fichero XML que proporciona para cada uno de ellos la AEMET. Este documento se ofrecerá cuando se pida la URL de municipios, concatenando al final} \verb|?format=json|''.
+  \item En vez de ``\emph{Mostrará un listado de los 10 municipios con más comentarios. Si no hubiera 10 municipios con comentarios, se mostrarán sólo los que tengan comentarios}'' ahora será ``\emph{Mostrará un listado de los 10 municipios más seleccionados por los usuarios. Si no hubiera 10 municipios seleccionados, se mostrarán sólo los que se hayan seleccionado}''.
 \end{itemize}
 
 Las fechas de entrega, publicación y revisión de esta convocatoria quedan como siguen:
