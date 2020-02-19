@@ -286,6 +286,42 @@ Es importante hacer énfasis en la solución en la estructura de la aplicación,
 
 %%--------------------------------------------------------------------------
 %%--------------------------------------------------------------------------
+\subsection{cURL básico}
+\label{subsec:curl-basico}
+
+\textbf{Enunciado:}
+
+Prueba el ejercicio ``Contador simple'' (\ref{subsec:contador-simple}) con el programa \verb|curl|. Utilizalo para ver el documento que se recibe de tu servidor, para ver las cabeceras que te envía, para ver tanto cabeceras (de ida y vuelta) como cabeceras...
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item \href{https://linuxacademy.com/guide/13852-understanding-curl-and-http-headers/}{Understanding CURL and HTTP Headers} (tutorial)
+\item \href{https://curl.haxx.se/}{cURL} (sitio web)
+\item \href{https://curl.haxx.se/book.html}{Everything curl} (libro)
+\end{itemize}
+
+\textbf{Solución:}
+
+\begin{verbatim}
+curl -XGET http://localhost:1234/
+curl -XGET -I http://localhost:1234/
+curl -XGET -Iv http://localhost:1234/
+\end{verbatim}
+
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Depurador básico}
+\label{subsec:depurador-basico}
+
+\textbf{Enunciado:}
+
+Prueba el ejercicio ``Contador simple'' (\ref{subsec:contador-simple}) con el depurador de Python, por ejemplo, ejecutándolo desde PyCharm.
+
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
 \subsection{Contador simple con varios navegadores}
 \label{subsec:contador-simple-varios}
 
