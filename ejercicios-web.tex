@@ -1338,7 +1338,9 @@ Entender cómo funciona la redirección, y cómo reacciona un navegador ante ell
 
 \textbf{Enunciado:}
 
-Construye una aplicación web que suma en dos fases. En la primera, invocamos una URL del tipo \url{http://sumador.edu/5}, aportando el primer sumando (el número que aparece como nombre de recurso). En la segunda, invocamos una URL similar, proporcionando el segundo sumando. La aplicación nos devuelve el resultado de la suma. En esta primera versión, suponemos que la aplicación es usada desde un solo navegador, y que las URLs siempre le llegan ``bien formadas''.
+{\bf a) En una fase:} Construye una aplicación web que suma en una fases. Invocamos una URL del tipo \url{http://localhost:1234/sumar/1/2}, aportando la operación, el primer y el segundo operando. La aplicación nos devuelve el resultado de la suma.
+
+{\bf b) En dos fases: } Construye una aplicación web que suma en dos fases. En la primera, invocamos una URL del tipo \url{http://localhost:1234/5}, aportando el primer sumando (el número que aparece como nombre de recurso). En la segunda, invocamos una URL similar, proporcionando el segundo sumando. La aplicación nos devuelve el resultado de la suma. En esta primera versión, suponemos que la aplicación es usada desde un solo navegador, y que las URLs siempre le llegan ``bien formadas''.
 
 Repositorio de inicio: \url{https://gitlab.etsit.urjc.es/grex/x-serv-14.5-sumador-simple}
 
@@ -1384,7 +1386,7 @@ Explorar el sistema de clases de Python, y a la vez construir la estructura bás
 
 Realiza el servidor especificado en el ejercicio ``Aplicación web generadora de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-urls-aleatorias}) utilizando el esquema de clases definido en el ejercicio ``Clase servidor de aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis}).
 
-Repositorio de inicio: \url{https://github.com/CursosWeb/X-Serv-14.7-ServURLAleat}
+Repositorio de inicio: \url{https://gitlab.etsit.urjc.es/grex/x-serv-14.7-servurlaleat}
 
 %%------------------------------------------------------------------------------------
 %%------------------------------------------------------------------------------------
@@ -1395,7 +1397,7 @@ Repositorio de inicio: \url{https://github.com/CursosWeb/X-Serv-14.7-ServURLAlea
 
 Realizar el servidor especificado en el ejercicio ``Sumador simple'' (ejercicio~\ref{subsec:sumador-simple}) utilizando el esquema de clases definido en el ejercicio ``Clase servidor de aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis}).
 
-Repositorio de inicio: \url{https://github.com/CursosWeb/X-Serv-14.8-Servidor-Aplicaciones-Sumador}
+Repositorio de inicio: \url{https://gitlab.etsit.urjc.es/grex/X-Serv-14.8-Servidor-Aplicaciones-Sumador}
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -1410,7 +1412,7 @@ Cada una de estas \emph{aplis} será a su vez una instancia de una clase con ori
 
 Para especificar qué \emph{apli} se activará cuando llegue una invocación a un nombre de recurso, se creará un diccionario donde para cada prefijo se indicará la instancia de \emph{apli} a invocar. Este diccionario se pasará como parámetro al instanciar la clase que sirve varias aplicaciones.
 
-Repositorio de inicio: \url{https://github.com/CursosWeb/X-Serv-14.9-ServVariasApps}
+Repositorio de inicio: \url{https://gitlab.etsit.urjc.es/grex/X-Serv-14.9-ServVariasApps}
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -1428,7 +1430,7 @@ Utilizando la clase creada para ``Clase servidor de varias aplicaciones'' (ejerc
 \item Si se invocan recursos que comiencen por ``/aleat/'', se proporciona la funcionalidad de ``Aplicación web generadora de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-urls-aleatorias}).
 \end{itemize}
 
-Repositorio de inicio: \url{https://github.com/CursosWeb/X-Serv-14.10-CuatroAplis}
+Repositorio de inicio: \url{https://gitlab.etsit.urjc.es/grex/X-Serv-14.10-CuatroAplis}
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -1521,8 +1523,8 @@ Recuerda que sólo tendrás que modificar los siguientes ficheros: \texttt{setti
 
 Realizar una sistema de gestión de contenidos muy simple con Django. Corresponderá con la funcionalidad de ``contentApp'' (ejercicio~\ref{subsec:contentapp}), almacenando los contenidos en una base de datos. La aplicación Django se ha de llamar \texttt{cms}.
 
-El ejercicio ha de entregarse en el siguiente repositorio en GitHub: 
-\url{https://github.com/CursosWeb/X-Serv-15.5-Django-CMS}. El repositorio contiene
+El ejercicio ha de entregarse en el siguiente repositorio en GitLab: 
+\url{https://gitlab.etsit.urjc.es/grex/X-Serv-15.5-Django-CMS}. El repositorio contiene
 un archivo check.py para comprobar que se han entregado todos los fichero necesarios (básicamente todos los ficheros con código Python del proyecto (\texttt{manage.py} y los contenidos en el directorio \texttt{myproject} y de la aplicación en \texttt{cms}, así como la base de datos en un fichero \texttt{db.sqlite3}), además de comprobar que el código en
 \texttt{views.py} sigue con las reglas de estilo de Python (PEP8).
 
@@ -1545,8 +1547,8 @@ Realizar una sistema de gestión de contenidos muy simple con Django. Correspond
 
 Para realizar este ejercicio, consultar el manual de Django, donde explica cómo se comporta el objeto HTTPRequest, que es siempre primer argumento en los métodos que estamos definiendo en \texttt{views.py}. En particular, nos interesarán sus atributos ``method'' (que sirve para saber si nos está llegando un GET o un PUT) y ``body'', que nos da acceso a los datos (cuerpo) de la petición. A pesar de su nombre, este último atributo tiene esos datos tanto si la petición es un POST como si es un PUT. 
 
-El ejercicio ha de entregarse en el siguiente repositorio en GitHub: 
-\url{https://github.com/CursosWeb/X-Serv-15.6-Django-CMS_PUT}. El repositorio contiene
+El ejercicio ha de entregarse en el siguiente repositorio en GitLab: 
+\url{https://gitlab.etsit.urjc.es/grex/X-Serv-15.6-Django-CMS_PUT}. El repositorio contiene
 un archivo check.py para comprobar que se han entregado todos los fichero necesarios (básicamente todos los ficheros con código Python del proyecto (\texttt{manage.py} y los contenidos en el directorio \texttt{myproject} y de la aplicación en \texttt{cms}, así como la base de datos en un fichero \texttt{db.sqlite3}), además de comprobar que el código en
 \texttt{views.py} sigue con las reglas de estilo de Python (PEP8).
 
@@ -1596,8 +1598,8 @@ Realizar un proyecto Django con la misma funcionalidad que ``Django cms\_put'', 
 
 Realizar un proyecto Django con la misma funcionalidad que ``Django cms\_users'' (ejercicio~\ref{subsec:django-users}), tratando de que el proceso de login y logout sea lo más razonable posible e incluyendo la funcionalidad de que sólo los usuarios que estén autenticados pueden cambiar el contenido de cualquier página, mientras que los que no lo están sólo pueden ver las páginas (funcionalidad similar a la de ``Gestor de contenidos con usuarios'').
 
-Repositorio en GitHub para entregar el ejercicio: \\ 
-\url{https://github.com/CursosWeb/X-Serv-15.8-CmsUsersPut}.
+Repositorio en GitLab para entregar el ejercicio: \\ 
+\url{https://gitlab.etsit.urjc.es/grex/X-Serv-15.8-CmsUsersPut}.
 
 
 %%----------------------------------------------------------------------------
@@ -1671,8 +1673,8 @@ Pueden usarse también las bibliotecas \texttt{urllib} para la descarga de pági
 \end{itemize}
 
 
-Repositorio en GitHub para entregar el ejercicio: \\ 
-\url{https://github.com/CursosWeb/X-Serv-15.12-Django-feedexpander}.
+Repositorio en GitLab para entregar el ejercicio: \\ 
+\url{https://gitlab.etsit.urjc.es/grex/X-Serv-15.12-Django-feedexpander}.
 
 
 %%----------------------------------------------------------------------------
