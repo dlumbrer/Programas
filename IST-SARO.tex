@@ -249,12 +249,12 @@ Invocaciones a aplicaciones web desde aplicaciones web. Servicios web como un co
 \subsubsection{Sesión del 10 de marzo (2 horas)}
 
 \begin{itemize}
-\item \textbf{Discusión de ejercicio:} ``Cache de contenidos'' (ejercicio~\ref{subsec:cache-contenidos}). \\
-  Trabajo en grupos y discusión de los detalles del ejercicio.
-  Repo GitLab: \url{https://gitlab.etsit.urjc.es/CursosWeb/X-Serv-App-Cache}
+%\item \textbf{Discusión de ejercicio:} ``Cache de contenidos'' (ejercicio~\ref{subsec:cache-contenidos}). \\
+%  Trabajo en grupos y discusión de los detalles del ejercicio.
+%  Repo GitLab: \url{https://gitlab.etsit.urjc.es/CursosWeb/X-Serv-App-Cache}
+\item \textbf{Discusión de ejercicio:} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).
 \item \textbf{Presentación:} Arquitectura REST (2)
 \item \textbf{Material:} Transparencias, tema ``REST''
-\item \textbf{Discusión de ejercicio:} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).
 \end{itemize}
 
 
@@ -287,13 +287,18 @@ Invocaciones a aplicaciones web desde aplicaciones web. Servicios web como un co
 Explicación del patrón de diseño ``modelo-vista-controlador''.
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 20 de marzo (2 horas)}
+\subsubsection{Sesión del 17 de marzo (2 horas)}
 
 \begin{itemize}
+\item \textbf{Presentación:} ``Tres implementaciones de una aplicación web simple: Counter''. \\
+  Comparación de tres formas de implementar una aplicación web muy sencilla, identificando los componentes y estructuras que se repiten, con el objetivo de ver cómo cuando pasamos a Django seguimos construyendo el mismo tipo de apicaciones, aunque el marco de programación nos proporcione ya muchos elementos que no tenemos que construir.
+\item \textbf{Código:} Programas \verb|counter-server-1.py| (directorio \verb|Python-Web/counter|, \verb|counterapp.py| (directorio \verb|Python-Web/http-server-classes/counterapp.py|) y projecto Django \verb|django-counter| (directorio \verb|Python-Django|).
+\item \textbf{Videos:} ``Implementación de aplicaciones web: Counter Server'', ``Implementación de aplicaciones web: Counter WebApp'', ``Implementación de aplicaciones web: Counter Django''.
 \item \textbf{Presentación:} ``Modelo-vista-controlador''.
 \item \textbf{Material:} Transparencias ``Modelo-vista-controlador''.
 \item \textbf{Presentación:} ``Componentes de aplicaciones Django y MVC''.
- Repaso de los componentes principales de una aplicación Django y su relación con el patrón modelo-vista-controlador.
+  Repaso de los componentes principales de una aplicación Django y su relación con el patrón modelo-vista-controlador.
+\item \textbf{Video:} ``Arquitectura Modelo-Vista-Controlador''
 \end{itemize}
 
 %%----------------------------------------------------------------
@@ -303,25 +308,40 @@ Explicación del patrón de diseño ``modelo-vista-controlador''.
 Uso de XML en aplicaciones web.
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 27 de marzo (2 horas)}
+\subsubsection{Sesión del 26 de marzo (2 horas)}
 
 \begin{itemize}
-\item \textbf{Presentación:} ``Introducción a XML''. \\
- Introducción a XML, sintaxis básica, formas de especificar gramáticas, reconocedores SAX y DOM.
-\item \textbf{Presentación:} ``Introducción a XML''. \\
-Usos de XML, canales semánticos usando RSS y similares. Complementos de XML, JSON.
+\item \textbf{Presentación:} ``XML: Conceptos fundamentales''. \\
+  Introducción a XML, sintaxis básica, equivalencia con el árbol XML correspondiente a un documento.
+\item \textbf{Video:} ``XML: Conceptos fundamentales''.
+\item \textbf{Presentación:} ``XML: Lenguajes de definición de vocavularios XML''. \\
+  Formas de especificar vocabularios XML, ejemplo de DTD simple.
+\item \textbf{Video:} ``XML: Lenguajes de definición de vocavularios XML''.
+\item \textbf{Presentación:} ``XML: Módulos habituales para trabajar con XML desde lenguajes de programación''. \\
+  Reconocedores SAX y DOM, y su uso en aplicaciones web.
+\item \textbf{Video:} ``XML: Módulos habituales para trabajar con XML desde lenguajes de programación''.
+\item \textbf{Presentación:} ``XML: Usos en aplicaciones web''. \\
+  Usos habituales de XML en aplicaciones web, incluyendo el DOM de los navegadores y los canales RSS.
+\item \textbf{Video:} ``XML: Usos en aplicaciones web''.
+\item \textbf{Presentación:} ``JSON (JavaScript Object Nottion)''. \\
+  JSON como formato de intercambio de datos en aplicaciones web.
+\item \textbf{Video:}``JSON (JavaScript Object Nottion)''.
 \item \textbf{Material:} Transparencias ``Introducción a XML''.
-\item \textbf{Ejercicio (discusión en clase):} ``Chistes XML'' (ejercicio~\ref{subsec:xml-chistes}).
+\item \textbf{Presentación:} ``XML y JSON: Ejemplos reales''. \\
+  Ejemplo de canal XML de YouTube y documento JSON de GitLab.
+\item \textbf{Video:}``XML y JSON: Ejemplos reales''.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 3 de abril (2 horas)}
+\subsubsection{Sesión del 2 de abril (2 horas)}
 
 \begin{itemize}
-\item \textbf{Ejercicio (entrega en GitLab):} ``Titulares de BarraPunto'' (ejercicio~\ref{subsec:xml-barrapunto}) \\
-  Entrega recomendada: antes del 11 de abril.
-\item \textbf{Ejercicio (entrega en GitLab):} ``Gestor de contenidos con titulares de BarraPunto versión Django'' (ejercicio~\ref{subsec:django-cms-barrapunto}) \\
-  Entrega recomendada: antes del 11 de abril.
+\item \textbf{Ejercicio (discusión en clase):} ``Chistes XML'' (ejercicio~\ref{subsec:xml-chistes}).
+\item \textbf{Ejercicio (discusión en clase):} ``Videos en canal de YouTube'' (ejercicio~\ref{subsec:xml-youtube}).
+\item \textbf{Ejercicio (discusión en clase):} ``Videos en canal de YouTube (con descarga)'' (ejercicio~\ref{subsec:xml-youtube-descarga}).
+\item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (simple)'' (ejercicio~\ref{subsec:django-cms-youtube})
+\item \textbf{Ejercicio (entrega en GitLab):} ``Gestor de contenidos con videos de YouTube (2)'' (ejercicio~\ref{subsec:django-cms-youtube-2}) \\
+  Repositorio: \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-youtube}
 \end{itemize}
 
 %%----------------------------------------------------------------

@@ -928,12 +928,20 @@ Repositorio de entrega en GitLab: \\
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
-\subsection{Videos en canal de Youtube}
-\label{subsec:canal-youtube}
+\subsection{Videos en canal de YouTube}
+\label{subsec:xml-youtube}
 
 \textbf{Enunciado:}
 
-Descargar el fichero RSS con los videos del canal CursosWeb de Youtube\footnote{\url{https://www.youtube.com/channel/UC300utwSVAYOoRLEqmsprfg}}, y construir un programa que produzca como salida sus títulos en una página HTML. Si se carga esa página en un navegador,  picando sobre un titular, el navegador deberá cargar la página de Youtube con el video correspondiente. Como base puede usarse lo aprendido estudiando los programas xml-parser-jokes.py y xml-parser-barrapunto.py.
+Descargar el fichero RSS con los videos del canal CursosWeb de Youtube\footnote{\url{https://www.youtube.com/channel/UC300utwSVAYOoRLEqmsprfg}}, y construir un programa que produzca como salida sus títulos en una página HTML. Si se carga esa página en un navegador,  picando sobre un titular, el navegador deberá cargar la página de Youtube con el video correspondiente. Como base puede usarse lo aprendido estudiando el programa \verb|xml-parser-jokes.py|.
+
+\textbf{Ejemplo de ejecución:}
+
+Al ser ejecutado el programa, producirá la página HTML descrita anteriormente. Por lo tanto, podemos redirigir la salida estándar el programa a un fichero, que podrá ser visualizado mediante un navegador:
+
+\begin{verbatim}
+programa > pagina.html
+\end{verbatim}
 
 \textbf{Material:}
 
@@ -943,9 +951,31 @@ Descargar el fichero RSS con los videos del canal CursosWeb de Youtube\footnote{
 \item barrapunto.rss: Fichero con el contenido del canal RSS de BarraPunto en un momento dado.
 \end{itemize}
 
-%Repositorio de entrega en GitLab: \\
-%\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/xml-barrapunto}
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Videos en canal de YouTube (con descarga)}
+\label{subsec:xml-youtube-descarga}
 
+\textbf{Enunciado:}
+
+Realizar un programa con la funcionalidad descrita en ``Videos en canal de Youtube'' (ejercicio~\ref{subsec:xml-youtube}), pero realizanda la descarga del canal desde YouTube. El programa admitirá un único argumento, que será un identificador de canal de YouTube, y producirá como salida estándar la página HTML que producía el ejercicio mencionado anteriormente.
+
+\textbf{Ejemplo de ejecución:}
+
+Al ser ejecutado el programa, producirá la página HTML descrita anteriormente. Por lo tanto, podemos redirigir la salida estándar el programa a un fichero, que podrá ser visualizado mediante un navegador:
+
+\begin{verbatim}
+programa UC300utwSVAYOoRLEqmsprfg > pagina.html
+\end{verbatim}
+
+\textbf{Material:}
+
+\begin{itemize}
+\item Módulo urllib de Python: \\
+  \url{https://docs.python.org/3/library/urllib.html}
+\item Tutorial sobre urllib de Python: \\
+  \url{https://pythonspot.com/urllib-tutorial-python-3/}
+\end{itemize}
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
@@ -993,6 +1023,86 @@ Basta con mostrar por ejemplo los últimos tres o cinco titulares de BarraPunto 
 
 Repositorio de entrega en  GitLub: \\
 \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-cms-barrapunto}
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Gestor de contenidos con videos de YouTube (simple)}
+\label{subsec:django-cms-youtube}
+
+\textbf{Enunciado:}
+
+Realiza una aplicación Django que utilice parte de la funcionalidad de ``Django cms'' (ejercicio~\ref{subsec:django-cms}) para construir un archivador de videos de un canal Youtube. Para ello, en el recurso ``/'', la aplicación ofrecerá, como documento HTML, dos listados:
+
+\begin{itemize}
+\item Listado de videos seleccionados
+\item Listado de videos seleccionables
+\end{itemize}
+
+Cualquier otro recurso devolverá una página de error.
+
+El listado de videos seleccionables incluirá un listado de todos los videos del canal, junto con un botón ``Seleccionar'' a su lado. Si se pulsa el botón de ``Seleccionar'' para un video, se añadirá éste al listado de videos seleccionados.
+
+El listado de videos seleccionados, que estará vacío inicialmente, incluirá los videos que hayan sido seleccionados, según se indica anteriormente. Junto a cada video, habrá un botón ``Eliminar'', que quitará el video del listado de videos seleccionados.
+
+Un video dado aparecerá sólo en uno de los dos listados.
+
+Para cada video, aparecerá su título, y un enlace al video en cuestión, tanto en el listado de seleccionables como de seleccionados.
+
+La aplicación funcionará cargando el listado del canal cuando arranque, a partir del listado XML de ese canal. Puede usarse el canal ``CursosWeb'' como canal con el que funcionará la aplicación:
+
+\begin{itemize}
+\item HTML: \\
+  \url{https://www.youtube.com/channel/UC300utwSVAYOoRLEqmsprfg}
+\item XML: \\
+  \url{https://www.youtube.com/feeds/videos.xml?channel_id=UC300utwSVAYOoRLEqmsprfg}
+\end{itemize}
+
+\textbf{Comentarios:}
+
+La descarga del documento XML con los contenidos del canal debería hacerse una vez. Esto debería hacerse en el momento en que la aplicación arranca. Una solución elegante para realizarlo sería utilizar el enganche (hook) \verb|AppConfig.ready|.
+
+Para usarlo, habría que escribir código siguiendo el siguiente esquema. En la app que esté implementando la solución al ejercicio (llamémosla \verb|myapp|) escribiríamos un fichero \verb|myapp/apps.py| con código de este estilo:
+
+\begin{verbatim}
+from django.apps import AppConfig
+class MyAppConfig(AppConfig):
+    name = 'myapp'
+    def ready(self):
+        url = 'https://www.youtube.com/feeds/videos.xml?channel_id=' \
+            + sys.argv[1]
+        xmlStream = urllib.request.urlopen(url)
+\end{verbatim}
+
+Y luego, para que este código se ejecture, en el fichero \verb|myapp/__init__.py|:
+
+\begin{verbatim}
+default_app_config = 'myapp.apps.MyAppConfig'
+\end{verbatim}
+
+Documentación sobre este enganche: \\
+\url{https://docs.djangoproject.com/en/stable/ref/applications/#django.apps.AppConfig.ready}
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Gestor de contenidos con videos de YouTube (2)}
+\label{subsec:django-cms-youtube-2}
+
+\textbf{Enunciado:}
+
+Vamos a extender la aplicación desarrollada en el ejercicio ``Gestor de contenidos con videos de Youtube'' (ejercicio~\ref{subsec:django-cms-youtube-2}), con la funcionalidad que se detalla a continuación.
+
+Además del recurso ``/'', esta aplicación servirá recursos de la forma ``/[id]'', siendo ``[id]'' el identificador de un video seleccionado en la página principal (y sólo si no ha sido eliminado). Como identificador utilizaremos el que aparece en el elemento ``yt:videoId'' del documento XML que describe un canal. En cada uno de estos recursos se servirá una página HMTL con el siguiente contenido:
+
+\begin{itemize}
+\item Enlace a la página principal de la aplicación
+\item Título del video (que será un enlace a la url del video)
+\item Imagen del video (obtenida del elemento ``media:thumbnail'' del documento XML que describe el canal (que será un enlace a la url del video)
+\item Nombre del canal (que será un enlace a la url del canal)
+\item Fecha de publicación del video
+\item Descripción del video
+\end{itemize}
+
+El recurso ``/'', en el listado de videos seleccionados, en lugar de incluir un enlace al video en Youtube ofrecerá un enlace a la página del video en la aplicación, tal y como se ha indicado anteriormente.
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
