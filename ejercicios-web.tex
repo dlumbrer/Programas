@@ -6446,3 +6446,42 @@ Lista de add-ons y plugins para Firefox.
 ``SQLite / SQL Tutorials: Basic SQL'', por Nikolai Shokhirev
 
 \end{itemize}
+
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\section{Preguntas más fecuentes}
+
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Django: Referencia a elementos en otro módulo}
+
+Esta pregunta se plantea de muchas formas, pero la más habitual es cuando queremos usar un módulo Python que hemos construido para proporcionar una cierta funcionalidad (llamémoslo \verb|modulo.py|), y necesitamos referirnos a alguno de sus elementos (variables, funciones, clases) desde \verb|views.py|. ¿Cómo podemos hacerlo?
+
+\textbf{Respuesta}
+
+Hay varias formas de hacerlo, pero una de las que pueden ser más habituales consiste en colocar el módulo en el mismo directorio donde tenemos \verb|views.py| (normalmente, el directorio de la app Django que estamos construyendo), y luego importar el módulo desde \verb|views.py| usando el formato relativo de importación (donde ``.'' se refiere a módulos en el directorio del que importa).
+
+Si lo hacemos así, nos quedarán en el directorio de la app Django los siguientes ficheros:
+
+\begin{itemize}
+\item \verb|urls.py|
+\item \verb|views.py|
+\item \verb|modulo.py|
+\item ...
+\end{itemize}
+
+Y el fichero \verb|views.py|, si en él queremos utilizar por ejemplo una función \verb|funcion| y una variable \verb|variable| del módulo \verb|modulo.py|, se escribirá así:
+
+\begin{verbatim}
+...
+from .modulo import funcion, variable
+
+...
+... = variable
+...
+funcion()
+...
+\end{verbatim}
