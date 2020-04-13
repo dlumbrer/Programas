@@ -1079,8 +1079,19 @@ Y luego, para que este código se ejecture, en el fichero \verb|myapp/__init__.p
 default_app_config = 'myapp.apps.MyAppConfig'
 \end{verbatim}
 
-Documentación sobre este enganche: \\
+Si se hace la inicialización de esta manera, hay que tener en cuenta que no se podrá inicializar la base de datos desde el código en \verb|ready|, por varios motivos (consultar la documentación sobre el enganche para ver detalles). Pero pueden usarse listas o diccionarios, dado que si la aplicación vuelve a inicializarse, se volverán a recoger los datos del canal, y dado el enunciado, no se require más persistencia.
+
+De todas formas, si se quieren almacenar los datos en base de datos, alternativamente al mecanismo anterior se puede inicializar mediante migraciones.
+
+\textbf{Documentación:}
+
+\begin{itemize}
+\item Appconfig.ready: \\
 \url{https://docs.djangoproject.com/en/stable/ref/applications/#django.apps.AppConfig.ready}
+
+\item Migraciones para inicializar datos: \\
+https://docs.djangoproject.com/en/3.0/howto/initial-data/#providing-initial-data-with-migrations
+\end{itemize}
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
