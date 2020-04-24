@@ -1100,7 +1100,7 @@ De todas formas, si se quieren almacenar los datos en base de datos, alternativa
 
 \textbf{Enunciado:}
 
-Vamos a extender la aplicación desarrollada en el ejercicio ``Gestor de contenidos con videos de Youtube'' (ejercicio~\ref{subsec:django-cms-youtube-2}), con la funcionalidad que se detalla a continuación.
+Vamos a extender la aplicación desarrollada en el ejercicio ``Gestor de contenidos con videos de Youtube'' (ejercicio~\ref{subsec:django-cms-youtube}), con la funcionalidad que se detalla a continuación.
 
 Además del recurso ``/'', esta aplicación servirá recursos de la forma ``/[id]'', siendo ``[id]'' el identificador de un video seleccionado en la página principal (y sólo si no ha sido eliminado). Como identificador utilizaremos el que aparece en el elemento ``yt:videoId'' del documento XML que describe un canal. En cada uno de estos recursos se servirá una página HMTL con el siguiente contenido:
 
@@ -1114,6 +1114,21 @@ Además del recurso ``/'', esta aplicación servirá recursos de la forma ``/[id
 \end{itemize}
 
 El recurso ``/'', en el listado de videos seleccionados, en lugar de incluir un enlace al video en Youtube ofrecerá un enlace a la página del video en la aplicación, tal y como se ha indicado anteriormente.
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Gestor de contenidos con videos de YouTube (tests)}
+\label{subsec:django-cms-youtube-tests}
+
+\textbf{Enunciado:}
+
+En este ejercicio, tienes que añadir tests al programa desarrollado para responder al ejercicio  ``Gestor de contenidos con videos de Youtube (2)'' (ejercicio~\ref{subsec:django-cms-youtube-2}). Los tests deberán ejecutarse ``a la manera de Django'', usando \verb|manage.py test|. Al menos, habrá que creat tests para:
+
+\begin{itemize}
+\item El parser que uses para extraer los datos del documento XML. Estos tests leerán uno o varios ficheros XML con el formato correcto, y comprobarán que el parser extrase los datos deseados.
+\item Una función auxiliar de cualquiera de las views. Si no tenías ninguna, crea al menos una función auxiliar para cualquier detalle de lo que haga una de las views, de forma que la puedas comprobar con un test.
+\item Cada uno de los tipos de recurso que atienda la aplicación. Si un recurso se atiende con GET y POST, harán falta al menos dos tests, uno para cada una de ellos.
+\end{itemize}
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
@@ -1175,18 +1190,18 @@ asignatura.
 
 \textbf{Enunciado:}
 
-Crea una hoja de estilo en la URL ``/css/main.css'' para manejar la apariencia de la página ``/about'' en ``Django cms\_put'' (ejercicio~\ref{subsec:django-cms-put}). La hoja tendrá el siguiente contenido:
+Crea una hoja de estilo en la URL ``/main.css'' para manejar la apariencia de la página ``/about'' en ``Django cms\_put'' (ejercicio~\ref{subsec:django-cms-put}). La hoja tendrá el siguiente contenido:
 
 \begin{verbatim}
 body {
   margin: 10px 20% 50px 70px;
   font-family: sans-serif;
-  color: black;
+  color: red;
   background: white;
 }
 \end{verbatim}
 
-La página ``/about'' tendrá el contenido que estimes conveniente. Ambos contenidos (el de ``/about'' y el de ``/css/main.css'') se subirán al gestor de contenidos mediante un PUT, igual que cualquier otro contenido.
+La página ``/about'' tendrá el contenido que estimes conveniente. Ambos contenidos (el de ``/about'' y el de ``/main.css'') se subirán al gestor de contenidos mediante un PUT, igual que cualquier otro contenido.
 
 Explica en el fichero `README.md` del repositorio de entrega cómo has solucionado la práctica.
 
