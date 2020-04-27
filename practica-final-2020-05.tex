@@ -6,9 +6,9 @@
 [ \textbf{Nota importante:} Por ahora esto es sólo es un borrador. Aún estamos definiendo cómo será el enunciado definitivo. ]
 %[ \textbf{Nota importante:} Este enunciado es aún tentativo, y puede sufrir cambios ]
 
-La práctica final de la asignatura consiste en la creación de una aplicación web, llamada ``MisCosas'', que permitirá gestionar videos, noticias y otra información que los usuarios vayan encontrando por la red y les resulte interesante. Los usuarios podrán ver los contenidos de sitios preseleccionados, podrán añadir otros, podrán elegir los que más les interesen, y podrán compartir los que han seleccioando de distintas maneras. A continuación se describe el funcionamiento y la arquitectura general de la aplicación, la funcionalidad mínima que debe proporcionar, y otra funcionalidad optativa que podrá tener.
+La práctica final de la asignatura consiste en la creación de una aplicación web, llamada ``MisCosas'', que permitirá gestionar vídeos, noticias y otra información que los usuarios vayan encontrando por la red y les resulte interesante. Los usuarios podrán ver los contenidos de sitios preseleccionados, añadir otros, elegir los que más les interesen, y compartir los que han seleccionado de distintas maneras. A continuación se describe el funcionamiento y la arquitectura general de la aplicación, la funcionalidad mínima que debe proporcionar, y otra funcionalidad optativa que podrá tener.
 
-Por un lado, la aplicación se encargará de descargar información de varios sitios de Internet, para permitir a los usuarios que puedan elegirla. Por otro, permitirá a los usuarios elegir, entre ellos, qué información quieren que se les muestre para realizar su selección, y podrán compartir estas selecciones con otros usuarios.
+Por un lado, la aplicación se encargará de descargar información de varios sitios de Internet para permitir a los usuarios que puedan elegirla. Por otro, permitirá a los usuarios elegir, entre ellos, qué información quieren que se les muestre para realizar su selección, y podrán compartir estas selecciones con otros usuarios.
 
 %%----------------------------------------------------------------------------
 \subsection{Arquitectura y funcionamiento general}
@@ -42,11 +42,11 @@ Arquitectura general:
 
 \item Se utilizarán hojas de estilo CSS para determinar la apariencia de la práctica. Estas hojas definirán al menos el color y el tamaño de la letra, y el color de fondo de cada una de las partes (elementos) marcadas con un \emph{id}, tal como se indica en el apartado anterior. Además, elementos que deban tener el mismo aspecto deberían estar en una misma clase, para poder gestionarlo de forma común.
   
-\item Para obtener información de cada sitio de Internet soportado por la aplicación, se utilizará la API de ese sitio, o quizás en algunos casos, análisis de las páginas HTML del sitio. En general, la forma de funcionamiento será la siguiente:
+\item Para obtener información de cada sitio de Internet soportado por la aplicación, se utilizará la API de ese sitio, o quizás en algunos casos, ser hará un análisis de las páginas HTML del sitio. En general, la forma de funcionamiento será la siguiente:
 
   \begin{itemize}
   \item Llamaremos ``alimentador'' a cada una de las fuentes de datos del sitio. Por ejemplo, en YouTube, cada alimentador será un canal.
-  \item Llamaremos ``item'' a cada uno de los eleentos de un alimentador. Por eeplo, en YouTube, cada item será un video.
+  \item Llamaremos ``item'' a cada uno de los elementos de un alimentador. Por ejemplo, en YouTube, cada item será un vídeo.
   \item Se ofrecerá un elemento HTML que permita al usuario elegir qué alimentador se va a obtener del sitio.
   \item La información obtenida de ese alimentador se organizará como una lista de items, que se almacenará en la base de datos.
   \item A partir de lo almacenado en la base de datos, se ofrecerá al usuario la lista de items para la selección.
@@ -64,10 +64,10 @@ Funcionamiento general:
 
 \item Cuando un visitante quiera, se podrá abrir una cuenta (y quedará autenticado en ella), o autenticarse en una cuenta ya existente. En este caso, la funcionaliadad quedará ligada a su cuenta.
   
-\item Cada usuario podrá elegir cualquier item que se le presente, y realizar dos acciones fundamentales con él (comentarlo, y votarlo):
+\item Cada usuario podrá elegir cualquier ítem que se le presente, y realizar dos acciones fundamentales con él (comentarlo, y votarlo):
   \begin{itemize}
-  \item Comentar un item quiere decir escribir un pequeño mensaje (menos de 256 caracteres) que quedará relacionado con el item.
-  \item Votarlo quiere decir darle un voto positivo o negativo. El resultado de las votaciones quedará relacionado con el item.
+  \item Comentar un ítem quiere decir escribir un pequeño mensaje (menos de 256 caracteres) que quedará relacionado con el item.
+  \item Votarlo significa darle un voto positivo o uno negativo. El resultado de las votaciones quedará relacionado con el ítem.
   \end{itemize}
 
 \end{itemize}
@@ -80,16 +80,16 @@ Funcionamiento general:
 Ejemplos de sistemas que proporciona alimentadores:
 
 \begin{itemize}
-\item YouTube. En este caso el alimentador será el canal de YouTube, y el item será un video en particular. Los últimos videos de un canal están disponibles como documentos XML (RSS)\footnote{\url{https://www.youtube.com/feeds/videos.xml?channel_id=UC300utwSVAYOoRLEqmsprfg}}, donde el identificador del canal se puede obtener del enlace que tenemos en el navegador cuando estamos viendo el canal. Funcionamiento:
+\item YouTube. En este caso el alimentador será el canal de YouTube, y el item será un vídeo en particular. Los últimos vídeos de un canal están disponibles como documentos XML (RSS)\footnote{\url{https://www.youtube.com/feeds/videos.xml?channel_id=UC300utwSVAYOoRLEqmsprfg}}, donde el identificador del canal se puede obtener del enlace que tenemos en el navegador cuando estamos viendo el canal. Funcionamiento:
   \begin{itemize}
   \item Alimentador: canal de Youtube.
-  \item Item: video de YouTube.
+  \item Ítem: video de YouTube.
   \item Elemento HTML para elegir el alimentador: formulario que permita escribir el identificador del canal.
   \item Elemento HTML para actualizar el alimentador: botón que actualiza con los videos disponibles en el canal RSS.
   \item Datos mostrados para el alimentador cuando se muestra resumido: nombre (título) del canal, enlace del canal, total de items disponibles para este alimentador, puntuación (total de votos positivos menos votos negativos para todos sus items).
   \item Datos mostrados para el alimentador cuando se muestra con detalle: nombre (título) del canal, enlace del canal, y lista de videos (con información detallada).
-  \item Datos mostrados del item (cuando se muestra resumido): título del video, enlace del video
-  \item Datos mostrados del item (cuando se muestra con detalle): título del video, enlace del video, descripción del video, nombre del canal, enlace del canal.
+  \item Datos mostrados del ítem (cuando se muestra resumido): título del vídeo, enlace del video
+  \item Datos mostrados del ítem (cuando se muestra con detalle): título del vídeo, enlace del video, descripción del vídeo, nombre del canal, enlace del canal.
   \end{itemize}
 \end{itemize}
 %%----------------------------------------------------------------------------
@@ -102,7 +102,7 @@ La aplicación servirá las siguientes páginas:
   
     \begin{enumerate}
     \item Listado con los 10 items (formato resumido) que han conseguido más puntuación (votos positivos menos votos negativos) en el sitio. Para cada uno se mostrarán sus votos positivos y negativos.
-    \item En ambos listados, habrá también para cada item un enlace a la página del item (ver a continuación).
+    \item En ambos listados, habrá también para cada ítem un enlace a la página del item (ver a continuación).
     \item Formulario para elegir alimentador, para cada uno de los sistemas de alimentación (por ejemplo, canales de YouTube) disponibles. Tras elegir un alimentador vía el formulario, se recibirá la página del alimentador elegido (ver a continuación), con información actualizada.
     \item Listado de alimentadores elegidos en el pasado (formato resumido), cada uno con un botón para poder elegirlo (si se elige de esta forma, la aplicación se comportará igual que si se hubiera elegido vía el formulario), y otro para eliminarlo (si se pulsa, el alimentador dejará de salir en este listado en el futuro).
     \end{itemize}
@@ -114,25 +114,25 @@ La aplicación servirá las siguientes páginas:
     \item Para cada item que aparezca en la página se mostrarán también dos botones para votar (positivo, negativo), resaltando de alguna forma que el valor que se haya votado, si se hubiera votado ya ese item.
     \end{itemize}
 
-  \item Página del item (para cada item):
+  \item Página del ítem (para cada ítem):
 
     \begin{itemize}
-    \item Datos del item (formato detallado).
-    \item Datos del alimentador al que pertenece el item (formato resumido), inclyendo un enlace a la página del alimentador.
-    \item Comentarios que haya recibido el item. Para cada comentario se mostrará el texto del comentario, el identificador de quien lo puso, y la fecha en que se puso.
+    \item Datos del ítem (formato detallado).
+    \item Datos del alimentador al que pertenece el ítem (formato resumido), inclyendo un enlace a la página del alimentador.
+    \item Comentarios que haya recibido el ítem. Para cada comentario se mostrará el texto del comentario, el identificador de quien lo puso, y la fecha en que se puso.
     \end{itemize}
 
     Si el visitante está además autenticado como usuario, se mostrará también:
 
     \begin{itemize}
     \item Dos botones para votar (positivo, negativo), resaltando de alguna forma que el valor que se haya votado, si se hubiera votado ya ese item.
-    \item Formulario para poner un comentario. Tras poner el comentario, se volverá a ver la misma página del item.
+    \item Formulario para poner un comentario. Tras poner el comentario, se volverá a ver la misma página del ítem.
     \end{itemize}
 
   \item Página de alimentadores:
 
     \begin{itemize}
-    \item Listado de todos los alumentadores de los que se ha podido descargar datos alguna vez (formato resumido).
+    \item Listado de todos los alimentadores de los que se ha podido descargar datos alguna vez (formato resumido).
     \end{itemize}
     
   \item Página de alimentador (para cada alimentador):
@@ -141,7 +141,7 @@ La aplicación servirá las siguientes páginas:
     \item Datos del alimentador (formato detallado)
     \item Botón para poder elegir o dejar de tener elegido el alimentador (con el efecto de que aparecerá, o no, en la lista de alimentadores elegidos de la página principal).
     \item Lista de items del alimentador (formato resumido).
-    \item Para cada item, enlace a la página del item.
+    \item Para cada ítem, enlace a la página del ítem.
     \end{itemize}
 
   \item Página de usuario (para cada usuario ``con cuenta''):
@@ -169,7 +169,7 @@ La aplicación servirá las siguientes páginas:
 
    \end{enumerate}
 
-  La página principial se ofrecerá también como un documento XML y como un documento JSON, que incluiría la misma información (los mismos listados de items y alimentadores). Este documento se ofrecerá cuando se pida la página principal, concatenando al final \verb|?format=xml| o \verb|?format=json|.
+  La página principal se ofrecerá también como un documento XML y como un documento JSON, que incluiría la misma información (los mismos listados de items y alimentadores). Este documento se ofrecerá cuando se pida la página principal, concatenando al final \verb|?format=xml| o \verb|?format=json|.
 
   La página principal en formato HTML includirá un enlace a la página principal en formato XML (``Descarga como fichero XML'') y JSON (``Descarga como fichero JSON'').  
  
@@ -177,12 +177,12 @@ La aplicación servirá las siguientes páginas:
 
 \end{itemize}
 
-La aplicación se encargará de controlar que no haya más de un voto (positivo o negativo) por usuario para cada item. Por lo tanto, si un usuario ya ha votado un item, y vuele a votarlo, se ignorará su voto (si es igual que el que está almacenado) o se anotará el nuevo (si es distinto). Por ejemplo, si había votado un item con positivo, y ahora vuelve a votarlo con positivo, se ignorará el segundo voto. Si vuelve a votarlo, pero ahora con negativo, se camiará el voto a negativo.
+La aplicación se encargará de controlar que no haya más de un voto (positivo o negativo) por usuario para cada ítem. Por lo tanto, si un usuario ya ha votado un ítem, y vuele a votarlo, se ignorará su voto (si es igual que el que está almacenado) o se anotará el nuevo (si es distinto). Por ejemplo, si había votado un ítem con positivo, y ahora vuelve a votarlo con positivo, se ignorará el segundo voto. Si vuelve a votarlo, pero ahora con negativo, se cambiará el voto a negativo.
 
 En todos los casos en que se vote, tras votar se volverá a ver la misma página en que se estaba, ahora con el voto contabilizado.
 
 
-Todas las páginas un menú desde el que se podrá acceder a la página principal (con el texto ``Inicio'', a la de alimentadores (con el texto ``Alimentadores'', a la de usuarios (con el texto ``Usuarios'' y a la de información (con el texto ``Información''), salvo que ya estés en esa página, en cuyo caso no saldrá el elemento de menú correspondiente.
+Todas las páginas un menú desde el que se podrá acceder a la página principal (con el texto ``Inicio''), a la de alimentadores (con el texto ``Alimentadores''), a la de usuarios (con el texto ``Usuarios'') y a la de información (con el texto ``Información''), salvo que ya estés en esa página, en cuyo caso no saldrá el elemento de menú correspondiente.
 
 
 %%----------------------------------------------------------------------------
@@ -212,33 +212,38 @@ En el formulario de entrega se pide que se justifique por qué se considera func
 \subsection{Entrega de la práctica}
 
 \begin{itemize}
-  \item \textbf{Fecha límite de entrega de la práctica:} viernes, 24 de mayo de 2019 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como jueves por la noche, ya entrado en viernes.}
+  \item \textbf{Fecha límite de entrega de la práctica:} viernes, 12 de junio de 2020 a las 15:00 (hora española peninsular)
        %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
 
-  \item \textbf{Fecha de publicación de notas de prácticas:} sábado 25 de mayo, en el aula virtual.
+  \item \textbf{Fecha de publicación de notas de prácticas:} martes, 16 de junio, en el aula virtual.
 %{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
 
-  \item \textbf{Fecha de revisión de prácticas:} martes 28 de mayo, a las 12:00. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
+  \item \textbf{Fecha de revisión de prácticas:} jueves, 18 de junio, a las 12:00, en Microsoft Teams. Se requerirá a algunos alumnos que asistan a la revisión {\bf en remoto síncronamente}; se informará de ello en el mensaje de publicación de notas.
 %{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
 \end{itemize}
 
-La entrega de la práctica consiste en {\bf rellenar un formulario} (enlazado en el Moodle de la asignatura) y en seguir las instrucciones que se describen a continuación.
+La entrega de la práctica consiste en:
 
 \begin{enumerate}
-  \item El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo). Es muy importante que el alumno haya realizado una derivación (fork) del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
 
-\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/final-mitiempo/}
+  \item {\bf Rellenar un formulario} enlazado en el Moodle de la asignatura.
+  
+  \item {\bf Subir tu práctica a un repositorio en el GitLab de la Escuela}. El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo). Es muy importante que el alumno haya realizado una derivación (fork) del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
 
-Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere. Los que la entreguen podrán ser llamados a realizar también una entrega presencial, que tendrá lugar en la fecha y hora de la revisión. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/final-miscosas/}
 
 Recordad que es importante ir haciendo commits de vez en cuando y que sólo al hacer push estos commits son públicos. Antes de entregar la práctica, haced un push. Y cuando la entreguéis y sepáis el nombre del repositorio, podéis cambiar el nombre del repositorio desde el interfaz web de GitLab. 
  
- \item Un vídeo de demostración de la parte obligatoria, y otro vídeo de demostración de la parte opcional, si se han realizado opciones avanzadas. Los vídeos serán de una {\bf duración máxima de 3 minutos} (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo, Twitch, o YouTube). Los vídeos de más de tres minutos tendrán penalización.
+ \item {\bf Entregar un vídeo de demostración de la parte obligatoria, y otro vídeo de demostración de la parte opcional}, si se han realizado opciones avanzadas. Los vídeos serán de una {\bf duración máxima de 3 minutos} (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo, Twitch, o YouTube). Los vídeos de más de tres minutos tendrán penalización.
 
 Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). OBS Studio\footnote{OBS Studio: \url{https://obsproject.com/}} está disponible para varias plataformas (Linux, Windows, MacOS). Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
 
 En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar tiempos de espera) puede usarse un editor de vídeo, pero siempre deberá ser indicado que se ha hecho tal cosa con un comentario en el audio, o un texto en el vídeo. Hay muchas herramientas que permiten realizar esta edición. Por ejemplo, en GNU/Linux puede usarse OpenShot o PiTiVi.
 
+\end{enumerate}
+
+Sobre la entrega del repositorio:
+\begin{itemize}
   \item Se han de entregar los siguientes ficheros:
 
 \begin{itemize}
@@ -261,8 +266,7 @@ En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar 
 \end{itemize}
 
 Asegúrate de que las URLs incluidas en este fichero están adecuadamente escritas en Markdown, de forma que la versión HTML que genera GitLab los incluya como enlaces ``pinchables''.
-
-\end{enumerate}
+\end{itemize}
 
 
 %%----------------------------------------------------------------------------
