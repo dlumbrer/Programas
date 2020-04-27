@@ -1,0 +1,317 @@
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\section{Práctica final: MisCosas (2020, mayo)}
+\label{practica-final-2020-05}
+
+[ \textbf{Nota importante:} Por ahora esto es sólo es un borrador. Aún estamos definiendo cómo será el enunciado definitivo. ]
+%[ \textbf{Nota importante:} Este enunciado es aún tentativo, y puede sufrir cambios ]
+
+La práctica final de la asignatura consiste en la creación de una aplicación web, llamada ``MisCosas'', que permitirá gestionar videos, noticias y otra información que los usuarios vayan encontrando por la red y les resulte interesante. Los usuarios podrán ver los contenidos de sitios preseleccionados, podrán añadir otros, podrán elegir los que más les interesen, y podrán compartir los que han seleccioando de distintas maneras. A continuación se describe el funcionamiento y la arquitectura general de la aplicación, la funcionalidad mínima que debe proporcionar, y otra funcionalidad optativa que podrá tener.
+
+Por un lado, la aplicación se encargará de descargar información de varios sitios de Internet, para permitir a los usuarios que puedan elegirla. Por otro, permitirá a los usuarios elegir, entre ellos, qué información quieren que se les muestre para realizar su selección, y podrán compartir estas selecciones con otros usuarios.
+
+%%----------------------------------------------------------------------------
+\subsection{Arquitectura y funcionamiento general}
+
+Arquitectura general:
+
+\begin{itemize}
+
+\item La práctica se construirá como un proyecto Django/Python3, que incluirá una o varias aplicaciones (apps) Django que implementen la funcionalidad requerida.
+
+\item Para el almacenamiento de datos persistente se usará SQLite3, con tablas definidas en modelos de Django.
+
+\item Para implementar usuarios, cuando sea necesario, se usará como base el sistema de autenticación de ususarios que proporciona Django\footnote{User Authentication in Django:\\ \url{https://docs.djangoproject.com/en/3.0/topics/auth/}}.
+
+\item Todas las bases de datos que contenga la aplicación tendrán que ser accesibles vía la interfaz que proporciona el ``Admin Site'' (además de lo que pueda hacer falta para que funcione al aplicación).
+
+\item Se utilizarán plantillas Django (a ser posible, una jerarquía de plantillas, para que la práctica tenga un aspecto similar) para definir las páginas que se servirán a los navegadores de los usuarios. Estas plantillas incluirán en todas las páginas al menos:
+
+  \begin{itemize}
+  \item Un \emph{banner} (imagen) del sitio, preferentemente en la parte superior izquierda.
+  \item Una caja para entrar (hacer login en el sitio), o para salir (si ya se ha entrado).
+    \begin{itemize}
+    \item En caso de que no se haya entrado en una cuenta, esta caja permitirá al visitante introducir su identificador de usuario y su contraseña, o crearse una cuenta.
+    \item En caso de que ya se haya entrado, esta caja mostrará el identificador del usuario y permitirá salir de la cuenta (logout). Esta caja aparecerá preferentemente en la parte superior derecha.
+    \end{itemize}
+  \item Un menú de opciones, como barra, preferentemente debajo de los dos elementos anteriores (banner y caja de entrada o salida).
+  \item Un pie de página con una nota de atribución, indicando ``Esta aplicación utiliza datos proporcionados por XXX, YYY y ZZZ'', siendo XXX, YYY y ZZZ los sitios desde donde se descarga información, y siendo cada uno de ellos un enlace al sitio en cuestión.
+  \end{itemize}
+
+  Cada una de estas partes estará construida dentro de un elemento ``div'', marcada con un atributo ``id'' en HTML, para poder ser referenciadas fácilmente en hojas de estilo CSS.
+
+\item Se utilizarán hojas de estilo CSS para determinar la apariencia de la práctica. Estas hojas definirán al menos el color y el tamaño de la letra, y el color de fondo de cada una de las partes (elementos) marcadas con un \emph{id}, tal como se indica en el apartado anterior. Además, elementos que deban tener el mismo aspecto deberían estar en una misma clase, para poder gestionarlo de forma común.
+  
+\item Para obtener información de cada sitio de Internet soportado por la aplicación, se utilizará la API de ese sitio, o quizás en algunos casos, análisis de las páginas HTML del sitio. En general, la forma de funcionamiento será la siguiente:
+
+  \begin{itemize}
+  \item Llamaremos ``alimentador'' a cada una de las fuentes de datos del sitio. Por ejemplo, en YouTube, cada alimentador será un canal.
+  \item Llamaremos ``item'' a cada uno de los eleentos de un alimentador. Por eeplo, en YouTube, cada item será un video.
+  \item Se ofrecerá un elemento HTML que permita al usuario elegir qué alimentador se va a obtener del sitio.
+  \item La información obtenida de ese alimentador se organizará como una lista de items, que se almacenará en la base de datos.
+  \item A partir de lo almacenado en la base de datos, se ofrecerá al usuario la lista de items para la selección.
+  \item Se ofrecerá una forma para actualizar la información.
+  \end{itemize}
+
+  Puede verse más información sobre los alimentadores en la sección~\ref{\label{practica-final-2020-05:alimentadores}.
+    
+\end{itemize}
+
+Funcionamiento general:
+
+\begin{itemize}
+\item En general, para utlizar el sitio, no hará falta autenticarse con una cuenta. Toda la funcionalidad estará disponible para cualquier visitante, mientras use el sitio desde el mismo navegador y tenga las cookies habilitadas.
+
+\item Cuando un visitante quiera, se podrá abrir una cuenta (y quedará autenticado en ella), o autenticarse en una cuenta ya existente. En este caso, la funcionaliadad quedará ligada a su cuenta.
+  
+\item Cada usuario podrá elegir cualquier item que se le presente, y realizar dos acciones fundamentales con él (comentarlo, y votarlo):
+  \begin{itemize}
+  \item Comentar un item quiere decir escribir un pequeño mensaje (menos de 256 caracteres) que quedará relacionado con el item.
+  \item Votarlo quiere decir darle un voto positivo o negativo. El resultado de las votaciones quedará relacionado con el item.
+  \end{itemize}
+
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Alimentadores}
+\label{practica-final-2020-05:alimentadores}
+
+Ejemplos de sistemas que proporciona alimentadores:
+
+\begin{itemize}
+\item YouTube. En este caso el alimentador será el canal de YouTube, y el item será un video en particular. Los últimos videos de un canal están disponibles como documentos XML (RSS)\footnote{\url{https://www.youtube.com/feeds/videos.xml?channel_id=UC300utwSVAYOoRLEqmsprfg}}, donde el identificador del canal se puede obtener del enlace que tenemos en el navegador cuando estamos viendo el canal. Funcionamiento:
+  \begin{itemize}
+  \item Alimentador: canal de Youtube.
+  \item Item: video de YouTube.
+  \item Elemento HTML para elegir el alimentador: formulario que permita escribir el identificador del canal.
+  \item Elemento HTML para actualizar el alimentador: botón que actualiza con los videos disponibles en el canal RSS.
+  \item Datos mostrados para el alimentador cuando se muestra resumido: nombre (título) del canal, enlace del canal, total de items disponibles para este alimentador, puntuación (total de votos positivos menos votos negativos para todos sus items).
+  \item Datos mostrados para el alimentador cuando se muestra con detalle: nombre (título) del canal, enlace del canal, y lista de videos (con información detallada).
+  \item Datos mostrados del item (cuando se muestra resumido): título del video, enlace del video
+  \item Datos mostrados del item (cuando se muestra con detalle): título del video, enlace del video, descripción del video, nombre del canal, enlace del canal.
+  \end{itemize}
+\end{itemize}
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad mínima}
+
+La aplicación servirá las siguientes páginas:
+
+\begin{itemize}
+  \item Página principal de la aplicación:
+  
+    \begin{enumerate}
+    \item Listado con los 10 items (formato resumido) que han conseguido más puntuación (votos positivos menos votos negativos) en el sitio. Para cada uno se mostrarán sus votos positivos y negativos.
+    \item En ambos listados, habrá también para cada item un enlace a la página del item (ver a continuación).
+    \item Formulario para elegir alimentador, para cada uno de los sistemas de alimentación (por ejemplo, canales de YouTube) disponibles. Tras elegir un alimentador vía el formulario, se recibirá la página del alimentador elegido (ver a continuación), con información actualizada.
+    \item Listado de alimentadores elegidos en el pasado (formato resumido), cada uno con un botón para poder elegirlo (si se elige de esta forma, la aplicación se comportará igual que si se hubiera elegido vía el formulario), y otro para eliminarlo (si se pulsa, el alimentador dejará de salir en este listado en el futuro).
+    \end{itemize}
+
+    Si el visitante está además autenticado como usuario, se mostrará también:
+
+    \begin{itemize}
+    \item Listado con los 5 items (formato resumido) que más ha votado el usuario (votos positivos menos votos negativos).
+    \item Para cada item que aparezca en la página se mostrarán también dos botones para votar (positivo, negativo), resaltando de alguna forma que el valor que se haya votado, si se hubiera votado ya ese item.
+    \end{itemize}
+
+  \item Página del item (para cada item):
+
+    \begin{itemize}
+    \item Datos del item (formato detallado).
+    \item Datos del alimentador al que pertenece el item (formato resumido), inclyendo un enlace a la página del alimentador.
+    \item Comentarios que haya recibido el item. Para cada comentario se mostrará el texto del comentario, el identificador de quien lo puso, y la fecha en que se puso.
+    \end{itemize}
+
+    Si el visitante está además autenticado como usuario, se mostrará también:
+
+    \begin{itemize}
+    \item Dos botones para votar (positivo, negativo), resaltando de alguna forma que el valor que se haya votado, si se hubiera votado ya ese item.
+    \item Formulario para poner un comentario. Tras poner el comentario, se volverá a ver la misma página del item.
+    \end{itemize}
+
+  \item Página de alimentadores:
+
+    \begin{itemize}
+    \item Listado de todos los alumentadores de los que se ha podido descargar datos alguna vez (formato resumido).
+    \end{itemize}
+    
+  \item Página de alimentador (para cada alimentador):
+
+    \begin{itemize}
+    \item Datos del alimentador (formato detallado)
+    \item Botón para poder elegir o dejar de tener elegido el alimentador (con el efecto de que aparecerá, o no, en la lista de alimentadores elegidos de la página principal).
+    \item Lista de items del alimentador (formato resumido).
+    \item Para cada item, enlace a la página del item.
+    \end{itemize}
+
+  \item Página de usuario (para cada usuario ``con cuenta''):
+
+    \begin{itemize}
+    \item Datos públicos del usuario (identificador, foto)
+    \item Lista de alimentaros elegidos (formato resumido)
+    \item Lista de items votados (formato resumido)
+    \item Lista de items comentados (formato resumido)
+    \end{itemize}
+
+    Si el visitante está autenticado, cuando acceda a su propia página, se mostrará también:
+
+    \begin{itemize}
+    \item Formulario para cambiar la foto
+    \item Formulario para cambiar de estilo. Se ofrecerán al menos dos estilos: ``ligero'' y ``oscuro''.
+    \item Formulario para cambiar el tamaño de la letra. Se ofrecerán al menos tres tamaños: ``pequeña'', ``normal'' y ``grande''.
+    \end{itemize}
+    
+  \item Página de usuarios:
+
+    \begin{itemize}
+    \item Listado de todos los usuarios ``con cuenta''. Para cada usuario, aparecerá su identificador, su foto, el número de items votados, el número de canales elegidos, y un enlace a su página.
+    \end{itemize}
+
+   \end{enumerate}
+
+  La página principial se ofrecerá también como un documento XML y como un documento JSON, que incluiría la misma información (los mismos listados de items y alimentadores). Este documento se ofrecerá cuando se pida la página principal, concatenando al final \verb|?format=xml| o \verb|?format=json|.
+
+  La página principal en formato HTML includirá un enlace a la página principal en formato XML (``Descarga como fichero XML'') y JSON (``Descarga como fichero JSON'').  
+ 
+  \item Página de información: Página con información en HTML indicando la autoría de la práctica, explicando su funcionamiento y una brevísima documentación.
+
+\end{itemize}
+
+La aplicación se encargará de controlar que no haya más de un voto (positivo o negativo) por usuario para cada item. Por lo tanto, si un usuario ya ha votado un item, y vuele a votarlo, se ignorará su voto (si es igual que el que está almacenado) o se anotará el nuevo (si es distinto). Por ejemplo, si había votado un item con positivo, y ahora vuelve a votarlo con positivo, se ignorará el segundo voto. Si vuelve a votarlo, pero ahora con negativo, se camiará el voto a negativo.
+
+En todos los casos en que se vote, tras votar se volverá a ver la misma página en que se estaba, ahora con el voto contabilizado.
+
+
+Todas las páginas un menú desde el que se podrá acceder a la página principal (con el texto ``Inicio'', a la de alimentadores (con el texto ``Alimentadores'', a la de usuarios (con el texto ``Usuarios'' y a la de información (con el texto ``Información''), salvo que ya estés en esa página, en cuyo caso no saldrá el elemento de menú correspondiente.
+
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad optativa}
+
+De forma optativa, se podrá incluir cualquier funcionalidad relevante en el contexto de la asignatura. Se valorarán especialmente las funcionalidades que impliquen el uso de técnicas nuevas, o de aspectos de Django no utilizados en los ejercicios previos, y que tengan sentido en el contexto de esta práctica y de la asignatura.
+
+En el formulario de entrega se pide que se justifique por qué se considera funcionalidad optativa lo que habeis implementado. Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativas:
+
+\begin{itemize}
+  \item Inclusión de un \emph{favicon} del sitio
+  
+  \item Visualización de cualquier página en formato JSON y/o XML, de forma similar a como se ha indicado para la página principal.
+
+  \item Generación de un canal RSS, XML libre y/o JSON para los comentarios puestos en el sitio.
+
+  \item Incorporación de datos de otros alimentadores.
+ 
+  \item Atención al idioma indicado por el navegador. El idioma de la interfaz de usuario del planeta tendrá en cuenta lo que especifique el navegador.
+
+  \item Utilización de Bootstrap\footnote{Bootstrap: \url{https://getbootstrap.com/}} para la maquetación del sitio web.
+    
+  \item Despliegue de la práctica en algún sitio de Internet, de forma que pueda accederse a ella. Por ejemplo, puede considerarse desplegar en un ordenador dedicado (por ejemplo, Raspberry Pi accesible directamente desde Internet), o en servicios como Google Computing Engine\footnote{GCP Engine Free: \url{https://cloud.google.com/free/}} o Heroku\footnote{Heroku Free: \url{https://www.heroku.com/free}}.
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+\subsection{Entrega de la práctica}
+
+\begin{itemize}
+  \item \textbf{Fecha límite de entrega de la práctica:} viernes, 24 de mayo de 2019 a las 03:00 (hora española peninsular)\footnote{Entiéndase la hora como jueves por la noche, ya entrado en viernes.}
+       %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
+
+  \item \textbf{Fecha de publicación de notas de prácticas:} sábado 25 de mayo, en el aula virtual.
+%{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
+
+  \item \textbf{Fecha de revisión de prácticas:} martes 28 de mayo, a las 12:00. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
+%{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
+\end{itemize}
+
+La entrega de la práctica consiste en {\bf rellenar un formulario} (enlazado en el Moodle de la asignatura) y en seguir las instrucciones que se describen a continuación.
+
+\begin{enumerate}
+  \item El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo). Es muy importante que el alumno haya realizado una derivación (fork) del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
+
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/final-mitiempo/}
+
+Los alumnos que no entreguen las práctica de esta forma serán considerados como no presentados en lo que a la entrega de prácticas se refiere. Los que la entreguen podrán ser llamados a realizar también una entrega presencial, que tendrá lugar en la fecha y hora de la revisión. Esta entrega presencial podrá incluir una conversación con el profesor sobre cualquier aspecto de la realización de la práctica.
+
+Recordad que es importante ir haciendo commits de vez en cuando y que sólo al hacer push estos commits son públicos. Antes de entregar la práctica, haced un push. Y cuando la entreguéis y sepáis el nombre del repositorio, podéis cambiar el nombre del repositorio desde el interfaz web de GitLab. 
+ 
+ \item Un vídeo de demostración de la parte obligatoria, y otro vídeo de demostración de la parte opcional, si se han realizado opciones avanzadas. Los vídeos serán de una {\bf duración máxima de 3 minutos} (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo, Twitch, o YouTube). Los vídeos de más de tres minutos tendrán penalización.
+
+Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). OBS Studio\footnote{OBS Studio: \url{https://obsproject.com/}} está disponible para varias plataformas (Linux, Windows, MacOS). Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
+
+En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar tiempos de espera) puede usarse un editor de vídeo, pero siempre deberá ser indicado que se ha hecho tal cosa con un comentario en el audio, o un texto en el vídeo. Hay muchas herramientas que permiten realizar esta edición. Por ejemplo, en GNU/Linux puede usarse OpenShot o PiTiVi.
+
+  \item Se han de entregar los siguientes ficheros:
+
+\begin{itemize}
+  \item Un fichero README.md que resuma las mejoras, si las hay, y explique cualquier peculiaridad de la entrega (ver siguiente punto).
+  \item El repositorio en el GitLab de la ETSIT deberá contener un proyecto Django completo y listo para funcionar en el entorno del laboratorio, incluyendo la base de datos con datos suficientes como para poder probarlo. Estos datos incluirán al menos dos usuarios con sus datos correspondientes, con al menos seis municipios en su página personal, al menos 12 municipios distintos seleccionados, y con al menos cinco comentarios en total.
+  \item Cualquier biblioteca Python que pueda hacer falta para que la aplicación funcione, junto con los ficheros auxiliares que utilice, si es que los utiliza.
+\end{itemize}
+
+  \item Se incluirán en el fichero README.md los siguientes datos (la mayoría de estos datos se piden también en el formulario que se ha de rellenar para entregar la práctica - se recomienda hacer un corta y pega de estos datos en el formulario):
+
+\begin{itemize}
+  \item Nombre y titulación.
+  \item Nombre de su cuenta en el laboratorio del alumno.
+  \item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
+  \item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
+  \item URL del vídeo demostración de la funcionalidad básica
+  \item URL del vídeo demostración de la funcionalidad optativa, si se ha realizado funcionalidad optativa
+  \item Cuenta (login) y contraseña de los usuarios que están dados de alta en la aplicación.
+  \item URL de la aplicación desplegada (si es que se ha desplegado)
+\end{itemize}
+
+Asegúrate de que las URLs incluidas en este fichero están adecuadamente escritas en Markdown, de forma que la versión HTML que genera GitLab los incluya como enlaces ``pinchables''.
+
+\end{enumerate}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Notas y comentarios}
+
+La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas.
+
+La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
+
+Los canales (feeds) RSS que produce la aplicación web realizada en la práctica deberán funcionar al menos con el navegador Firefox (considerándolos como canales RSS) disponibles en el laboratorio. Los documentos XML deberán ser correctos desde el punto de vista de la sintaxis XML, y por lo tanto reconocibles por un reconocedor XML, como por ejemplo el del módulo xml.sax de Python. Los documentos JSON generados deberán ser correctos desde el punto de vista de la sintaxis JSON, y por lo tanto reconocibles por un reconocedor JSON, como por ejemplo el del módulo json de Python
+
+%%----------------------------------------------------------------------------
+\subsection{Preguntas y respuestas}
+
+A continuación, algunas preguntas relacionadas con el enunciado de esta práctica, junto con sus respuestas:
+
+\begin{itemize}
+\item ¿Es necesario utilizar los mecanismos provistos por Django para el control de sesiones y autenticación?
+
+  En principio, esa es la solución recomendada. El principal problema suele ser asegurarse de que cuaquier mecanismo alternativo funciona al menos tan bien como el de Django, lo que no es en general trivial. De todas formas, salvo muy buenos motivos, la aplicación es una aplicación Django, y por lo tanto cuantas más facilidades de Django se usen (bien usadas), mejor.
+  
+\item ¿Puedo guardar en la base de datos los datos referentes a latitud, altitud, etc (datos que no varian nunca) y precipitación, temperatura, descripción, etc y cambiarlos cuando sea necesario (ya que estos si cambian)?
+
+  Pueden almacenarse en tablas en la base de datos los datos correspondientes a poblaciones que han sido seleccionadas por al menos un usuario. En otras palabras, cada vez que un usuario seleccione un municipio, puedes guardar en una tabla en la base de datos los datos sobre ese municipio (includos latitud y longitud). Pero no puedes analizar todos los municipios que hay en el fichero JSON e incorporar su información a la base de datos.
+
+  La información sobre un municipio que puedas almacenar en la base de datos deberá actualizarse cuando se acceda al fichero XML para ese municipio, según indica el enunciado (por ejemplo, porque un usuario selecciona ese municipio, o porque hay un acceso a su página de municipio).
+
+\item Los archivos CSS que pueden modificar los usuarios, ¿dónde y cómo debemos guardarlos?
+
+  La forma recomendada de hacerlo es mediante plantillas:
+
+  \begin{itemize}
+  \item En el directorio de plantillas incluirías una para la hoja CSS del sitio. Esa plantilla tendría como variables de plantilla los valores que quieras que los usuarios puedan cambiar (color de tipo de letra, tamaño de tipo de letra, etc.).
+  \item Además, para cada usuario, tendrás una tabla donde se almacenarán los valores para ese usuario (normalmente, una fila de la tabla por usuario).
+  \item Tendrás una vista en views.py que se encargará de generar la hoja CSS a partir de la plantilla. Esa vista es la que comprobará si la petición que está atendiendo corresponde a un usuario (en cuyo caso tendrá que obtener los valores para ese usuario de la tabla anterior), o no (en cuyo caso usará valores por defecto). Con los valores que obtenga, generará la hoja CSS a partir de la plantilla anterior.
+  \item Por último, en urls.py tendrás una línea para indicar que si te piden el recurso que sirve la hoja de estilo, llamas a la vista anterior.
+  \end{itemize}
+
+\item ¿Qué partes de la página tiene que modificar el CSS ``customizable'' del usuario? En el enunciado de la práctica dice ``se usarán hojas CSS para cambiar al menos el tamaño y color de la letra, y el color del fondo, para los elementos marcados con un id, tal y como se especifica en el apartado anterior''. En el ``apartado anterior'' lo que se especifica es que el banner, caja de login, menú y pie de página tienen que ir cada uno en un elemento div con una id. ¿Significa esto que el CSS que personaliza el usuario se aplica solo a esos cuatro elementos, o aplica a toda la página? ¿En el caso de ser a cada uno de los cuatro elementos, debería el usuario poder modificar el color y letra de cada uno de ellos por separado, o aplicaría para los cuatro el mismo estilo?
+
+  Creemos que el enunciado no es ambiguo. Debe haber, por un lado, estilos CSS que afecten, como mínimo, al tamaño y color de la letra, y al color de fondo, de los elementos que es obligatorio marcar con un id, según indica el enunciado (efectivamente, el banner, la caja de login, etc.) Pueden llevar todos los mismos valores, o valores diferentes, como quiera quien realice la práctica, pero los estilos tienen que estar aplicados específicamente a esos ids.
+
+  Por otro lado, el usuario puede especificar unos cuantos valores para toda la página (según indica el enunciado: ``Un formulario para cambiar el estilo CSS de todo el sitio para ese usuario. Bastará con que se pueda cambiar el tamaño y el color de la letra y el color de fondo. Si se cambian estos valores, quedará cambiado el documento CSS que utilizarán todas las páginas del sitio para este usuario.`` Esto es, al indicar en el formulario valores para lo que puede personalizar el usuario (como mínimo el color de la letra y el color de fondo) estos valores se cambiarán para todo el sitio. Este color de letra y de fondo pueden aplicarse a todos los elementos que se muestren en el sitio, o sólo a algunos de ellos (por ejemplo, a todos los que no se ven afectados por los id mencionados anteriormente), según quiera el alumno. Lo importante es que el cambio afecte, en los elementos que se vean afectados, a todas las páginas del sitio. Naturalmente, si se decide cambiar por ejemplo la apariencia de todos los elementos del sitio, eso afectará también a los que tengan id Por eso quizás no sea una buena idea cambiar también estos elementos, desde el punto de vista estético, dado que quizás sea mejor que aparezcan con u  color de letra y/o de fondo diferente. Pero eso queda como decisión del alumno.
+  
+\item Si decido trabajar en la opción de despliegue de la aplicación, ¿dónde puedo realizar este despliegue?
+
+  El despliegue puede realizarse en caulquier ordenador que esté conectado permanentemente a Internet durante el periodo de correción, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Intener, adecaudamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), Heroku (instrucciones\footnote{Heroku Deploying with Git:\\ \url{https://devcenter.heroku.com/categories/deploying-with-git}}, características\footnote{Heroku Free Dyno Hours:\\ \url{https://devcenter.heroku.com/articles/free-dyno-hours}}) o PythonAmywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}).
+
+\item Para las URLs de los documentos XML que ofrece MiTiempo, ¿puedo usar la terminación \verb|format=xml| en lugar de \verb|?format=xml| ?
+
+  Sí. Debido a un error, los primeros enunciados mencionaban la terminación \verb|format=xml| para estos ficheros. Por ello, el alumno puede elegir entre servirlos con ese nombre de recurso, o con el que indica la versión final del enunciado, \verb|?format=xml|. Si aún no se ha realizado la implementación de ninguna de las dos formas, se recomienda hacerlo como indica el enunciado definitivo, porque eso permitirá utilizar la misma vista (view) que se utiliza para el documento HTML correspondiente, simplemente comprobando si la petición incluye una ``query string'' (utilizando los mecanismos pertinentes de Django). Pero como se ha dicho, si el alumno prefiere implementarlo de la otra forma, se considerara de la misma manera.
+\end{itemize}
