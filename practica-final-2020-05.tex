@@ -53,8 +53,7 @@ Arquitectura general:
   \item Se ofrecerá una forma para actualizar la información.
   \end{itemize}
 
-  Puede verse más información sobre los alimentadores en la sección~\ref{\label{practica-final-2020-05:alimentadores}.
-    
+  Puede verse más información sobre los alimentadores en la sección~\ref{practica-final-2020-05:alimentadores}.
 \end{itemize}
 
 Funcionamiento general:
@@ -105,7 +104,7 @@ La aplicación servirá las siguientes páginas:
     \item En ambos listados, habrá también para cada ítem un enlace a la página del item (ver a continuación).
     \item Formulario para elegir alimentador, para cada uno de los sistemas de alimentación (por ejemplo, canales de YouTube) disponibles. Tras elegir un alimentador vía el formulario, se recibirá la página del alimentador elegido (ver a continuación), con información actualizada.
     \item Listado de alimentadores elegidos en el pasado (formato resumido), cada uno con un botón para poder elegirlo (si se elige de esta forma, la aplicación se comportará igual que si se hubiera elegido vía el formulario), y otro para eliminarlo (si se pulsa, el alimentador dejará de salir en este listado en el futuro).
-    \end{itemize}
+    \end{enumerate}
 
     Si el visitante está además autenticado como usuario, se mostrará también:
 
@@ -166,8 +165,6 @@ La aplicación servirá las siguientes páginas:
     \begin{itemize}
     \item Listado de todos los usuarios ``con cuenta''. Para cada usuario, aparecerá su identificador, su foto, el número de items votados, el número de canales elegidos, y un enlace a su página.
     \end{itemize}
-
-   \end{enumerate}
 
   La página principal se ofrecerá también como un documento XML y como un documento JSON, que incluiría la misma información (los mismos listados de items y alimentadores). Este documento se ofrecerá cuando se pida la página principal, concatenando al final \verb|?format=xml| o \verb|?format=json|.
 
