@@ -21,7 +21,7 @@ Arquitectura general:
 
 \item Para el almacenamiento de datos persistente se usará SQLite3, con tablas definidas en modelos de Django.
 
-\item Para implementar usuarios, cuando sea necesario, se usará como base el sistema de autenticación de ususarios que proporciona Django\footnote{User Authentication in Django:\\ \url{https://docs.djangoproject.com/en/3.0/topics/auth/}}.
+\item Para implementar usuarios, cuando sea necesario, se usará como base el sistema de autenticación de usuarios que proporciona Django\footnote{User Authentication in Django:\\ \url{https://docs.djangoproject.com/en/3.0/topics/auth/}}.
 
 \item Todas las bases de datos que contenga la aplicación tendrán que ser accesibles vía la interfaz que proporciona el ``Admin Site'' (además de lo que pueda hacer falta para que funcione al aplicación).
 
@@ -59,9 +59,9 @@ Arquitectura general:
 Funcionamiento general:
 
 \begin{itemize}
-\item En general, para utlizar el sitio, no hará falta autenticarse con una cuenta. Toda la funcionalidad estará disponible para cualquier visitante, mientras use el sitio desde el mismo navegador y tenga las cookies habilitadas.
+\item En general, para utilizar el sitio, no hará falta autenticarse con una cuenta. Toda la funcionalidad estará disponible para cualquier visitante, mientras use el sitio desde el mismo navegador y tenga las cookies habilitadas.
 
-\item Cuando un visitante quiera, se podrá abrir una cuenta (y quedará autenticado en ella), o autenticarse en una cuenta ya existente. En este caso, la funcionaliadad quedará ligada a su cuenta.
+\item Cuando un visitante quiera, se podrá abrir una cuenta (y quedará autenticado en ella), o autenticarse en una cuenta ya existente. En este caso, la funcionalidad quedará ligada a su cuenta.
   
 \item Cada usuario podrá elegir cualquier ítem que se le presente, y realizar dos acciones fundamentales con él (comentarlo, y votarlo):
   \begin{itemize}
@@ -79,18 +79,51 @@ Funcionamiento general:
 Ejemplos de sistemas que proporciona alimentadores:
 
 \begin{itemize}
-\item YouTube. En este caso el alimentador será el canal de YouTube, y el item será un vídeo en particular. Los últimos vídeos de un canal están disponibles como documentos XML (RSS)\footnote{\url{https://www.youtube.com/feeds/videos.xml?channel_id=UC300utwSVAYOoRLEqmsprfg}}, donde el identificador del canal se puede obtener del enlace que tenemos en el navegador cuando estamos viendo el canal. Funcionamiento:
+\item YouTube. En este caso el alimentador será el canal de YouTube, y el item será un vídeo en particular. Los últimos vídeos de un canal están disponibles como documentos XML (RSS)\footnote{Ejemplo: Para el canal \verb|UC300utwSVAYOoRLEqmsprfg|, la url es:\\ \url{https://www.youtube.com/feeds/videos.xml?channel_id=UC300utwSVAYOoRLEqmsprfg}}, donde el identificador del canal se puede obtener del enlace que tenemos en el navegador cuando estamos viendo el canal. Funcionamiento:
+  
   \begin{itemize}
   \item Alimentador: canal de Youtube.
-  \item Ítem: video de YouTube.
+  \item Ítem: vídeo de YouTube.
   \item Elemento HTML para elegir el alimentador: formulario que permita escribir el identificador del canal.
-  \item Elemento HTML para actualizar el alimentador: botón que actualiza con los videos disponibles en el canal RSS.
+  \item Elemento HTML para actualizar el alimentador: botón que actualiza con los vídeos disponibles en el canal RSS.
   \item Datos mostrados para el alimentador cuando se muestra resumido: nombre (título) del canal, enlace del canal, total de items disponibles para este alimentador, puntuación (total de votos positivos menos votos negativos para todos sus items).
-  \item Datos mostrados para el alimentador cuando se muestra con detalle: nombre (título) del canal, enlace del canal, y lista de videos (con información detallada).
-  \item Datos mostrados del ítem (cuando se muestra resumido): título del vídeo, enlace del video
-  \item Datos mostrados del ítem (cuando se muestra con detalle): título del vídeo, enlace del video, descripción del vídeo, nombre del canal, enlace del canal.
+  \item Datos mostrados para el alimentador cuando se muestra con detalle: nombre (título) del canal, enlace del canal, y lista de vídeos (con información detallada).
+  \item Datos mostrados del ítem (cuando se muestra resumido): título del vídeo, enlace del vídeo
+  \item Datos mostrados del ítem (cuando se muestra con detalle): título del vídeo, enlace del vídeo, descripción del vídeo, vídeo empotrado, nombre del canal, enlace del canal.
   \end{itemize}
+
+\item Reddit (Subreddit). En este caso, el alimentador será un Subreddit (una sección de Reddit, como por ejemplo \verb|r/memes|, y el item una noticia en el Subreddit. Las últmas noticias de un Subreddit están disponibles como documento XML (RSS)\footnote{Ejemplo: Para el Subreddit \verb|memes|, la url es:\\ \url{https://www.reddit.com/r/memes.rss}}. Más información en el wiki de Reddit\footnote{What features does reddit have?: \\ \url{https://www.reddit.com/wiki/rss}}. Funcionamiento:
+
+  \begin{itemize}
+  \item Alimentador: Subreddit (sección) de Reddit.
+  \item Ítem: noticia del Subreddit.
+  \item Elemento HTML para elegir el alimentador: formulario que permita escribir el nombre del Subreddit.
+  \item Elemento HTML para actualizar el alimentador: botón que actualiza con las noticias disponibles en el canal RSS.
+  \item Datos mostrados para el alimentador cuando se muestra resumido: nombre (título) del Subreddit, enlace del Subreddit, total de items disponibles para este alimentador, puntuación (total de votos positivos menos votos negativos para todos sus items).
+  \item Datos mostrados para el alimentador cuando se muestra con detalle: nombre (título) del Subreddit, enlace del Subreddit, y lista de noticias (con información detallada).
+  \item Datos mostrados del ítem (cuando se muestra resumido): título de la noticia, enlace de la noticia.
+  \item Datos mostrados del ítem (cuando se muestra con detalle): título de la noticia, enlace de la noticia, descripción de la noticia, nombre del Subreddit, enlace del Subreddit.
+  \end{itemize}
+
+\item Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|, y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \verb|Cher|, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. Funcionamiento:
+
+  \begin{itemize}
+  \item Alimentador: Artista en Last.fm.
+  \item Ítem: álbum de un artista en Last.fm.
+  \item Elemento HTML para elegir el alimentador: formulario que permita escribir el nombre del artista.
+  \item Elemento HTML para actualizar el alimentador: botón que actualiza con los álbumes disponibles para el artista.
+  \item Datos mostrados para el alimentador cuando se muestra resumido: nombre del artista, enlace al artista, total de items disponibles para este alimentador, puntuación (total de votos positivos menos votos negativos para todos sus items).
+  \item Datos mostrados para el alimentador cuando se muestra con detalle: nombre del artista, enlace del artista, y lista de álbumes (con información detallada).
+  \item Datos mostrados del ítem (cuando se muestra resumido): título del álbum, enlace del álbum.
+  \item Datos mostrados del ítem (cuando se muestra con detalle): título del álbum, enlace del álbum, portada del álbum, nombre del artista, enlace del artista.
+  \end{itemize}
+  
 \end{itemize}
+
+Además de las anteriores, puedes proponer otros alimentadores. Los requisitos fundamentales son que sean accesibles públicamente (el acceso mediante un token de aplicación se considera público), y que proporcionen datos en formato XML o JSON. Si hay algún alimentador que querrías utilizar, coméntalo con los profesores para que te indiquen si es un alimentador válido. En caso de ser aceptado como válido, estos alimentadores serán puntuados positivamente, teniendo en cuenta la iniciativa del alumno que los propuso.
+
+Si quieres buscar servicios que ofrezcan APIs que podrían ser alimentadores, puedes buscarlos en Internet. Una lista por la que puedes comenzar es la que mantiene ProgrammableWeb\footnote{Programmable Web API Directory: \\\url{https://www.programmableweb.com/apis/directory}}.
+
 %%----------------------------------------------------------------------------
 \subsection{Funcionalidad mínima}
 
@@ -117,7 +150,7 @@ La aplicación servirá las siguientes páginas:
 
     \begin{itemize}
     \item Datos del ítem (formato detallado).
-    \item Datos del alimentador al que pertenece el ítem (formato resumido), inclyendo un enlace a la página del alimentador.
+    \item Datos del alimentador al que pertenece el ítem (formato resumido), incluyendo un enlace a la página del alimentador.
     \item Comentarios que haya recibido el ítem. Para cada comentario se mostrará el texto del comentario, el identificador de quien lo puso, y la fecha en que se puso.
     \end{itemize}
 
@@ -168,7 +201,7 @@ La aplicación servirá las siguientes páginas:
 
   La página principal se ofrecerá también como un documento XML y como un documento JSON, que incluiría la misma información (los mismos listados de items y alimentadores). Este documento se ofrecerá cuando se pida la página principal, concatenando al final \verb|?format=xml| o \verb|?format=json|.
 
-  La página principal en formato HTML includirá un enlace a la página principal en formato XML (``Descarga como fichero XML'') y JSON (``Descarga como fichero JSON'').  
+  La página principal en formato HTML incluirá un enlace a la página principal en formato XML (``Descarga como fichero XML'') y JSON (``Descarga como fichero JSON'').  
  
   \item Página de información: Página con información en HTML indicando la autoría de la práctica, explicando su funcionamiento y una brevísima documentación.
 
@@ -195,7 +228,7 @@ Si el alumno así lo desea, puede considerarse desplegar en un ordenador dedicad
 
 De forma optativa, se podrá incluir cualquier funcionalidad relevante en el contexto de la asignatura. Se valorarán especialmente las funcionalidades que impliquen el uso de técnicas nuevas, o de aspectos de Django no utilizados en los ejercicios previos, y que tengan sentido en el contexto de esta práctica y de la asignatura.
 
-En el formulario de entrega se pide que se justifique por qué se considera funcionalidad optativa lo que habeis implementado. Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativas:
+En el formulario de entrega se pide que se justifique por qué se considera funcionalidad optativa lo que habéis implementado. Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativas:
 
 \begin{itemize}
   \item Inclusión de un \emph{favicon} del sitio
@@ -230,7 +263,7 @@ La entrega de la práctica consiste en:
 
 \begin{enumerate}
 
-  \item {\bf Rellenar un formulario} enlazado en el Moodle de la asignatura.
+  \item {\bf Rellenar un formulario} enlazado en el sitio de la asignatura en el aula virtual.
   
   \item {\bf Subir tu práctica a un repositorio en el GitLab de la Escuela}. El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo). Es muy importante que el alumno haya realizado una derivación (fork) del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
 
