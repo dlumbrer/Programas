@@ -181,6 +181,14 @@ En todos los casos en que se vote, tras votar se volverá a ver la misma página
 
 Todas las páginas un menú desde el que se podrá acceder a la página principal (con el texto ``Inicio''), a la de alimentadores (con el texto ``Alimentadores''), a la de usuarios (con el texto ``Usuarios'') y a la de información (con el texto ``Información''), salvo que ya estés en esa página, en cuyo caso no saldrá el elemento de menú correspondiente.
 
+%%----------------------------------------------------------------------------
+\subsection{Despliegue}
+
+La práctica deberá estar desplegada en algún sitio de Internet, de forma que pueda accederse a ella. Deberá mantenerse desplegada y activa al menos desde el día de entrega de la práctica, hasta el día del cierre de actas.
+
+Para el despliegue, se puede utilizar Python Anywhere\footnote{Python Anywhere: \url{https://pythonanywhere.com}}, que proporciona un plan gratuito que incluye suficientes recursos como para poder desplegar la práctica.
+
+Si el alumno así lo desea, puede considerarse desplegar en un ordenador dedicado (por ejemplo, una Raspberry Pi accesible directamente desde Internet, alojada en su hogar), o en servicios como Google Computing Engine\footnote{GCP Engine Free: \url{https://cloud.google.com/free/}}. En general, dado que este tipo de despliegues no podrá contar con una ayuda detallada por los profesores, estará algo más valorado.
 
 %%----------------------------------------------------------------------------
 \subsection{Funcionalidad optativa}
@@ -202,7 +210,6 @@ En el formulario de entrega se pide que se justifique por qué se considera func
 
   \item Utilización de Bootstrap\footnote{Bootstrap: \url{https://getbootstrap.com/}} para la maquetación del sitio web.
     
-  \item Despliegue de la práctica en algún sitio de Internet, de forma que pueda accederse a ella. Por ejemplo, puede considerarse desplegar en un ordenador dedicado (por ejemplo, Raspberry Pi accesible directamente desde Internet), o en servicios como Google Computing Engine\footnote{GCP Engine Free: \url{https://cloud.google.com/free/}} o Heroku\footnote{Heroku Free: \url{https://www.heroku.com/free}}.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
@@ -254,13 +261,43 @@ Sobre la entrega del repositorio:
 \begin{itemize}
   \item Nombre y titulación.
   \item Nombre de su cuenta en el laboratorio del alumno.
-  \item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
-  \item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
   \item URL del vídeo demostración de la funcionalidad básica
   \item URL del vídeo demostración de la funcionalidad optativa, si se ha realizado funcionalidad optativa
+  \item URL de la aplicación desplegada
   \item Cuenta (login) y contraseña de los usuarios que están dados de alta en la aplicación.
-  \item URL de la aplicación desplegada (si es que se ha desplegado)
+  \item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
+  \item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
 \end{itemize}
+
+Estos datos se escribirán siguiendo estrictamente el siguiente formato:
+
+\begin{verbatim}
+# Entrega practica
+
+## Datos
+
+* Nombre:
+* Titulación:
+* Despliegue (url):
+* Video básico (url):
+* Video parte opcional (url):
+* Despliegue (url):
+*
+
+## Cuentas
+
+* usuario/contraseña
+* usuario/contraseña
+* ...
+
+## Resumen parte obligatoria
+
+## Lista partes opcionales
+
+* Nombre parte:
+* Nombre parte:
+* ...
+\end{verbatim}
 
 Asegúrate de que las URLs incluidas en este fichero están adecuadamente escritas en Markdown, de forma que la versión HTML que genera GitLab los incluya como enlaces ``pinchables''.
 \end{itemize}
@@ -308,11 +345,6 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
 
   Por otro lado, el usuario puede especificar unos cuantos valores para toda la página (según indica el enunciado: ``Un formulario para cambiar el estilo CSS de todo el sitio para ese usuario. Bastará con que se pueda cambiar el tamaño y el color de la letra y el color de fondo. Si se cambian estos valores, quedará cambiado el documento CSS que utilizarán todas las páginas del sitio para este usuario.`` Esto es, al indicar en el formulario valores para lo que puede personalizar el usuario (como mínimo el color de la letra y el color de fondo) estos valores se cambiarán para todo el sitio. Este color de letra y de fondo pueden aplicarse a todos los elementos que se muestren en el sitio, o sólo a algunos de ellos (por ejemplo, a todos los que no se ven afectados por los id mencionados anteriormente), según quiera el alumno. Lo importante es que el cambio afecte, en los elementos que se vean afectados, a todas las páginas del sitio. Naturalmente, si se decide cambiar por ejemplo la apariencia de todos los elementos del sitio, eso afectará también a los que tengan id Por eso quizás no sea una buena idea cambiar también estos elementos, desde el punto de vista estético, dado que quizás sea mejor que aparezcan con u  color de letra y/o de fondo diferente. Pero eso queda como decisión del alumno.
   
-\item Si decido trabajar en la opción de despliegue de la aplicación, ¿dónde puedo realizar este despliegue?
+\item ¿Dónde puedo realizar el despliegue de la aplicación?
 
-  El despliegue puede realizarse en caulquier ordenador que esté conectado permanentemente a Internet durante el periodo de correción, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Intener, adecaudamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), Heroku (instrucciones\footnote{Heroku Deploying with Git:\\ \url{https://devcenter.heroku.com/categories/deploying-with-git}}, características\footnote{Heroku Free Dyno Hours:\\ \url{https://devcenter.heroku.com/articles/free-dyno-hours}}) o PythonAmywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}).
-
-\item Para las URLs de los documentos XML que ofrece MiTiempo, ¿puedo usar la terminación \verb|format=xml| en lugar de \verb|?format=xml| ?
-
-  Sí. Debido a un error, los primeros enunciados mencionaban la terminación \verb|format=xml| para estos ficheros. Por ello, el alumno puede elegir entre servirlos con ese nombre de recurso, o con el que indica la versión final del enunciado, \verb|?format=xml|. Si aún no se ha realizado la implementación de ninguna de las dos formas, se recomienda hacerlo como indica el enunciado definitivo, porque eso permitirá utilizar la misma vista (view) que se utiliza para el documento HTML correspondiente, simplemente comprobando si la petición incluye una ``query string'' (utilizando los mecanismos pertinentes de Django). Pero como se ha dicho, si el alumno prefiere implementarlo de la otra forma, se considerara de la misma manera.
-\end{itemize}
+  El despliegue puede realizarse en caulquier ordenador que esté conectado permanentemente a Internet durante el periodo de correción, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Intener, adecaudamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), o PythonAmywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}). Los profesores podremos ayudar de forma más detallada con PythonAnywhere.
