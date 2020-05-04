@@ -76,10 +76,12 @@ Funcionamiento general:
 \subsection{Alimentadores}
 \label{practica-final-2020-05:alimentadores}
 
-Ejemplos de sistemas que proporciona alimentadores:
+La práctica tendrá que funcionar con al menos dos alimentadores entre los que se describen a continuación. El número 0 (YouTube canal XML) será obligatorio para todos. Además, cada alumno tendrá que implementar al menos otro, según la primera letra de su primer apellido: alimentador 1 para las letras A-D, alimentador 2 para las letras E-L, alimentador 3 para las letras M-Q, alimentador 4 para las letras R-Z.
+
+Alimentadores descritos:
 
 \begin{itemize}
-\item YouTube. En este caso el alimentador será el canal de YouTube, y el item será un vídeo en particular. Los últimos vídeos de un canal están disponibles como documentos XML (RSS)\footnote{Ejemplo: Para el canal \verb|UC300utwSVAYOoRLEqmsprfg|, la url es:\\ \url{https://www.youtube.com/feeds/videos.xml?channel_id=UC300utwSVAYOoRLEqmsprfg}}, donde el identificador del canal se puede obtener del enlace que tenemos en el navegador cuando estamos viendo el canal. Funcionamiento:
+\item \textbf{Alimentador 0}. YouTube (canal XML). En este caso el alimentador será el canal de YouTube, y el item será un vídeo en particular. Los últimos vídeos de un canal están disponibles como documentos XML (RSS)\footnote{Ejemplo: Para el canal \verb|UC300utwSVAYOoRLEqmsprfg|, la url es:\\ \url{https://www.youtube.com/feeds/videos.xml?channel_id=UC300utwSVAYOoRLEqmsprfg}}, donde el identificador del canal se puede obtener del enlace que tenemos en el navegador cuando estamos viendo el canal. Funcionamiento:
   
   \begin{itemize}
   \item Alimentador: canal de Youtube.
@@ -92,7 +94,7 @@ Ejemplos de sistemas que proporciona alimentadores:
   \item Datos mostrados del ítem (cuando se muestra con detalle): título del vídeo, enlace del vídeo, descripción del vídeo, vídeo empotrado, nombre del canal, enlace del canal.
   \end{itemize}
 
-\item Reddit (Subreddit). En este caso, el alimentador será un Subreddit (una sección de Reddit, como por ejemplo \verb|r/memes|, y el item una noticia en el Subreddit. Las últmas noticias de un Subreddit están disponibles como documento XML (RSS)\footnote{Ejemplo: Para el Subreddit \verb|memes|, la url es:\\ \url{https://www.reddit.com/r/memes.rss}}. Más información en el wiki de Reddit\footnote{What features does reddit have?: \\ \url{https://www.reddit.com/wiki/rss}}. Funcionamiento:
+\item \textbf{Alimentador 1}. Reddit (Subreddit). En este caso, el alimentador será un Subreddit (una sección de Reddit, como por ejemplo \verb|r/memes|, y el item una noticia en el Subreddit. Las últmas noticias de un Subreddit están disponibles como documento XML (RSS)\footnote{Ejemplo: Para el Subreddit \verb|memes|, la url es:\\ \url{https://www.reddit.com/r/memes.rss}}. Más información en el wiki de Reddit\footnote{What features does reddit have?: \\ \url{https://www.reddit.com/wiki/rss}}. Funcionamiento:
 
   \begin{itemize}
   \item Alimentador: Subreddit (sección) de Reddit.
@@ -105,7 +107,7 @@ Ejemplos de sistemas que proporciona alimentadores:
   \item Datos mostrados del ítem (cuando se muestra con detalle): título de la noticia, enlace de la noticia, descripción de la noticia, nombre del Subreddit, enlace del Subreddit.
   \end{itemize}
 
-\item Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|, y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \verb|Cher|, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. Funcionamiento:
+\item \textbf{Alimentador 2}. Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|, y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \verb|Cher|, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. Funcionamiento:
 
   \begin{itemize}
   \item Alimentador: Artista en Last.fm.
@@ -117,7 +119,64 @@ Ejemplos de sistemas que proporciona alimentadores:
   \item Datos mostrados del ítem (cuando se muestra resumido): título del álbum, enlace del álbum.
   \item Datos mostrados del ítem (cuando se muestra con detalle): título del álbum, enlace del álbum, portada del álbum, nombre del artista, enlace del artista.
   \end{itemize}
-  
+
+
+\item \textbf{Alimentador 3}. Flickr (etiqueta). En este caso, el alimentador será una eitqueta (tag) de Flickr (como por ejemplo ``Fuenlabrada''), y el item una foto con esa etiqueta. Las fotos que tienen una etiqueta están disponibles como documento XML\footnote{Ejemplo: Para la etiqueta ``Fuenlabrada'' la url es: \\ \url{https://www.flickr.com/services/feeds/photos_public.gne?tags=fuenlabrada}}. Más información en la página Public Feed de Flickr\footnote{Public Feed de Flickr: \\ \url{https://www.flickr.com/services/feeds/docs/photos_public/}}. Funcionamiento:
+
+  \begin{itemize}
+  \item Alimentador: Etiqueta de Flickr.
+  \item Ítem: foto de Flickr.
+  \item Elemento HTML para elegir el alimentador: formulario que permita escribir la etiqueta.
+  \item Elemento HTML para actualizar el alimentador: botón que actualiza con las fotos de la etiqueta.
+  \item Datos mostrados para el alimentador cuando se muestra resumido: etiqueta, enlace a las fotos con esa etiqueta en Flickr\footnote{Por ejemplo, para la etiqueta ``Fuenlabrada'', el enlace sería: \\\url{https://www.flickr.com/search/?tags=fuenlabrada}}, total de items disponibles para este alimentador, puntuación (total de votos positivos menos votos negativos para todos sus items).
+  \item Datos mostrados para el alimentador cuando se muestra con detalle: etiqueta, enlace a la página de la etiqueta en Flickr, y lista de fotos para esa etiqueta (con información detallada).
+  \item Datos mostrados del ítem (cuando se muestra resumido): título de la foto, enlace a la página de la foto en Flickr.
+  \item Datos mostrados del ítem (cuando se muestra con detalle): título de la foto, enlace a la página de la foto en Flickr, foto, etiqueta, enlace a la página de la etiqueta en Flickr.
+  \end{itemize}
+
+\item \textbf{Alimentador 4}. Wikipedia (historia de artículos). En este caso, el alimentador será la historia de un artículo de Wikipedia (como por ejemplo ``Madrid''), y el item la descripción de un cambio en esa historia. La historia de un artículo está disponible como documento XML\footnote{Ejemplo: Para la página ``Fuenlabrada'' la url es: \\ \url{https://en.wikipedia.org/w/index.php?title=Fuenlabrada&action=history&feed=rss}}. Más información en la página Wikipedia Syndication\footnote{Wikipedia Syndication: \\ \url{https://en.wikipedia.org/wiki/Wikipedia:Syndication}} (sección ``RSS Feeds''). Funcionamiento:
+
+  \begin{itemize}
+  \item Alimentador: historia de un artículo de Wiipedia.
+  \item Ítem: cambio en la historia de un artículo.
+  \item Elemento HTML para elegir el alimentador: formulario que permita escribir el nombre del artículo.
+  \item Elemento HTML para actualizar el alimentador: botón que actualiza con la historia de un artículo.
+  \item Datos mostrados para el alimentador cuando se muestra resumido: nombre del artículo, enlace al articulo en la Wikipedia, total de items disponibles para este alimentador, puntuación (total de votos positivos menos votos negativos para todos sus items).
+  \item Datos mostrados para el alimentador cuando se muestra con detalle: nombre del artículo, enlace al articulo en la Wikipedia, y lista de cambios para ese articulo (con información detallada).
+  \item Datos mostrados del ítem (cuando se muestra resumido): título del cambio, enlace al cambio.
+  \item Datos mostrados del ítem (cuando se muestra con detalle): título del cambio, enlace al cambio, autor del cambio, fecha del cambio, nombre del artículo, enlace al articulo en la Wikipedia.
+  \end{itemize}
+
+\end{itemize}
+
+Otros alimentadores, entre ellos algunos sugeridos por alumnos de la asignatura, por si te interesa implementarlos:
+
+\begin{itemize}
+\item TodoLiteratura (sección). En este caso, el alimentador será una sección de TodoLiteratura (como por ejemplo ``Actualidad''), y el item un artíclo de la sección. Las noticias de una sección están disponibles como documento XML\footnote{Ejemplo: Para la sección ``Actualidad'' se usa el número ``127'', y la url es: \\ \url{https://www.todoliteratura.es/rss/seccion/127/}}. Más información en la página de canales RSS de TodoLiteratura\footnote{Página de canales RSS de Todo Literatura: \\ \url{https://www.todoliteratura.es/rss/}}. Funcionamiento:
+
+  \begin{itemize}
+  \item Alimentador: Sección en TodoLiteratura.
+  \item Ítem: noticia en una sección de TodoLiteratura.
+  \item Elemento HTML para elegir el alimentador: formulario que permita escribir el identificador de la seccion (número de la sección). Alternativamente, se puede usar un menú que de cómo opción varias de las secciones.
+  \item Elemento HTML para actualizar el alimentador: botón que actualiza con las noticias disponibles en una sección.
+  \item Datos mostrados para el alimentador cuando se muestra resumido: título de la sección, enlace a la sección, total de items disponibles para este alimentador, puntuación (total de votos positivos menos votos negativos para todos sus items).
+  \item Datos mostrados para el alimentador cuando se muestra con detalle: título de la noticia, enlace a la sección, descripción de la sección, y lista de noticias (con información detallada).
+  \item Datos mostrados del ítem (cuando se muestra resumido): título de la noticia, enlace a la noticia.
+  \item Datos mostrados del ítem (cuando se muestra con detalle): título de la noticia, enlace a la noticia, descripción de la noticia, título de la sección, enlace a la sección.
+  \end{itemize}
+
+\item TuCanaldeSalud (sección). En este caso, el alimentador será una sección de TuCanaldeSalud (como por ejemplo ``Tecnología''), y el item un artíclo de la sección. Las noticias de una sección están disponibles como documento XML\footnote{Ejemplo: Para la sección ``Tecnología'' se usa el número ``70038'', y la url es: \\ \url{https://www.tucanaldesalud.es/idcsalud-client/cm/tucanaldesalud/rss?locale=es_ES&rssContent=70038}}. Más información en la página de canales RSS de TuCanaldeSalud\footnote{Página de canales RSS de TuCanaldeSalud: \\ \url{https://www.tucanaldesalud.es/es/feed-rss}}. Funcionamiento:
+
+  \begin{itemize}
+  \item Alimentador: Sección en TuCanaldeSalud.
+  \item Ítem: noticia en una sección de TuCanaldeSalud.
+  \item Elemento HTML para elegir el alimentador: formulario que permita escribir el identificador de la seccion (número de la sección). Alternativamente, se puede usar un menú que de cómo opción varias de las secciones.
+  \item Elemento HTML para actualizar el alimentador: botón que actualiza con las noticias disponibles en una sección.
+  \item Datos mostrados para el alimentador cuando se muestra resumido: título de la sección, enlace a la sección, total de items disponibles para este alimentador, puntuación (total de votos positivos menos votos negativos para todos sus items).
+  \item Datos mostrados para el alimentador cuando se muestra con detalle: título de la noticia, enlace a la sección, descripción de la sección, y lista de noticias (con información detallada).
+  \item Datos mostrados del ítem (cuando se muestra resumido): título de la noticia, enlace a la noticia.
+  \item Datos mostrados del ítem (cuando se muestra con detalle): título de la noticia, enlace a la noticia, descripción de la noticia, título de la sección, enlace a la sección.
+  \end{itemize} 
 \end{itemize}
 
 Además de las anteriores, puedes proponer otros alimentadores. Los requisitos fundamentales son que sean accesibles públicamente (el acceso mediante un token de aplicación se considera público), y que proporcionen datos en formato XML o JSON. Si hay algún alimentador que querrías utilizar, coméntalo con los profesores para que te indiquen si es un alimentador válido. En caso de ser aceptado como válido, estos alimentadores serán puntuados positivamente, teniendo en cuenta la iniciativa del alumno que los propuso.
@@ -211,8 +270,9 @@ La aplicación se encargará de controlar que no haya más de un voto (positivo 
 
 En todos los casos en que se vote, tras votar se volverá a ver la misma página en que se estaba, ahora con el voto contabilizado.
 
-
 Todas las páginas un menú desde el que se podrá acceder a la página principal (con el texto ``Inicio''), a la de alimentadores (con el texto ``Alimentadores''), a la de usuarios (con el texto ``Usuarios'') y a la de información (con el texto ``Información''), salvo que ya estés en esa página, en cuyo caso no saldrá el elemento de menú correspondiente.
+
+Además, la práctica incluirá tests, que se ejecutarán con \verb|python3 manage.py test|, y que incluirán al menos un test de API HTTP para cada recurso que sirva la aplicación, y para cada método (GET, POST) que admita cada recurso. Además, al menos la mitad de los test incluirán comprobar algo distinto del código HTTP retornado por la petición.
 
 %%----------------------------------------------------------------------------
 \subsection{Despliegue}
@@ -237,25 +297,35 @@ En el formulario de entrega se pide que se justifique por qué se considera func
 
   \item Generación de un canal RSS, XML libre y/o JSON para los comentarios puestos en el sitio.
 
-  \item Incorporación de datos de otros alimentadores.
+  \item Incorporación de datos de otros alimentadores además de los obligatorios. Se valorará especialmente la búsqueda de otros alimentadores no descritos en este enunciado, la implementación de alimentadores no basados en RSS (o derivados), y la implementación de alimentadores que requieran de token de autenticación (en este caso, atención a no subir el token de autenticación a GitLab).
  
   \item Atención al idioma indicado por el navegador. El idioma de la interfaz de usuario del planeta tendrá en cuenta lo que especifique el navegador.
 
   \item Utilización de Bootstrap\footnote{Bootstrap: \url{https://getbootstrap.com/}} para la maquetación del sitio web.
+
+  \item Inclusión de imágenes (no solo texto) en los comentarios. Esto puede hacerse de dos formas: quien suba un comentario, además de rellenar una caja de texto con el comentario, puede indicar también la url de una imagen, que se mostrará junto al comentario, o bien subiendo una imgen a la aplicación, que se mostrará junto al comentario (se valorará más la segunda opción, y se pueden implementar las dos).
     
+  \item Mejora de los tests de la práctica, incluyendo test de condiciones de error, test de escenarios con más de una invocación de recurso, tests de API Python, etc.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
 \subsection{Entrega de la práctica}
 
 \begin{itemize}
-  \item \textbf{Fecha límite de entrega de la práctica:} viernes, 12 de junio de 2020 a las 15:00 (hora española peninsular)
+  \item \textbf{Fecha límite de entrega de la prueba teórica:} viernes, 12 de junio de 2020 a las 15:00 (hora española peninsular)
        %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
 
-  \item \textbf{Fecha de publicación de notas de prácticas:} martes, 16 de junio, en el aula virtual.
+  \item \textbf{Fecha límite de entrega de la práctica:} domingo, 14 de junio de 2020 a las 23:59 (hora española peninsular)
+
+  \item \textbf{Notificación de alumnos que tendrán que realizar entrevista:} martes, 16 de junio, en el aula virtual.
 %{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
 
-  \item \textbf{Fecha de revisión de prácticas:} jueves, 18 de junio, a las 12:00, en Microsoft Teams. Se requerirá a algunos alumnos que asistan a la revisión {\bf en remoto síncronamente}; se informará de ello en el mensaje de publicación de notas.
+  \item \textbf{Realización de entrevistas:} miércoles, 17 de junio, en la aplicación Teams. Si es necesario, se realizarán también los días 18 y 19.
+    
+  \item \textbf{Fecha de publicación de notas:} viernes, 19 de junio, en el aula virtual.
+%{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
+
+  \item \textbf{Fecha de revisión:} lunes, 22 de junio, a las 12:00, en la aplicación Teams.
 %{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
 \end{itemize}
 
@@ -270,7 +340,9 @@ La entrega de la práctica consiste en:
 \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/final-miscosas/}
 
 Recordad que es importante ir haciendo commits de vez en cuando y que sólo al hacer push estos commits son públicos. Antes de entregar la práctica, haced un push. Y cuando la entreguéis y sepáis el nombre del repositorio, podéis cambiar el nombre del repositorio desde el interfaz web de GitLab. 
- 
+
+Se recomeinda mantener el repositorio como privado, hasta el momento en que se entregue la práctica.
+
  \item {\bf Entregar un vídeo de demostración de la parte obligatoria, y otro vídeo de demostración de la parte opcional}, si se han realizado opciones avanzadas. Los vídeos serán de una {\bf duración máxima de 3 minutos} (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo, Twitch, o YouTube). Los vídeos de más de tres minutos tendrán penalización.
 
 Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). OBS Studio\footnote{OBS Studio: \url{https://obsproject.com/}} está disponible para varias plataformas (Linux, Windows, MacOS). Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
@@ -284,12 +356,16 @@ Sobre la entrega del repositorio:
   \item Se han de entregar los siguientes ficheros:
 
 \begin{itemize}
-  \item Un fichero README.md que resuma las mejoras, si las hay, y explique cualquier peculiaridad de la entrega (ver siguiente punto).
-  \item El repositorio en el GitLab de la ETSIT deberá contener un proyecto Django completo y listo para funcionar en el entorno del laboratorio, incluyendo la base de datos con datos suficientes como para poder probarlo. Estos datos incluirán al menos dos usuarios con sus datos correspondientes, con al menos seis municipios en su página personal, al menos 12 municipios distintos seleccionados, y con al menos cinco comentarios en total.
-  \item Cualquier biblioteca Python que pueda hacer falta para que la aplicación funcione, junto con los ficheros auxiliares que utilice, si es que los utiliza.
+  \item El repositorio en la instancia GitLab de la ETSIT deberá contener un proyecto Django completo y listo para funcionar en el entorno del laboratorio, incluyendo la base de datos. Deberá poder ejecutarse directamente con \verb|python3 manage.py runserver| desde un entorno virtual en el que esté instalado Django~3.0.3. Tmbién ejecutará los tests con \verb|python3 manage.py test|, desde el mismo entorno virtual.
+
+  \item La base de datos habrá de tener datos suficientes como para poder probarlo. Estos datos incluirán al menos dos usuarios con sus datos correspondientes, con al menos cinco alimentadores elegidos en total, cinco comentarios puestos en total, y al menos 10 items votados por cada usuario.
+
+  \item Un fichero \verb|requirements.txt|, con un nombre de paquete Python por línea, para indicar Cualquier biblioteca Python que pueda hacer falta para que la aplicación funcione, si es que fuera el caso. Este fichero no ha de incluir Django, dado que ya se supone que hace falta. Si es posible, se recomienda escribir este fichero en el formato que entiende \verb|pip install -r requirements.txt|
+
+  \item Cualquier fichero auxiliar que pueda hacer falta para que funcione la práctica, si es que fuera el caso.
 \end{itemize}
 
-  \item Se incluirán en el fichero README.md los siguientes datos (la mayoría de estos datos se piden también en el formulario que se ha de rellenar para entregar la práctica - se recomienda hacer un corta y pega de estos datos en el formulario):
+  \item Se incluirán en el fichero README.md los siguientes datos (la mayoría de estos datos se piden también en el formulario que se ha de rellenar para entregar la práctica: se recomienda hacer un copia y pega de estos datos en el formulario):
 
 \begin{itemize}
   \item Nombre y titulación.
@@ -317,7 +393,11 @@ Estos datos se escribirán siguiendo estrictamente el siguiente formato:
 * Despliegue (url):
 *
 
-## Cuentas
+## Cuenta Admin Site
+
+* usuario/contraseña
+
+## Cuentas usuarios
 
 * usuario/contraseña
 * usuario/contraseña
@@ -354,12 +434,6 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
 \item ¿Es necesario utilizar los mecanismos provistos por Django para el control de sesiones y autenticación?
 
   En principio, esa es la solución recomendada. El principal problema suele ser asegurarse de que cuaquier mecanismo alternativo funciona al menos tan bien como el de Django, lo que no es en general trivial. De todas formas, salvo muy buenos motivos, la aplicación es una aplicación Django, y por lo tanto cuantas más facilidades de Django se usen (bien usadas), mejor.
-  
-\item ¿Puedo guardar en la base de datos los datos referentes a latitud, altitud, etc (datos que no varian nunca) y precipitación, temperatura, descripción, etc y cambiarlos cuando sea necesario (ya que estos si cambian)?
-
-  Pueden almacenarse en tablas en la base de datos los datos correspondientes a poblaciones que han sido seleccionadas por al menos un usuario. En otras palabras, cada vez que un usuario seleccione un municipio, puedes guardar en una tabla en la base de datos los datos sobre ese municipio (includos latitud y longitud). Pero no puedes analizar todos los municipios que hay en el fichero JSON e incorporar su información a la base de datos.
-
-  La información sobre un municipio que puedas almacenar en la base de datos deberá actualizarse cuando se acceda al fichero XML para ese municipio, según indica el enunciado (por ejemplo, porque un usuario selecciona ese municipio, o porque hay un acceso a su página de municipio).
 
 \item Los archivos CSS que pueden modificar los usuarios, ¿dónde y cómo debemos guardarlos?
 
@@ -367,17 +441,13 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
 
   \begin{itemize}
   \item En el directorio de plantillas incluirías una para la hoja CSS del sitio. Esa plantilla tendría como variables de plantilla los valores que quieras que los usuarios puedan cambiar (color de tipo de letra, tamaño de tipo de letra, etc.).
-  \item Además, para cada usuario, tendrás una tabla donde se almacenarán los valores para ese usuario (normalmente, una fila de la tabla por usuario).
+  \item Además, para cada usuario, tendrás una tabla en la base de datos donde se almacenarán los valores para ese usuario (normalmente, una fila de la tabla por usuario).
   \item Tendrás una vista en views.py que se encargará de generar la hoja CSS a partir de la plantilla. Esa vista es la que comprobará si la petición que está atendiendo corresponde a un usuario (en cuyo caso tendrá que obtener los valores para ese usuario de la tabla anterior), o no (en cuyo caso usará valores por defecto). Con los valores que obtenga, generará la hoja CSS a partir de la plantilla anterior.
   \item Por último, en urls.py tendrás una línea para indicar que si te piden el recurso que sirve la hoja de estilo, llamas a la vista anterior.
   \end{itemize}
 
-\item ¿Qué partes de la página tiene que modificar el CSS ``customizable'' del usuario? En el enunciado de la práctica dice ``se usarán hojas CSS para cambiar al menos el tamaño y color de la letra, y el color del fondo, para los elementos marcados con un id, tal y como se especifica en el apartado anterior''. En el ``apartado anterior'' lo que se especifica es que el banner, caja de login, menú y pie de página tienen que ir cada uno en un elemento div con una id. ¿Significa esto que el CSS que personaliza el usuario se aplica solo a esos cuatro elementos, o aplica a toda la página? ¿En el caso de ser a cada uno de los cuatro elementos, debería el usuario poder modificar el color y letra de cada uno de ellos por separado, o aplicaría para los cuatro el mismo estilo?
-
-  Creemos que el enunciado no es ambiguo. Debe haber, por un lado, estilos CSS que afecten, como mínimo, al tamaño y color de la letra, y al color de fondo, de los elementos que es obligatorio marcar con un id, según indica el enunciado (efectivamente, el banner, la caja de login, etc.) Pueden llevar todos los mismos valores, o valores diferentes, como quiera quien realice la práctica, pero los estilos tienen que estar aplicados específicamente a esos ids.
-
-  Por otro lado, el usuario puede especificar unos cuantos valores para toda la página (según indica el enunciado: ``Un formulario para cambiar el estilo CSS de todo el sitio para ese usuario. Bastará con que se pueda cambiar el tamaño y el color de la letra y el color de fondo. Si se cambian estos valores, quedará cambiado el documento CSS que utilizarán todas las páginas del sitio para este usuario.`` Esto es, al indicar en el formulario valores para lo que puede personalizar el usuario (como mínimo el color de la letra y el color de fondo) estos valores se cambiarán para todo el sitio. Este color de letra y de fondo pueden aplicarse a todos los elementos que se muestren en el sitio, o sólo a algunos de ellos (por ejemplo, a todos los que no se ven afectados por los id mencionados anteriormente), según quiera el alumno. Lo importante es que el cambio afecte, en los elementos que se vean afectados, a todas las páginas del sitio. Naturalmente, si se decide cambiar por ejemplo la apariencia de todos los elementos del sitio, eso afectará también a los que tengan id Por eso quizás no sea una buena idea cambiar también estos elementos, desde el punto de vista estético, dado que quizás sea mejor que aparezcan con u  color de letra y/o de fondo diferente. Pero eso queda como decisión del alumno.
-  
 \item ¿Dónde puedo realizar el despliegue de la aplicación?
 
-  El despliegue puede realizarse en caulquier ordenador que esté conectado permanentemente a Internet durante el periodo de correción, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Intener, adecaudamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), o PythonAmywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}). Los profesores podremos ayudar de forma más detallada con PythonAnywhere.
+  El despliegue puede realizarse en cualquier ordenador que esté conectado permanentemente a Internet durante el periodo de correción, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Intener, adecaudamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), o PythonAnywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}). Los profesores podremos ayudar de forma más detallada con PythonAnywhere.
+
+\end{itemize}
