@@ -94,7 +94,7 @@ Alimentadores descritos:
   \item Datos mostrados del ítem (cuando se muestra con detalle): título del vídeo, enlace del vídeo, descripción del vídeo, vídeo empotrado, nombre del canal, enlace del canal.
   \end{itemize}
 
-\item \textbf{Alimentador 1}. Reddit (Subreddit). En este caso, el alimentador será un Subreddit (una sección de Reddit, como por ejemplo \verb|r/memes|, y el item una noticia en el Subreddit. Las últmas noticias de un Subreddit están disponibles como documento XML (RSS)\footnote{Ejemplo: Para el Subreddit \verb|memes|, la url es:\\ \url{https://www.reddit.com/r/memes.rss}}. Más información en el wiki de Reddit\footnote{What features does reddit have?: \\ \url{https://www.reddit.com/wiki/rss}}. Funcionamiento:
+\item \textbf{Alimentador 1}. Reddit (Subreddit). En este caso, el alimentador será un Subreddit (una sección de Reddit, como por ejemplo \verb|r/memes|), y el item una noticia en el Subreddit. Las últmas noticias de un Subreddit están disponibles como documento XML (RSS)\footnote{Ejemplo: Para el Subreddit \verb|memes|, la url es:\\ \url{https://www.reddit.com/r/memes.rss}}. Más información en el wiki de Reddit\footnote{What features does reddit have?: \\ \url{https://www.reddit.com/wiki/rss}}. Funcionamiento:
 
   \begin{itemize}
   \item Alimentador: Subreddit (sección) de Reddit.
@@ -107,7 +107,7 @@ Alimentadores descritos:
   \item Datos mostrados del ítem (cuando se muestra con detalle): título de la noticia, enlace de la noticia, descripción de la noticia, nombre del Subreddit, enlace del Subreddit.
   \end{itemize}
 
-\item \textbf{Alimentador 2}. Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|, y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \verb|Cher|, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. Funcionamiento:
+\item \textbf{Alimentador 2}. Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|), y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \verb|Cher|, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. Funcionamiento:
 
   \begin{itemize}
   \item Alimentador: Artista en Last.fm.
@@ -192,17 +192,16 @@ La aplicación servirá las siguientes páginas:
   \item Página principal de la aplicación:
   
     \begin{enumerate}
-    \item Listado con los 10 items (formato resumido) que han conseguido más puntuación (votos positivos menos votos negativos) en el sitio. Para cada uno se mostrarán sus votos positivos y negativos.
-    \item En ambos listados, habrá también para cada ítem un enlace a la página del item (ver a continuación).
-    \item Formulario para elegir alimentador, para cada uno de los sistemas de alimentación (por ejemplo, canales de YouTube) disponibles. Tras elegir un alimentador vía el formulario, se recibirá la página del alimentador elegido (ver a continuación), con información actualizada.
-    \item Listado de alimentadores elegidos en el pasado (formato resumido), cada uno con un botón para poder elegirlo (si se elige de esta forma, la aplicación se comportará igual que si se hubiera elegido vía el formulario), y otro para eliminarlo (si se pulsa, el alimentador dejará de salir en este listado en el futuro).
+    \item Listado con los 10 items (formato resumido) que han conseguido más puntuación (votos positivos menos votos negativos) en el sitio. Para cada uno se mostrarán sus votos positivos y negativos, y un enlace a la página del item (ver a continuación).
+    \item Formulario para elegir alimentador, para cada uno de los sistemas de alimentación (por ejemplo, canales de YouTube) disponibles. Tras elegir un alimentador vía el formulario, se recibirá la página del alimentador elegido (ver a continuación), con información actualizada, y se almacenarán sus datos en la base de datos (todos los recibidos, si es la primera vez que se le ha elegido, o lo que no estuvieran ya en la base de datos, si ya se hubiera elegido anteriormente).
+    \item Listado de alimentadores elegidos en el pasado (formato resumido), por cualquier usuario. Cada alimentador aparecerá con un botón para poder elegirlo (si se elige de esta forma, la aplicación se comportará igual que si se hubiera elegido vía el formulario), y otro para eliminarlo (si se pulsa, el alimentador dejará de salir en este listado en el futuro). Cualquier visitante o usuario podrá eliminar un canal de este listado, pero eso no supondrá que sus datos desaparezcan de la base de datos, y en cualquier caso el alimentador seguirá saliendo en la página de alimentadores.
     \end{enumerate}
 
     Si el visitante está además autenticado como usuario, se mostrará también:
 
     \begin{itemize}
     \item Listado con los 5 items (formato resumido) que más ha votado el usuario (votos positivos menos votos negativos).
-    \item Para cada item que aparezca en la página se mostrarán también dos botones para votar (positivo, negativo), resaltando de alguna forma que el valor que se haya votado, si se hubiera votado ya ese item.
+    \item Para cada item que aparezca en la página se mostrarán también dos botones para votar (positivo, negativo), resaltando de alguna forma que el valor que se haya votado, si se hubiera votado ya ese item, y un enlace a la página del item (ver a continuación).
     \end{itemize}
 
   \item Página del ítem (para cada ítem):
@@ -223,14 +222,14 @@ La aplicación servirá las siguientes páginas:
   \item Página de alimentadores:
 
     \begin{itemize}
-    \item Listado de todos los alimentadores de los que se ha podido descargar datos alguna vez (formato resumido).
+    \item Listado de todos los alimentadores de los que se ha podido descargar datos alguna vez (formato resumido). Esto es, todos los que se han ``seleccionado'' alguna vez, por cualquier visitante, aunque no salgan en la página principal.
     \end{itemize}
     
   \item Página de alimentador (para cada alimentador):
 
     \begin{itemize}
     \item Datos del alimentador (formato detallado)
-    \item Botón para poder elegir o dejar de tener elegido el alimentador (con el efecto de que aparecerá, o no, en la lista de alimentadores elegidos de la página principal).
+    \item Botón para poder elegir o dejar de tener elegido el alimentador. Si se pulsa, y no estaba elegido, el alimentador pasará a estar elegido, con los mismos efectos que si se hubiera elegido en el formulario de la página principal. Si se pulsa, y estaba elegido, pasa a dejar de estar elegido, con el mismo efecto que se hubiera pulsado el botón de ``eliminar'' del listado de alimentadores elegidos de la pagina principal. el botón tendrá que indicar de alguna manera (por ejemplo, con dos textos distintos, o con colores distintos) si el alimentador está o no elegido, antes de pulsarlo. En ningún caso si un alimentador pasa a dejar de estar elegido, se eliminarán sus datos de la base de datos: sólo dejará de salir en el listado de elegidos.
     \item Lista de items del alimentador (formato resumido).
     \item Para cada ítem, enlace a la página del ítem.
     \end{itemize}
@@ -299,7 +298,7 @@ En el formulario de entrega se pide que se justifique por qué se considera func
 
   \item Incorporación de datos de otros alimentadores además de los obligatorios. Se valorará especialmente la búsqueda de otros alimentadores no descritos en este enunciado, la implementación de alimentadores no basados en RSS (o derivados), y la implementación de alimentadores que requieran de token de autenticación (en este caso, atención a no subir el token de autenticación a GitLab).
  
-  \item Atención al idioma indicado por el navegador. El idioma de la interfaz de usuario del planeta tendrá en cuenta lo que especifique el navegador.
+  \item Atención al idioma indicado por el navegador. El idioma de la interfaz de usuario de la aplicación tendrá en cuenta lo que especifique el navegador.
 
   \item Utilización de Bootstrap\footnote{Bootstrap: \url{https://getbootstrap.com/}} para la maquetación del sitio web.
 
@@ -431,6 +430,15 @@ Los canales (feeds) RSS que produce la aplicación web realizada en la práctica
 A continuación, algunas preguntas relacionadas con el enunciado de esta práctica, junto con sus respuestas:
 
 \begin{itemize}
+
+\item En el formulario para elegir alimentador, ¿qué hay que introducir? (el nombre de los alimentadores que ya hay, dar opciones de los que ya hay, directamenet el identificador de alimentador...).
+
+  Habrá un formulario por cada tipo de alimentador. Por ejemplo, uno para canales de YouTube, otro para eitquetas de Flickr, etc. Cada uno de ellos será un formulario en el que se podrá poner lo que haga falta para elegir un alimentador para ese tipo de alimentador. Por ejemplo, en el caso de Youtube, el formulario tendrá una caja de texto para poder poner el id del canal, y un botón para enviarlo. Lo normal, es que todos los formularios para los tipos de alimentadores que hayas implementado estén juntos.
+
+  Alternativamente, y esto es opcional, se puede tener un único formulario para todos los tipos de alimentador. En ese caso, tendrás que tener algo parecido a un menú desplegable para que puedas elegir qué tipo de alimentador vas a indicar, algún elemento para poner el idenficador (id, etiqueta, nombre de sección... lo que sea), y un botón para enviar.
+
+  Para algunos alimentadores (por ejemplo, el de TuCanaldeSalud), puede tener sentido que el formulario incluya un menú par elegir el alimentador, pero este no es el caso de ninguno de los alimentadores obligatorios. Puede ocurrir esto cuando el número de alimentadores a elegir sea pequeño.
+  
 \item ¿Es necesario utilizar los mecanismos provistos por Django para el control de sesiones y autenticación?
 
   En principio, esa es la solución recomendada. El principal problema suele ser asegurarse de que cuaquier mecanismo alternativo funciona al menos tan bien como el de Django, lo que no es en general trivial. De todas formas, salvo muy buenos motivos, la aplicación es una aplicación Django, y por lo tanto cuantas más facilidades de Django se usen (bien usadas), mejor.
