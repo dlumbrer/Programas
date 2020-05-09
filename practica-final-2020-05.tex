@@ -81,7 +81,7 @@ La práctica tendrá que funcionar con al menos dos alimentadores entre los que 
 Alimentadores descritos:
 
 \begin{itemize}
-\item \textbf{Alimentador 0}. YouTube (canal XML). En este caso el alimentador será el canal de YouTube, y el item será un vídeo en particular. Los últimos vídeos de un canal están disponibles como documentos XML (RSS)\footnote{Ejemplo: Para el canal \verb|UC300utwSVAYOoRLEqmsprfg|, la url es:\\ \url{https://www.youtube.com/feeds/videos.xml?channel_id=UC300utwSVAYOoRLEqmsprfg}}, donde el identificador del canal se puede obtener del enlace que tenemos en el navegador cuando estamos viendo el canal. Funcionamiento:
+\item \textbf{Alimentador 0}. YouTube (canal XML). En este caso el alimentador será el canal de YouTube, y el item será un vídeo en particular. Los últimos vídeos de un canal están disponibles como documentos XML (RSS)\footnote{Ejemplo: Para el canal \emph{UC300utwSVAYOoRLEqmsprfg}, la url es:\\ \url{https://www.youtube.com/feeds/videos.xml?channel_id=UC300utwSVAYOoRLEqmsprfg}}, donde el identificador del canal se puede obtener del enlace que tenemos en el navegador cuando estamos viendo el canal. Funcionamiento:
   
   \begin{itemize}
   \item Alimentador: canal de Youtube.
@@ -94,7 +94,7 @@ Alimentadores descritos:
   \item Datos mostrados del ítem (cuando se muestra con detalle): título del vídeo, enlace del vídeo, descripción del vídeo, vídeo empotrado, nombre del canal, enlace del canal.
   \end{itemize}
 
-\item \textbf{Alimentador 1}. Reddit (Subreddit). En este caso, el alimentador será un Subreddit (una sección de Reddit, como por ejemplo \verb|r/memes|), y el item una noticia en el Subreddit. Las últmas noticias de un Subreddit están disponibles como documento XML (RSS)\footnote{Ejemplo: Para el Subreddit \verb|memes|, la url es:\\ \url{https://www.reddit.com/r/memes.rss}}. Más información en el wiki de Reddit\footnote{What features does reddit have?: \\ \url{https://www.reddit.com/wiki/rss}}. Funcionamiento:
+\item \textbf{Alimentador 1}. Reddit (Subreddit). En este caso, el alimentador será un Subreddit (una sección de Reddit, como por ejemplo \verb|r/memes|), y el item una noticia en el Subreddit. Las últmas noticias de un Subreddit están disponibles como documento XML (RSS)\footnote{Ejemplo: Para el Subreddit \emph{memes}, la url es:\\ \url{https://www.reddit.com/r/memes.rss}}. Más información en el wiki de Reddit\footnote{What features does reddit have?: \\ \url{https://www.reddit.com/wiki/rss}}. Funcionamiento:
 
   \begin{itemize}
   \item Alimentador: Subreddit (sección) de Reddit.
@@ -107,7 +107,7 @@ Alimentadores descritos:
   \item Datos mostrados del ítem (cuando se muestra con detalle): título de la noticia, enlace de la noticia, descripción de la noticia, nombre del Subreddit, enlace del Subreddit.
   \end{itemize}
 
-\item \textbf{Alimentador 2}. Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|), y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \verb|Cher|, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. Funcionamiento:
+\item \textbf{Alimentador 2}. Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|), y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \emph{Cher}, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. Funcionamiento:
 
   \begin{itemize}
   \item Alimentador: Artista en Last.fm.
@@ -200,7 +200,7 @@ La aplicación servirá las siguientes páginas:
     Si el visitante está además autenticado como usuario, se mostrará también:
 
     \begin{itemize}
-    \item Listado con los 5 items (formato resumido) que más ha votado el usuario (votos positivos menos votos negativos).
+    \item Listado con los últimos 5 items (formato resumido) votados por el usuario (tanto positiva como negativamente).
     \item Para cada item que aparezca en la página se mostrarán también dos botones para votar (positivo, negativo), resaltando de alguna forma que el valor que se haya votado, si se hubiera votado ya ese item, y un enlace a la página del item (ver a continuación).
     \end{itemize}
 
