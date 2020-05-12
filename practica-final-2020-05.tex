@@ -431,6 +431,20 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
 
 \begin{itemize}
 
+\item ¿Qué quiere decir ``video empotrado'', que se menciona en la información detallada para un video de un canal de Youtube? ¿Cómo se hace?
+
+  ``Video empotrado'' es en ese caso la traducción de ``embedded video'', y quiere decir que el video aparezca directamente en la página, normalmente en un elemento \verb|iframe|. En el caso de YouTube, puedes obtener el codigo HTML para empotrar cualquier video si, cuando lo estás viendo en el navegador, pulsas el botón de compartir (``Share''), y eliges la opción ``Embed''. Esto muestra un código HTML como el siguiente:
+
+\begin{verbatim}
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/HZOodD84MR8"
+  frameborder="0"
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen></iframe>
+\end{verbatim}
+
+Basta con que en él cambioes el código del video (en este caso ``HZOodD84MR8''  por el del video que quieres empotrar, y ya está.
+
 \item En la página de cada alimentador, ¿hay que mostrar los datos en formato resumido o detallado?
 
   Había una errata en el enunciado que no dejaba claro este extremo. Ahora debería quedar claro: en la página de cada alimentador habrá un listado de los items de ese alimentador, en formato resumido, incluyendo también para cada item un enlace a la página del item.
