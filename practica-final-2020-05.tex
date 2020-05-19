@@ -107,7 +107,9 @@ Alimentadores descritos:
   \item Datos mostrados del ítem (cuando se muestra con detalle): título de la noticia, enlace de la noticia, descripción de la noticia, nombre del Subreddit, enlace del Subreddit.
   \end{itemize}
 
-\item \textbf{Alimentador 2}. Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|), y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \emph{Cher}, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. Funcionamiento:
+\item \textbf{Alimentador 2}. Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|), y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \emph{Cher}, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. \textbf{Atención:} Para el uso de este servicio hace falta conseguir una ``clave de API''\footnote{Para conseguir la clave de API en Last.fm (mira también en las preguntas frecuentes): \\\url{https://www.last.fm/api/account/create}}, que tendrás que poner en las llamadas en lugar de \verb|YOUR_API_KEY|. Consulta la lista de preguntas frecuentes (apartado~\ref{sec:practica-2020-05:preguntas}), hay una que trata justamente sobre este tema~(página \pageref{sec:practica-2020-05:preguntas-apikey}).
+
+  Funcionamiento:
 
   \begin{itemize}
   \item Alimentador: Artista en Last.fm.
@@ -253,7 +255,7 @@ La aplicación servirá las siguientes páginas:
   \item Página de usuarios:
 
     \begin{itemize}
-    \item Listado de todos los usuarios ``con cuenta''. Para cada usuario, aparecerá su identificador, su foto, el número de items votados, el número de canales elegidos, y un enlace a su página.
+    \item Listado de todos los usuarios ``con cuenta''. Para cada usuario, aparecerá su identificador, su foto, el número de items votados, el número de comentarios que ha hecho, y un enlace a su página de usuario.
     \end{itemize}
 
   La página principal se ofrecerá también como un documento XML y como un documento JSON, que incluiría la misma información (los mismos listados de items y alimentadores). Este documento se ofrecerá cuando se pida la página principal, concatenando al final \verb|?format=xml| o \verb|?format=json|.
@@ -424,12 +426,60 @@ La práctica deberá funcionar desde el navegador Firefox disponible en el labor
 Los canales (feeds) RSS que produce la aplicación web realizada en la práctica deberán funcionar al menos con el navegador Firefox (considerándolos como canales RSS) disponibles en el laboratorio. Los documentos XML deberán ser correctos desde el punto de vista de la sintaxis XML, y por lo tanto reconocibles por un reconocedor XML, como por ejemplo el del módulo xml.sax de Python. Los documentos JSON generados deberán ser correctos desde el punto de vista de la sintaxis JSON, y por lo tanto reconocibles por un reconocedor JSON, como por ejemplo el del módulo json de Python
 
 %%----------------------------------------------------------------------------
-\subsection{Preguntas y respuestas}
+\subsection{Preguntas frecuentes}
+\label{sec:practica-2020-05:preguntas}
 
 A continuación, algunas preguntas relacionadas con el enunciado de esta práctica, junto con sus respuestas:
 
 \begin{itemize}
 
+\item ¿Qué es la ``API key'' en los alimentadores de Last.fm, y en otros alimentadores?
+\label{sec:practica-2020-05:preguntas-apikey}
+
+  Algunas API de servicio, entre ellas la de Last.fm, requieren el uso de una ``API key'' (clave de API) para poder usarla. Normalmente, estas claves las usa el servicio para evitar abusos, o para limitar lo que se puede hacer con su API. El caso es que si no se incluye la clave de API en cada GET que se hace al servicio, no se reciben los datos (el documento XML o JSON).
+
+  Es habitual que estas claves se obtengan creándose una cuenta en el servicio en cuestión, y luego obteniendo la clave en una página al efecto, estando autenticados con el servicio.
+
+  Por ejemplo, en el caso de Last.fm, hay que ir a la página de petición de claves de API\footnote{Lastfm Create API Account: \url{https://www.last.fm/api/account/create}}, donde (una vez autenticados con una cuenta de Last.fm), rellenaremos los dato que nos pide: ``contact email'', ``aplication name'' (cualquier nombre de aplicación, por ejemplo MisCosas), ``appication description'' (cualquier descripción por ejemplo ``App to manage Last.fm artists''). En este caso, puedes ignorar los campos ``callback url'' y ``application homepage''. Cuando se hayan enviado estos datos, te devolverá entre otros datos tu ``API key''. Esa es la que tendrá que usar en tus llamadas a Last.fm.
+
+  Como las claves de API son personales, mantenlas en secreto. En particular, no las subas a repositorios públicos, pues cualquiera podrá verlas (y usarlas). Si quieres que el repositorio de tu práctica sea público, incluye la clave en un fichero que tengas sólo en tu disco, y no subas al repositorio git. Por ejemplo, puedes poner la clave en un fichero \verb|apikeys.py| del estilo de este:
+
+\begin{verbatim}
+LASTFM_APIKEY = "012345678"
+\end{verbatim}
+
+Luego, en el módulo Python que la uses (por ejemplo \verb|views.py|), pondrás algo como:
+
+\begin{verbatim}
+from .apikeys import LASTFM_APIKEY
+\end{verbatim}
+
+Y ya puedes usar la clave en tu código. Este fichero \verb|apikeys.py| no lo subirás al repositorio git público.
+
+Si usas claves de API en tu práctica, indícalo claramente en el fichero de entrega de la práctica, y o bien sube una clave de API válida (si el repositorio de entrega es privado) para que la podamos probar, o bien indica en qué fichero hay que ponerla, y cómo se consigue una clave API válida para el servicio que estés usando, de forma que la podamos conseguir y ejecutar tu práctica.
+
+\item ¿Qué tiene que haber en la página de usuarios?
+
+  En el enunciado tenemos una página de usuarios, con un listado de todos los usuarios (visitantes con cuenta). En la primera versión de este enunciado, se incluía, para cada usuario en este listado, un ``número de alimentadores que ha elegido''. Pero al simplificar el enunciado para que la lista de seleccionados sea común a todo el sitio, y no particular a un visitante, esto ya no tiene sentido. Así que lo hemos sustituido por un ``número de comentarios que ha hecho'' (el usuario). Por lo tanto, el enunciado actual indica que esta página mostrará:
+
+  \begin{quote}
+  {\em Listado de todos los usuarios ``con cuenta''. Para cada usuario, aparecerá su identificador, su foto, el número de items votados, el número de comentarios que ha hecho, y un enlace a su página de usuario.}
+  \end{quote}
+
+\item ¿Qué tiene que haber en la página de alimentadores?
+
+  En esta página tiene que esta la lista de alimentadores que se han elegido alguna vez, aunque luego se hayan ``deseleccionado''. Esto es, será la lista de todos los alimentadores que tenemos en la base de datos.
+
+\item ¿Qué alimentadores tienen que tener una página de alimentador?
+
+  Todos los alimentadores que se hayan elegido alguna vez tienen que tener pagina de alimentador, aunque luego se hayan ``deseleccionado''. Esto es, todos los alimentadores que tenemos en la base de datos tienen que tener página de alimentador.
+
+\item ¿Cómo se comporta el botón que tengo en la página de un alimentador?
+
+  En la página de alimentadot hay un botón ``para poder elegir o dejar de tener elegido el alimentador''. Este botón se muestra siempre, esté el visitante autenticado o no. Si el alimentador no ha sido ``deselegido'' nunca, al pulsar el botón se ``deselegirá'', con el efecto que dejará de salir en el listado de alimentadores elegidos (en la página principal). Pero no será borrado de la base de datos, seguirá saliendo en el listado de la página de alimentadores, y seguirá teniendo su página de alimentador.
+
+  Si el alimentador fue ``deselegido'' y no ha vuelto a ser elegido (bien en la página principal, poniéndolo en el formulario de alimentadores, o bien en la págian de alimentadores, eligiéndolo), por cualquier usuario, el botón servirá para volver a alegirlo. Como esto tiene los misms efectos que si se hubiera puesto su nombre en el formulario de alimentadores de la página principal, si se pulsa el botón el alimentador quedará elegido, sus datos se actualizarán descargándolos del sistema de alimentadores correspondiente (YouTube, por ejemplo), y se recibirá la página de ese alimentador, con información actualizada.
+  
 \item ¿Tiene que haber una lista de alimentadores en la página de usuario?
 
   En una primera versión del enunciado teníamos una lista de alimentadores en la página de usuario. Pero como esa lista ya está en varias otras páginas, y no tiene mucho sentido en esa (porque serían los alimentadores elegidos por cualquier usuario), en la versión final del enunciado no hay que incluir lista de alimentadores en la página de usuario. Sin embargo, puede ser una buena mejora opcional, si te interesa implementarla. Si lo haces, sería conveniente que sea la lista de alimentadores que ha seleccionado ese usuario en particular.
