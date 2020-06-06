@@ -276,12 +276,33 @@ Además, la práctica incluirá tests, que se ejecutarán con \verb|python3 mana
 
 %%----------------------------------------------------------------------------
 \subsection{Despliegue}
+\label{sec:practica-2020-05:despliegue}
 
 La práctica deberá estar desplegada en algún sitio de Internet, de forma que pueda accederse a ella. Deberá mantenerse desplegada y activa al menos desde el día de entrega de la práctica, hasta el día del cierre de actas.
 
 Para el despliegue, se puede utilizar Python Anywhere\footnote{Python Anywhere: \url{https://pythonanywhere.com}}, que proporciona un plan gratuito que incluye suficientes recursos como para poder desplegar la práctica.
 
 Si el alumno así lo desea, puede considerarse desplegar en un ordenador dedicado (por ejemplo, una Raspberry Pi accesible directamente desde Internet, alojada en su hogar), o en servicios como Google Computing Engine\footnote{GCP Engine Free: \url{https://cloud.google.com/free/}}. En general, dado que este tipo de despliegues no podrá contar con una ayuda detallada por los profesores, estará algo más valorado.
+
+En el caso de que la práctica se despliegue en Python Anywhere, hay que tener en cuenta que sus máquinas virtuales tienen cortado el acceso a todos los sitios de Internet salvo los que están en una ``lista blanca''\footnote{Lista blanca de Python Anywhere: \url{https://www.pythonanywhere.com/whitelist/}} (\emph{whitelist}). Esto afectará a vuestro despliegue de dos formas:
+
+\begin{itemize}
+\item Al clonar vuestro repositorio git dentro de la máquina virtual, para tener el código de vuestra aplicación. No debería dar problemas, porque el sitio GitLab de la ETSIT, donde está vuestro código fuente, está ya en la lista blanca.
+\item Cuando vuestra aplicación se conecte para actualizar un alimentador. Si el sitio al que la aplicación se tiene que conectar para conseguir el documento JSON o XML no está en la lista blanca, vuestra aplicación no se podrá conectar. YouTube (que está en la parte obligatoria para todo el mundo) y algunos otros sitios de alimentadores (como Flickr) están ya en la lista blanca. Pero otros sitios que podéis estar usando, no.
+\end{itemize}
+
+Para evitar los problemas con los sitios que no estén en la lista blanca, os pedimos que si hacéis el despliegue en YouTube:
+
+\begin{itemize}
+\item La actualización (``selección'') de alimentadores tiene que funcionar al menos con YouTube, recogiendo los documentos XML correspondientes, como indica el enunciado.
+\item Para los demás alimentadores que hayáis implementado, tenéis dos opciones:
+  \begin{itemize}
+  \item Si están en la lista blanca de Python Anywhere, funcionarán sin problemas sin hacer nada especial, si os funcionaban ya en las pruebas locales, así que también deberían funcionar en el despliegue.
+  \item Si no están en la lista blanca de Python Anywhere, aseguraos de que la base de datos que subís al despliegue de vuestra práctica incluya datos de alimentadores de la plataforma en cuestión. Por ejemplo, si tenéis implementados alimentadores de Last.fm, basta con que tengáis en la base de datos items de un par de artistas, que muestren que en la versión local os funcionó.
+  \end{itemize}
+\end{itemize}
+
+Tened en cuenta que si usáis otras plataformas para el despliegue, puede que os encontréis problemas similares. Y tened en cuenta también que en cualquier caso, nosotros probaremos la práctica en otros despliegues, así que todos los alimentadores que hayáis implementado deben funcionar correctamente si no hay restricciones de conexión.
 
 %%----------------------------------------------------------------------------
 \subsection{Funcionalidad optativa}
@@ -433,6 +454,10 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
 
 \begin{itemize}
 
+\item Cuando despliego mi práctica en Python Anywhere, algunos alimentadores no me funcionan, pero otros (YouTube entre ellos), sí. Todo me funciona bien en mi versión local. ¿Qué está pasando?
+
+  Las máquinas virtuales de Python Anywhere están limitadas en cuanto a los sitios a los que se pueden conectar: sólo se pueden conectar a aquellos que están en una cierta ``lista blanca''. Por eso, si el sitio al que tu programa se tiene que conectar para obtener items de un alimentador no está en la lista blanca, no va a poder descargarse el documento XML o JSON con esos items. Para evitar problemas, en el caso de despliegue en Python Anywhere pedimos que funcionen bien los alimentadores que están en la lista blanca, y para los demás, que tengan items en la base de datos de despliegue. Más detalles en el apartado sobre despliegue de este enunciado (\ref{sec:practica-2020-05:despliegue}).
+  
 \item En la pagina de información que se menciona en el enunciado, ¿qué hay que incluir en el apartado de documentación?
 
 Casi que lo que queráis, lo importante es tener la página. Puede ser por ejemplo un resumen de un párrafo de lo que hace la aplicación.
