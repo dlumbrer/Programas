@@ -6,12 +6,18 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{geometry}
-\usepackage[pdfborder=0 0 0]{hyperref}
+\usepackage{hyperref}
 \usepackage{url}
-
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+  }
+  
 \title{Servicios y Aplicaciones en Redes de Ordenadores \\
 Grado en Ingeniería en Sistemas de Telecomunicación \\
-Programa del curso 2019/2020}
+Programa del curso 2020/2021}
 \author{Jesús M. González Barahona, Gregorio Robles Martínez \\
 GSyC, Universidad Rey Juan Carlos}
 
@@ -61,7 +67,7 @@ En esta asignatura se pretende que el alumno obtenga conocimientos detallados so
 
 \section{Metodología}
 
-La asignatura tiene un enfoque eminentemente práctico. Por ello se realizará en la medido de lo posible en el laboratorio, y las prácticas realizadas (incluyendo especialmente la práctica final) tendrán gran importancia en la evaluación de la asignatura. Los conocimientos teóricos necesarios se intercalarán con los prácticos, en gran media mediante metodologías apoyadas en la resolución de problemas. En las clases teóricas se utilizan, en algunos casos, transparencias que sirven de guión. En todos los casos se recomendarán referencias (usualmente documentos disponibles en Internet) para profundizar conocimientos, y complementarias de los detalles necesarios para la resolución de los problemas prácticos. En el desarrollo diario, las sesiones docentes incluirán habitualmente tanto aspectos teóricos como prácticos.
+La asignatura tiene un enfoque eminentemente práctico. Por ello se realizará en la medido de lo posible en el laboratorio, y las prácticas realizadas (incluyendo especialmente el proyecto final) tendrán gran importancia en la evaluación de la asignatura. Los conocimientos teóricos necesarios se intercalarán con los prácticos, en gran media mediante metodologías apoyadas en la resolución de problemas. En las clases teóricas se utilizan, en algunos casos, transparencias que sirven de guión. En todos los casos se recomendarán referencias (usualmente documentos disponibles en Internet) para profundizar conocimientos, y complementarias de los detalles necesarios para la resolución de los problemas prácticos. En el desarrollo diario, las sesiones docentes incluirán habitualmente tanto aspectos teóricos como prácticos.
 
 Se usa un sistema de apoyo telemático a la docencia (aula virtual de la URJC) para realizar actividades complementarias a las presenciales, y para organizar parte de la documentación ofrecida a los alumnos. La mayoría de los contenidos utilizados en la asignatura están disponibles o enlazados desde el sitio web CursosWeb. Asimismo, se utiliza el servicio GitLab de la ETSIT como repositorio, tanto de los materiales de la asignatura, como para entregar las prácticas por parte de los alumnos.
 
@@ -72,21 +78,21 @@ Se usa un sistema de apoyo telemático a la docencia (aula virtual de la URJC) p
 %%--------------------------------------------------------------------------
 \section{Evaluación}
 
-\subsection{Cambios excepcionales para el curso 2019-2020}
+% \subsection{Cambios excepcionales para el curso 2019-2020}
 
-Debido a las circunstancias excepcionales de este curso académico, hemos tenido que realizar algunos cambios a los criterios de evaluación. Estos cambios suponen sólo un cambio en cuanto a cómo se realizarán alguna de las actividades evaluables, y en cuanto a sus condiciones y plazos de entrega. No suponen en general un cambio en los criterios de evaluación, salvo que se tratará de tener una visión más global de la evaluación de la asignatura, sabiendo que los alumnos se han podido tener que enfrentar a situaciones excepcionales, y que se hará un esfuerzo por asegurar que el alumno ha conseguido los objetivos personales de conocimiento y habilidad que se esperan en esta asignatura.
+% Debido a las circunstancias excepcionales de este curso académico, hemos tenido que realizar algunos cambios a los criterios de evaluación. Estos cambios suponen sólo un cambio en cuanto a cómo se realizarán alguna de las actividades evaluables, y en cuanto a sus condiciones y plazos de entrega. No suponen en general un cambio en los criterios de evaluación, salvo que se tratará de tener una visión más global de la evaluación de la asignatura, sabiendo que los alumnos se han podido tener que enfrentar a situaciones excepcionales, y que se hará un esfuerzo por asegurar que el alumno ha conseguido los objetivos personales de conocimiento y habilidad que se esperan en esta asignatura.
 
-Los cambios son los siguientes:
+% Los cambios son los siguientes:
 
-\begin{itemize}
-\item Se tendrán en cuenta las microprácticas diarias y las miniprácticas preparatorias aunque se hayan entregado con posterioridad a la fecha indicada. No se tendrán en cuenta exactamente igual que si se hubieran entregado en plazo, sino (aproximadamente) con un 75\% de valoración. Aún así se podrán conseguir notas cercanas a los dos puntos (que es máximo para el total de estas prácticas) en casos en que estén realizadas especialmente bien, o se hayan entregado prácticamente todas y bien realizadas.
+% \begin{itemize}
+% \item Se tendrán en cuenta las microprácticas diarias y las miniprácticas preparatorias aunque se hayan entregado con posterioridad a la fecha indicada. No se tendrán en cuenta exactamente igual que si se hubieran entregado en plazo, sino (aproximadamente) con un 75\% de valoración. Aún así se podrán conseguir notas cercanas a los dos puntos (que es máximo para el total de estas prácticas) en casos en que estén realizadas especialmente bien, o se hayan entregado prácticamente todas y bien realizadas.
   
-\item En lugar de la prueba de teoría se propondrán unas preguntas para evaluar el contenido más teórico, en relación a la práctica final de cada alumno. Estas preguntas cubrirán conocimientos y habilidades similares a los evaluados normalmente con la prueba de teoría. Las preguntas se entregarán, vía indicaciones en el campus virtual, el miércoles 10 de junio, y tendrán una fecha límite de entrega de viernes 12 de junio (detalles en las condiciones de entrega de la practica final).
+% \item En lugar de la prueba de teoría se propondrán unas preguntas para evaluar el contenido más teórico, en relación a el proyecto final de cada alumno. Estas preguntas cubrirán conocimientos y habilidades similares a los evaluados normalmente con la prueba de teoría. Las preguntas se entregarán, vía indicaciones en el campus virtual, el miércoles 10 de junio, y tendrán una fecha límite de entrega de viernes 12 de junio (detalles en las condiciones de entrega de la practica final).
 
-\item Se realizará una entrevista personal, vía videoconferencia, o si eso no fuera posible por otros medios, con el mayor número posible de alumnos. Estas entrevistas tendrán lugar en las fechas que se indica en el enunciado de la práctica final. El objetivo de esta entrevista es evaluar que el alumno puede explicar, en el contexto de los conocimientos y habilidades necesarios para aprobar esta asignatura, lo que ha realizado tanto en la práctica final como en su respuesta a las preguntas que se usan este curso para evaluar el contenido más teórico. el resultado de esta entrevista puede tener un gran impacto en la calificación final, por la vía de aclarar o invalidar las respuestas, o la práctica final entregada. Es fundamental que el alumno pueda explicar y razonar cualquier aspecto de ambas, y hacerlo en el contexto de los conocimientos y habilidades de la asignatura.
-\end{itemize}
+% \item Se realizará una entrevista personal, vía videoconferencia, o si eso no fuera posible por otros medios, con el mayor número posible de alumnos. Estas entrevistas tendrán lugar en las fechas que se indica en el enunciado de el proyecto final. El objetivo de esta entrevista es evaluar que el alumno puede explicar, en el contexto de los conocimientos y habilidades necesarios para aprobar esta asignatura, lo que ha realizado tanto en el proyecto final como en su respuesta a las preguntas que se usan este curso para evaluar el contenido más teórico. el resultado de esta entrevista puede tener un gran impacto en la calificación final, por la vía de aclarar o invalidar las respuestas, o el proyecto final entregada. Es fundamental que el alumno pueda explicar y razonar cualquier aspecto de ambas, y hacerlo en el contexto de los conocimientos y habilidades de la asignatura.
+% \end{itemize}
 
-Estos cambios se aplicarán tanto para la convocatoria ordinaria como para la extraordinaria. Para la práctica extraordinaria se publicarán nuevas fechas de entrega y entrevistas, y el enunciado de la práctica final (que será similar, pero no igual, a la propuesta para la convocatoria ordinaria).
+% Estos cambios se aplicarán tanto para la convocatoria ordinaria como para la extraordinaria. Para la práctica extraordinaria se publicarán nuevas fechas de entrega y entrevistas, y el enunciado de el proyecto final (que será similar, pero no igual, a la propuesta para la convocatoria ordinaria).
 
 \subsection{Criterios de evaluación}
 
@@ -96,12 +102,12 @@ Parámetros generales:
 \item Teoría (obligatorio): 0 a 5.
 \item Microprácticas diarias: 0 a 1
 \item Miniprácticas preparatorias: 0 a 1
-\item Práctica final (obligatorio): 0 a 2.
-\item Opciones y mejoras de la práctica final: 0 a 3
+\item Proyecto final (obligatorio): 0 a 2.
+\item Opciones y mejoras del proyecto final: 0 a 3
 \item Nota final: Suma de notas, moderada por la interpretación del profesor
 \item Mínimo para aprobar:
       \begin{itemize}
-      \item aprobado en teoría (2.5) y práctica final (1)
+      \item aprobado en teoría (2.5) y proyecto final (1)
       \item 5 puntos de nota final
       \end{itemize}
 \end{itemize}
@@ -116,16 +122,16 @@ Evaluación microprácticas diarias (evaluación continua):
 \item es muy recomendable hacerlas
 \end{itemize}
 
-Evaluación práctica final:
+Evaluación proyecto final:
 
 \begin{itemize}
-\item posibilidad de examen presencial para práctica final
+\item posibilidad de examen presencial para proyecto final
 \item tiene que funcionar en el laboratorio
 \item enunciado mínimo obligatorio supone 1, se llega a 2 sólo con calidad y cuidado en los detalles
 \item realización individual de la práctica
 \end{itemize}
 
-Opciones y mejoras práctica final:
+Opciones y mejoras proyecto final:
 
 \begin{itemize}
 \item permiten subir la nota mucho
@@ -135,9 +141,68 @@ Evaluación extraordinaria:
 
 \begin{itemize}
 \item prueba escrita (si no se aprobó la ordinaria)
-\item nueva práctica final (si no se aprobó la ordinaria)
+\item nuevo proyecto final (si no se aprobó la ordinaria)
 \item entrega de ejercicios de evaluación continua (con penalización)
 \end{itemize}
+
+\newpage
+
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\section{Calendario}
+
+\newcommand{\martesA}{9 de febrero}
+\newcommand{\martesB}{16 de febrero}
+\newcommand{\martesC}{23 de febrero}
+\newcommand{\martesD}{2 de marzo}
+\newcommand{\martesE}{16 de marzo}
+\newcommand{\martesF}{23 de marxo}
+\newcommand{\martesG}{6 de abril}
+\newcommand{\martesH}{13 de abril}
+\newcommand{\martesI}{20 de abril}
+\newcommand{\martesJ}{27 de abril}
+\newcommand{\martesK}{4 de mayo}
+\newcommand{\martesL}{11 de mayo}
+\newcommand{\martesM}{18 de mayo}
+
+\newcommand{\juevesA}{11 de febrero}
+\newcommand{\juevesB}{18 de febrero}
+\newcommand{\juevesC}{25 de febrero}
+\newcommand{\juevesD}{4 de marzo}
+\newcommand{\juevesE}{11 de marzo}
+\newcommand{\juevesF}{18 de marzo}
+\newcommand{\juevesG}{25 de marzo}
+\newcommand{\juevesH}{8 de abril}
+\newcommand{\juevesI}{15 de abril}
+\newcommand{\juevesJ}{22 de abril}
+\newcommand{\juevesK}{29 de abril}
+\newcommand{\juevesL}{6 de mayo}
+\newcommand{\juevesM}{13 de mayo}
+
+\begin{tabular}{|l|l|}
+   \hline
+  Martes & Jueves \\ \hline \hline
+  \nameref{cal:martesA} & \nameref{cal:juevesA} \\
+  \nameref{cal:martesAb} & \\
+  \nameref{cal:martesAc} & \\ \hline
+  \nameref{cal:martesB} & \nameref{cal:juevesB} \\
+  \nameref{cal:martesBb} &  \\  \hline
+  \nameref{cal:martesC} & \nameref{cal:juevesC} \\  \hline
+  \nameref{cal:martesD} & \nameref{cal:juevesD} \\
+  \nameref{cal:martesDb} &  \\  \hline
+  9 de marzo: Festivo & \nameref{cal:juevesE} \\ \hline
+  \nameref{cal:martesE} & \nameref{cal:juevesF} \\ \hline
+  \nameref{cal:martesF} & \nameref{cal:juevesG} \\ \hline
+  \nameref{cal:martesG} & \nameref{cal:juevesH} \\ \hline
+  \nameref{cal:martesH} & \nameref{cal:juevesI} \\ \hline
+  \nameref{cal:martesI} & \nameref{cal:juevesJ} \\ \hline
+  \nameref{cal:martesJ} & \nameref{cal:juevesK} \\ \hline
+  \nameref{cal:martesK} & \nameref{cal:juevesL} \\ \hline
+  \nameref{cal:martesL} & \nameref{cal:juevesM} \\ \hline
+  \nameref{cal:martesM} &  \\          \hline
+\end{tabular}
 
 \newpage
 
@@ -153,7 +218,8 @@ Programa de la asignatura (el detalle evoluciona según avanza el curso).
 \subsection{00 - Presentación}
 
 %%-----------------------------------------------------------------------
-\subsubsection{Sesión del 21 de enero (1 hora)}
+\subsubsection{\martesA: Presentación  (1 hora)}
+\label{cal:martesA}
 
 \begin{itemize}
 \item \textbf{Presentación:} Presentación de la asignatura. Breve introducción y motivación de las aplicaciones web.
@@ -169,18 +235,20 @@ Programa de la asignatura (el detalle evoluciona según avanza el curso).
 Sesión, mantenimiento de estado, persistencia.
 
 %%------------------------------------------------------------------------
-\subsubsection{Sesión del 23 de enero (2 horas)}
+\subsubsection{\martesA: Conceptos básicos I (0.5 horas)}
+\label{cal:martesAc}
 
 \begin{itemize}
-\item \textbf{Ejercicio propuesto (discusión en clase):} ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda}) \\
-  Se introduce el problema, y se pide que trabajen sobre las interacciones HTTP involucradas. Para la próxima sesión se deja la discusión sobre el uso de cookies (u otros mecanismos) para conseguir la funcionalidad requerida.
 \item \textbf{Ejercicio:} ``Espía a tu navegador (Firefox Developer Tools)'' (ejercicio~\ref{subsec:firefox-devel})
 \item \textbf{Ejercicio propuesto (entrega en el foro):} ``Explora tus cookies'' (ejercicio~\ref{subsec:explora-cookies}) \\
   Entrega recomendada: antes del 30 de enero.
+\item \textbf{Ejercicio propuesto (discusión en clase):} ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda}) \\
+  Se introduce el problema, y se pide que trabajen sobre las interacciones HTTP involucradas. Para la próxima sesión se deja la discusión sobre el uso de cookies (u otros mecanismos) para conseguir la funcionalidad requerida.
 \end{itemize}
 
 %%------------------------------------------------------------------------
-\subsubsection{Sesión del 30 de enero (2 horas)}
+\subsubsection{\juevesA: Conceptos básicos II (2 horas)}
+\label{cal:juevesA}
 
 Páginas dinámicas (diferentes según cómo y cuándo se invocan). Cómo realizar sesiones en HTTP. Profundización en el concepto de sesión, y técnicas para conseguirla, incluyendo cookies y otros mecanismos.
 
@@ -194,7 +262,8 @@ Páginas dinámicas (diferentes según cómo y cuándo se invocan). Cómo realiz
 
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 4 de febrero (2 horas)}
+\subsubsection{\juevesB: Conceptos básicos III (2 horas)}
+\label{cal:juevesB}
 
 Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persistente frente a caídas del servidor.
 
@@ -211,7 +280,8 @@ Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persist
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 13 de febrero (2 horas)}
+\subsubsection{\juevesC: Conceptos básicos IV (2 horas)}
+\label{cal:juevesC}
 
 \begin{itemize}
 \item \textbf{Ejercicio propuesto:} ``Cookies en tu navegador'' (ejercicio~\ref{subsec:cookies-navegador}) \\
@@ -221,7 +291,8 @@ Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persist
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 20 de febrero (2 horas)}
+\subsubsection{\juevesD: Conceptos básicos V (2 horas)}
+\label{cal:juevesD}
 
 \begin{itemize}
 \item \textbf{Discusión de ejercicio (entrega en el foro):} ``Contador simple'' (ejercicio~\ref{subsec:contador-simple})
@@ -243,7 +314,8 @@ Invocaciones a aplicaciones web desde aplicaciones web. Servicios web como un co
 
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 27 de febrero (2 horas)}
+\subsubsection{\juevesE: Interoperación web I (2 horas)}
+\label{cal:juevesE}
 
 \begin{itemize}
 \item \textbf{Discusión:} Introducción al problema de los rearranques.
@@ -254,7 +326,8 @@ Invocaciones a aplicaciones web desde aplicaciones web. Servicios web como un co
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 5 de marzo (2 horas)}
+\subsubsection{\juevesF: Interoperación web II (2 horas)}
+\label{cal:juevesF}
 
 \begin{itemize}
 \item \textbf{Discusión:} Introducción a las operaciones idempotentes.
@@ -264,7 +337,8 @@ Invocaciones a aplicaciones web desde aplicaciones web. Servicios web como un co
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 10 de marzo (2 horas)}
+\subsubsection{\juevesG: Interoperación web III (2 horas)}
+\label{cal:juevesG}
 
 \begin{itemize}
 %\item \textbf{Discusión de ejercicio:} ``Cache de contenidos'' (ejercicio~\ref{subsec:cache-contenidos}). \\
@@ -305,7 +379,8 @@ Invocaciones a aplicaciones web desde aplicaciones web. Servicios web como un co
 Explicación del patrón de diseño ``modelo-vista-controlador''.
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 17 de marzo (2 horas)}
+\subsubsection{\juevesH: MVC (2 horas)}
+\label{cal:juevesH}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Tres implementaciones de una aplicación web simple: Counter''. \\
@@ -321,12 +396,13 @@ Explicación del patrón de diseño ``modelo-vista-controlador''.
 
 %%----------------------------------------------------------------
 %%----------------------------------------------------------------
-\subsection{04 - Introducción a XML}
+\subsection{04 - Introducción a XML y JSON}
 
 Uso de XML en aplicaciones web.
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 26 de marzo (2 horas)}
+\subsubsection{\juevesI: XML, JSON I (2 horas)}
+\label{cal:juevesI}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``XML: Conceptos fundamentales''. \\
@@ -351,7 +427,8 @@ Uso de XML en aplicaciones web.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 2 de abril (2 horas)}
+\subsubsection{\juevesJ: XML, JSON II (2 horas)}
+\label{cal:juevesJ}
 
 \begin{itemize}
 \item \textbf{Ejercicio (discusión en clase):} ``Chistes XML'' (ejercicio~\ref{subsec:xml-chistes}).
@@ -363,7 +440,8 @@ Uso de XML en aplicaciones web.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 16 de abril (2 horas)}
+\subsubsection{\juevesK: XML, JSON III (2 horas)}
+\label{cal:juevesK}
 
 \begin{itemize}
 \item \textbf{Ejercicio (discusión en clase):}  ``Gestor de contenidos con videos de YouTube (2)'' (ejercicio~\ref{subsec:django-cms-youtube-2})
@@ -399,7 +477,8 @@ Uso de XML en aplicaciones web.
 Hojas de estilo CSS, separación entre contenido y presentación.
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 23 de abril (2 horas)}
+\subsubsection{\juevesL: CSS I (2 horas)}
+\label{cal:juevesL}
 
 Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
 
@@ -413,11 +492,12 @@ Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{Sesión del 30 de abril (2 horas)}
+\subsubsection{\juevesM: CSS II (2 horas)}
+\label{cal:juevesM}
 
 \begin{itemize}
 \item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (despliegue)'' (ejercicio~\ref{subsec:django-cms-youtube-despliegue}).
-\item Presentacion de la práctica final (enunciado en apartado~\ref{practica-final-2020-05}).
+\item Presentacion de el proyecto final (enunciado en apartado~\ref{practica-final-2020-05}).
 \end{itemize}
 
 %% ----------------------------------------------------------------
@@ -474,7 +554,15 @@ Programa de las prácticas de la asignatura (tentativo).
 Introducción al lenguaje de programación Python, que se utilizará para la realización de las prácticas de la asignatura.
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 21 de enero (1 hora)}
+\subsubsection{\martesA: Laboratorio remoto, (0.5 horas)}
+\label{cal:martesAb}
+
+\begin{itemize}
+\item Mecanismos de conexión remota al laboratorio: VNC desde el navegador, ssh, etc.
+\end{itemize}
+%%----------------------------------------------------------------------------
+\subsubsection{\martesB: Python I (1.5 horas)}
+\label{cal:martesB}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, ejecución en el intérprete, strings, listas, estructuras condicionales (if else), bucles for).
@@ -485,14 +573,16 @@ Introducción al lenguaje de programación Python, que se utilizará para la rea
 \end{itemize}
 
 %%--------------------------------------------------------------------------
-\subsubsection{Sesión del 4 de febrero (0.5 horas)}
+\subsubsection{\martesB: GitLab (0.5 horas)}
+\label{cal:martesBb}
 
 \begin{itemize}
 \item \textbf{Presentación:} Introducción a la entrega de prácticas en GitLab (seccion~\ref{sec:eje-entrega-practicas-incr}).
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 4 de febrero (1.5 horas)}
+\subsubsection{\martesC: Python II (2 horas)}
+\label{cal:martesC}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a Python''.
@@ -504,7 +594,8 @@ Introducción al lenguaje de programación Python, que se utilizará para la rea
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 11 de febrero (1 hora)}
+\subsubsection{\martesD: Python III (1 hora)}
+\label{cal:martesD}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a Python''.
@@ -523,7 +614,9 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 11 de febrero (1 hora)}
+\subsubsection{\martesD: Aplicaciones web I (1 hora)}
+\label{cal:martesDb}
+
 \begin{itemize}
  \item \textbf{Ejercicio:} ``Aplicación web hola mundo'' (ejercicio~\ref{subsec:aplweb-hola-mundo}) \\
    Se muestra la solución del ejercicio, y se comenta en clase. Se pide a los alumnos que lo ejecuten, lo modifiquen y se fijen en las cabeceras HTTP enviadas por el cliente y que el servidor muestra en pantalla (pero no hay entrega específica).
@@ -533,7 +626,8 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 18 de febrero (2 horas)}
+\subsubsection{\martesE: Aplicaciones web II (2 horas)}
+\label{cal:martesE}
 
 \begin{itemize}
 \item \textbf{Comentario de ejercicio:} ``Sumador simple'' (ejercicio~\ref{subsec:sumador-simple}) 
@@ -551,7 +645,8 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 Construcción de algunos servidores de contenidos que permitan comprender la estructura básica de una aplicación web, y de cómo implementarlos aprovechando algunas características de Python.
 
 %%----------------------------------------------------------------------------
-\subsubsection{Sesión del 25 de febrero (2 horas)}
+\subsubsection{\martesF: Servicores simples I (2 horas)}
+\label{cal:martesF}
 
 \begin{itemize}
 
@@ -569,7 +664,8 @@ Entrega en GitLab. Fecha de entrega: antes del 3 de marzo.
 
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 3 de marzo (1 hora)}
+\subsubsection{\martesG: Servicores simples II (2 horas)}
+\label{cal:martesG}
 
 \begin{itemize}
   \item \textbf{Discusión en clase:} ``Clase contentPutApp'' (ejercicio~\ref{subsec:contentputapp}).
@@ -582,7 +678,8 @@ Entrega en GitLab. Fecha de entrega: antes del 3 de marzo.
 \subsection{P4 - Introducción a Django}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 3 de marzo (1 hora)}
+\subsubsection{\martesH: Django I (2 horas)}
+\label{cal:martesH}
 
 Presentación de Django como sistema de construcción de aplicaciones web.
 
@@ -596,7 +693,8 @@ Presentación de Django como sistema de construcción de aplicaciones web.
 
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 17 de marzo (2 horas)}
+\subsubsection{\martesI: Django II (2 horas)}
+\label{cal:martesI}
 
 Presentación de Django como sistema de construcción de aplicaciones web.
 
@@ -612,7 +710,8 @@ Presentación de Django como sistema de construcción de aplicaciones web.
 
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 24 de marzo (2 horas)}
+\subsubsection{\martesJ: Django III (2 horas)}
+\label{cal:martesJ}
 
 Primeros ejercicios con base de datos.
 
@@ -627,7 +726,8 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 31 de marzo (2 horas)}
+\subsubsection{\martesK: Django IV (2 horas)}
+\label{cal:martesK}
 
 \begin{itemize}
  \item \textbf{Presentación:} Introducción a Django (cuarta parte)
@@ -640,7 +740,8 @@ Usuarios, administración y autenticación con Django.
 
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 14 de abril (2 horas)}
+\subsubsection{\martesL: Django V (2 horas)}
+\label{cal:martesL}
 
 \begin{itemize}
  \item \textbf{Presentación:} Introducción a Django (quinta parte)
@@ -652,7 +753,8 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 21 de abril (2 horas)}
+\subsubsection{\martesM: Django VI (2 horas)}
+\label{cal:martesM}
 
 \begin{itemize}
 %  \item \textbf{Presentación:} Posibilidades de feedparser.py
@@ -663,33 +765,34 @@ Usuarios, administración y autenticación con Django.
 %    \item \textbf{Material:} Documentación de Django: ``Working with forms'' \\
 %          \url{http://docs.djangoproject.com/en/1.4/topics/forms}
 %  \item \textbf{Ejercicio voluntario:} ``Django feed\_expander'' (ejercicio~\ref{subsec:django-feed-expander}).
-%  \item \textbf{Presentación:} Práctica final (enunciado~\ref{practica-final-2019-05})
+%  \item \textbf{Presentación:} proyecto final (enunciado~\ref{practica-final-2019-05})
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{Sesión del 28 de abril (2 horas)}
+% \subsubsection{\martesN: Django (2 horas)}
+% \label{cal:martesN}
 
-\begin{itemize}
-  \item \textbf{Presentación:} Introducción a Django (repaso general)
-  \item \textbf{Ejercicio:} ``Django Conciertos'' (ejercicio~\ref{subsec:django-conciertos}) \\
-  Entrega recomendada: antes del 5 de mayo.
+% \begin{itemize}
+%   \item \textbf{Presentación:} Introducción a Django (repaso general)
+%   \item \textbf{Ejercicio:} ``Django Conciertos'' (ejercicio~\ref{subsec:django-conciertos}) \\
+%   Entrega recomendada: antes del 5 de mayo.
 
-%  \item \textbf{Presentación:} Introducción a Django (ejercicio final)
-\end{itemize}
+% %  \item \textbf{Presentación:} Introducción a Django (ejercicio final)
+% \end{itemize}
 
 
 %%----------------------------------------------------------------------------
 %% \subsubsection{Sesión del XX de abril (2 horas)}
 
 %% \begin{itemize}
-%%   \item Tutoría para la práctica final. Esta clase se aprovechará para presentar o asentar, si fuera necesario, cuestiones relacionadas con la práctica final.
+%%   \item Tutoría para el proyecto final. Esta clase se aprovechará para presentar o asentar, si fuera necesario, cuestiones relacionadas con el proyecto final.
 %% \end{itemize}
 
 %%----------------------------------------------------------------------------
 %% \subsubsection{Sesión del XXX de abril (2 horas)}
 
 %% \begin{itemize}
-%%   \item Tutoría para la práctica final. Esta clase se aprovechará para presentar o asentar, si fuera necesario, cuestiones relacionadas con la práctica final.
+%%   \item Tutoría para el proyecto final. Esta clase se aprovechará para presentar o asentar, si fuera necesario, cuestiones relacionadas con el proyecto final.
 %% \end{itemize}
 
 %%% %----------------------------------------------------------------------------
@@ -727,7 +830,7 @@ Usuarios, administración y autenticación con Django.
 %% \begin{itemize}
 %% \item \textbf{Explicación de ejercicio:} ``Django feed\_expander'' (ejercicio~\ref{subsec:django-feed-expander}). Incluye implementación de referencia.
 %% \item \textbf{Explicación de ejercicio:} ``Django feed\_expander\_db'' (ejercicio~\ref{subsec:django-feed-expander-db}).
-%% \item \textbf{Presentación:} Algunos aspectos relevantes de las práctica final
+%% \item \textbf{Presentación:} Algunos aspectos relevantes de las proyecto final
 %% \end{itemize}
 
 %%----------------------------------------------------------------------------
@@ -818,7 +921,7 @@ Usuarios, administración y autenticación con Django.
 %% Repaso de prácticas.
 
 %% \begin{itemize}
-%% \item \textbf{Ejercicio:} Trabajo con la práctica final.
+%% \item \textbf{Ejercicio:} Trabajo con el proyecto final.
 %% \end{itemize}
 
 
@@ -829,7 +932,7 @@ Usuarios, administración y autenticación con Django.
 %% \begin{itemize}
 %% \item \textbf{Presentación:} Introducción a Django (sexta parte).
 %% \item \textbf{Material:} Transparencias ``Introducción a Django''.
-%% \item \textbf{Ejercicio:} Trabajo con la práctica final.
+%% \item \textbf{Ejercicio:} Trabajo con el proyecto final.
 %% \end{itemize}
 
 %% \subsubsection{Sesión del XXX de diciembre}
@@ -837,14 +940,14 @@ Usuarios, administración y autenticación con Django.
 %% Repaso de prácticas.
 
 %% \begin{itemize}
-%% \item \textbf{Presentación:} Algunos aspectos e ideas sobre la práctica final.
-%% \item \textbf{Ejercicio:} Trabajo con la práctica final.
+%% \item \textbf{Presentación:} Algunos aspectos e ideas sobre el proyecto final.
+%% \item \textbf{Ejercicio:} Trabajo con el proyecto final.
 %% \end{itemize}
 
 
 \newpage
 
-\input{practica-final-2020-05}
+%\input{practica-final-2021-05}
 \input{ejercicios-web}
 
 \end{document}
