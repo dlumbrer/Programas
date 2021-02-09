@@ -185,8 +185,7 @@ Evaluación extraordinaria:
    \hline
   Martes & Jueves \\ \hline \hline
   \nameref{cal:martesA} & \nameref{cal:juevesA} \\
-  \nameref{cal:martesAb} & \\
-  \nameref{cal:martesAc} & \\ \hline
+  \nameref{cal:martesAb} &  \\ \hline
   \nameref{cal:martesB} & \nameref{cal:juevesB} \\
   \nameref{cal:martesBb} &  \\  \hline
   \nameref{cal:martesC} & \nameref{cal:juevesC} \\  \hline
@@ -218,14 +217,17 @@ Programa de la asignatura (el detalle evoluciona según avanza el curso).
 \subsection{00 - Presentación}
 
 %%-----------------------------------------------------------------------
-\subsubsection{\martesA: Presentación  (1 hora)}
+\subsubsection{\martesA: Presentación  (1.5 horas)}
 \label{cal:martesA}
 
 \begin{itemize}
-\item \textbf{Presentación:} Presentación de la asignatura. Breve introducción y motivación de las aplicaciones web.
+\item \textbf{Presentación:} Presentación de la temática de la asignatura
+\item \textbf{Presentación:} Qué son las aplicaciones web del lado del servidor (``back-end'') y del lado del cliente (``front-end''), y cómo se relacionan.
+\item \textbf{Presentación:} Detalles de la asignatura: teoría y prácticas, estructura de las clases, evaluación, etc.
+\item \textbf{Presentación:} Materiales de la asignatura: sitios web y documentos fundamentales que tenéis a vuesrta disposición.
 \item \textbf{Material:} Transparencias, tema ``Presentación''.
 \item \textbf{Ejercicio propuesto (voluntario, entrega en el foro):} ``Web 2.0'' (ejercicio~\ref{subsec:web-20}) \\
-  Entrega recomendada: antes del 28 de enero.
+  Entrega recomendada: antes del \juevesA.
 \end{itemize}
 
 
@@ -235,34 +237,25 @@ Programa de la asignatura (el detalle evoluciona según avanza el curso).
 Sesión, mantenimiento de estado, persistencia.
 
 %%------------------------------------------------------------------------
-\subsubsection{\martesA: Conceptos básicos I (0.5 horas)}
-\label{cal:martesAc}
-
-\begin{itemize}
-\item \textbf{Ejercicio:} ``Espía a tu navegador (Firefox Developer Tools)'' (ejercicio~\ref{subsec:firefox-devel})
-\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Explora tus cookies'' (ejercicio~\ref{subsec:explora-cookies}) \\
-  Entrega recomendada: antes del 30 de enero.
-\item \textbf{Ejercicio propuesto (discusión en clase):} ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda}) \\
-  Se introduce el problema, y se pide que trabajen sobre las interacciones HTTP involucradas. Para la próxima sesión se deja la discusión sobre el uso de cookies (u otros mecanismos) para conseguir la funcionalidad requerida.
-\end{itemize}
-
-%%------------------------------------------------------------------------
-\subsubsection{\juevesA: Conceptos básicos II (2 horas)}
+\subsubsection{\juevesA: Conceptos básicos I (2 horas)}
 \label{cal:juevesA}
 
 Páginas dinámicas (diferentes según cómo y cuándo se invocan). Cómo realizar sesiones en HTTP. Profundización en el concepto de sesión, y técnicas para conseguirla, incluyendo cookies y otros mecanismos.
 
 \begin{itemize}
-\item \textbf{Discusión de ejercicio:} ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda}) \\
-  Almacenamiento en el lado del servidor y en el lado del cliente. Relación entre peticiones HTTP. Cookies como herramienta para ambas situaciones.
-\item \textbf{Discusión de ejercicio:} ``Explora tus cookies'' (ejercicio~\ref{subsec:explora-cookies})
-\item \textbf{Ejercicio:} ``Espía a tu navegador (Firefox Developer Tools)'' (ejercicio~\ref{subsec:firefox-devel})
-\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Explora tus cookies (2)'' (ejercicio~\ref{subsec:explora-cookies-2}).
+\item \textbf{Ejercicio (presentación en clase):} ``Espía a tu navegador (Firefox Developer Tools)'' (ejercicio~\ref{subsec:firefox-devel})
+\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Explora tus cookies'' (ejercicio~\ref{subsec:explora-cookies}) \\
+  Entrega recomendada: antes del \juevesB.
+\item \textbf{Ejercicio (discusión en clase):} ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda}) \\
+  Se introduce el problema, y se pide trabajar sobre las interacciones HTTP involucradas. Luego se discusión sobre el uso de cookies (u otros mecanismos) para conseguir la funcionalidad requerida. Se discute también el almacenamiento en el lado del servidor y en el lado del cliente. Relación entre peticiones HTTP. Cookies como herramienta para ambas situaciones.
+\item \textbf{Ejercicio (presentación en clase):} ``Espía a tu navegador (Firefox Developer Tools)'' (ejercicio~\ref{subsec:firefox-devel})
+\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Explora tus cookies (2)'' (ejercicio~\ref{subsec:explora-cookies-2}) \\
+  Entrega recomendada: antes del \juevesB.
 \end{itemize}
 
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesB: Conceptos básicos III (2 horas)}
+\subsubsection{\juevesB: Conceptos básicos II (2 horas)}
 \label{cal:juevesB}
 
 Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persistente frente a caídas del servidor.
@@ -270,6 +263,7 @@ Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persist
 \begin{itemize}
 \item \textbf{Presentación:} Cookies
 \item \textbf{Material:} Transparencias, tema ``Cookies''
+\item \textbf{Discusión de ejercicio:} ``Explora tus cookies'' (ejercicio~\ref{subsec:explora-cookies})
 \item \textbf{Discusión:} Usos de las cookies. \\
   Uso de las cookies para identificación de visitantes (como en el ejercicio~\ref{subsec:ultima-busqueda}), para autenticación (interacción de autenticación y cookie de sesión posterior), para almacenamiento (como en el ejercicio~\ref{subsec:ultima-busqueda}, con última búsqueda en la cookie). Implicaciones de trasladar una cookie de identificación o de sesión de un ordenador a otro. Implicaciones de almacenar datos en el lado del navegador.
 \item \textbf{Discusión:} Tres mecanismos básicos para mantenimiento de sesión (cookies, reescritura de URLs, campos ocultos en formularios)
@@ -280,7 +274,7 @@ Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persist
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesC: Conceptos básicos IV (2 horas)}
+\subsubsection{\juevesC: Conceptos básicos III (2 horas)}
 \label{cal:juevesC}
 
 \begin{itemize}
@@ -291,7 +285,7 @@ Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persist
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesD: Conceptos básicos V (2 horas)}
+\subsubsection{\juevesD: Conceptos básicos IV (2 horas)}
 \label{cal:juevesD}
 
 \begin{itemize}
