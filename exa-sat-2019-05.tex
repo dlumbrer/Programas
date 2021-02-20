@@ -1,0 +1,248 @@
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de ITT-SAT, 15 de mayo de 2019}
+
+Se quiere construir un sitio web, ElTiempazo, donde se puedan compartir datos meteorológicos (temperaturas, por ejemplo) en diversas localidades. La funcionalidad básica del sitio es la siguiente:
+
+\begin{enumerate}
+\item El sitio no precisa de registro previo. Cualquier visitante puede utilizar toda su funcionalidad.
+
+\item La página principal del sitio mostrará un listado de todas las localidades sobre las que se pueden aportar datos, como enlaces a las páginas de esas localidades en el sitio (ver más abajo).
+
+\item La página principal mostrará también un listado de los datos meteorológicos que se han aportado desde este mismo navegador en el pasado (junto con un enlace a la página de la población para la que se aportaron cada uno de esos datos). 
+  
+\item Cada población tendrá una página (la ``página de la población''), con los datos meteorológicos que se hayan aportado para la población durante las últimas 24 horas, por cualquier visitante.
+
+\item La página de cada población tendrá también un formulario para aportar nuevos datos. Este formulario constará de dos cajas, una para poner números, donde se escribirá la temperatura, otra para poner texto, donde se escribirá una descripción del tiempo (ejemplo: ``Nubes, claros y chubascos esporádicos''), y un botón, para enviar su contenido. Tras enviar los datos, se verá la página principal, ya con los nuevos datos en el listado de datos suministrados desde este navegador.
+
+\item Todas las páginas tendrán su estilo determinado por una hoja de estilo CSS, la misma para todo el sitio, que se sirve por el propio sitio.
+
+\item Para cada población sobre la que se puedan poner datos, se ofrecerá también un canal XML con los datos subidos para ella durante las últimas 24 horas y un enlace a la página de la población.
+  
+\end{enumerate}
+
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas urls (no se usarán los métodos PUT o DELETE). Coloca la información en una tabla, con las urls en una columna, los métodos en otra, y la descripción de lo que realizará la aplicación al recibirlos en la tercera. Escribe también un fichero similar al fichero urls.py de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior (1 punto).
+
+\item Describe el modelo de datos que necesitará esta aplicación. Define las tablas necesarias y los campos necesarios para la funcionalidad descrita. Asegúrate de que incluyes en el modelo de datos la tabla o tablas necesarias para saber el número de páginas vistas por cada navegador, gracias al uso de la imagen transparente que se describe en en enunciado. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero models.py en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones) (1 punto).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza cuando un visitante que accede por primera vez al sitio pone en el navegador la url de la página principal del sitio. En ella, pulsa sobre la página de una población. El escenario termina cuando el visitante está viendo esa página de población. (1 punto).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza con un visitante que está que viendo en su navegador la página de una localidad. El visitante rellena las cajas de datos, y pulsa el botón para enviarlos. El escenario termina cuando el visitante ve la página principal, ya con los nuevos datos en ella.
+
+\item Supongamos que un sitio tercero llega a un acuerdo con ElTiempazo para trazar todas las acciones de subida de datos meteorológicos. Para ello, va a servir una imagen transparente, que se puede colocar en cualquier página HTML. Diseña, si crees que es posible, un sistema por el que este sitio tercero pueda saber (y apuntar) cada vez que un navegador cualquiera suba nuevos datos sobre una población a ElTiempazo, explicando qué tendría que hacer la aplicación web de ElTiempazo para que esto sea posible. Es importante que el sistema permita al sitio tercero llevar su propia contabilidad basada en las descargas de esa imagen, no en datos que ElTiempazo le pueda enviar. Si crees que no puede hacerse en este caso concreto, explica por qué, y qué habría que cambiar para que se pudiera.
+\end{enumerate}
+
+En todos los escenarios, ten en cuenta que tu respuesta debe considerar toda la funcionalidad que ofrece el servicio, y permitir que ésta pueda proporcionarse. Diseña la aplicación de forma que envíe cookies al navegador sólo cuando sea necesario.
+
+En las respuestas donde describas interacciones HTTP indica para cada una de ellas claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \item Si hubiera envío de datos de formulario, recuerda indicar de forma explícita dónde van esos datos, y si es posible, en qué formato.
+  \end{itemize}
+
+Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
+En general, para todas las interacciones descritas, considérese que la cache del navegador no se está usando.
+
+\subsubsection{Soluciones}
+
+Hay muchas soluciones posibles. A continuación, una de ellas.
+
+\paragraph{Esquema REST}
+
+Este podría ser el esquema REST:
+
+\begin{tabular}{|l|l|l|}
+  \hline
+  Recurso & Método & Comentario \\ \hline \hline
+  /       & GET    & Página principal (HTML) \\
+  /       & POST & Nuevos datos, devuelve página principal (HTML) \\ \hline
+  /\{id\_poblacion\} & GET & Página de población (HTML) \\
+  &     & Incluirá formularion, con \verb|action=/| \\
+  &     & y campo oculto con \verb|poblacion=id_poblacion| \\ \hline
+  /main.css & GET & Hoja de estilo CSS \\ \hline
+  /\{id\_poblacion\}.xml & GET & Documento XML para cada población \\ \hline
+\end{tabular}
+
+Para que el POST sobre el recurso principal, con los datos de una población,
+se pueda indentificar como datos para esa población, tendrá que incluir
+el identificador de la población en la query string. Para ello, incluiremos
+un campo oculto en el formulario de datos, justamente con ese dato.
+
+\paragraph{urls.py}
+
+
+\begin{verbatim}
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('main.css', views.css, name='css'),
+    path('<id_poblacion>', views.poblacion, name='poblacion'),
+    path('<id_poblacion>.xml', views.poblacion_xml, name='poblacion_xml')
+]
+\end{verbatim}
+
+El recurso que sirve el documento CSS podría servirse también configurando
+adecuadamente los mecanismos de Django para servirlo como fichero estático.
+
+\paragraph{models.py}
+
+Versión simplificada, que cumple el enunciado, aunque podría optimizarse:
+
+\begin{verbatim}
+from django.db import models
+
+class Sesion(models.Model):
+    cookie = models.CharField(max_length=20)
+
+class Poblacion(models.Model):
+    id = models.IntegerField()
+    nombre = models.TextField()
+
+class Datos(models.Model):
+    poblacion = models.ForeignKey('Poblacion')
+    sesion = models.ForeignKey('Sesion')
+    temperatura = models.FloatField()
+    descripcion = models.TextField()
+    fecha = models.DateTimeField()
+\end{verbatim}
+
+No se incluyen los campos identificador único para cada tabla.
+
+\paragraph{Primer escenario}
+
+Todas las interacciones son entre el navegador y el sitio.
+
+\begin{itemize}
+
+\item Petición GET de la página principal.
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página principal, HTML]
+\end{verbatim}
+
+
+\item Petición GET para el documento CSS, originada debido a que está referenciado en la página HTML anterior.
+
+\begin{verbatim}
+  GET /main.css HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Documento CSS]
+\end{verbatim}
+  
+\item Petición GET a una página de población.
+  Suponemos que su identificador es ``43''.
+
+\begin{verbatim}
+  GET /43 HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página de la población, HTML]
+\end{verbatim}
+
+\item Petición GET para el documento CSS, originada debido a que está referenciado en la página HTML anterior.
+
+\begin{verbatim}
+  GET /main.css HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Documento CSS]
+\end{verbatim}
+
+\end{itemize}
+
+
+\paragraph{Segundo escenario}
+
+A continuación, las interacciones son entre el navegador y el sitio. Suponemos que el visitante no ha puesto un dato anteriormente, por lo que no ha recibido aún cookie (si lo hubiera hecho, enviaría una cabecera ``Cookie'', porque habría recibido una cuando lo puso, y por tanto no recibirá la cabecera ``Set-Cookie''). Suponemos que el identificador de la población cuya página está viendo el usuario al comenzar el escenario es ``34''.
+
+\begin{itemize}
+\item Petición POST / (para subir un dato):
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+  
+  poblacion=34&temperatura=14&descricion="Me gusta el tiempo de esta poblacion"
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+  Set-Cookie: sesion=323ddfd3323243hhhh323
+
+  [Página principal, con los nuevos datos ya puestos, HTML]
+\end{verbatim}
+
+\item Petición GET para el documento CSS, originada debido a que está referenciado en la página HTML anterior.
+
+\begin{verbatim}
+  GET /main.css HTTP/1.1
+  ...
+  Cookie: sesion=323ddfd3323243hhhh323
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Documento CSS]
+\end{verbatim}
+
+\end{itemize}
+
+
+\paragraph{Trazado de navegadores únicos desde un sitio tercero}
+
+Los datos se suben con un POST, por lo que en principio no es posible incluir ninguna imagen para trazarlo. Sin embargo, podemos aprovecharnos de que como respuesta al POST, nuestro servidor enviará una página HTML: será en esa página en la que incluyamos la imagen transparente.
+
+De esta manera, cada vez que un navegador realice un POST con nuevos datos, recibirá la página HTML con la imagen del sitio tercero, y realizará una petición a éste para obtenerla. Por lo tanto, este sitio tercero podrá contabilizar las respuestas a estos POST. Además, si envía una cookie a cada navegador, podrá saber si el navegador en cuestión ya ha subido más datos anteriormente.
+
+Naturalmente este mecanismo no funcionará si se hiciera un POST, y se recibiera una respuesta, pero luego no se tratara de obtener los elementos de la página HTML que se recibe. Esto no ocurrirá si la subida de datos se realiza de forma normal desde un navegador.

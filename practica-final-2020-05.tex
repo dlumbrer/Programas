@@ -1,6 +1,6 @@
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
-\section{Práctica final: MisCosas (2020, mayo)}
+\section{Proyecto final: MisCosas (2020, mayo)}
 \label{practica-final-2020-05}
 
 [ \textbf{Nota importante:} Por ahora esto es sólo es un borrador. Aún estamos definiendo cómo será el enunciado definitivo. ]
@@ -107,7 +107,9 @@ Alimentadores descritos:
   \item Datos mostrados del ítem (cuando se muestra con detalle): título de la noticia, enlace de la noticia, descripción de la noticia, nombre del Subreddit, enlace del Subreddit.
   \end{itemize}
 
-\item \textbf{Alimentador 2}. Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|), y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \emph{Cher}, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. Funcionamiento:
+\item \textbf{Alimentador 2}. Last.fm (artista). En este caso, el alimentador será un artista de Last.fm (como por ejemplo \verb|Cher|), y el item un álbum. Los álbumes de un artista están están disponibles como documento XML o JSON\footnote{Ejemplo: Para \emph{Cher}, la url es:\\ \url{http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=cher&api_key=YOUR_API_KEY}}. Más información en la documentación ``Last.fm Web Services\footnote{Last.fm Web Services, artist.getTopAlbums: \\ \url{https://www.last.fm/api/show/artist.getTopAlbums}}. \textbf{Atención:} Para el uso de este servicio hace falta conseguir una ``clave de API''\footnote{Para conseguir la clave de API en Last.fm (mira también en las preguntas frecuentes): \\\url{https://www.last.fm/api/account/create}}, que tendrás que poner en las llamadas en lugar de \verb|YOUR_API_KEY|. Consulta la lista de preguntas frecuentes (apartado~\ref{sec:practica-2020-05:preguntas}), hay una que trata justamente sobre este tema~(página \pageref{sec:practica-2020-05:preguntas-apikey}).
+
+  Funcionamiento:
 
   \begin{itemize}
   \item Alimentador: Artista en Last.fm.
@@ -234,13 +236,12 @@ La aplicación servirá las siguientes páginas:
     \item Para cada ítem, enlace a la página del ítem.
     \end{itemize}
 
-  \item Página de usuario (para cada usuario ``con cuenta''):
+  \item Página de usuario (para cada usuario ``con cuenta''). Página ``pública'', que verá cualquiera que cargue el recurso apropiado:
 
     \begin{itemize}
     \item Datos públicos del usuario (identificador, foto)
-    \item Lista de alimentaros elegidos (formato resumido)
-    \item Lista de items votados (formato resumido)
-    \item Lista de items comentados (formato resumido)
+    \item Lista de items votados por ese usuario (formato resumido)
+    \item Lista de items comentados por ese usuario (formato resumido)
     \end{itemize}
 
     Si el visitante está autenticado, cuando acceda a su propia página, se mostrará también:
@@ -254,7 +255,7 @@ La aplicación servirá las siguientes páginas:
   \item Página de usuarios:
 
     \begin{itemize}
-    \item Listado de todos los usuarios ``con cuenta''. Para cada usuario, aparecerá su identificador, su foto, el número de items votados, el número de canales elegidos, y un enlace a su página.
+    \item Listado de todos los usuarios ``con cuenta''. Para cada usuario, aparecerá su identificador, su foto, el número de items votados, el número de comentarios que ha hecho, y un enlace a su página de usuario.
     \end{itemize}
 
   La página principal se ofrecerá también como un documento XML y como un documento JSON, que incluiría la misma información (los mismos listados de items y alimentadores). Este documento se ofrecerá cuando se pida la página principal, concatenando al final \verb|?format=xml| o \verb|?format=json|.
@@ -275,12 +276,33 @@ Además, la práctica incluirá tests, que se ejecutarán con \verb|python3 mana
 
 %%----------------------------------------------------------------------------
 \subsection{Despliegue}
+\label{sec:practica-2020-05:despliegue}
 
 La práctica deberá estar desplegada en algún sitio de Internet, de forma que pueda accederse a ella. Deberá mantenerse desplegada y activa al menos desde el día de entrega de la práctica, hasta el día del cierre de actas.
 
 Para el despliegue, se puede utilizar Python Anywhere\footnote{Python Anywhere: \url{https://pythonanywhere.com}}, que proporciona un plan gratuito que incluye suficientes recursos como para poder desplegar la práctica.
 
 Si el alumno así lo desea, puede considerarse desplegar en un ordenador dedicado (por ejemplo, una Raspberry Pi accesible directamente desde Internet, alojada en su hogar), o en servicios como Google Computing Engine\footnote{GCP Engine Free: \url{https://cloud.google.com/free/}}. En general, dado que este tipo de despliegues no podrá contar con una ayuda detallada por los profesores, estará algo más valorado.
+
+En el caso de que la práctica se despliegue en Python Anywhere, hay que tener en cuenta que sus máquinas virtuales tienen cortado el acceso a todos los sitios de Internet salvo los que están en una ``lista blanca''\footnote{Lista blanca de Python Anywhere: \url{https://www.pythonanywhere.com/whitelist/}} (\emph{whitelist}). Esto afectará a vuestro despliegue de dos formas:
+
+\begin{itemize}
+\item Al clonar vuestro repositorio git dentro de la máquina virtual, para tener el código de vuestra aplicación. No debería dar problemas, porque el sitio GitLab de la ETSIT, donde está vuestro código fuente, está ya en la lista blanca.
+\item Cuando vuestra aplicación se conecte para actualizar un alimentador. Si el sitio al que la aplicación se tiene que conectar para conseguir el documento JSON o XML no está en la lista blanca, vuestra aplicación no se podrá conectar. YouTube (que está en la parte obligatoria para todo el mundo) y algunos otros sitios de alimentadores (como Flickr) están ya en la lista blanca. Pero otros sitios que podéis estar usando, no.
+\end{itemize}
+
+Para evitar los problemas con los sitios que no estén en la lista blanca, os pedimos que si hacéis el despliegue en YouTube:
+
+\begin{itemize}
+\item La actualización (``selección'') de alimentadores tiene que funcionar al menos con YouTube, recogiendo los documentos XML correspondientes, como indica el enunciado.
+\item Para los demás alimentadores que hayáis implementado, tenéis dos opciones:
+  \begin{itemize}
+  \item Si están en la lista blanca de Python Anywhere, funcionarán sin problemas sin hacer nada especial, si os funcionaban ya en las pruebas locales, así que también deberían funcionar en el despliegue.
+  \item Si no están en la lista blanca de Python Anywhere, aseguraos de que la base de datos que subís al despliegue de vuestra práctica incluya datos de alimentadores de la plataforma en cuestión. Por ejemplo, si tenéis implementados alimentadores de Last.fm, basta con que tengáis en la base de datos items de un par de artistas, que muestren que en la versión local os funcionó.
+  \end{itemize}
+\end{itemize}
+
+Tened en cuenta que si usáis otras plataformas para el despliegue, puede que os encontréis problemas similares. Y tened en cuenta también que en cualquier caso, nosotros probaremos la práctica en otros despliegues, así que todos los alimentadores que hayáis implementado deben funcionar correctamente si no hay restricciones de conexión.
 
 %%----------------------------------------------------------------------------
 \subsection{Funcionalidad optativa}
@@ -425,27 +447,111 @@ La práctica deberá funcionar desde el navegador Firefox disponible en el labor
 Los canales (feeds) RSS que produce la aplicación web realizada en la práctica deberán funcionar al menos con el navegador Firefox (considerándolos como canales RSS) disponibles en el laboratorio. Los documentos XML deberán ser correctos desde el punto de vista de la sintaxis XML, y por lo tanto reconocibles por un reconocedor XML, como por ejemplo el del módulo xml.sax de Python. Los documentos JSON generados deberán ser correctos desde el punto de vista de la sintaxis JSON, y por lo tanto reconocibles por un reconocedor JSON, como por ejemplo el del módulo json de Python
 
 %%----------------------------------------------------------------------------
-\subsection{Preguntas y respuestas}
+\subsection{Preguntas frecuentes}
+\label{sec:practica-2020-05:preguntas}
 
 A continuación, algunas preguntas relacionadas con el enunciado de esta práctica, junto con sus respuestas:
 
 \begin{itemize}
 
+\item Cuando despliego mi práctica en Python Anywhere, algunos alimentadores no me funcionan, pero otros (YouTube entre ellos), sí. Todo me funciona bien en mi versión local. ¿Qué está pasando?
+
+  Las máquinas virtuales de Python Anywhere están limitadas en cuanto a los sitios a los que se pueden conectar: sólo se pueden conectar a aquellos que están en una cierta ``lista blanca''. Por eso, si el sitio al que tu programa se tiene que conectar para obtener items de un alimentador no está en la lista blanca, no va a poder descargarse el documento XML o JSON con esos items. Para evitar problemas, en el caso de despliegue en Python Anywhere pedimos que funcionen bien los alimentadores que están en la lista blanca, y para los demás, que tengan items en la base de datos de despliegue. Más detalles en el apartado sobre despliegue de este enunciado (\ref{sec:practica-2020-05:despliegue}).
+  
+\item En la pagina de información que se menciona en el enunciado, ¿qué hay que incluir en el apartado de documentación?
+
+Casi que lo que queráis, lo importante es tener la página. Puede ser por ejemplo un resumen de un párrafo de lo que hace la aplicación.
+
+\item ¿Qué es la ``API key'' en los alimentadores de Last.fm, y en otros alimentadores?
+\label{sec:practica-2020-05:preguntas-apikey}
+
+  Algunas API de servicio, entre ellas la de Last.fm, requieren el uso de una ``API key'' (clave de API) para poder usarla. Normalmente, estas claves las usa el servicio para evitar abusos, o para limitar lo que se puede hacer con su API. El caso es que si no se incluye la clave de API en cada GET que se hace al servicio, no se reciben los datos (el documento XML o JSON).
+
+  Es habitual que estas claves se obtengan creándose una cuenta en el servicio en cuestión, y luego obteniendo la clave en una página al efecto, estando autenticados con el servicio.
+
+  Por ejemplo, en el caso de Last.fm, hay que ir a la página de petición de claves de API\footnote{Lastfm Create API Account: \url{https://www.last.fm/api/account/create}}, donde (una vez autenticados con una cuenta de Last.fm), rellenaremos los dato que nos pide: ``contact email'', ``aplication name'' (cualquier nombre de aplicación, por ejemplo MisCosas), ``appication description'' (cualquier descripción por ejemplo ``App to manage Last.fm artists''). En este caso, puedes ignorar los campos ``callback url'' y ``application homepage''. Cuando se hayan enviado estos datos, te devolverá entre otros datos tu ``API key''. Esa es la que tendrá que usar en tus llamadas a Last.fm.
+
+  Como las claves de API son personales, mantenlas en secreto. En particular, no las subas a repositorios públicos, pues cualquiera podrá verlas (y usarlas). Si quieres que el repositorio de tu práctica sea público, incluye la clave en un fichero que tengas sólo en tu disco, y no subas al repositorio git. Por ejemplo, puedes poner la clave en un fichero \verb|apikeys.py| del estilo de este:
+
+\begin{verbatim}
+LASTFM_APIKEY = "012345678"
+\end{verbatim}
+
+Luego, en el módulo Python que la uses (por ejemplo \verb|views.py|), pondrás algo como:
+
+\begin{verbatim}
+from .apikeys import LASTFM_APIKEY
+\end{verbatim}
+
+Y ya puedes usar la clave en tu código. Este fichero \verb|apikeys.py| no lo subirás al repositorio git público.
+
+Si usas claves de API en tu práctica, indícalo claramente en el fichero de entrega de la práctica, y o bien sube una clave de API válida (si el repositorio de entrega es privado) para que la podamos probar, o bien indica en qué fichero hay que ponerla, y cómo se consigue una clave API válida para el servicio que estés usando, de forma que la podamos conseguir y ejecutar tu práctica.
+
+\item ¿Qué tiene que haber en la página de usuarios?
+
+  En el enunciado tenemos una página de usuarios, con un listado de todos los usuarios (visitantes con cuenta). En la primera versión de este enunciado, se incluía, para cada usuario en este listado, un ``número de alimentadores que ha elegido''. Pero al simplificar el enunciado para que la lista de seleccionados sea común a todo el sitio, y no particular a un visitante, esto ya no tiene sentido. Así que lo hemos sustituido por un ``número de comentarios que ha hecho'' (el usuario). Por lo tanto, el enunciado actual indica que esta página mostrará:
+
+  \begin{quote}
+  {\em Listado de todos los usuarios ``con cuenta''. Para cada usuario, aparecerá su identificador, su foto, el número de items votados, el número de comentarios que ha hecho, y un enlace a su página de usuario.}
+  \end{quote}
+
+\item ¿Qué tiene que haber en la página de alimentadores?
+
+  En esta página tiene que esta la lista de alimentadores que se han elegido alguna vez, aunque luego se hayan ``deseleccionado''. Esto es, será la lista de todos los alimentadores que tenemos en la base de datos.
+
+\item ¿Qué alimentadores tienen que tener una página de alimentador?
+
+  Todos los alimentadores que se hayan elegido alguna vez tienen que tener pagina de alimentador, aunque luego se hayan ``deseleccionado''. Esto es, todos los alimentadores que tenemos en la base de datos tienen que tener página de alimentador.
+
+\item ¿Cómo se comporta el botón que tengo en la página de un alimentador?
+
+  En la página de alimentadot hay un botón ``para poder elegir o dejar de tener elegido el alimentador''. Este botón se muestra siempre, esté el visitante autenticado o no. Si el alimentador no ha sido ``deselegido'' nunca, al pulsar el botón se ``deselegirá'', con el efecto que dejará de salir en el listado de alimentadores elegidos (en la página principal). Pero no será borrado de la base de datos, seguirá saliendo en el listado de la página de alimentadores, y seguirá teniendo su página de alimentador.
+
+  Si el alimentador fue ``deselegido'' y no ha vuelto a ser elegido (bien en la página principal, poniéndolo en el formulario de alimentadores, o bien en la págian de alimentadores, eligiéndolo), por cualquier usuario, el botón servirá para volver a alegirlo. Como esto tiene los misms efectos que si se hubiera puesto su nombre en el formulario de alimentadores de la página principal, si se pulsa el botón el alimentador quedará elegido, sus datos se actualizarán descargándolos del sistema de alimentadores correspondiente (YouTube, por ejemplo), y se recibirá la página de ese alimentador, con información actualizada.
+  
+\item ¿Tiene que haber una lista de alimentadores en la página de usuario?
+
+  En una primera versión del enunciado teníamos una lista de alimentadores en la página de usuario. Pero como esa lista ya está en varias otras páginas, y no tiene mucho sentido en esa (porque serían los alimentadores elegidos por cualquier usuario), en la versión final del enunciado no hay que incluir lista de alimentadores en la página de usuario. Sin embargo, puede ser una buena mejora opcional, si te interesa implementarla. Si lo haces, sería conveniente que sea la lista de alimentadores que ha seleccionado ese usuario en particular.
+
+\item ¿Cómo puedo implementar la subida de la foto del usuario?
+
+  Para que el usuario pueda cambiar su foto, tendrás que implementar una vista que recoja la foto que se le envíe desde un formulario, y la almacene. El manual de Django indica cómo hacer eso para ficheros en general\footnote{``File uploads'' en la documentación de Django: \\ \url{https://docs.djangoproject.com/en/3.0/topics/http/file-uploads/} \\
+    Mira especialmente el apartado ``Handling uploaded files with a model'', pero en general será conveniente leer toda la página.}. Y puedes encontrar varias referencias en la red que explican cómo hacerlo específicamente para imágenes\footnote{Ejemplo de referencia que indica cómo subir imágenes a Django: \\
+    \url{https://coderwall.com/p/bz0sng/simple-django-image-upload-to-model-imagefield}}.
+
+  Resumiendo mucho, convendrá que utilices un campo de tipo \verb|ImageField|\footnote{Campo ``ImageField'' en la documentación de Django: \\ \url{https://docs.djangoproject.com/en/3.0/ref/models/fields/\#imagefield}} en la base de datos, especificando a qué directorio se subirán las imágenes (parámetro \verb|upload_to|). Para subir los ficheros, puedes utilizar un Django Form (heredando de \verb|forms.Form|) en el que especifiques un campo \verb|forms.ImageField()|, y una plantilla de formulario (elemento HTML \verb|form|) en la que especifiques que el método es POST y además un \verb|enctype| (tipo de codificación) \verb|multipart/form-data|. Cuando instancies el formulario Django, además del parámetro habitual (\verb|request.POST|), le pasarás también \verb|request.FILES|, que es donde vendrá la imagen (dado que usas \verb|multipart/form-data|). Después de validar la respuesta que te ha venido del formulario, extraes de ella el campo donde venga la imagen, y lo guardas en la base de datos. Al hacerlo, se guardará un descriptor en la base de datos, y la imagen se guardará (automáticamente) en el directorio que hayas especificado.
+
+  Trata de entender todo el proceso antes de ponerte a implementarlo, y cuidado con las recetas que podrás encontrar en Internet, porque puede que no te sirvan exactamente ``tal cual''.
+  
+\item ¿Qué quiere decir ``vídeo empotrado'', que se menciona en la información detallada para un vídeo de un canal de YouTube? ¿Cómo se hace?
+
+  ``Vídeo empotrado'' es en ese caso la traducción de ``embedded video'', y quiere decir que el video aparezca directamente en la página, normalmente en un elemento \verb|iframe|. En el caso de YouTube, puedes obtener el código HTML para empotrar cualquier video si, cuando lo estás viendo en el navegador, pulsas el botón de compartir (``Share''), y eliges la opción ``Embed''. Esto muestra un código HTML como el siguiente:
+
+\begin{verbatim}
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/HZOodD84MR8"
+  frameborder="0"
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen></iframe>
+\end{verbatim}
+
+Basta con que en él cambies el código del video (en este caso ``HZOodD84MR8''  por el del video que quieres empotrar, y ya está.
+
 \item En la página de cada alimentador, ¿hay que mostrar los datos en formato resumido o detallado?
 
   Había una errata en el enunciado que no dejaba claro este extremo. Ahora debería quedar claro: en la página de cada alimentador habrá un listado de los items de ese alimentador, en formato resumido, incluyendo también para cada item un enlace a la página del item.
   
-\item En el formulario para elegir alimentador, ¿qué hay que introducir? (el nombre de los alimentadores que ya hay, dar opciones de los que ya hay, directamenet el identificador de alimentador...).
+\item En el formulario para elegir alimentador, ¿qué hay que introducir? (el nombre de los alimentadores que ya hay, dar opciones de los que ya hay, directamente el identificador de alimentador...).
 
-  Habrá un formulario por cada tipo de alimentador. Por ejemplo, uno para canales de YouTube, otro para eitquetas de Flickr, etc. Cada uno de ellos será un formulario en el que se podrá poner lo que haga falta para elegir un alimentador para ese tipo de alimentador. Por ejemplo, en el caso de Youtube, el formulario tendrá una caja de texto para poder poner el id del canal, y un botón para enviarlo. Lo normal, es que todos los formularios para los tipos de alimentadores que hayas implementado estén juntos.
+  Habrá un formulario por cada tipo de alimentador. Por ejemplo, uno para canales de YouTube, otro para etiquetas de Flickr, etc. Cada uno de ellos será un formulario en el que se podrá poner lo que haga falta para elegir un alimentador para ese tipo de alimentador. Por ejemplo, en el caso de YouTube, el formulario tendrá una caja de texto para poder poner el id del canal, y un botón para enviarlo. Lo normal, es que todos los formularios para los tipos de alimentadores que hayas implementado estén juntos.
 
-  Alternativamente, y esto es opcional, se puede tener un único formulario para todos los tipos de alimentador. En ese caso, tendrás que tener algo parecido a un menú desplegable para que puedas elegir qué tipo de alimentador vas a indicar, algún elemento para poner el idenficador (id, etiqueta, nombre de sección... lo que sea), y un botón para enviar.
+  Alternativamente, y esto es opcional, se puede tener un único formulario para todos los tipos de alimentador. En ese caso, tendrás que tener algo parecido a un menú desplegable para que puedas elegir qué tipo de alimentador vas a indicar, algún elemento para poner el identificador (id, etiqueta, nombre de sección... lo que sea), y un botón para enviar.
 
   Para algunos alimentadores (por ejemplo, el de TuCanaldeSalud), puede tener sentido que el formulario incluya un menú par elegir el alimentador, pero este no es el caso de ninguno de los alimentadores obligatorios. Puede ocurrir esto cuando el número de alimentadores a elegir sea pequeño.
   
 \item ¿Es necesario utilizar los mecanismos provistos por Django para el control de sesiones y autenticación?
 
-  En principio, esa es la solución recomendada. El principal problema suele ser asegurarse de que cuaquier mecanismo alternativo funciona al menos tan bien como el de Django, lo que no es en general trivial. De todas formas, salvo muy buenos motivos, la aplicación es una aplicación Django, y por lo tanto cuantas más facilidades de Django se usen (bien usadas), mejor.
+  En principio, esa es la solución recomendada. El principal problema suele ser asegurarse de que cualquier mecanismo alternativo funciona al menos tan bien como el de Django, lo que no es en general trivial. De todas formas, salvo muy buenos motivos, la aplicación es una aplicación Django, y por lo tanto cuantas más facilidades de Django se usen (bien usadas), mejor.
 
 \item Los archivos CSS que pueden modificar los usuarios, ¿dónde y cómo debemos guardarlos?
 
@@ -460,6 +566,6 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
 
 \item ¿Dónde puedo realizar el despliegue de la aplicación?
 
-  El despliegue puede realizarse en cualquier ordenador que esté conectado permanentemente a Internet durante el periodo de correción, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Intener, adecaudamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), o PythonAnywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}). Los profesores podremos ayudar de forma más detallada con PythonAnywhere.
+  El despliegue puede realizarse en cualquier ordenador que esté conectado permanentemente a Internet durante el periodo de corrección, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Internet, adecuadamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), o PythonAnywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}). Los profesores podremos ayudar de forma más detallada con PythonAnywhere.
 
 \end{itemize}
