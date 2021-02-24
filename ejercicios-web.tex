@@ -1452,10 +1452,28 @@ Puedes partir del siguiente repositorio: \verb|https://github.com/CursosWeb/X-Se
 
 \textbf{Enunciado:}
 
-Crea un programa que sirva de calculadora y que incluya las funciones
-básicas (sumar, restar, multiplicar y dividir). El programa ha de poder ejecutarse desde la línea de comandos de la siguiente manera: \texttt{python3 calculadora.py función operando1 operando2}. No olvides capturar las excepciones.
+Crea un programa que sirva de calculadora y que incluya dos funciones
+(sumar, restar), que han de llamarse para sumar 1 y 2, 3 y 4, y para restar 5 de 6 y 7 de 8.
 
-Parte del repositorio en GitLab \verb|https://gitlab.etsit.urjc.es/cursosweb/x-serv-13.6-calculadora|
+%, multiplicar y dividir). 
+%El programa ha de poder ejecutarse desde la línea de comandos de la siguiente manera: \texttt{python3 calculadora.py función operando1 operando2}. No olvides capturar las excepciones.
+
+Parte del siguiente repositorio en el GitLab de la ETSIT: \\ \verb|https://gitlab.etsit.urjc.es/cursosweb/x-serv-13.6-calculadora|.
+
+La secuencia debería ser parecida a la siguiente.:
+
+\begin{enumerate}
+  \item (Navegador) Entra en el GitLab de la ETSIT con tus credenciales de los laboratorios docentes o de la URJC
+  \item (Navegador) Haz un \emph{fork} del proyecto X-Serv-13.6-Calculadora de \emph{CursosWeb}. Esto creará una copia del repositorio de la que tú serás dueño (como se puede comprobar a través de la URL, que ya no contendrá CursosWeb sino tu nombre de usuario).
+  \item (Shell) Clona tu repositorio a local con \emph{git clone https://...}
+  \item (PyCharm) Crea el programa calc.py, con la funcionalidad que se pide más arriba.
+  \item (Shell) Copia calc.py desde donde lo haya creado PyCharm al directorio con tu repositorio local
+  \item (Shell) Añade el fichero \texttt{calc.py} para que sea seguido por git con \emph{git add calc.py} 
+  \item (Shell) Realiza un commit con los cambios con \emph{git commit -m "Mensaje del cambio" calc.py}
+  \item (Shell) Haz un push para sincronizar tu repositorio en local con el tuyo en GitLab con \emph{git push}
+  \item (Navegador) Comprueba que tu repositorio en GitLab que se ha sincronizado correctamente (i.e., contiene los últimos cambios)
+\end{enumerate}
+
 
 \newpage
 
