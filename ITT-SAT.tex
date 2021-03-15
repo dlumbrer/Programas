@@ -158,14 +158,14 @@ Evaluación extraordinaria:
 \newcommand{\martesC}{23 de febrero}
 \newcommand{\martesD}{2 de marzo}
 \newcommand{\martesE}{16 de marzo}
-\newcommand{\martesF}{23 de marzo}
-\newcommand{\martesG}{6 de abril}
-\newcommand{\martesH}{13 de abril}
-\newcommand{\martesI}{20 de abril}
-\newcommand{\martesJ}{27 de abril}
-\newcommand{\martesK}{4 de mayo}
-\newcommand{\martesL}{11 de mayo}
-\newcommand{\martesM}{18 de mayo}
+%\newcommand{\martesF}{23 de marzo}
+%\newcommand{\martesG}{6 de abril}
+\newcommand{\martesH}{23 de marzo}
+\newcommand{\martesI}{6 de abril}
+\newcommand{\martesJ}{13 de abril}
+\newcommand{\martesK}{20 de abril}
+\newcommand{\martesL}{27 de abril}
+\newcommand{\martesM}{4 de mayo}
 
 \newcommand{\juevesA}{11 de febrero}
 \newcommand{\juevesB}{18 de febrero}
@@ -194,15 +194,15 @@ Evaluación extraordinaria:
   \nameref{cal:martesDb} &  \\  \hline
   9 de marzo: Festivo & \nameref{cal:juevesE} \\ \hline
   \nameref{cal:martesE} & \nameref{cal:juevesFb} \\ \hline
-                        & \nameref{cal:juevesF} \\ \hline
-  \nameref{cal:martesF} & \nameref{cal:juevesG} \\ \hline
-  \nameref{cal:martesG} & \nameref{cal:juevesH} \\ \hline
-  \nameref{cal:martesH} & \nameref{cal:juevesI} \\ \hline
-  \nameref{cal:martesI} & \nameref{cal:juevesJ} \\ \hline
-  \nameref{cal:martesJ} & \nameref{cal:juevesK} \\ \hline
-  \nameref{cal:martesK} & \nameref{cal:juevesL} \\ \hline
-  \nameref{cal:martesL} & \nameref{cal:juevesM} \\ \hline
-  \nameref{cal:martesM} &  \\          \hline
+   \nameref{cal:martesH} & \nameref{cal:juevesF} \\ \hline
+                        & \nameref{cal:juevesG} \\ \hline
+  \nameref{cal:martesI} & \nameref{cal:juevesH} \\ \hline
+  \nameref{cal:martesJ} & \nameref{cal:juevesI} \\ \hline
+  \nameref{cal:martesK} & \nameref{cal:juevesJ} \\ \hline
+  \nameref{cal:martesL} & \nameref{cal:juevesK} \\ \hline
+  \nameref{cal:martesM} & \nameref{cal:juevesL} \\ \hline
+                        & \nameref{cal:juevesM} \\ \hline
+                        &  \\          \hline
 \end{tabular}
 
 \newpage
@@ -627,52 +627,57 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
    Entrega recomendada: antes del 9 de marzo.
 \end{itemize}
 
-%%----------------------------------------------------------------------------
-\subsubsection{\martesE: Aplicaciones web II (2 horas)}
-\label{cal:martesE}
-
-\begin{itemize}
-\item \textbf{Comentario de ejercicio:} ``Sumador simple'' (ejercicio~\ref{subsec:sumador-simple}) 
-\item \textbf{Explicación de ejercicio:} ``Aplicación web generadora de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-urls-aleatorias})
-\item \textbf{Trabajo y explicación del ejercicio:} ``Clase servidor de aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis}) \\
-  Explicación de la estructura general que tienen las aplicaciones web, y fundamentos de cómo esta estructura se puede encapsular en una clase.
-\item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Clase servidor de aplicaciones, generador de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-clase-urls-aleatorias}). \\
-  Entrega recomendada: antes del 25 de febrero.
-\end{itemize}
-
-
 %%%----------------------------------------------------------------------------
 \subsection{P3 - Servidores simples de contenidos}
 
 Construcción de algunos servidores de contenidos que permitan comprender la estructura básica de una aplicación web, y de cómo implementarlos aprovechando algunas características de Python.
 
 %%----------------------------------------------------------------------------
-\subsubsection{\martesF: Servidores simples I (2 horas)}
-\label{cal:martesF}
+\subsubsection{\martesE: Servidores con clase (2 horas)}
+\label{cal:martesE}
 
 \begin{itemize}
+%\item \textbf{Ejercicio:} ``Sumador simple'' (ejercicio~\ref{subsec:sumador-simple}) (en una fase) 
+\item \textbf{Comentario de ejercicio:} ``Sumador simple'' (ejercicio~\ref{subsec:sumador-simple}) 
+\item \textbf{Explicación de ejercicio:} ``Aplicación web generadora de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-urls-aleatorias})
+\item \textbf{Trabajo y explicación del ejercicio:} ``Clase servidor de aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis}) \\
+  Explicación de la estructura general que tienen las aplicaciones web, y fundamentos de cómo esta estructura se puede encapsular en una clase.
+%\item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Clase servidor de aplicaciones, generador de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-clase-urls-aleatorias}). 
+  \item \textbf{Comentario de ejercicio:} ``Clase servidor de aplicaciones, generador de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-clase-urls-aleatorias}). 
+ \item \textbf{Comentario de ejercicio:}  ``Clase contentApp'' (ejercicio~\ref{subsec:contentapp}) 
+ \item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Clase contentPostApp'' (ejercicio~\ref{subsec:contentpostapp}).
+  Entrega recomendada: antes del 23 de marzo.
+\end{itemize}
+
+
+
+%%----------------------------------------------------------------------------
+%\subsubsection{\martesF: Servidores simples I (2 horas)}
+%\label{cal:martesF}
+
+%\begin{itemize}
 
 %\item \textbf{Ejercicio:} ``Clase servidor de aplicaciones, sumador'' (ejercicio~\ref{subsec:clase-sumador-simple}). 
 %\item \textbf{Ejercicio:}  ``Clase servidor varias aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis-multi}) \\
 %  Explicación de la estructura principal de una clase que gestiona varias aplicaciones (o varios recursos, cada uno manejado por una aplicación)
 % \item \textbf{Ejercicio:} ``Clase servidor, cuatro aplis'' (ejercicio~\ref{subsec:clase-serv-aplis-varias}).
- \item \textbf{Ejercicio:}  ``Clase contentApp'' (ejercicio~\ref{subsec:contentapp}) \\
-   Explicación de la estructura principal de una aplicación que sirve contenidos previamente almacenados.
- \item \textbf{Ejercicio:} ``Instalación y prueba de Poster'' (ejercicio~\ref{subsec:inst-poster}).
- \item \textbf{Ejercicio:} ``Clase contentPostApp'' (ejercicio~\ref{subsec:contentpostapp}).
- \item \textbf{Ejercicio:} ``Clase contentPutApp'' (ejercicio~\ref{subsec:contentputapp}).
-Entrega en GitLab. Fecha de entrega: antes del 3 de marzo.
-\end{itemize}
+% \item \textbf{Ejercicio:}  ``Clase contentApp'' (ejercicio~\ref{subsec:contentapp}) \\
+%   Explicación de la estructura principal de una aplicación que sirve contenidos previamente almacenados.
+% \item \textbf{Ejercicio:} ``Instalación y prueba de Poster'' (ejercicio~\ref{subsec:inst-poster}).
+% \item \textbf{Ejercicio:} ``Clase contentPostApp'' (ejercicio~\ref{subsec:contentpostapp}).
+% \item \textbf{Ejercicio:} ``Clase contentPutApp'' (ejercicio~\ref{subsec:contentputapp}).
+%Entrega en GitLab. Fecha de entrega: antes del 3 de marzo.
+%\end{itemize}
 
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\martesG: Servicores simples II (2 horas)}
-\label{cal:martesG}
+%\subsubsection{\martesG: Servidores simples II (2 horas)}
+%\label{cal:martesG}
 
-\begin{itemize}
-  \item \textbf{Discusión en clase:} ``Clase contentPutApp'' (ejercicio~\ref{subsec:contentputapp}).
-  \item Presentación de la primera práctica de entrega voluntaria (\ref{subsec:practica-vol-1-2016}). Entrega en GitLab. Fecha de entrega: antes del 10 de marzo.
-\end{itemize}
+%\begin{itemize}
+%  \item \textbf{Discusión en clase:} ``Clase contentPutApp'' (ejercicio~\ref{subsec:contentputapp}).
+%  \item Presentación de la primera práctica de entrega voluntaria (\ref{subsec:practica-vol-1-2016}). Entrega en GitLab. Fecha de entrega: antes del 10 de marzo.
+%\end{itemize}
 
 
 %%%----------------------------------------------------------------------------
