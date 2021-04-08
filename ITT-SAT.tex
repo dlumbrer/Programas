@@ -196,8 +196,10 @@ Evaluación extraordinaria:
   \nameref{cal:martesE} & \nameref{cal:juevesFb} \\
                         & \nameref{cal:juevesF} \\ \hline
   \nameref{cal:martesH} & \nameref{cal:juevesG} \\ \hline
-  \nameref{cal:martesI} & \nameref{cal:juevesH} \\ \hline
-  \nameref{cal:martesJ} & \nameref{cal:juevesI} \\ \hline
+  \nameref{cal:martesI} & \nameref{cal:juevesH} \\ 
+                        & \nameref{cal:juevesHb} \\ \hline
+  \nameref{cal:martesJ} & \nameref{cal:juevesI} \\
+                        & \nameref{cal:juevesIb} \\ \hline
   \nameref{cal:martesK} & \nameref{cal:juevesJ} \\ \hline
   \nameref{cal:martesL} & \nameref{cal:juevesK} \\ \hline
   \nameref{cal:martesM} & \nameref{cal:juevesL} \\ \hline
@@ -336,6 +338,17 @@ navegadores intercalados'' (ejercicio~\ref{subsec:contador-simple-varios-interca
 \end{itemize}
 
 %%----------------------------------------------------------------
+\subsubsection{\juevesF: Interoperación web I (1 hora)}
+\label{cal:juevesF}
+
+\begin{itemize}
+\item \textbf{Ejercicio (discusión en clase):} ``Contador simple con varios 
+navegadores intercalados'' (ejercicio~\ref{subsec:contador-simple-varios-intercalados})
+\item \textbf{Discusión:} Introducción al problema de los rearranques.
+\item \textbf{Ejercicio (entrega en el foro):} ``Contador simple con rearranques'' (ejercicio~\ref{subsec:contador-simple-rearranques}).
+\end{itemize}
+
+%%----------------------------------------------------------------
 \subsubsection{\martesH: Interoperación web II (2 horas)}
 \label{cal:martesH}
 
@@ -343,18 +356,24 @@ navegadores intercalados'' (ejercicio~\ref{subsec:contador-simple-varios-interca
 \item Introducción al diseño de APIs HTTP
 \item \textbf{Ejercicio (discusión en clase)}: ``Lista de la compra'' (ejercicio~\ref{subsec:lista-compra}). \\
   Trabajo en grupos y discusión de los detalles del ejercicio.
-\item \textbf{Discusión:} Introducción a las operaciones idempotentes.
-\item \textbf{Presentación de ejercicio:} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).
 \item \textbf{Presentación:} Arquitectura REST
 \item \textbf{Material:} Transparencias, tema ``REST''
 %\item \textbf{Discusión de ejercicio:} ``Cache de contenidos'' (ejercicio~\ref{subsec:cache-contenidos}). \\
 %  Trabajo en grupos y discusión de los detalles del ejercicio.
 %  Repo GitLab: \url{https://gitlab.etsit.urjc.es/CursosWeb/X-Serv-App-Cache}
-\item \textbf{Discusión de ejercicio:} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).
-\item \textbf{Presentación:} Arquitectura REST (2)
-\item \textbf{Material:} Transparencias, tema ``REST''
+\item \textbf{Ejercicio (presentación):} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).
 \end{itemize}
 
+%%----------------------------------------------------------------
+\subsubsection{\juevesH: Interoperación web III (1 hora)}
+\label{cal:juevesHb}
+
+\begin{itemize}
+\item \textbf{Discusión:} Introducción a las operaciones idempotentes.
+\item \textbf{Ejercicio (discusión en clase):} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).  
+\item \textbf{Ejercicio (entrega en el foro):} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}) \\
+  Entrega recomendada: \juevesI
+\end{itemize}
 
 
 %% \item \textbf{Ejercicio (discusión en clase, entrega en el foro):} ``Calculadora simple versión REST'' (ejercicio~\ref{subsec:calc-simple-rest}). \\
@@ -386,20 +405,28 @@ navegadores intercalados'' (ejercicio~\ref{subsec:contador-simple-varios-interca
 Explicación del patrón de diseño ``modelo-vista-controlador''.
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesH: MVC (2 horas)}
+\subsubsection{\juevesH: MVC (1 hora)}
 \label{cal:juevesH}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Tres implementaciones de una aplicación web simple: Counter''. \\
   Comparación de tres formas de implementar una aplicación web muy sencilla, identificando los componentes y estructuras que se repiten, con el objetivo de ver cómo cuando pasamos a Django seguimos construyendo el mismo tipo de apicaciones, aunque el marco de programación nos proporcione ya muchos elementos que no tenemos que construir.
 \item \textbf{Código:} Programas \verb|counter-server-1.py| (directorio \verb|Python-Web/counter|, \verb|counterapp.py| (directorio \verb|Python-Web/http-server-classes/counterapp.py|) y projecto Django \verb|django-counter| (directorio \verb|Python-Django|).
-\item \textbf{Videos:} ``Implementación de aplicaciones web: Counter Server'', ``Implementación de aplicaciones web: Counter WebApp'', ``Implementación de aplicaciones web: Counter Django''.
+%\item \textbf{Videos:} ``Implementación de aplicaciones web: Counter Server'', ``Implementación de aplicaciones web: Counter WebApp'', ``Implementación de aplicaciones web: Counter Django''.
+\end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesI: MVC II (1 hora)}
+\label{cal:juevesI}
+
+\begin{itemize}
 \item \textbf{Presentación:} ``Modelo-vista-controlador''.
 \item \textbf{Material:} Transparencias ``Modelo-vista-controlador''.
 \item \textbf{Presentación:} ``Componentes de aplicaciones Django y MVC''.
   Repaso de los componentes principales de una aplicación Django y su relación con el patrón modelo-vista-controlador.
 \item \textbf{Video:} ``Arquitectura Modelo-Vista-Controlador''
 \end{itemize}
+
 
 %%----------------------------------------------------------------
 %%----------------------------------------------------------------
@@ -408,8 +435,8 @@ Explicación del patrón de diseño ``modelo-vista-controlador''.
 Uso de XML en aplicaciones web.
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesI: XML, JSON I (2 horas)}
-\label{cal:juevesI}
+\subsubsection{\juevesI: XML, JSON I (1 hora)}
+\label{cal:juevesIb}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``XML: Conceptos fundamentales''. \\
