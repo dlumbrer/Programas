@@ -196,8 +196,11 @@ Evaluación extraordinaria:
   \nameref{cal:martesE} & \nameref{cal:juevesFb} \\
                         & \nameref{cal:juevesF} \\ \hline
   \nameref{cal:martesH} & \nameref{cal:juevesG} \\ \hline
-  \nameref{cal:martesI} & \nameref{cal:juevesH} \\ \hline
-  \nameref{cal:martesJ} & \nameref{cal:juevesI} \\ \hline
+  \nameref{cal:martesI} & \nameref{cal:juevesH} \\ 
+                        & \nameref{cal:juevesHb} \\ \hline
+  \nameref{cal:martesJ} & \nameref{cal:juevesI} \\
+                        & \nameref{cal:juevesIb} \\
+                        & \nameref{cal:juevesIc} \\ \hline
   \nameref{cal:martesK} & \nameref{cal:juevesJ} \\ \hline
   \nameref{cal:martesL} & \nameref{cal:juevesK} \\ \hline
   \nameref{cal:martesM} & \nameref{cal:juevesL} \\ \hline
@@ -346,18 +349,24 @@ navegadores intercalados'' (ejercicio~\ref{subsec:contador-simple-varios-interca
 \item Introducción al diseño de APIs HTTP
 \item \textbf{Ejercicio (discusión en clase)}: ``Lista de la compra'' (ejercicio~\ref{subsec:lista-compra}). \\
   Trabajo en grupos y discusión de los detalles del ejercicio.
-\item \textbf{Discusión:} Introducción a las operaciones idempotentes.
-\item \textbf{Presentación de ejercicio:} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).
 \item \textbf{Presentación:} Arquitectura REST
 \item \textbf{Material:} Transparencias, tema ``REST''
 %\item \textbf{Discusión de ejercicio:} ``Cache de contenidos'' (ejercicio~\ref{subsec:cache-contenidos}). \\
 %  Trabajo en grupos y discusión de los detalles del ejercicio.
 %  Repo GitLab: \url{https://gitlab.etsit.urjc.es/CursosWeb/X-Serv-App-Cache}
-\item \textbf{Discusión de ejercicio:} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).
-\item \textbf{Presentación:} Arquitectura REST (2)
-\item \textbf{Material:} Transparencias, tema ``REST''
+\item \textbf{Ejercicio (presentación):} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).
 \end{itemize}
 
+%%----------------------------------------------------------------
+\subsubsection{\juevesH: Interoperación web III (1 hora)}
+\label{cal:juevesHb}
+
+\begin{itemize}
+\item \textbf{Discusión:} Introducción a las operaciones idempotentes.
+\item \textbf{Ejercicio (discusión en clase):} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).  
+\item \textbf{Ejercicio (entrega en el foro):} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}) \\
+  Entrega recomendada: \juevesI
+\end{itemize}
 
 %% \item \textbf{Ejercicio (discusión en clase, entrega en el foro):} ``Calculadora simple versión REST'' (ejercicio~\ref{subsec:calc-simple-rest}). \\
 %%   Entrega recomendada: antes del 16 de marzo. \\
@@ -388,20 +397,28 @@ navegadores intercalados'' (ejercicio~\ref{subsec:contador-simple-varios-interca
 Explicación del patrón de diseño ``modelo-vista-controlador''.
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesH: MVC (2 horas)}
+\subsubsection{\juevesH: MVC (1 hora)}
 \label{cal:juevesH}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Tres implementaciones de una aplicación web simple: Counter''. \\
   Comparación de tres formas de implementar una aplicación web muy sencilla, identificando los componentes y estructuras que se repiten, con el objetivo de ver cómo cuando pasamos a Django seguimos construyendo el mismo tipo de apicaciones, aunque el marco de programación nos proporcione ya muchos elementos que no tenemos que construir.
 \item \textbf{Código:} Programas \verb|counter-server-1.py| (directorio \verb|Python-Web/counter|, \verb|counterapp.py| (directorio \verb|Python-Web/http-server-classes/counterapp.py|) y projecto Django \verb|django-counter| (directorio \verb|Python-Django|).
-\item \textbf{Videos:} ``Implementación de aplicaciones web: Counter Server'', ``Implementación de aplicaciones web: Counter WebApp'', ``Implementación de aplicaciones web: Counter Django''.
+%\item \textbf{Videos:} ``Implementación de aplicaciones web: Counter Server'', ``Implementación de aplicaciones web: Counter WebApp'', ``Implementación de aplicaciones web: Counter Django''.
+\end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesI: MVC II (1 hora)}
+\label{cal:juevesI}
+
+\begin{itemize}
 \item \textbf{Presentación:} ``Modelo-vista-controlador''.
 \item \textbf{Material:} Transparencias ``Modelo-vista-controlador''.
 \item \textbf{Presentación:} ``Componentes de aplicaciones Django y MVC''.
   Repaso de los componentes principales de una aplicación Django y su relación con el patrón modelo-vista-controlador.
 \item \textbf{Video:} ``Arquitectura Modelo-Vista-Controlador''
 \end{itemize}
+
 
 %%----------------------------------------------------------------
 %%----------------------------------------------------------------
@@ -410,29 +427,13 @@ Explicación del patrón de diseño ``modelo-vista-controlador''.
 Uso de XML en aplicaciones web.
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesI: XML, JSON I (2 horas)}
-\label{cal:juevesI}
+\subsubsection{\juevesI: XML, JSON I (0.5 horas)}
+\label{cal:juevesIb}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``XML: Conceptos fundamentales''. \\
   Introducción a XML, sintaxis básica, equivalencia con el árbol XML correspondiente a un documento.
 \item \textbf{Video:} ``XML: Conceptos fundamentales''.
-\item \textbf{Presentación:} ``XML: Lenguajes de definición de vocavularios XML''. \\
-  Formas de especificar vocabularios XML, ejemplo de DTD simple.
-\item \textbf{Video:} ``XML: Lenguajes de definición de vocavularios XML''.
-\item \textbf{Presentación:} ``XML: Módulos habituales para trabajar con XML desde lenguajes de programación''. \\
-  Reconocedores SAX y DOM, y su uso en aplicaciones web.
-\item \textbf{Video:} ``XML: Módulos habituales para trabajar con XML desde lenguajes de programación''.
-\item \textbf{Presentación:} ``XML: Usos en aplicaciones web''. \\
-  Usos habituales de XML en aplicaciones web, incluyendo el DOM de los navegadores y los canales RSS.
-\item \textbf{Video:} ``XML: Usos en aplicaciones web''.
-\item \textbf{Presentación:} ``JSON (JavaScript Object Nottion)''. \\
-  JSON como formato de intercambio de datos en aplicaciones web.
-\item \textbf{Video:}``JSON (JavaScript Object Nottion)''.
-\item \textbf{Material:} Transparencias ``Introducción a XML''.
-\item \textbf{Presentación:} ``XML y JSON: Ejemplos reales''. \\
-  Ejemplo de canal XML de YouTube y documento JSON de GitLab.
-\item \textbf{Video:}``XML y JSON: Ejemplos reales''.
 \end{itemize}
 
 %%----------------------------------------------------------------
@@ -440,12 +441,20 @@ Uso de XML en aplicaciones web.
 \label{cal:juevesJ}
 
 \begin{itemize}
+\item \textbf{Presentación:} ``XML: Lenguajes de definición de vocabularios XML''. \\
+  Formas de especificar vocabularios XML, ejemplo de DTD simple.
+\item \textbf{Video:} ``XML: Lenguajes de definición de vocabularios XML''.
+\item \textbf{Presentación:} ``XML: Módulos habituales para trabajar con XML desde lenguajes de programación''. \\
+  Reconocedores SAX y DOM, y su uso en aplicaciones web.
+\item \textbf{Video:} ``XML: Módulos habituales para trabajar con XML desde lenguajes de programación''.
+\item \textbf{Presentación:} ``XML: Usos en aplicaciones web''. \\
+  Usos habituales de XML en aplicaciones web, incluyendo el DOM de los navegadores y los canales RSS.
+\item \textbf{Video:} ``XML: Usos en aplicaciones web''.
+\item \textbf{Material:} Transparencias ``Introducción a XML''.
 \item \textbf{Ejercicio (discusión en clase):} ``Chistes XML'' (ejercicio~\ref{subsec:xml-chistes}).
 \item \textbf{Ejercicio (discusión en clase):} ``Videos en canal de YouTube'' (ejercicio~\ref{subsec:xml-youtube}).
-\item \textbf{Ejercicio (discusión en clase):} ``Videos en canal de YouTube (con descarga)'' (ejercicio~\ref{subsec:xml-youtube-descarga}).
-\item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (simple)'' (ejercicio~\ref{subsec:django-cms-youtube})
-\item \textbf{Ejercicio (entrega en GitLab):} ``Gestor de contenidos con videos de YouTube (2)'' (ejercicio~\ref{subsec:django-cms-youtube-2}) \\
-  Repositorio: \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-youtube}
+\item \textbf{Ejercicio (entrega en GitLab):} ``Videos en canal de YouTube (con descarga)'' (ejercicio~\ref{subsec:xml-youtube-descarga}) \\
+  Repositorio: \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/youtube-descarga}
 \end{itemize}
 
 %%----------------------------------------------------------------
@@ -453,8 +462,15 @@ Uso de XML en aplicaciones web.
 \label{cal:juevesK}
 
 \begin{itemize}
-\item \textbf{Ejercicio (discusión en clase):}  ``Gestor de contenidos con videos de YouTube (2)'' (ejercicio~\ref{subsec:django-cms-youtube-2})
-\item \textbf{Presentación:} Testing en Django
+\item \textbf{Presentación:} ``JSON (JavaScript Object Nottion)''. \\
+  JSON como formato de intercambio de datos en aplicaciones web.
+\item \textbf{Video:}``JSON (JavaScript Object Nottion)''.
+\item \textbf{Presentación:} ``XML y JSON: Ejemplos reales''. \\
+  Ejemplo de canal XML de YouTube y documento JSON de GitLab.
+\item \textbf{Video:}``XML y JSON: Ejemplos reales''.
+\item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (simple)'' (ejercicio~\ref{subsec:django-cms-youtube})
+\item \textbf{Ejercicio (entrega en GitLab):} ``Gestor de contenidos con videos de YouTube (2)'' (ejercicio~\ref{subsec:django-cms-youtube-2}) \\
+  Repositorio: \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-youtube}
 \item \textbf{Ejercicio (entrega en GitLab):} ``Gestor de contenidos con video de Youtube (tests) (ejercicio~\ref{subsec:django-cms-youtube-tests}) \\
   Repositorio: \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-youtube-tests}
 \item \textbf{Ejercicio voluntario:} ``Municipios JSON via HTTP'' (ejercicio~\ref{subsec:json-municipios-http}).
@@ -741,9 +757,18 @@ Usuarios, administración y autenticación con Django.
   Entrega recomendada: antes del 20 de abril.
 \end{itemize}
 
+%%%----------------------------------------------------------------------------
+\subsubsection{\juevesI: Django IV (0.5 horas)}
+\label{cal:juevesIc}
+
+\begin{itemize}
+ \item \textbf{Presentación:} Tests con Django y GitLab
+  \item \textbf{Material:} Repositorio \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/testing-example}
+\end{itemize}
+
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\martesK: Django IV (2 horas)}
+\subsubsection{\martesK: Django V (2 horas)}
 \label{cal:martesK}
 
 \begin{itemize}
@@ -756,7 +781,7 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\martesL: Django V (2 horas)}
+\subsubsection{\martesL: Django VI (2 horas)}
 \label{cal:martesL}
 
 \begin{itemize}
@@ -774,7 +799,7 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\martesM: Django VI (2 horas)}
+\subsubsection{\martesM: Django VII (2 horas)}
 \label{cal:martesM}
 
 \begin{itemize}
