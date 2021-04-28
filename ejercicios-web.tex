@@ -1304,6 +1304,52 @@ asignatura.
 \item Solución de referencia: \verb|json-municipios-http.py|
 \end{itemize}
 
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Forks de un repositorio GitLab}
+\label{subsec:json-gitlab-forks}
+
+\textbf{Enunciado:}
+
+Escribe un programa en Python que lea la lista de forks de un repositorio de un sitio GitLab, y escriba un fichero JSON con la lista de urls de los forks.
+
+Ejemplo de ejecución:
+
+\begin{verbatim}
+gitlab-forks.py gitlab.etsit.urjc.es 2799 <token>
+\end{verbatim}
+
+El resultado será algo como:
+
+\begin{verbatim}
+[
+  "https://gitlab.etsit.urjc.es/xxx/youtube-descarga.git",
+  "https://gitlab.etsit.urjc.es/yyy/youtube-descarga.git",
+  "https://gitlab.etsit.urjc.es/zzz/youtube-descarga.git"
+]
+\end{verbatim}
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Documentación sobre la API de GitLab, apartado sobre forks de un repositorio: \\
+\url{https://docs.gitlab.com/ee/api/projects.html#list-forks-of-a-project}
+
+\item Ejemplo de acceso a lista de proyectos de GitLab:
+  
+\begin{verbatim}
+curl "https://gitlab.com/api/v4/projects" | jq
+\end{verbatim}
+
+\item Ejemplo de acceso a la lista de forks de un repositorio:
+  
+\begin{verbatim}
+curl --header "PRIVATE-TOKEN: <token>"
+  "https://gitlab.etsit.urjc.es/api/v4/projects/2799/forks"
+  | jq | grep http_url_to_repo
+\end{verbatim}
+
+\end{itemize}
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
