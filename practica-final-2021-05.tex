@@ -1,0 +1,703 @@
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\section{Proyecto final: LoVisto (2021, mayo)}
+\label{practica-final-2021-05}
+
+[ \textbf{Nota importante:} Por ahora esto es sólo es un borrador. Aún estamos definiendo cómo será el enunciado definitivo. ]
+%[ \textbf{Nota importante:} Este enunciado es aún tentativo, y puede sufrir cambios ]
+
+La práctica final de la asignatura consiste en la creación de una aplicación web, llamada ``LoVisto'', que permitirá gestionar aportaciones de los usuarios, que serán enlaces (URLs) a vídeos, noticias y otra información que los usuarios vayan viendo por la red y les resulte interesante. Cuando las aportaciones correspondan con ciertos patrones de recurso, de ciertos sitios (patrones reconocidos), se mostrará cierta información ofrecida por esos sitios, a modo de una ``previsualización''. Los usuarios podrán añadir aportaciones con enlaces a páginas que hayan visto, comentarlos, puntuarlos, compartirlos, etc. A continuación se describe el funcionamiento y la arquitectura general de la aplicación, la funcionalidad mínima que debe proporcionar, y otra funcionalidad optativa que podrá tener.
+
+%%----------------------------------------------------------------------------
+\subsection{Arquitectura y funcionamiento general}
+
+Arquitectura general:
+
+\begin{itemize}
+
+\item La práctica se construirá como un proyecto Django/Python3, que incluirá una o varias aplicaciones (apps) Django que implementen la funcionalidad requerida.
+
+\item Para el almacenamiento de datos persistente se usará SQLite3, con tablas definidas en modelos de Django.
+
+\item Para implementar usuarios, cuando sea necesario, se usará como base el sistema de autenticación de usuarios que proporciona Django\footnote{User Authentication in Django:\\ \url{https://docs.djangoproject.com/en/3.0/topics/auth/}}.
+
+\item Todas las bases de datos que contenga la aplicación tendrán que ser accesibles vía la interfaz que proporciona el ``Admin Site'' (además de lo que pueda hacer falta para que funcione al aplicación).
+
+\item Se utilizarán plantillas Django (a ser posible, una jerarquía de plantillas, para que la práctica tenga un aspecto similar) para definir las páginas que se servirán a los navegadores de los usuarios. Estas plantillas incluirán en todas las páginas al menos:
+
+  \begin{itemize}
+  \item Un \emph{banner} (imagen) del sitio, preferentemente en la parte superior.
+  \item Un formulario para entrar (hacer login en el sitio), o para salir (si ya se ha entrado).
+    \begin{itemize}
+    \item En caso de que no se haya entrado en una cuenta, este formulario permitirá al visitante introducir su identificador de usuario y su contraseña, o crearse una cuenta.
+    \item En caso de que ya se haya entrado, este formulario mostrará el identificador del usuario y permitirá salir de la cuenta (logout). Este formulario aparecerá preferentemente en la parte superior derecha.
+    \end{itemize}
+  \item Un menú de opciones, como barra, preferentemente debajo de los dos elementos anteriores (banner y caja de entrada o salida). Los contenidos de este menú se indican más adelante en el enunciado.
+  \item Un pie de página con una nota de atribución, indicando ``Esta aplicación enlaza a XXX, YYY, ZZZ y otros muchos sitios'', siendo XXX, YYY y ZZZ los tres últimos sitios que los usuarios han referenciado en sus aportaciones, y siendo cada uno de ellos un enlace al sitio en cuestión.
+  \end{itemize}
+
+  Cada una de estas partes estará construida dentro de un elemento \texttt{div}, marcada con un atributo \texttt{id} en HTML, para poder ser referenciadas fácilmente en hojas de estilo CSS. Cuando sea conveniente, se podrán utilizar en lugar de \texttt{div} elementos de HTML5 (\texttt{header}, \texttt{footer}, \texttt{nav}, etc).
+
+\item Se utilizarán hojas de estilo CSS para determinar la apariencia de la práctica. Estas hojas definirán al menos el color y el tamaño de la letra, y el color de fondo de cada una de las partes (elementos) marcadas con un \emph{id}, tal como se indica en el apartado anterior. Además, elementos que deban tener el mismo aspecto deberían estar en una misma clase, para poder gestionarlo de forma común.
+
+\item Se utilizará Bootstrap para la maquetación (\emph{layout}) de las páginas, de forma que funcionen adecuadamente tanto en navegadores de escritorio como en móviles.
+  
+\item Para obtener información correspondiente a un recurso reconocido, se utilizará la API del sitio al que corresponda, o quizás en algunos casos, ser hará un análisis de las páginas HTML del sitio. En general, la forma de funcionamiento será la siguiente:
+
+  \begin{itemize}
+  \item El usuario que quiera realizar una aportación, rellenará un formulario con la URL de la aportación que realiza, y un título para ella.
+  \item La aplicación recibirá esta URL, y la analizará, obteniendo a partir de ella el nombre del sitio, y el nombre del recurso.
+  \item Si el recurso es uno de los reconocidos, se obtendrá del sitio correspondiente (vía API, o de otras formas) la información extendida ese recurso. Ver detalles en ``Recursos reconocidos'' (apartado~\ref{sec:practica-final-2021-05:reconocidos}), más adelante.
+  \item Si no es uno de los recursos reconocidos, se extraerá información directamente de la página HTML del recurso. Ver detalles en ``Recursos no reconocidos'' (apartado~\ref{sec:practica-final-2021-05:noreconocidos}).
+  \item En ambos casos, esa información se almacenará en la base de datos (normalmente como string HTML), y se mostrará junto a la URL cuando se especifique que se muestra la ``información extendida'' para esa URL.
+  \end{itemize}
+
+\end{itemize}
+
+Funcionamiento general:
+
+\begin{itemize}
+\item En general, para utilizar el sitio, no hará falta autenticarse con una cuenta. Toda la funcionalidad estará disponible para cualquier visitante, mientras use el sitio desde el mismo navegador y tenga las cookies habilitadas.
+
+\item Cuando un visitante quiera, se podrá abrir una cuenta (y quedará autenticado en ella), o autenticarse en una cuenta ya existente. En este caso, la funcionalidad quedará ligada a su cuenta.
+  
+\item Cada usuario podrá elegir cualquier ítem que se le presente, y realizar dos acciones fundamentales con él (comentarlo, y votarlo):
+  \begin{itemize}
+  \item Comentar un ítem quiere decir escribir un pequeño mensaje (menos de 256 caracteres) que quedará relacionado con el item.
+  \item Votarlo significa darle un voto positivo o uno negativo. El resultado de las votaciones quedará relacionado con el ítem.
+  \end{itemize}
+
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Recursos reconocidos}
+\label{sec:practica-final-2021-05:reconocidos}
+
+La aplicación reconocerá ciertos patrones recurso, que se describen a continuación. Si la URL que se incluye con una aportación es uno de estos recursos reconocidos, la aplicación tendrá que recoger información adicional, y almacenarla en la base de datos.
+
+La práctica tendrá que funcionar con al menos tres patrones de recursos reconocidos, entre los siguientes, uno de los cuales deberá ser la predicción AEMET para un municipio.
+
+%%----------------------------------------------------------------------------
+\subsubsection{Predicción AEMET para un municipio}
+
+  \begin{itemize}
+  \item Ejemplo: \\
+    \url{http://www.aemet.es/es/eltiempo/prediccion/municipios/getafe-id28065}
+  \item Patrones reconocidos:
+    \begin{itemize}
+    \item Sitio: \texttt{www.aemet.es}, \texttt{aemet.es}
+    \item Patrón de recurso: \\
+      \texttt{/es/eltiempo/prediccion/municipios/\{municipio\}-id\{num\}}
+    \end{itemize}
+  \item Información extendida:
+    \begin{itemize}
+    \item Ejemplo: \\
+      \url{https://www.aemet.es/xml/municipios/localidad_28065.xml}
+    \item Patrón de url: \\
+      \texttt{https://www.aemet.es/xml/municipios/localidad\_\{num\}.xml}
+    \item Formato: XML
+    \item Datos mínimos:
+      \begin{itemize}
+      \item Municipio, provincia
+      \item Para todos los días que tengan predicción, temperatura máxima y mínima, sensación térmica máxima y mínima, humedad relativa máxima y mínima.
+      \item Nota de copyright
+      \end{itemize}
+    \item Ejemplo:
+
+{\footnotesize
+\begin{verbatim}
+<div class="aemet">
+  <p>Datos AEMET para Getafe (Madrid)</p>
+  <ul>
+  <li>2021-05-08. Temperatura: 11/22, sensación: 16/25, humedad: 60/75.</li>
+  <li>2021-05-09. Temperatura: 10/18, sensación: 19/21, humedad: 50/66.</li>
+  ...
+  <li>2021-05-14. Temperatura: 9/12, sensación: 10/15, humedad: 90/95.</li>
+  </ul>
+  <p>Copyright AEMET.
+    <a href="http://www.aemet.es/es/.../getafe-id28065">Página
+      original en AEMET</p>
+</div>
+\end{verbatim}
+}
+  \end{itemize}
+    \end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsubsection{Página Wikipedia en español}
+
+  \begin{itemize}
+  \item Ejemplo: \\
+    \url{https://es.wikipedia.org/wiki/Astronauta}
+  \item Patrones reconocidos:
+    \begin{itemize}
+    \item Sitio: \texttt{es.wikipedia.org}
+    \item Patrón de recurso: \\
+      \texttt{/wiki/\{articulo\}}
+    \end{itemize}
+  \item Información extendida:
+    \begin{itemize}
+    \item Ejemplo texto: \\
+      \url{https://es.wikipedia.org/w/api.php?action=query&format=xml&titles=Astronauta&prop=extracts&exintro&explaintext}
+    \item Ejemplo imagen: \\
+      \url{https://es.wikipedia.org/w/api.php?action=query&titles=Astronauta&prop=pageimages&format=json&pithumbsize=100}
+    \item Patrón de URL (texto):\\
+      \texttt{https://es.wikipedia.org/w/api.php?}\\
+      \texttt{action=query\&format=xml\&titles=\{articulo\}}\\
+      \texttt{\&prop=extracts\&exintro\&explaintext}
+    \item Patrón de URL (imagen):\\
+    \texttt{https://es.wikipedia.org/w/api.php?}\\
+    \texttt{action=query\&titles=\{articulo\}}\\
+    \texttt{\&prop=pageimages\&format=json\&pithumbsize=100}
+    \item Formato: XML (text) y JSON (image)
+    \item Datos mínimos:
+      \begin{itemize}
+      \item Primeros 400 caracteres del texto.
+      \item Imagen.
+      \item Nota de copyright
+      \end{itemize}
+    \item Ejemplo:
+
+{\footnotesize
+\begin{verbatim}
+<div class="wikipedia">
+  <p>Artículo Wikipedia: Astronauta</p>
+  <img src="url de la imagen principal">
+  <p>[Texto del principio de la página]</p>
+  <p>Copyright Wikipedia.
+    <a href="https://es.wikipedia.org/wiki/Astronauta">Artículo
+      original</a>.</p>
+</div>
+\end{verbatim}
+}
+    \end{itemize}
+  \end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsubsection{Vídeo de YouTube}
+
+  \begin{itemize}
+  \item Ejemplo: \\
+    \url{https://www.youtube.com/watch?v=IfoSqaxJsAM}
+  \item Patrones reconocidos:
+    \begin{itemize}
+    \item Sitio: \texttt{www.youtube.com}, \texttt{youtube.com}
+    \item Patrón de recurso: \\
+      \texttt{/watch?v=\{video\}}
+    \end{itemize}
+  \item Información extendida:
+    \begin{itemize}
+    \item Ejemplo: \\
+      \url{https://www.youtube.com/oembed?format=json&url=https://www.youtube.com/watch?v=IfoSqaxJsAM}
+    \item Patrón de URL:\\
+      \texttt{https://www.youtube.com/oembed}\\
+      \texttt{?format=json\&url=https://www.youtube.com/watch?v=\{video\}}
+    \item Formato: JSON
+    \item Datos mínimos:
+      \begin{itemize}
+      \item Título.
+      \item Autor.
+      \item Vídeo embebido en iframe.
+      \end{itemize}
+    \item Ejemplo:
+
+{\footnotesize
+\begin{verbatim}
+<div class="youtube">
+  <p>Video YouTube: Presentación de la asignatura</p>
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/IfoSqaxJsAM"
+    title="YouTube video player" frameborder="0"
+    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+  <p>Autor: CursosWeb.
+    <a href="https://www.youtube.com/watch?v=IfoSqaxJsAM">Video
+      en YouTube</a></p>
+</div>
+\end{verbatim}
+}
+    \end{itemize}
+  \end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsubsection{Nota en Reddit}
+
+\begin{itemize}
+  \item Ejemplo: \\
+    \url{https://www.reddit.com/r/django/comments/n842st/is_there_a_public_repo_that_shows_productionlevel/}
+  \item Patrones reconocidos:
+    \begin{itemize}
+    \item Sitio: \texttt{www.reddit.com}, \texttt{reddit.com}
+    \item Patrón de recurso: \\
+      \texttt{/r/\{subreddit\}/comments/\{id\}/\{titulo\}/}
+    \end{itemize}
+  \item Información extendida:
+    \begin{itemize}
+    \item Ejemplo: \\
+      \url{https://www.reddit.com/r/django/comments/n842st/.json}
+    \item Patrón de URL:\\
+      \texttt{https://www.reddit.com/r/django/comments/\{id\}/.json}\\
+    \item Formato: JSON
+    \item Datos mínimos (obtenidos de [0][data][children][0][data]):
+      \begin{itemize}
+      \item Subreddit
+      \item Título (title)
+      \item Texto (selftext)
+      \item Aprobación (upvote\_ratio)
+      \item URL (url)
+      \end{itemize}
+    \item Comentarios. Si la URL es del sitio \texttt{https://i.redd.it/}, normalmente se refiere a una imagen, y por lo tanto habrá que presentarla como tal en la información extendida. Si no aparecen los campos anteriores, puede considerarse que la información extendida sólo tiene los campos que se hayan encontrado. Si se mejora el código para que se reconozcan otros casos, se considerará una mejora a la práctica: documentar esos cambios en el documento de descripción de la práctica.
+    \item Ejemplos:
+
+{\footnotesize
+\begin{verbatim}
+<div class="reddit">
+  <p>Nota Reddit: Is there a public repo that shows...</p>
+  <p>[texto]</p>
+  <p><a href="https://www.reddit.com/r/django/comments/n842st">Publicado
+    en [subreddit]</a>. Aprobación: [aprobacion].</p>
+</div>
+\end{verbatim}
+}
+
+{\footnotesize
+\begin{verbatim}
+<div class="reddit">
+  <p>Nota Reddit: Distribution of the surname Ryan...</p>
+  <img src="[imagen_url]">
+  <p><a href="https://www.reddit.com/r/dataisbeautiful/comments/n8azu6/">Publicado
+    en [subreddit]</a>. Aprobación: [aprobacion].</p>
+</div>
+\end{verbatim}
+}
+
+    \end{itemize}
+  \end{itemize}
+
+%%----------------------------------------------------------------------------
+\subsubsection{Otros recursos reconocidos}
+
+
+Además de las anteriores, puedes proponer otros tipos de recursos reconocidos para tu aplicación. La información extendida de estos recursos reconocidos ha de ser accesibles públicamente (el acceso mediante un token de aplicación se considera público), y proporcionar datos en formato XML o JSON. Si hay algún tipo de recurso reconocido querrías utilizar, coméntalo con los profesores para que te indiquen si es válido. En caso de ser aceptado como válido, estos tipos de recursos reconocidos serán puntuados positivamente, teniendo en cuenta la iniciativa del alumno que los propuso. En este caso, documéntalos en el documento de descripción de tu práctica, de forma similar a como se han documentado los anteriores (ejemplo de URL, parones reconocidos, información extendida, etc.). 
+
+Si quieres buscar servicios que ofrezcan APIs que podrían ser recursos reconocidos, puedes buscarlos en Internet. Una lista por la que puedes comenzar es la que mantiene ProgrammableWeb\footnote{Programmable Web API Directory: \\\url{https://www.programmableweb.com/apis/directory}}.
+
+%%----------------------------------------------------------------------------
+\subsection{Recursos no reconocidos}
+\label{sec:practica-final-2021-05:noreconocidos}
+
+En el caso de que el recurso que indique el usuario no sea uno de los recursos reconocidos, habrá que extraer información extendida del propio documento HTML, si esto es posible. Para ello se utilizarán dos estrategias (primero una, y si no funciona, la otra):
+
+\begin{itemize}
+\item Si hay disponibles propiedades Open Graph\footnote{https://ogp.me/}, se extraerán las propiedades \texttt{og:title} y \texttt{image} (o la que exista de ellas), y se usarán para componer una información extendida que incluya el titulo y la imagen.
+
+  Las propiedades Open Graph normalmente se encuentran como metadatos en la cabecera (\texttt{head}) del documento HTML. Por ejemplo:
+
+\begin{verbatim}
+<html>
+  <head>
+  <title>Este es el titulo</title>
+  <meta property="og:title" content="Este es el titulo" />
+  <meta property="og:image" content="https://..../imagen.jpg" />
+  ...
+</head>
+...
+\end{verbatim}
+
+  Ejemplo de información extendida generada de esta forma:
+
+\begin{verbatim}
+<div class="og">
+  <p>Este es el titulo</p>
+  <img src="https://..../imagen.jpg">
+</div>
+\end{verbatim}
+
+\item Si hay disponible un elemento \texttt{title}, se usará su contenido para componer la información extendida. Por ejemplo:
+
+\begin{verbatim}
+<div class="html">
+  <p>Este es el titulo</p>
+</div>
+\end{verbatim}
+  
+\end{itemize}
+
+En ambos casos, se usará el módulo \texttt{html.parser}\footnote{\texttt{html.parser}: \url{https://docs.python.org/3/library/html.parser.html}}\footnote{Ejemplo de uso de \texttt{html.parser}: \url{https://stackoverflow.com/a/36650753/2075265}} de Python3, o algún otro módulo que ayude en la identificación de elementos HTML, como BeautifulSoup4\footnote{\url{https://pypi.org/project/beautifulsoup4/}}.
+
+Si no funciona ninguna de esas estrategias, o la URL no corresponde con una página HTML (pero se puede descargar), se incluirá una información extendida que indique no hay información extendida:
+
+\begin{verbatim}
+<div class="html">
+  <p>Información extendida no disponible</p>
+</div>
+\end{verbatim}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad mínima}
+
+La aplicación servirá las siguientes páginas:
+
+\begin{itemize}
+  \item Página principal de la aplicación:
+  
+    \begin{enumerate}
+    \item Listado con los 10 últimas aportaciones del el sitio. Para cada una se mostrará su información en formato completo (ver más abajo).
+    \end{enumerate}
+
+    Si el visitante está autenticado como usuario, se mostrará también:
+
+    \begin{itemize}
+    \item Para cada aportación que aparezca en la página se mostrarán también dos botones para votar (positivo, negativo), resaltando de alguna forma que el valor que se haya votado, si se hubiera votado ya ese item.
+    \item Formulario para realizar una aportación. Tendrá campos para un título, un texto de descripción, y un enlace (que será el enlace a la aportación en el sitio donde se ha visto). Al enviar el formulario, se creará una nueva aportación a nombre de usuario que la ha enviado
+    \item Listado con las últimos 5 aportaciones (formato resumido) realizadas por el usuario.
+    \item Enlace a la página del usuario.
+    \end{itemize}
+
+  \item Página de la aportación (para cada aportación):
+
+    \begin{itemize}
+    \item Datos de la aportación (formato completo).
+    \item Comentarios que haya recibido la aportación. Para cada comentario se mostrará el texto del comentario, el identificador de quien lo puso, y la fecha en que se puso.
+    \end{itemize}
+
+    Si el visitante está además autenticado como usuario, se mostrará también:
+
+    \begin{itemize}
+    \item Dos botones para votar (positivo, negativo), resaltando de alguna forma que el valor que se haya votado, si se hubiera votado ya esa aportación.
+    \item Formulario para poner un comentario. Tras poner el comentario, se volverá a ver la misma página de la aportación.
+    \end{itemize}
+
+  \item Página del usuario (siempre el mismo nombre de recurso, sólo para usuarios autenticados):
+
+    \begin{itemize}
+    \item Listado de todas las aportaciones del usuario. Cada aportación, en formato resumido.
+    \item Listado de todos los comentarios del usuario. Cada comentario, junto con la aportación a la que hizo ese comentario, en formato resumido.
+    \item Listado de todas las aportaciones votadas por el usuario. Cada voto, junto con la aportación a la que votó, en formato resumido, y una indicación de si el voto fue positivo o negativo.
+    \end{itemize}
+    
+  \item Página de todas las aportaciones:
+
+    \begin{itemize}
+    \item Listado de todas las aportaciones realizadas al sitio, en formato resumido, ordenadas por fecha de aportación (primero las más recientes).
+    \end{itemize}
+
+  La página de todas las aportaciones se ofrecerá también como un documento XML y como un documento JSON, que incluiría la misma información (el mismo listado de todas las aportaciones, cada una con su título y su enlace a la página de la aportación). Este documento se ofrecerá cuando se pida la página principal, concatenando al final \verb|?format=xml| o \verb|?format=json|.
+ 
+  \item Página de información: Página con información en HTML indicando la autoría de la práctica, explicando su funcionamiento y una brevísima documentación.
+
+\end{itemize}
+
+Información para una aportación (formato resumido):
+
+\begin{itemize}
+\item La información para una aportación estará compuesta por:
+  \begin{itemize}
+  \item Título
+  \item Enlace a la página de la aportación    
+  \end{itemize}
+
+\item Por ejemplo, esta información se podrá presentar como:
+
+{\footnotesize
+\begin{verbatim}
+<p class="resumida"><a href="[enlace_pagina]">[titulo]</a></p>
+\end{verbatim}
+}
+
+\end{itemize}
+
+Información para una aportación (formato completo):
+
+\begin{itemize}
+\item La información completa para una aportación estará compuesta por:
+  \begin{itemize}
+  \item Título
+  \item Enlace a la página de la aportación
+  \item Descripción
+  \item Usuario
+  \item Votos positivos
+  \item Votos negativos
+  \item Fecha de la aportación
+  \item Número de comentarios
+  \item Información extendida
+  \end{itemize}
+
+\item Por ejemplo, esta información se podrá presentar como:
+
+{\footnotesize
+\begin{verbatim}
+<div class="aportacion">
+  <h2>[titulo]</h2>
+  <p class="descripcion">[descripcion]</p>
+  <p class="datos">Contribución de [usuario], enviada en [fecha],
+    [num_comentarios] comentarios,
+    <a href="[enlace_pagina]">más info</p>
+  <p class="votos">Positivos: [positivos]. Negativos: [negativos]</p>
+  [info_extendida]
+</div>
+\end{verbatim}
+}
+
+\end{itemize}
+
+La aplicación se encargará de controlar que no haya más de un voto (positivo o negativo) por usuario para cada aportación. Por lo tanto, si un usuario ya ha votado una aportación, y vuelve a votarlo, se ignorará su voto (si es igual que el que está almacenado) o se anotará el nuevo (si es distinto). Por ejemplo, si había votado una aportación con positivo, y ahora vuelve a votarla con positivo, se ignorará el segundo voto. Si vuelve a votarla, pero ahora con negativo, se cambiará el voto a negativo.
+
+En todos los casos en que se vote, tras votar se volverá a ver la misma página en que se estaba, ahora con el voto contabilizado.
+
+En todas las páginas habrá un menú desde el que se podrá acceder a la página principal (con el texto ``Inicio''), a la de información (con el texto ``Información''), a la de todas las aportaciones en formato ``normal'' (HTML) (con el rexto ``Todo''), y descargar el listado de todas las aportaciones en formato XML (``Descarga como fichero XML'') y JSON (``Descarga como fichero JSON'') (que apuntará a la página de todas las aportaciones en el formato correspondiente). Estas opciones de menú estarán en cada página, salvo si la opción apunta a la página en la que se está, en cuyo caso no saldrá la opción correspondiente.
+
+Desde este menú también se podrá cambiar, si se está autenticado como usuario, a un ``modo oscuro'' (se se está en el modo normal), o volver al modo normal (si se está en el modo oscuro). Este cambio se realizara cambiando el CSS que servirá para todas las páginas del sitio, mientras el visitante no vuelva a cambiar de modo.
+
+Además, la práctica incluirá tests, que se ejecutarán con \verb|python3 manage.py test|, y que incluirán al menos un test de API HTTP para cada recurso que sirva la aplicación, y para cada método (GET, POST) que admita cada recurso. Además, al menos la mitad de los test incluirán comprobar algo distinto del código HTTP retornado por la petición.
+
+%%----------------------------------------------------------------------------
+\subsection{Despliegue}
+\label{sec:practica-2021-05:despliegue}
+
+La práctica deberá estar desplegada en algún sitio de Internet, de forma que pueda accederse a ella. Deberá mantenerse desplegada y activa al menos desde el día de entrega de la práctica, hasta el día del cierre de actas.
+
+Para el despliegue, se puede utilizar Python Anywhere\footnote{Python Anywhere: \url{https://pythonanywhere.com}}, que proporciona un plan gratuito que incluye suficientes recursos como para poder desplegar la práctica.
+
+Si el alumno así lo desea, puede considerarse desplegar en un ordenador dedicado (por ejemplo, una Raspberry Pi accesible directamente desde Internet, alojada en su hogar), o en servicios como Google Computing Engine\footnote{GCP Engine Free: \url{https://cloud.google.com/free/}}. En general, dado que este tipo de despliegues no podrá contar con una ayuda detallada por los profesores, estará algo más valorado.
+
+En el caso de que la práctica se despliegue en Python Anywhere, hay que tener en cuenta que sus máquinas virtuales tienen cortado el acceso a todos los sitios de Internet salvo los que están en una ``lista blanca''\footnote{Lista blanca de Python Anywhere: \url{https://www.pythonanywhere.com/whitelist/}} (\emph{whitelist}). Esto afectará a vuestro despliegue de dos formas:
+
+\begin{itemize}
+\item Al clonar vuestro repositorio git dentro de la máquina virtual, para tener el código de vuestra aplicación. No debería dar problemas, porque el sitio GitLab de la ETSIT, donde está vuestro código fuente, está ya en la lista blanca.
+\item Cuando vuestra aplicación se conecte para actualizar un alimentador. Si el sitio al que la aplicación se tiene que conectar para conseguir el documento JSON o XML no está en la lista blanca, vuestra aplicación no se podrá conectar. YouTube (que está en la parte obligatoria para todo el mundo) y algunos otros sitios de alimentadores (como Flickr) están ya en la lista blanca. Pero otros sitios que podéis estar usando, no.
+\end{itemize}
+
+Para evitar los problemas con los sitios que no estén en la lista blanca, os pedimos que si hacéis el despliegue en Python Anywhere:
+
+\begin{itemize}
+\item Tiene que funcionar al menos con recursos reconocidos de YouTube, recogiendo los documentos XML correspondientes, como indica el enunciado.
+\item Para los demás recursos reconocidos que hayáis implementado, tenéis dos opciones:
+  \begin{itemize}
+  \item Si están en la lista blanca de Python Anywhere, funcionarán sin problemas sin hacer nada especial, si os funcionaban ya en las pruebas locales, así que también deberían funcionar en el despliegue.
+  \item Si no están en la lista blanca de Python Anywhere, aseguraos de que la base de datos que subís al despliegue de vuestra práctica incluya datos de alimentadores de la plataforma en cuestión. Por ejemplo, si tenéis implementados recursos reconocidos de Last.fm, basta con que tengáis en la base de datos algunas aportaciones de un par de recursos de este sitio, que muestren que en la versión local os funcionó.
+  \end{itemize}
+\end{itemize}
+
+Tened en cuenta que si usáis otras plataformas para el despliegue, puede que os encontréis problemas similares. Y tened en cuenta también que en cualquier caso, nosotros probaremos la práctica en otros despliegues, así que todos los alimentadores que hayáis implementado deben funcionar correctamente si no hay restricciones de conexión.
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad optativa}
+
+De forma optativa, se podrá incluir cualquier funcionalidad relevante en el contexto de la asignatura. Se valorarán especialmente las funcionalidades que impliquen el uso de técnicas nuevas, o de aspectos de Django no utilizados en los ejercicios previos, y que tengan sentido en el contexto de esta práctica y de la asignatura.
+
+En el formulario de entrega se pide que se justifique por qué se considera funcionalidad optativa lo que habéis implementado. Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativas:
+
+\begin{itemize}
+  \item Inclusión de un \emph{favicon} del sitio
+  
+  \item Visualización de cualquier página en formato JSON y/o XML, de forma similar a como se ha indicado para la página principal.
+
+  \item Generación de un documento XML y/o JSON para los comentarios puestos en el sitio.
+
+  \item Incorporación de datos de otros tipos de recurso además de los obligatorios. Se valorará especialmente la búsqueda de otros tipos de recurso no descritos en este enunciado, la implementación de tipos de recurso que requieran token de autenticación (en este caso, atención a no subir el token de autenticación a GitLab).
+ 
+  \item Atención al idioma indicado por el navegador. El idioma de la interfaz de usuario de la aplicación tendrá en cuenta lo que especifique el navegador.
+
+  \item Inclusión de imágenes (no solo texto) en los comentarios. Esto puede hacerse de dos formas: quien suba un comentario, además de rellenar una caja de texto con el comentario, puede indicar también la URL de una imagen, que se mostrará junto al comentario, o bien subiendo una imagen a la aplicación, que se mostrará junto al comentario (se valorará más la segunda opción, y se pueden implementar las dos).
+    
+  \item Mejora de los tests de la práctica, incluyendo test de condiciones de error, test de escenarios con más de una invocación de recurso, tests de API Python, etc.
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+\subsection{Entrega de la práctica}
+
+\begin{itemize}
+  \item \textbf{Fecha límite de entrega:} viernes, 4 de junio de 2020 a las 23:55 (hora española peninsular)
+       %{\bf Convocatoria de junio:} miércoles, 24 de junio de 2015 a las 23:59 (hora peninsular española).
+
+  \item \textbf{Notificación de alumnos que tendrán que realizar entrevista:} martes, 8 de junio, en el aula virtual.
+%{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
+
+  \item \textbf{Realización de entrevistas:} miércoles, 9 de junio, en la aplicación Teams. Si es necesario, se realizarán también el día 10.
+    
+  \item \textbf{Fecha de publicación de notas:} jueves, 10 de junio, en el aula virtual.
+%{\bf Convocatoria de junio:} viernes, 26 de junio, en la plataforma Moodle.
+
+  \item \textbf{Fecha de revisión:} viernes, 11 de junio, a las 12:00, en la aplicación Teams.
+%{\bf Convocatoria de junio:} martes, 30 de junio a las 13:30. Se requerirá a algunos alumnos que asistan a la revisión {\bf en persona}; se informará de ello en el mensaje de publicación de notas.
+\end{itemize}
+
+La entrega de la práctica consiste en:
+
+\begin{enumerate}
+
+  \item {\bf Rellenar un formulario} enlazado en el sitio de la asignatura en el aula virtual.
+  
+  \item {\bf Subir tu práctica a un repositorio en el GitLab de la Escuela}. El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo). Es muy importante que el alumno haya realizado una derivación (fork) del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
+
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/final-lovisto/}
+
+Recordad que es importante ir haciendo commits de vez en cuando y que sólo al hacer push estos commits son públicos. Antes de entregar la práctica, haced un push. Y cuando la entreguéis y sepáis el nombre del repositorio, podéis cambiar el nombre del repositorio desde el interfaz web de GitLab. 
+
+Se recomienda mantener el repositorio como privado, hasta el momento en que se entregue la práctica.
+
+ \item {\bf Entregar un vídeo de demostración de la parte obligatoria, y otro vídeo de demostración de la parte opcional}, si se han realizado opciones avanzadas. Los vídeos serán de una {\bf duración máxima de 3 minutos} (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo, Twitch, o YouTube). Los vídeos de más de tres minutos tendrán penalización.
+
+Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). OBS Studio\footnote{OBS Studio: \url{https://obsproject.com/}} está disponible para varias plataformas (Linux, Windows, MacOS). Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
+
+En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar tiempos de espera) puede usarse un editor de vídeo, pero siempre deberá ser indicado que se ha hecho tal cosa con un comentario en el audio, o un texto en el vídeo. Hay muchas herramientas que permiten realizar esta edición. Por ejemplo, en GNU/Linux puede usarse OpenShot o PiTiVi.
+
+\end{enumerate}
+
+Sobre la entrega del repositorio:
+\begin{itemize}
+  \item Se han de entregar los siguientes ficheros:
+
+\begin{itemize}
+  \item El repositorio en la instancia GitLab de la ETSIT deberá contener un proyecto Django completo y listo para funcionar en el entorno del laboratorio, incluyendo la base de datos. Deberá poder ejecutarse directamente con \verb|python3 manage.py runserver| desde un entorno virtual en el que esté instalado Django~3.0.3. También ejecutará los tests con \verb|python3 manage.py test|, desde el mismo entorno virtual.
+
+  \item La base de datos habrá de tener datos suficientes como para poder probarlo. Estos datos incluirán al menos dos usuarios, con al menos diez aportaciones en total, cinco comentarios puestos en total, y al menos seis aportaciones votadas por cada usuario.
+
+  \item Un fichero \verb|requirements.txt|, con un nombre de paquete Python por línea, para indicar Cualquier biblioteca Python que pueda hacer falta para que la aplicación funcione, si es que fuera el caso. Este fichero no ha de incluir Django, dado que ya se supone que hace falta. Si es posible, se recomienda escribir este fichero en el formato que entiende \verb|pip install -r requirements.txt|
+
+  \item Cualquier fichero auxiliar que pueda hacer falta para que funcione la práctica, si es que fuera el caso.
+\end{itemize}
+
+  \item Se incluirán en el fichero README.md los siguientes datos (la mayoría de estos datos se piden también en el formulario que se ha de rellenar para entregar la práctica: se recomienda hacer un copia y pega de estos datos en el formulario):
+
+\begin{itemize}
+  \item Nombre y titulación.
+  \item Nombre de su cuenta en el laboratorio del alumno.
+  \item URL del vídeo demostración de la funcionalidad básica
+  \item URL del vídeo demostración de la funcionalidad optativa, si se ha realizado funcionalidad optativa
+  \item URL de la aplicación desplegada
+  \item Cuenta (login) y contraseña de los usuarios que están dados de alta en la aplicación.
+  \item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
+  \item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
+\end{itemize}
+
+Estos datos se escribirán siguiendo estrictamente el siguiente formato:
+
+\begin{verbatim}
+# Entrega practica
+
+## Datos
+
+* Nombre:
+* Titulación:
+* Despliegue (url):
+* Video básico (url):
+* Video parte opcional (url):
+* Despliegue (url):
+*
+
+## Cuenta Admin Site
+
+* usuario/contraseña
+
+## Cuentas usuarios
+
+* usuario/contraseña
+* usuario/contraseña
+* ...
+
+## Resumen parte obligatoria
+
+## Lista partes opcionales
+
+* Nombre parte:
+* Nombre parte:
+* ...
+\end{verbatim}
+
+Asegúrate de que las URLs incluidas en este fichero están adecuadamente escritas en Markdown, de forma que la versión HTML que genera GitLab los incluya como enlaces ``pinchables''.
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Notas y comentarios}
+
+La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas.
+
+La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
+
+Los documentos XML que genere la práctica deberán ser correctos desde el punto de vista de la sintaxis XML, y por lo tanto reconocibles por un reconocedor XML, como por ejemplo el del módulo xml.sax de Python. Los documentos JSON generados deberán ser correctos desde el punto de vista de la sintaxis JSON, y por lo tanto reconocibles por un reconocedor JSON, como por ejemplo el del módulo json de Python
+
+%%----------------------------------------------------------------------------
+\subsection{Preguntas frecuentes}
+\label{sec:practica-2020-05:preguntas}
+
+A continuación, algunas preguntas relacionadas con el enunciado de esta práctica, junto con sus respuestas:
+
+\begin{itemize}
+
+\item Cuando despliego mi práctica en Python Anywhere, algunos recursos reconocidos no me funcionan, pero otros (YouTube entre ellos), sí. Todo me funciona bien en mi versión local. ¿Qué está pasando?
+
+  Las máquinas virtuales de Python Anywhere están limitadas en cuanto a los sitios a los que se pueden conectar: sólo se pueden conectar a aquellos que están en una cierta ``lista blanca''. Por eso, si el sitio al que tu programa se tiene que conectar para obtener recursos no está en la lista blanca, no va a poder descargarse el documento XML o JSON de esos recursos. Para evitar problemas, en el caso de despliegue en Python Anywhere pedimos que funcionen bien los alimentadores que están en la lista blanca, y para los demás, que tengan recursos en la base de datos de despliegue. Más detalles en el apartado sobre despliegue de este enunciado (\ref{sec:practica-2021-05:despliegue}).
+  
+\item En la pagina de información que se menciona en el enunciado, ¿qué hay que incluir en el apartado de documentación?
+
+Casi que lo que queráis, lo importante es tener la página. Puede ser por ejemplo un resumen de un párrafo de lo que hace la aplicación.
+
+\item ¿Qué es la ``API key'' en la API de algunos sitios, como Last.fm y GitLab?
+\label{sec:practica-2021-05:preguntas-apikey}
+
+  Algunas API de servicio, entre ellas la de Last.fm y GitLab, requieren el uso de una ``API key'' (clave de API) para poder usarla. Normalmente, estas claves las usa el servicio para evitar abusos, o para limitar lo que se puede hacer con su API. El caso es que si no se incluye la clave de API en cada GET que se hace al servicio, no se reciben los datos (el documento XML o JSON).
+
+  Es habitual que estas claves se obtengan creándose una cuenta en el servicio en cuestión, y luego obteniendo la clave en una página al efecto, estando autenticados con el servicio.
+
+  Por ejemplo, en el caso de Last.fm, hay que ir a la página de petición de claves de API\footnote{Lastfm Create API Account: \url{https://www.last.fm/api/account/create}}, donde (una vez autenticados con una cuenta de Last.fm), rellenaremos los dato que nos pide: ``contact email'', ``application name'' (cualquier nombre de aplicación, por ejemplo LoVisto), ``application description'' (cualquier descripción por ejemplo ``App to manage Last.fm artists''). En este caso, puedes ignorar los campos ``callback url'' y ``application homepage''. Cuando se hayan enviado estos datos, te devolverá entre otros datos tu ``API key''. Esa es la que tendrá que usar en tus llamadas a Last.fm.
+
+  Como las claves de API son personales, mantenlas en secreto. En particular, no las subas a repositorios públicos, pues cualquiera podrá verlas (y usarlas). Si quieres que el repositorio de tu práctica sea público, incluye la clave en un fichero que tengas sólo en tu disco, y no subas al repositorio git. Por ejemplo, puedes poner la clave en un fichero \verb|apikeys.py| del estilo de este:
+
+\begin{verbatim}
+LASTFM_APIKEY = "012345678"
+\end{verbatim}
+
+Luego, en el módulo Python que la uses (por ejemplo \verb|views.py|), pondrás algo como:
+
+\begin{verbatim}
+from .apikeys import LASTFM_APIKEY
+\end{verbatim}
+
+Y ya puedes usar la clave en tu código. Este fichero \verb|apikeys.py| no lo subirás al repositorio git público.
+
+Si usas claves de API en tu práctica, indícalo claramente en el fichero de entrega de la práctica, y o bien sube una clave de API válida (si el repositorio de entrega es privado) para que la podamos probar, o bien indica en qué fichero hay que ponerla, y cómo se consigue una clave API válida para el servicio que estés usando, de forma que la podamos conseguir y ejecutar tu práctica.
+
+  
+\item ¿Qué quiere decir ``vídeo empotrado'', en el caso de YouTube? ¿Cómo se hace?
+
+  ``Vídeo empotrado'' es en ese caso la traducción de ``embedded video'', y quiere decir que el video aparezca directamente en la página, normalmente en un elemento \verb|iframe|. En el caso de YouTube, puedes obtener el código HTML para empotrar cualquier video si, cuando lo estás viendo en el navegador, pulsas el botón de compartir (``Share''), y eliges la opción ``Embed''. Esto muestra un código HTML como el siguiente:
+
+\begin{verbatim}
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/HZOodD84MR8"
+  frameborder="0"
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen></iframe>
+\end{verbatim}
+
+Basta con que en él cambies el código del video (en este caso ``HZOodD84MR8''  por el del video que quieres empotrar, y ya está. Puedes ver también esta información, incluyendo el HTML para el iframe de un video, en el fichero de información sobre un video (ver el enunciado cuando se especifican los recursos reconocidos de YouTube).
+  
+\item ¿Es necesario utilizar los mecanismos provistos por Django para el control de sesiones y autenticación?
+
+  En principio, esa es la solución recomendada. El principal problema suele ser asegurarse de que cualquier mecanismo alternativo funciona al menos tan bien como el de Django, lo que no es en general trivial. De todas formas, salvo muy buenos motivos, la aplicación es una aplicación Django, y por lo tanto cuantas más facilidades de Django se usen (bien usadas), mejor.
+
+\item Los archivos CSS para ``modo oscuro'' y ``modo normal'', ¿dónde y cómo debemos guardarlos?
+
+  La forma recomendada de hacerlo es mediante plantillas:
+
+  \begin{itemize}
+  \item En el directorio de plantillas incluirías una para la hoja CSS del sitio. Esa plantilla tendría como variables de plantilla los valores que cambien de estilo normal a estilo oscuro (color de tipo de letra, color de fondo, etc.).
+  \item Además, para cada usuario, tendrás una tabla en la base de datos donde se indicará el modo (normal o oscuro).
+  \item Tendrás una vista en \texttt{views.py} que se encargará de generar la hoja CSS a partir de la plantilla. Esa vista es la que comprobará si la petición que está atendiendo corresponde a un usuario (en cuyo caso tendrá que obtener los valores para ese usuario de la tabla anterior), o no (en cuyo caso usará valores por defecto, siempre para el modo ``normal''). Con los valores que obtenga, generará la hoja CSS a partir de la plantilla anterior.
+  \item Por último, en \texttt{urls.py} tendrás una línea para indicar que si te piden el recurso que sirve la hoja de estilo, llamas a la vista anterior.
+  \end{itemize}
+
+\item ¿Dónde puedo realizar el despliegue de la aplicación?
+
+  El despliegue puede realizarse en cualquier ordenador que esté conectado permanentemente a Internet durante el periodo de corrección, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Internet, adecuadamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), o PythonAnywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}). Los profesores podremos ayudar de forma más detallada con PythonAnywhere.
+
+\end{itemize}
