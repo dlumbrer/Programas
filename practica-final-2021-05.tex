@@ -471,7 +471,7 @@ En el caso de que la práctica se despliegue en Python Anywhere, hay que tener e
 
 \begin{itemize}
 \item Al clonar vuestro repositorio git dentro de la máquina virtual, para tener el código de vuestra aplicación. No debería dar problemas, porque el sitio GitLab de la ETSIT, donde está vuestro código fuente, está ya en la lista blanca.
-\item Cuando vuestra aplicación se conecte para actualizar un alimentador. Si el sitio al que la aplicación se tiene que conectar para conseguir el documento JSON o XML no está en la lista blanca, vuestra aplicación no se podrá conectar. YouTube (que está en la parte obligatoria para todo el mundo) y algunos otros sitios de alimentadores (como Flickr) están ya en la lista blanca. Pero otros sitios que podéis estar usando, no.
+\item Cuando vuestra aplicación se conecte para obtener la información extendida de un recurso, si el sitio al que la aplicación se tiene que conectar para conseguir el documento JSON o XML no está en la lista blanca, vuestra aplicación no se podrá conectar. YouTube y algunos otros sitios para los que se pueden implementar recursos reconocidos (como Flickr) están ya en la lista blanca. Pero otros sitios que podéis estar usando, no.
 \end{itemize}
 
 Para evitar los problemas con los sitios que no estén en la lista blanca, os pedimos que si hacéis el despliegue en Python Anywhere:
@@ -481,11 +481,13 @@ Para evitar los problemas con los sitios que no estén en la lista blanca, os pe
 \item Para los demás recursos reconocidos que hayáis implementado, tenéis dos opciones:
   \begin{itemize}
   \item Si están en la lista blanca de Python Anywhere, funcionarán sin problemas sin hacer nada especial, si os funcionaban ya en las pruebas locales, así que también deberían funcionar en el despliegue.
-  \item Si no están en la lista blanca de Python Anywhere, aseguraos de que la base de datos que subís al despliegue de vuestra práctica incluya datos de alimentadores de la plataforma en cuestión. Por ejemplo, si tenéis implementados recursos reconocidos de Last.fm, basta con que tengáis en la base de datos algunas aportaciones de un par de recursos de este sitio, que muestren que en la versión local os funcionó.
+  \item Si no están en la lista blanca de Python Anywhere, aseguraos de que la base de datos que subís al despliegue de vuestra práctica incluya datos de recursos reconocidos de la plataforma en cuestión. Por ejemplo, si tenéis implementados recursos reconocidos de Last.fm, basta con que tengáis en la base de datos algunas aportaciones de un par de recursos de este sitio, que muestren que en la versión local os funcionó.
   \end{itemize}
 \end{itemize}
 
-Tened en cuenta que si usáis otras plataformas para el despliegue, puede que os encontréis problemas similares. Y tened en cuenta también que en cualquier caso, nosotros probaremos la práctica en otros despliegues, así que todos los alimentadores que hayáis implementado deben funcionar correctamente si no hay restricciones de conexión.
+Tened en cuenta que si usáis otras plataformas para el despliegue, puede que os encontréis problemas similares. Y tened en cuenta también que en cualquier caso, nosotros probaremos la práctica en otros despliegues, así que todos los recursos reconocidos que hayáis implementado deben funcionar correctamente si no hay restricciones de conexión.
+
+Tenéis más detalles sobre cómo se hace un despliegue de una aplicación Django en Python Anywayre en el video ``Django: Despliegue en Python Anywhere''\footnote{\url{https://www.youtube.com/watch?v=hlZPC5L2Itc}}, que explica cómo desplegar allí la aplicación \texttt{django-youtube-4}\footnote{\url{https://github.com/CursosWeb/Code/tree/master/Python-Django/django-youtube-4}} (ver también el fichero \texttt{README.md} de esa aplicación para más detalles).
 
 %%----------------------------------------------------------------------------
 \subsection{Funcionalidad optativa}
@@ -635,7 +637,7 @@ A continuación, algunas preguntas relacionadas con el enunciado de esta prácti
 
 \item Cuando despliego mi práctica en Python Anywhere, algunos recursos reconocidos no me funcionan, pero otros (YouTube entre ellos), sí. Todo me funciona bien en mi versión local. ¿Qué está pasando?
 
-  Las máquinas virtuales de Python Anywhere están limitadas en cuanto a los sitios a los que se pueden conectar: sólo se pueden conectar a aquellos que están en una cierta ``lista blanca''. Por eso, si el sitio al que tu programa se tiene que conectar para obtener recursos no está en la lista blanca, no va a poder descargarse el documento XML o JSON de esos recursos. Para evitar problemas, en el caso de despliegue en Python Anywhere pedimos que funcionen bien los alimentadores que están en la lista blanca, y para los demás, que tengan recursos en la base de datos de despliegue. Más detalles en el apartado sobre despliegue de este enunciado (\ref{sec:practica-2021-05:despliegue}).
+  Las máquinas virtuales de Python Anywhere están limitadas en cuanto a los sitios a los que se pueden conectar: sólo se pueden conectar a aquellos que están en una cierta ``lista blanca''. Por eso, si el sitio al que tu programa se tiene que conectar para obtener recursos no está en la lista blanca, no va a poder descargarse el documento XML o JSON de esos recursos. Para evitar problemas, en el caso de despliegue en Python Anywhere pedimos que funcionen bien los recursos reconocidos que están en la lista blanca, y para los demás, que tengan recursos en la base de datos de despliegue. Más detalles en el apartado sobre despliegue de este enunciado (\ref{sec:practica-2021-05:despliegue}).
   
 \item En la pagina de información que se menciona en el enunciado, ¿qué hay que incluir en el apartado de documentación?
 
