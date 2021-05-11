@@ -29,7 +29,7 @@ Arquitectura general:
   \item Un \emph{banner} (imagen) del sitio, preferentemente en la parte superior.
   \item Un formulario para entrar (hacer login en el sitio), o para salir (si ya se ha entrado).
     \begin{itemize}
-    \item En caso de que no se haya entrado en una cuenta, este formulario permitirá al visitante introducir su identificador de usuario y su contraseña, o crearse una cuenta.
+    \item En caso de que no se haya entrado en una cuenta, este formulario permitirá al visitante introducir su identificador de usuario y su contraseña.
     \item En caso de que ya se haya entrado, este formulario mostrará el identificador del usuario y permitirá salir de la cuenta (logout). Este formulario aparecerá preferentemente en la parte superior derecha.
     \end{itemize}
   \item Un menú de opciones, como barra, preferentemente debajo de los dos elementos anteriores (banner y caja de entrada o salida). Los contenidos de este menú se indican más adelante en el enunciado.
@@ -57,16 +57,10 @@ Arquitectura general:
 Funcionamiento general:
 
 \begin{itemize}
-\item En general, para utilizar el sitio, no hará falta autenticarse con una cuenta. Toda la funcionalidad estará disponible para cualquier visitante, mientras use el sitio desde el mismo navegador y tenga las cookies habilitadas.
+\item En general, para utilizar el sitio, no hará falta autenticarse con una cuenta. Si no se está autenticado, se podrá ver toda la información, salvo la página de usuario, y no se podrán realizar aportaciones, votar ni poner comentarios.
 
-\item Cuando un visitante quiera, se podrá abrir una cuenta (y quedará autenticado en ella), o autenticarse en una cuenta ya existente. En este caso, la funcionalidad quedará ligada a su cuenta.
+\item Cuando un visitante quiera, podrá autenticarse en una cuenta ya existente. En este caso, la funcionalidad quedará ligada a su cuenta. En ese momento podrá ya realizar aportaciones, votar, o poner comentarios. También podrá acceder a la página de usuario, que mostrará la inforamción de su usuario.
   
-\item Cada usuario podrá elegir cualquier ítem que se le presente, y realizar dos acciones fundamentales con él (comentarlo, y votarlo):
-  \begin{itemize}
-  \item Comentar un ítem quiere decir escribir un pequeño mensaje (menos de 256 caracteres) que quedará relacionado con el ítem.
-  \item Votarlo significa darle un voto positivo o uno negativo. El resultado de las votaciones quedará relacionado con el ítem.
-  \end{itemize}
-
 \end{itemize}
 
 
