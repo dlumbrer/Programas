@@ -970,6 +970,7 @@ Explicación del cálculo de Pi mediante el método Monte Carlo, incluyendo ejem
 %%-----------------------------------------------------------------------------
 \section{Ejercicios 03: Introducción a XML}
 
+Ejercicios sobre XML, JSON, y HTML (reconocedores, generadores, etc).
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
@@ -1353,6 +1354,38 @@ curl --header "PRIVATE-TOKEN: <token>"
   (documentación de Python): \\
   \url{https://docs.python.org/3/howto/urllib2.html}
 \end{itemize}
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Extractor de información de un documento HTML}
+\label{subsec:html-extractor}
+
+\textbf{Enunciado:}
+
+Realiza un programa en Python que, dada la URL de un documento HTML, lo descarga, lo analiza, y muestra en pantalla parte de su contenido. En particular, ha de mostrar:
+
+\begin{itemize}
+\item Si hay disponibles propiedades Open Graph\footnote{https://ogp.me/}, se extraerán las propiedades \texttt{og:title} y \texttt{image} (o la que exista de ellas), y se mostrarán.
+
+  Las propiedades Open Graph normalmente se encuentran como metadatos en la cabecera (\texttt{head}) del documento HTML. Por ejemplo:
+
+\begin{verbatim}
+<html>
+  <head>
+  <title>Este es el titulo</title>
+  <meta property="og:title" content="Este es el titulo" />
+  <meta property="og:image" content="https://..../imagen.jpg" />
+  ...
+</head>
+...
+\end{verbatim}
+
+\item Si hay disponible un elemento \texttt{title}, se mostrará su contenido.
+\end{itemize}
+
+\textbf{Comentarios:}
+
+Esta práctica puede realizarse usando el módulo \texttt{html.parser} de la bilbioteca estándar de Python, el módulo \texttt{BeautifulSoup4}\footnote{\url{https://www.crummy.com/software/BeautifulSoup/}} disponible en pypi (instalable con pip), o cualquier otro módulo de reconocimiento de HTML.
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
