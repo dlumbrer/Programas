@@ -1,0 +1,222 @@
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de ITT-SARO e IST-SAT, 6 de junio de 2020}
+\label{exa:saro-2020-05}
+
+[\textbf{Atención:} Este curso se realizó una prueba escrita que hace referencia al proyecto final de la asignatura. Normalmente, el enunciado de la prueba escrita es independiente del proyecto final, pero este curso no lo fue. Esta prueba escrita tenía también varias preguntas entre las que se componían conjuntos de exámenes diferentes para cada alumno, algo que tampoco es habitual. Estas preguntas ``alternativas'' están marcadas en el enunciado como ``ALTER''.]
+
+Teniendo en cuenta el sistema construido para la práctica final de la asignatura (apartado~\ref{practica-final-2020-05}), tal y como lo entregues, se pide:
+
+\begin{enumerate}
+\item Describe la interfaz HTTP que proporciona el sistema, incluyendo todos los recursos accesibles mediante GET o POST. Coloca la información en una tabla, con los nombres de recurso en una columna, los métodos HTTP en otra, y la descripción de lo que realizará la aplicación al recibirlos en la tercera. (0.5 puntos).
+
+\item ¿Qué le falta a la la interfaz HTTP que acabas de describir para cumplir los principios REST? Explica brevemente cómo la modificarías (respetando la funcionalidad del enunciado de la práctica final) para que los cumpliera (si crees que no los cumple) o por qué los cumple (si crees que sí los cumple). (0.5 puntos) 
+\item En el enunciado de la práctica final se pide que cuando un visitante cualquiera elimina un alimentador en la página principal, éste deje de salir en el listado de alimentadores de esa página. ¿Qué cambios en el modelo de datos tendrías que hacer para que sólo los usuarios (autenticados) pudieran eliminar un alimentador, y si lo eliminan sólo se eliminase de la lista que ve el usuario (autenticado) que lo eliminó? Explica los cambios sobre el fichero \verb|models.py| de tu práctica. (0.75 puntos)
+
+\item ALTER. En el enunciado de la práctica final se pide que cuando un visitante cualquiera elimina un alimentador en la página principal, éste deje de salir en el listado de alimentadores de esa página. ¿Qué cambios en el modelo de datos tendrías que hacer para que si lo elimina sólo se eliminase de la lista que ve el visitante (esté autenticado o no) que lo eliminó? Explica los cambios sobre el fichero \verb|models.py| de tu práctica. Si el visitante no está autenticado, se entiende que sigue usando el mismo navegador desde el que eliminó el alimentador. (0.75 puntos)
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en los siguientes escenarios:
+
+  \begin{enumerate}
+  \item El escenario comienza cuando un visitante que ha accedido por primera vez al sitio tiene ya cargada en su navegador la página principal del sitio. A continuación, el visitante escribe en el formulario correspondiente el identificador de un canal de YouTube, para seleccionarlo como alimentador (ese canal no ha sido seleccionado previamente nunca). El escenario termina cuando el visitante está viendo en su navegador la página del alimentador que acaba de seleccionar. (0.5 puntos)
+
+  \item El escenario comienza cuando un visitante que no ha accedido nunca al sitio, y tiene una página en blanco en el navegador, escribe en su navegador la url de la página principal del sitio concatenada con \verb|?format=xml| al final. El escenario termina cuando el visitante ve la página resultante en su navegador (o su navegador le propone guardarla o mostrarla con una aplicación, según esté configurado). (0.5 puntos)
+
+  \item El escenario comienza cuando un visitante que ha accedido, estando ya autenticado, a varias páginas del sitio, está viendo la página de un canal de YouTube (esto es, la página de un alimentador de YouTube). A continuación, el visitante pulsa el botón, que no estaba seleccionado en ese momento, para seleccionarlo como alimentador (ese canal ya había sido seleccionado previamente al menos en una ocasión). El escenario termina cuando el visitante está viendo de nuevo en su navegador la página de este canal de YouTube. (0.5 puntos)
+
+  \end{enumerate}
+  
+  En todas las respuestas indica para cada interacción HTTP, claramente y en este orden:
+
+\begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item La línea Content-Type (si no la hubiera en la petición HTTP real, la que debería haber)
+  \item Si lo hay, el contenido (cuerpo) de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies.
+  \item Si hubiera envío de datos de formulario, recuerda indicar de forma explícita dónde van esos datos, y cómo.
+  \end{itemize}
+
+Asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario. Para todas las cookies que aparezcan en las interacciones, explica para qué sirven, y si para el caso de la interacción concreta en que aparecen, hacen falta o no. Incluye sólo las cookies que tengan que tengan que ver con la práctica final que entregues. Para todas las interacciones descritas, considérese que la cache del navegador no se está usando.
+
+
+\item Describe las interacciones que ocurrirán entre tu aplicación y la base de datos en el siguiente escenario. El escenario comienza cuando un usuario ya autenticado en un cierto navegador, y que está viendo en ese navegador su página de usuario, decide rellenar el formulario para cambiar el tamaño de letra. Una vez relleno, envía el contenido. El escenario termina cuando el usuario vuelve a ver su misma página de usuario, pero ya con el nuevo tamaño de letra.
+  
+  Para cada interacción, indica al menos la tabla (o tablas) de la base de datos a las que se accede, si se escriben o se leen datos, y para qué se realiza la interacción (para seleccionar un registro que cumpla tales condiciones, para escribir tal campo de tal registro, etc.)  (0.75 puntos)
+
+  
+\item ALTER. Describe las interacciones que ocurrirán entre tu aplicación y la base de datos en el siguiente escenario. El escenario comienza cuando un usuario ya autenticado en un cierto navegador, y que está viendo en ese navegador la página de un item, decide votarlo positivamente. Para eso, pulsa el botón correspondiente. El escenario termina cuando el usuario vuelve a ver la página del item, ya con su voto registrado.
+
+  Para cada interacción, indica al menos la tabla (o tablas) de la base de datos a las que se accede, si se escriben o se leen datos, y para qué se realiza la interacción (para seleccionar un registro que cumpla tales condiciones, para escribir tal campo de tal registro, etc.) (0.75 puntos)
+
+\item ALTER. Describe las interacciones que ocurrirán entre tu aplicación y la base de datos en el siguiente escenario. El escenario comienza cuando un usuario ya autenticado en un cierto navegador, y que está viendo en ese navegador su página de usuario, decide rellenar el formulario para cambiar el estilo (se supone que estaba en ``ligero'' y pasa a ``oscuro''). Una vez relleno, envía el contenido. El escenario termina cuando el usuario vuelve a ver su misma página de usuario, pero ya con el nuevo estilo.
+
+  Para cada interacción, indica al menos la tabla (o tablas) de la base de datos a las que se accede, si se escriben o se leen datos, y para qué se realiza la interacción (para seleccionar un registro que cumpla tales condiciones, para escribir tal campo de tal registro, etc.) (0.75 puntos)
+
+\item Un usuario de tu sitio está especialmente preocupado por que nadie vote items en su nombre. Te dice que suele usar el sitio en el navegador de su móvil, mientras está conectado mediante redes en las que es posible que alguien pueda ver los paquetes de datos en tránsito desde su navegador hasta tu sitio (redes inseguras). Dado que tu aplicación no funciona sobre HTTPS, y por tanto la conexión entre el navegador y tu sitio no está cifrado, ¿cuál o cuáles de las siguientes acciones le recomendarías que no hiciera, para evitar que alguien pueda acceder a su cuenta y votar en su nombre? (asegúrate que respondes en el caso concreto de lo que hace tu práctica tal y como la entregues):
+
+  \begin{enumerate}
+  \item Rellenar el formulario de autenticación con usuario y contraseña, y entrar así en la cuenta, mientras está conectado a una de esas redes inseguras
+  \item Usar el sitio desde redes inseguras, ya autenticado, pero habiendo hecho la autenticación previamente, cuando estaba conectado con su móvil desde una red que consideras segura (en la que nadie tiene acceso a los paquetes en tránsito).
+  \item Usar el sitio desde redes inseguras, ya autenticado, pero habiendo hecho la autenticación previamente, cuando estaba conectado con su móvil desde una red que consideras segura, con la precaución de no votar ningún item mientras está conectado mediante redes inseguras.
+  \end{enumerate}
+
+Tanto si le recomiendes que no lo haga, como si le dices que lo puede hacer sin problemas especiales, explica por qué. (0.75 puntos)
+  
+\item Acordamos con un sitio tercero (Trazador.com) que sirva el banner (la imagen que aparece en la cabecera de todas las páginas HTML de nuestro sitio) en lugar de servirlo nuestro sitio directamente. Para ello, en todas las páginas HTML que sirva nuestra aplicación irá la misma url (la del banner que sirve Trazador.com) como atributo \verb|src| de un elemento \verb|img|. Explica si Trazador.com puede, gracias a que está sirviendo el banner, y sin hacer ninguna otra modificación a la práctica:
+  \begin{enumerate}
+  \item Saber cuántas páginas HTML está sirviendo tu sitio.
+  \item Saber cuántas veces se está sirviendo la página principal HTML de tu sitio.
+  \item Saber cuántas veces se está sirviendo el fichero JSON que se sirve desde la página principal de tu sitio cuando se incluye la query string adecuada.
+  \item Saber cuántos navegadores únicos visitan tu sitio.
+  \item Saber cuántos navegadores únicos visitan la página principal de tu sitio.
+  \end{enumerate}
+
+  En cada caso, si crees que no puede, explica porqué, y si crees que sí puede, explica cómo. En todos los casos suponemos que los navegadores almacenan y envían cookies de forma normal, sin tener instalado ningún sistema que las bloquee. (0.75 puntos)
+
+\item ALTER. Acordamos con un sitio tercero (Trazador.com) que sirva el banner (la imagen que aparece en la cabecera de todas las páginas HTML de nuestro sitio) en lugar de servirlo nuestro sitio directamente. Para ello, en todas las páginas HTML que sirva nuestra aplicación irá la misma url (la del banner que sirve Trazador.com) como atributo \verb|src| de un elemento \verb|img|. Explica si Trazador.com puede, gracias a que está sirviendo el banner, y sin hacer ninguna otra modificación a la práctica:
+  \begin{enumerate}
+  \item Saber si un cierto navegador, que está visitando una página HTML de tu sitio ahora mismo, estuvo visitando alguna página HTML del sitio también ayer.
+  \item Saber cuántas páginas HTML distintas de tu sitio está visitando un cierto navegador, que está visitando tu una página HTML de tu sitio ahora mismo.
+  \item Saber cuántos días del mes pasado visitó alguna página HTML de tu sitio un cierto navegador, que está visitando una página HTML de tu sitio ahora mismo.
+  \item Saber si un cierto navegador, que está visitando una página HTML de tu sitio ahora mismo, ha visitado alguna vez el documento JSON que sirve el recurso principal.
+  \end{enumerate}
+
+  En cada caso, si crees que no puede, explica porqué, y si crees que sí puede, explica cómo. En todos los casos suponemos que los navegadores almacenan y envían cookies de forma normal, sin tener instalado ningún sistema que las bloquee. (0.75 puntos)
+
+\end{enumerate}
+
+En todas las preguntas tu respuesta debe considerar cómo se comporta la práctica que entregues, salvo donde se diga expresamente otra cosa.
+
+\subsubsection{Solución}
+
+\textbf{API HTTP}
+
+Esta podría ser una descripción de la API HTTP:
+
+\begin{tabular}{|l|l|p{7cm}|}
+  \hline
+  Recurso & Método & Comentario \\ \hline \hline
+  \verb|/|       & GET    & Página principal. Si incluye query string \verb|?format=json| o \verb|?format=xml| devuelve los formatos correspondientes \\ \hline
+  \verb|/alimentadores| & GET & \\ \hline
+  \verb|/alimentadores/{id}| & GET & \\ \hline
+                             & POST & Actualización y desactualización de alimentadores, con qs: \verb|alimentador=id&acción=[add/remove]|\\ \hline
+  \verb|/alimentadores/{id}/{item\_id}| & GET & \\ \hline
+                             & POST & Voto de item, con qs: \verb|vote=[plus/minus]|, comentario de item, con qs: \verb|comment="Comentario"|\\ \hline
+  \verb|/users| & GET & Lista de usuarios\\ \hline
+  \verb|/users| & POST & Registro de usuarios nuevos, y autenticación de usuarios. Query strings: \verb|user=usuario&passwd=palabra&action=[new/auth]| \\ \hline
+  \verb|/users/{id}| & GET & Página de usuario\\ \hline
+                     & POST & Configuración de usuario y salida de cuenta, con varias qs: \verb|picture={foto}|, \verb|style=[light|dark]|, \verb|font=[small,medium,large]|, \verb|action=logout| \\ \hline
+  \verb|/users/{id}/foto| & GET & Foto de usuario\\ \hline
+  \verb|/info| & GET & Página de información \\ \hline
+  \verb|/banner.jpg| & GET & Banner \\ \hline
+\end{tabular}
+
+\textbf{REST}
+
+Algunos aspectos básicos para evaluar si la API HTTP cumple mejor o peor los principios REST:
+
+\begin{itemize}
+\item Los recursos corresponden realmente con recursos, que tienen su propio estado, y no con funciones o acciones. Por ejemplo, tener recursos como \verb|/login|, \verb|/logout| o \verb|/register| es más orientado a acciones que a recursos. Si lo orientamos a recursos, tendríamos un recurso para usuarios, en el que podríamos tanto obtener un nuevo recurso (registrar un usuario) como autenticarse, en ambos casos mediante POST. La salida de la cuenta podría hacerse, por ejemplo, con un POST sobre \verb|/users/{id}|, con los parámetros adecuados (a falta de poder usar DELETE.
+\item Dado que la API ha de funcionar desde un navegador, sin uso de JavaScript, estamos limitados a lo que permite HTML, y en particular los formularios HTML, que serán la forma fundamental de subir datos a la aplicación. Por eso tendremos que sustituir PUT y DELETE por POST.
+\item El uso de colecciones para agrupar recursos homogéneos. Por ejemplo, usuarios, alimentadores, items... Estas colecciones se mostrarán en la estructura jerárquica de la API (por ejemplo, todos los usuarios accesibles como \verb|/users/{id}|, bajo \verb|/users|).
+\item En general, se van a usar cookies para mantener estado (sesión) entre llamadas a la API. Hay que explicar la relación de REST con esto, dado que en REST se supone que no hay estado entre llamadas a la API (no hay sesión). Cuando se usan cookies, lo que ocurre es que cada llamada lleva un parámetro (la cookie, como cabecera) que permite que el recurso que recibe la llamada pueda dirigirse al estado adecuado (el que corresponde al navegador que hace la llamada). De esta forma, en realidad cada recurso proporciona distintos estados según la cookie.
+\end{itemize}
+
+Sobre esta base, puede verse que, por ejemplo, la API descrita en el apartado anterior cumple bastante bien los principios REST (en general está diseñada en torno a recursos, con recursos homogéneos agrupados en colecciones, evitando que los recursos correspondan con acciones). Sin embargo, habría que explicar al menos cómo no se usa PUT y DELETE, y el papel de las cookies.
+
+\textbf{Modelos. Escenario usuarios autenticados}
+
+Para que sólo los usuarios autenticados puedan eliminar un alimentador de la lista de alimentadores que ven, habría que tener una tabla que ligue los alimentadores con los usuarios que los han eliminado. Para ello, pueden usarse al menos dos estrategias (supongamos que la tabla de usuarios está representada por el modelo User, y la de alimentadores, Feeder):
+
+\begin{itemize}
+\item Nuevo modelo (Removed), con dos campos. Ambos serán ForeignKeyField, apuntando a User y Feeder.
+\item Nuevo campo (removed), que sera un ManyToManyField, en la tabla Feeder, apuntando al modelo User.
+\end{itemize}
+
+En ambos casos, esto supondrá que se creará una nueva tabla como la descrita anteriormente. Para saber qué alimentadores habría que mostrar a un usuario:
+
+\begin{itemize}
+\item En el primer caso, se filtraría la tabla Feeder excluyendo aquellos alimentadores que estén también en la tabla Removed apuntando al usuario en cuestión.
+\item En el segundo caso, se filtraría la tabla Feeder excluyendo aquellos alimentadores cuyo campo removed apunte al usuario en cuestión.
+\end{itemize}
+
+\textbf{Modelos. Escenario visitantes}
+
+Para hacer algo similar con visitantes, se puede seguir la misma estrategia anterior, pero con la tabla de sesiones, en lugar de con la tabla de usuarios (por lo tanto, habría al menos las dos mismas soluciones que se explican anteriormente). De todas formas, para contestar completamente bien el ejercicio, hay que tener en cuenta que si el visitantes se ha autenticado, sus selecciones pasan a ser del usuario. Por ello, en realidad habría que realizar también lo descrito en el apartado anterior. Así pues, al eliminar un alimentador:
+
+\begin{itemize}
+\item Si se elimina por un usuario no autenticado, se añadiría una relación desde la sesión hacia ese alimentador.
+\item Si se elimina por un usuario autenticado, se añadiría una relación desde el usuario hacia ese alimentador (igual que en el apartado anterior).
+\end{itemize}
+
+De esta manera, los alimentadores a mostrar serían:
+
+\begin{itemize}
+\item Si el visitante no está autenticado, los que no hayan sido eliminados desde su sesión.
+\item Si el visitante está autenticado, los que no hayan sido eliminados desde su usuario.
+\end{itemize}
+  
+\subsubsection{Rúbrica calificación}
+
+En general, se descuenta por errores de concepto, por explicaciones que muestran errores de comprensión de conceptos de la asignatura, o por elementos importantes que faltan en la respuesta. El siguiente detalle es sólo orientativo.
+
+\begin{itemize}
+\item API HTTP:
+  \begin{itemize}
+  \item Faltan recursos necesarios de la API (/info, /banner, /style.css, foto del usuario, etc): -0.1 (cada uno)
+  \item Faltan descripciones, o son incorrectas: -0.1 (cada una)
+  \item Faltan acciones (GET o POST), o son incorrectas: -0.1 (cada una)
+  \end{itemize}
+\item REST:
+  \begin{itemize}
+  \item No se explica la parte que cumple REST: entre -0.1 y -0.2
+  \item No se explica el uso de POST en lugar de PUT o DELETE: -0.1
+  \item No se explica el papel de las colecciones: -0.1
+  \item No se explica el papel de las cookies en el mantenimiento de estado entre llamadas: -0.1
+  \item No se analizan los recursos que corresponden más a funciones que a recursos: -0.1
+  \end{itemize}
+\item Modelos:
+  \begin{itemize}
+  \item Esquema que no puede funcionar. Por ejemplo, usar one2one donde debería ser foreignkey: -0.3
+  \item No usar modelos, sino otras cosas (listas, cookies, etc.) para la solución: -0.3
+  \item No tener en cuenta algún detalle (por ejemplo, las sesiones sin autenticar) cuando eso es relevante: -0.2
+  \item No explicar al menos un poco cómo se usarían los modelos o cambios a los modelos propuestos: -0.2
+  \end{itemize}
+\item Todos los escenarios HTTP:
+  \begin{itemize}
+  \item Falta banner, CSS: -0.1 cada uno
+  \item No coincide con API HTTP: -0.2
+  \item Faltan interacciones ``importantes'': -0.2
+  \item Content-Type mal: -0.1
+  \item No funciona: -0.4
+  \item Faltan cookies ``auxiliares'' (ej: CSRF): -0.1
+  \item Faltan (o sobran) cookies importantes (ej: autenticación): -0.2
+  \item Falta la descripción del cuerpo, qs, etc: -0.2
+  \item No se consideran errores relativos al favicon.
+  \end{itemize}
+\item Escenarios de acceso a base de datos:
+  \begin{itemize}
+  \item No acceder a usuario cuando hace falta: -0.3
+  \item No actualizar o consultar datos fundamentales: -0.4
+  \item No actualizar o consultar datos accesorios: -0.2
+  \item No acceder para comprobar sesión (lo hace Django): -0.2
+  \item No se considera error si se llevan cuentas de totales a mano.
+  \end{itemize}
+\item Acceso desde redes inseguras:
+  \begin{itemize}
+  \item Se considera seguro poner usuario y contraseña: -0.55
+  \item Se considera seguro exponer la cookie: -0.55
+  \end{itemize}
+\item Escenarios de trazador:
+  \begin{itemize}
+  \item No se tienen en cuenta las caches del navegador: -0.3
+  \item No se tiene en cuenta que la url del banner no cambia (cuando es el caso): -0.3
+  \item No se explica el papel de las cookies para las visitas únicas: -0.3
+  \item no se tiene en cuenta que el JSON no supone descarga del banner: -0.3
+  \item Todo ello matizado por el conocimiento general sobre el mecanismo de trazado con elementos HTML.
+  \end{itemize}
+\end{itemize}
+
