@@ -1,0 +1,298 @@
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de IST-SAT, 1 de junio de 2021}
+
+Se quiere construir un sitio web, Comentam.os, donde se puede comentar cualquier tema de actualidad. La funcionalidad básica del sitio es la siguiente:
+
+\begin{enumerate}
+\item Toda la funcionalidad del sitio está disponible para cualquier visitante: no hay cuentas, ni hace falta acreditarse para tener acceso a la funcionalidad que proporciona.
+
+\item La página principal del sitio mostrará el listado con las noticias subidas durante las últimas 24 horas. Para cada una de ellas se mostrará el título (que será un enlace a la página de la noticia en Comentam.os), y el número de comentarios que ha recibido esa noticia.
+
+\item Además, la página principal también tendrá un formulario para subir una nueva noticia, con dos campos: uno para poner el título de la noticia, y otro para poner el enlace a la noticia en el sitio web donde aparece.
+
+\item La página de cada noticia incluye el título de la noticia (que será un enlace a la noticia en el sitio web donde aparece), y todos los comentarios puestos para esa noticia, junto con la fecha en que fueron puestos. Además, tendrá también un formulario para poner un comentario, con un solo campo de texto, para escribir el comentario. También incluirá un enlace para descargarse el mismo contenido (título de la noticia, enlace al sitio web donde aparece, contenido y fecha de todos los comentarios de la noticia) en formato JSON.
+
+\item Cuando un visitante suba una noticia, no podrá subir otra hasta que pasen 24 horas. Cada visitante podrá poner sólo un comentario por noticia (pase el tiempo que pase).
+
+\item Todas las páginas HTML del sitio incluyen una imagen de 1 pixel, servida por el sitio Trazad.or. Todas estas imágenes se sirven desde la misma url.
+
+\item Todas las páginas HTML del sitio usarán un único documento CSS, servido por el propio sitio, que definirá el estilo de todas ellas de forma uniforme.
+\end{enumerate}
+
+En esta descripción, considérese que un ``visitante'' corresponde con un cierto navegador, con su propio almacén de cookies. Esto es, una misma persona que use dos navegadores distintos, cada uno con su propio almacén de cookies, será considerada como dos visitantes, mientras que varias personas usando el mismo navegador, con un único almacén de cookies para todas ellas, serán consideradas como un único visitante.
+
+\newpage
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas urls (no se usarán los métodos PUT o DELETE). \textbf{Muy importante:} Coloca la información en una \textbf{tabla}, con los nombres de los recursos en una columna, los métodos en otra, la descripción de lo que realizará la aplicación al recibirlos en la tercera, y el contenido de los datos de la petición, si los hay en la cuarta (se consideran datos de la petición a los que vayan, normalmente como \emph{query string}, en el cuerpo de la petición HTTP o tras el nombre de recurso en la primera línea de la cabecera). Escribe también un fichero similar al fichero urls.py de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior. (1 punto)
+
+\item Describe el modelo de datos que necesitará esta aplicación. Define las tablas necesarias y los campos necesarios para la funcionalidad descrita. Asegúrate de que incluyes en el modelo de datos los campos o tablas necesarios para garantizar que cada visitante sólo sube las noticias o comentarios que tiene permitido subir. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero models.py en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones). (1 punto)
+
+\item Explica cómo debería ser la cookie o cookies que envíe Comentam.os a cada navegador, de forma que permita asegurar la funcionalidad indicada. Explica qué campos tendría o tendrían (los mínimos posibles), cuándo habría que enviarla (o enviarlas), siendo siempre el envío lo más tarde posible en las interacciones entre cada navegador (visitante) y Comentam.os, y para qué serviría. Sólo se ha de enviar cookies cuando sirvan para la funcionalidad descrita en este enunciado.(1 punto)
+  
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza cuando un visitante está viendo en su navegador la página de una noticia. El visitante ve el formulario que hay en esta página, escribe en él un comentario, y pulsa el botón para enviarlo. El visitante recibe de nuevo la página de la noticia con el comentario en él. A continuación vuelve a rellenar el formulario, y lo vuelve a enviar. El escenario termina cuando el usuario ve en su navegador la nueva página que le ha llegado del servidor, con un mensaje indicando que no puede poner un comentario porque ya ha puesto uno en esa noticia.
+
+  Para cada interacción HTTP indica claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \item Si hubiera envío de datos de formulario, recuerda indicar de forma explícita dónde van esos datos, y si es posible, en qué formato.
+  \end{itemize}
+
+  Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
+  En general, para todas las interacciones descritas, considérese que la cache del navegador no se está usando, y que el navegador acepta cualquier cookie que se le envíe, y nunca la borra salvo que la cookie expire. (1 punto)
+
+\item Escribe el documento JSON que devolverá la página JSON de una noticia titulada ``La noticia más importante'', con url ``\texttt{https://notici.as/noticia-importante}'', y dos comentarios: ``Qué interesante'' y ``Pues a mi no me lo parece''. Para campo del documento JSON, indica de qué campo (y de qué tabla) procede, entre los que describiste en el apartado anterior sobre el modelo de datos. (1 punto)
+\end{enumerate}
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 1 (solución)}
+
+Tabla de recursos:
+\vspace{.4cm}
+
+\begin{tabular}{|l|l|l|l|}
+  \hline
+  Recurso & Método & Semántica & Datos \\ \hline\hline
+  /       & GET    & Página principal & \\
+  /       & POST   & Nueva noticia & \texttt{noticia="..."}\&\texttt{url="..."} \\
+  /\{id\_noticia\} & GET & Página de noticia & \\
+  /\{id\_noticia\} & POST & Nuevo comentario & \texttt{comentario="..."} \\
+  /\{id\_noticia\}.json & GET & Docuento JSON de la noticia & \\
+  /main.css & GET & Documento CSS &  \\
+  \hline
+\end{tabular}
+
+\vspace{.4cm}
+Fichero \texttt{urls.py}:
+
+\begin{verbatim}
+from django.urls import path
+from . import views
+
+urlpatterns = [
+  path('', views.index, name='index')
+  path('<id_noticia>', views.noticia, name='noticia')
+  path('<id_noticia>.json', views.noticia_json, name='noticia_json')
+  path('main.css', views.css, name='css')
+]
+\end{verbatim}
+
+No tiene que haber un recurso para la imagen que sirve Trazad.or, precismaente porque la sirve ese otro sitio web.
+
+El documento JSON podría servirse también si se invoca el recurso \texttt{/\{id\_noticia\}} con una query string (por ejemplo, \texttt{/\{id\_noticia\}?format=json}).
+
+\vspace{.4cm}\textbf{Rúbrica}
+
+Para estar correcto, el ejercicio ha de incluir tanto una tabla con un documento \texttt{urls.py} correctos, completos, y sin recursos innecesarios.
+
+Indicaciones aproximadas de errores:
+
+\begin{itemize}
+\item No hay columna de datos en la tabla, o está incorrecta: -0.2
+\item No hay recurso para documento CSS: -0.3
+\item No hay recurso para documento JSON: -0.3
+\item Hay recurso para la imagen servida por Trazad.or: -0.3
+\item No coincide la tabla con el fichero \texttt{urls.py}: -0.2
+\end{itemize}
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 2 (solución)}
+
+Hay varias soluciones, una podría ser:
+
+\begin{verbatim}
+from django.db import models
+
+class Sesion (models.Model):
+  id = models.CharField(max_lenght = 50)
+
+class Noticia (models.Model):
+  titulo: models.CharField(max_lenght = 80)
+  url: models.URLField()
+  autor: models.ForeignKey('Sesion')
+  fecha: models.DateTimeField()
+
+class Comentario (models.Model):
+  texto: models.charField(max_lenght = 500)
+  noticia: models.ForeignKey('Noticia')
+  autor: models.ForeignKey('Sesion')
+  fecha: models.DateTimeField()
+\end{verbatim}
+
+La tabla \texttt{Sesion} se usa para llevar cuenta de los visitantes (navegadores distintos), y su id será el valor de la cookie que se les envíe.
+
+La tabla \texttt{Noticia} incluye un campo \texttt{autor} para saber qué visitante puso la noticia, y un campo \texttt{fecha} para poder comprobar que un mismo visitante no puso una noticia durante las últimas 24 horas. Alternativamenete, se podría poner un campo \texttt{ultima\_publicacion} en \texttt{Sesion}, pero dado que necesitamos un campo fecha para saber qué noticias se han publicado durante las últimas 24 horas (necesario para la página principal), es más ``económico'' organizarlo así.
+
+La tabla \texttt{Comentario} incluye referencias a la noticia en la que está (para poderlo mostrar en su página) y al visitante que lo puso (para poder comprobar que no vuelva a poner un comentario en la misma noticia). También incluye un campo fecha que sería necesario para poder ordenar los comentarios por antiguedad en la página de la noticia, pero esto no está estrictamente pedido por el enunciado, así que es correcto no ponerlo.
+
+\vspace{.4cm}\textbf{Rúbrica}
+
+\begin{itemize}
+\item No están las tres tablas (y no sé ve cómo cumplir el enunciado): -0.7
+\item Las referencias están al revés en \texttt{Comentario} (ej: \texttt{Comentario} desde \texttt{Noticia}): -0.2
+\item \texttt{Noticia} no permite discriminar autor: -0.2
+\item \texttt{Noticia} no permite controlar 24 horas por autor: -0.2
+\item \texttt{Noticia} no permite seleccionar 24 horas: -0.1
+\item \texttt{Comentario} no permite discriminar autor: -0.2
+\item \texttt{Comentario} no permite discriminar noticia: -0.2
+\end{itemize}
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 3 (solución)}
+
+Basta con una cookie que se envíe a cada navegador cuando hagan la primera acción que modifique la base de datos (que será un POST). No hay que enviarla antes, porque las dos acciones que hay que controlar (no más de una noticia cada 24 horas, no más de un comentario por noticia) sólo se hacen en ese momento.
+
+Esta cookie podría tener una forma similar (como cabecera) similar a:
+
+\begin{verbatim}
+Set-Cookie: Visitante=xxx; Expires=Thu, 31 Dec 2200 23:59:59 GMT;
+\end{verbatim}
+
+siendo xxx un identificador único, aleatorio, y suficientemente grande.
+
+El campo \texttt{Expires} se añade para que la cookie no sea ``cookie de sesión'' (que dejaría de estar almacenada en en navegador cuando el navegador se cerrara), y dure lo suficiente en el navegador para que sirva a efectos prácticos.
+
+El valor de la cookie es el que se almacenará en el campo \texttt{id} del modelo  \texttt{Sesion}.
+
+\vspace{.4cm}\textbf{Rúbrica}
+
+\begin{itemize}
+\item No se explican los campos (o no se mencionan): -0.3
+\item El diseño de cookies no funciona en general: -0.8
+\item El diseño de cookies no funciona para algún caso: -0.4
+\item El diseño de cookies no es óptimo: -0.2
+\end{itemize}
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 4 (solución)}
+
+Todas las interacciones son entre el navegador y el sitio, salvo la que pide la imagen de un pixel, que tendrá lugar entre el navegador y el sitio Trazad.or. Como el servidor ha podido enviar una cookie antes, si este navegador ha puesto ya una noticia o un comentario (y no lo sabemos, pues el enunciado no lo dice), sirven tanto soluciones donde en el POST (primera acción en este escenario) se envía ya una cookie que se tenía, o no se envía, y en ese caso se recibe. En esta solución, se supone que la cookie ya se tenía.
+
+\begin{itemize}
+
+\item Petición POST a la página de una noticia, para subir un comentario. Suponemos que \texttt{/435} es el recurso que sirve la página de la noticia que está viendo el visitante. 
+
+\begin{verbatim}
+  POST /435 HTTP/1.1
+  Cookie: Visitante=xxx
+  ...
+
+  comentario="Este es el comentario"
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página de la noticia, HTML]
+\end{verbatim}
+
+\item Petición de la hoja de estilo CSS que incluye la página CSS (suponemos que no se usa la cache):
+
+  \begin{verbatim}
+  GET /main.css HTTP/1.1
+  Cookie: Visitante=xxx
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Documento CSS]
+\end{verbatim}
+
+\item Petición de la imagen de un pixel, a Trazad.or. Podría llevar cookies, pero como no son necesarias para satisfacer el enunciado, no se incluyen:
+
+  \begin{verbatim}
+  GET /imagen.png HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen, PNG]
+\end{verbatim}
+  
+\item Nueva petición POST a la página de una noticia, para subir otro comentario.
+
+\begin{verbatim}
+  POST /435 HTTP/1.1
+  Cookie: Visitante=xxx
+  ...
+
+  comentario="Este es otro comentario"
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 403 Forbidden
+  ...
+
+  [Página de la noticia, con mensaje de error, HTML]
+\end{verbatim}
+
+\item Petición del documento CSS \texttt{/main.css}, igual que antes.
+
+\item Petición de la imagen \texttt{/imagen.png} a Trazad.or, igual que antes.
+\end{itemize}
+
+\vspace{.4cm}\textbf{Rúbrica}
+
+Se espera que las interacciones sean correctas, incluyan todos los campos indicados, y las cookies sean correctas y consistentes con el ejercicio anterior.
+
+\begin{itemize}
+\item Interacciones no consistentes con primer ejercicio: -0.3
+\item Faltan datos en la respuesta: -0.4
+\item Falta interacción para CSS: -0.3
+\item Falta interacción para imagen: -0.3
+\item Faltan interacciones para segundo POST: -0.4
+\item Cookies diferentes de ejercicio anterior, e incorrectas: -0.3
+\item Cookies diferentes de ejercicio anterior, y correctas: -0.2
+\item No hay cookies enviadas por el navegador a Comentam.os: -0.3
+\item Hay cookies enviadas por Comentam.os: -0.3
+\item Hay cookie en intercción con Trazad.or: -0.2
+\item Se violan reglas de funcionamiento de cookies (ej: se envía una cookie que no se ha recibido, o un navegador inicia una cookie): -0.4
+\end{itemize}
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 5 (solución)}
+
+\begin{verbatim}
+{"titulo": "La noticia mas importante",
+ "url": "https://notici.as/noticia-importante",
+ "comentarios": [{"texto": "Que interesante",
+                  "fecha": "..."}
+                 {"texto": "Pues a mi no me lo parece",
+                  "fecha": "..."}]
+}
+\end{verbatim}
+
+\texttt{titulo} y \texttt{url} se obtienen del modelo \texttt{Noticia},
+\texttt{texto} y \texttt{fecha} de \texttt{Comentario}.
+
+\vspace{.4cm}\textbf{Rúbrica}
+
+\begin{itemize}
+\item Uso incorrecto de listas o diccionarios: -0.3
+\item Anidamiento excesivo: -0.3
+\item No es JSON: -0.6
+\end{itemize}

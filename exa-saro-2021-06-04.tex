@@ -1,0 +1,308 @@
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de ITT-SARO, 6 de junio de 2021}
+
+Se quiere construir un sitio web, Vide.os, donde se puede votar cualquier vídeo de YouTube. La funcionalidad básica del sitio es la siguiente:
+
+\begin{enumerate}
+\item Toda la funcionalidad del sitio está disponible para cualquier visitante: no hay cuentas, ni hace falta acreditarse para tener acceso a la funcionalidad que proporciona.
+
+\item La página principal del sitio mostrará el listado con los 10 vídeos con más votos en cada momento. Para cada una de ellos se mostrará el título (que será un enlace a la página del vídeo en Vide.os), y el número de votos que ha recibido ese vídeo.
+
+\item Además, la página principal también tendrá un formulario para subir el enlace a un nuevo vídeo, con dos campos: un enlace a un vídeo en YouTube, y un nombre de visitante. A partir del enlace, Vide.os obtendrá de YouTube el título del vídeo en cuestión, usando la API de YouTube. También habrá un formulario con un campo para poner un nombre de visitante, y un botón para votar el video. El campo para poner el nombre de visitante sólo aparecerá si el visitante no ha rellenado un campo de nombre de visitante antes: en caso de que lo haya hecho, aparecerá ese nombre, y no podrá cambiarse. Al pulsar el botón para votar se enviará el voto, y en su caso, el nombre. Si un visitante pulsa el botón en un video que ya ha sido votado por ese mismo visitante, no se contabilizará el voto. No se aceptarán enlaces a vídeos de visitantes que no hayan rellenado el campo de nombre de visitante (o ya tuvieran nombre).
+
+\item La página de cada vídeo incluye el título del vídeo (que será un enlace a el vídeo en YouTube), el listado de los nombres de visitante de todos los que han votado el vídeo, y un formulario para poner el nombre de visitante sólo aparecerá si el visitante no ha rellenado un campo de nombre de visitante antes: en caso de que lo haya hecho, aparecerá ese nombre, y no podrá cambiarse. No se aceptarán votos de visitantes que no hayan rellenado el campo de nombre de visitante.
+
+\item Puede ocurrir que dos o más visitantes elijan el mismo nombre de visitante: simplemente, tendremos un nombre repetido.
+
+\item No se permitirá que el mismo enlace a un vídeo sea subido por más de un visitante. Tampoco que un mismo visitante vote más de una vez a un vídeo.
+
+\item Todas las páginas HTML del sitio incluyen una imagen de 1 pixel, servida por el sitio Trazad.or. Cada una de estas imágenes se sirve con una url diferente si está en una página diferente, pero igual si está en la misma página.
+
+\item Todas las páginas HTML del sitio usarán un único documento CSS, servido por el propio sitio, que definirá el estilo de todas ellas de forma uniforme.
+
+\item Vide.os servirá también un documento XML con el listado completo de vídeos, indicando para cada uno de ellos su url, su título, y el número de votos, ordenador por fecha de último voto.
+\end{enumerate}
+
+En esta descripción, considérese que un ``visitante'' corresponde con un cierto navegador, con su propio almacén de cookies. Esto es, una misma persona que use dos navegadores distintos, cada uno con su propio almacén de cookies, será considerada como dos visitantes, mientras que varias personas usando el mismo navegador, con un único almacén de cookies para todas ellas, serán consideradas como un único visitante.
+
+\newpage
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas urls (no se usarán los métodos PUT o DELETE). \textbf{Muy importante:} Coloca la información en una \textbf{tabla}, con los nombres de los recursos en una columna, los métodos en otra, la descripción de lo que realizará la aplicación al recibirlos en la tercera, y el contenido de los datos de la petición, si los hay en la cuarta (se consideran datos de la petición a los que vayan, normalmente como \emph{query string}, en el cuerpo de la petición HTTP o tras el nombre de recurso en la primera línea de la cabecera). Escribe también un fichero similar al fichero urls.py de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior. (1 punto)
+
+\item Describe el modelo de datos que necesitará esta aplicación. Define las tablas necesarias y los campos necesarios para la funcionalidad descrita. Asegúrate de que incluyes en el modelo de datos los campos o tablas necesarios para garantizar que cada video sólo se sube una vez, y que cada visitante vota como mucho una vez un video dado. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero models.py en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones). Para este modelo de datos, supóngase que el nombre de visitante se gestionará en esta base de datos. (1 punto)
+
+\item Explica si sería posible usar una cookie para gestionar el nombre de visitante en lugar de almacenarlo en la base de datos. Esto es, si usando la cookie como almacén de datos, podríamos poner el nombre de visitante en él, en lugar de en uno o varios registros de la base de datos. Si crees que sería posible, explica cómo y cuándo se crearía esta cookie, y qué cambios habría que hacer al modelo de datos que has diseñado para el apartado anterior. Si crees que no, explica por qué. En cualquier caso, indica claramente si crees que se puede, o que no se puede.
+  
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza cuando un visitante está viendo en su navegador la página principal del sitio. El visitante ve el formulario que hay en esta página, escribe en él la url de un vídeo de YouTube, y pulsa el botón para enviarlo. El visitante recibe de nuevo la página principal, ya con el nuevo vídeo en ella. A continuación, pulsa sobre el enlace de ese vídeo. El escenario termina cuando el usuario ve en su navegador la nueva página que le ha llegado del servidor, con la página del vídeo.
+
+  Para cada interacción HTTP indica claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \item Si hubiera envío de datos de formulario, recuerda indicar de forma explícita dónde van esos datos, y si es posible, en qué formato.
+  \end{itemize}
+
+  Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
+  En general, para todas las interacciones descritas, considérese que la cache del navegador no se está usando, y que el navegador acepta cualquier cookie que se le envíe, y nunca la borra salvo que la cookie expire.
+
+  Para este apartado, considera que el nombre de visitante se almacena en la base de datos, no en una cookie. (1 punto)
+  
+\item ¿Podría el sitio Trazad.or conocer qué páginas de Vide.os está visitando cada visitante de Vide.os, aunque no sepa a qué persona concreta corresponde? Explica cómo podría hacerlo, incluyendo (si fuera relevante) el intercambio de cookies, las cabeceras HTTP imprescindibles, y cualquier otro detalle que te parezca relevante. (1 punto)
+\end{enumerate}
+
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 1 (solución)}
+
+Tabla de recursos:
+\vspace{.4cm}
+
+\begin{tabular}{|l|l|l|l|}
+  \hline
+  Recurso & Método & Semántica & Datos \\ \hline\hline
+  /       & GET    & Página principal & \\
+  /       & POST   & Nuevo video & \texttt{nombre="..."}\&\texttt{url="..."} (*) \\
+  /\{id\_video\} & GET & Página de un video & \\
+  /\{id\_video\} & POST & Nuevo voto & \texttt{nombre="..."} (*) \\
+  /todo.xml & GET & Docuento XML & \\
+  /main.css & GET & Documento CSS &  \\
+  \hline
+\end{tabular}
+
+(*) El campo \texttt{nombre} sólo es necesario la primera vez que un visitante invoque POST, pero tampoco hace daño si se incluye el nombre siempre (en ese caso deberá coincidir con el que el visitante especificó la primera vez, pero el enunciado no dice qué hacer si no coinciden).
+
+\vspace{.4cm}
+Fichero \texttt{urls.py}:
+
+\begin{verbatim}
+from django.urls import path
+from . import views
+
+urlpatterns = [
+  path('', views.index, name='index')
+  path('<id_video>', views.video, name='video')
+  path('main.css', views.css, name='css')
+  path('todo.xml', views.todo, name='xml')
+]
+\end{verbatim}
+
+No tiene que haber un recurso para la imagen que sirve Trazad.or, precismaente porque la sirve ese otro sitio web.
+
+El documento XML podría servirse también si se invoca el recurso / con una query string (por ejemplo, \texttt{/?format=xml}).
+
+\vspace{.4cm}\textbf{Rúbrica}
+
+Para estar correcto, el ejercicio ha de incluir tanto una tabla con un documento \texttt{urls.py} correctos, completos, y sin recursos innecesarios.
+
+Indicaciones aproximadas de errores:
+
+\begin{itemize}
+\item No hay columna de datos en la tabla, o está incorrecta: -0.2
+\item No hay recurso para documento CSS: -0.3
+\item No hay recurso para documento XML: -0.3
+\item Hay recurso para la imagen servida por Trazad.or: -0.3
+\item No coincide la tabla con el fichero \texttt{urls.py}: -0.2
+\end{itemize}
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 2 (solución)}
+
+Hay varias soluciones, una podría ser:
+
+\begin{verbatim}
+from django.db import models
+
+class Visitante (models.Model):
+  id = models.CharField(max_lenght = 50)
+  nombre = models.CharField(max_lenght = 30)
+
+class Video (models.Model):
+  titulo: models.CharField(max_lenght = 80)
+  url: models.URLField()
+
+class Voto (models.Model):
+  video: models.ForeignKey('Video')
+  autor: models.ForeignKey('Visitante')
+  fecha: models.DateTimeField()
+\end{verbatim}
+
+La tabla \texttt{Sesion} se usa para llevar cuenta de los visitantes (navegadores distintos), y su id será el valor de la cookie que se les envíe. El campo \texttt{nombre} será el nombre del visitante, si ya lo ha especificado.
+
+La tabla \texttt{Video} almacena el título y la url de todos los videos. Nonecesita un campo que apunte a \texttt{Visitante} porque no se usa para nada el visitante que subió un video. Podría incluirse uno \texttt{fecha}, con la fecha del último voto, como se explica a continuación (si no se incluye fecha en \texttt{Voto}. Se podría poner un campo \texttt{votos}, con el número de votos del video, pero este número se puede obtener fácilmente de la tabla \texttt{Voto}, contando los que apunten (tengan como ``foreign key'') el video en cuestión.
+
+La tabla \texttt{Voto} incluye referencias al video al que se vota, y al visitante que lo ha votado. También incluye un campo \texttt{fecha} que sería necesario para poder ordenar los votos por la fecha del último voto en el documento XML. También se podria utilizar un campo similar en \texttt{Video}, que se actualizaría cada vez que se vote un video.
+
+\vspace{.4cm}\textbf{Rúbrica}
+
+\begin{itemize}
+\item No están las tres tablas (y no sé ve cómo cumplir el enunciado): -0.7
+\item Las referencias están al revés en \texttt{Voto} (ej: \texttt{Voto} desde \texttt{Video}): -0.2
+\item \texttt{Voto} no permite discriminar autor: -0.2
+\item \texttt{Voto} no permite discriminar video: -0.2
+\item \texttt{Voto} o \texttt{Video} no permitem saber fecha de último voto, o está repetido en los dos: -0.2
+\end{itemize}
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 3 (solución)}
+
+Sí sería posible. Bastaría con que, tras el POST donde Vide.os recibe el nombre de un visitante, éste le devuelva una cookie \texttt{nombre="..."}. Cada vez que, a partir de ese momento, ese navegador haga una petición a Vide.os, enviará (además de la cookie de visitante), esta cookie, con lo que Vide.os podrá saber que el visitante ya tiene nombre, y cuál es éste.
+
+Esta cookie podría ser enviada por Vide.os en una cabecera similar a:
+
+\begin{verbatim}
+Set-Cookie: nombre=xxx; Expires=Thu, 31 Dec 2200 23:59:59 GMT;
+\end{verbatim}
+
+siendo xxx el nombre elegido por el visitante.
+
+El campo \texttt{Expires} se añade para que la cookie no sea ``cookie de sesión'' (que dejaría de estar almacenada en en navegador cuando el navegador se cerrara), y dure lo suficiente en el navegador para que sirva a efectos prácticos.
+
+En caso de que se incluyese esa cookie, no haría falta el campo \texttt{nombre} del modelo \texttt{Visitante}. Seguiría haciendo falta la cookie de visitante, ya que el nombre no nos sirve para identificar un visitante de forma única (dos visitantes podrían elegir el mismo nombre).
+
+\vspace{.4cm}\textbf{Rúbrica}
+
+\begin{itemize}
+\item Se indica que no se puede, sin explicación que lo pueda mitigar: -1.0
+\item No se explican el campo que se elimina del modelo (o no se mencionan): -0.3
+\item El diseño de cookies no funciona en general: -0.8
+\item El diseño de cookies no funciona para algún caso: -0.4
+\item El diseño de cookies no es óptimo: -0.2
+\end{itemize}
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 4 (solución)}
+
+Todas las interacciones son entre el navegador y el sitio, salvo la que pide la imagen de un pixel, que tendrá lugar entre el navegador y el sitio Trazad.or. Como según el enunciado el usuario sólo pone en el formulario la url, y el video correspondiente es aceptado, tenemos que entender que ya había puesto antes el nombre, por lo que ya tendrá una cookie de visitante, que se le dio en ese momento. Por lo tanto, la envía en todas las interacciones con Vide.os. No hace falta que el servidor envíe cookies, pues esta de visitante será suficiente, y no hace falta cambiarle el valor.
+
+\begin{itemize}
+
+\item Petición POST a la página principal, para subir la url de un video. Suponemos que \texttt{yyy} es la url del video, y \texttt{/435} es el recurso que sirve la página de este video una vez ha sido aceptado. 
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  Cookie: Visitante=xxx
+  ...
+
+  url="yyy"
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página principal, con el nuevo video, HTML]
+\end{verbatim}
+
+\item Petición de la hoja de estilo CSS que incluye la página CSS (suponemos que no se usa la cache):
+
+  \begin{verbatim}
+  GET /main.css HTTP/1.1
+  Cookie: Visitante=xxx
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Documento CSS]
+\end{verbatim}
+
+\item Petición de la imagen de un pixel, a Trazad.or. Podría llevar cookies, pero como no son necesarias para satisfacer el enunciado, no se incluyen:
+
+  \begin{verbatim}
+  GET /principal.png HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen, PNG]
+\end{verbatim}
+  
+\item Petición GET, ahora a la página del video, para verla.
+
+\begin{verbatim}
+  GET /435 HTTP/1.1
+  Cookie: Visitante=xxx
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página del video, HTML]
+\end{verbatim}
+
+\item Petición del documento CSS \texttt{/main.css}, igual que antes.
+
+\item Petición de la imagen a Trazad.or, será a un nuevo recurso (según el enunciado, cada página de Vide.os tiene una imagen de Trazad.or distinta):
+
+  \begin{verbatim}
+  GET /435.png HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen, PNG]
+\end{verbatim}
+  
+\end{itemize}
+
+Hay también una interacción entre Video.os y YouTube, para obtener el título del video a partir de su url. Pero no se incluye, porque el enunciado pide sólo las interacciones HTTP entre el navegador y cualquier servidor, y en esta no interviene el navegador.
+
+\vspace{.4cm}\textbf{Rúbrica}
+
+Se espera que las interacciones sean correctas, incluyan todos los campos indicados, y las cookies sean correctas y consistentes con el ejercicio anterior.
+
+\begin{itemize}
+\item Interacciones no consistentes con primer ejercicio: -0.3
+\item Faltan datos en la respuesta: -0.4
+\item Falta interacción para CSS: -0.3
+\item Falta interacción para imagen: -0.3
+\item Faltan interacciones para segundo GET: -0.3
+\item Cookies diferentes incorrectas: -0.3
+\item No hay cookies enviadas por el navegador a Comentam.os: -0.3
+\item Hay cookies enviadas por Comentam.os: -0.2
+\item Hay cookie en intercción con Trazad.or: -0.2
+\item Las dos peticiones a Trazad.or son del mismo recurso: -0.3
+\item Se violan reglas de funcionamiento de cookies (ej: se envía una cookie que no se ha recibido, o un navegador inicia una cookie): -0.4
+\end{itemize}
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 5 (solución)}
+
+Sí. Cada vez que el visitante recibe una página de Vide.os el navegador hace una petición de un recurso de Trazad.or, y el recurso solicitado es distinto para cada recurso distinto solicitado de Vide.os. Si Trazad.or envía una cookie a cada navegador que le permita identificarle si vuelve a hacerle una petición, Trazad.or puede apuntar en una tabla cada vez que recibe una petición de un cierto navegador, apuntando también qué recurso de Vide.os había solicitado (lo sabrá mirando el recurso que le han pedido a él). De esa tabla puede extraer la información que pide el enunciado.
+
+\vspace{.4cm}\textbf{Rúbrica}
+
+\begin{itemize}
+\item Se responde que no se puede, y la explicación no lo mitiga: -1.0.
+\item Se explica que sí, pero que sólo se puede saber el número de páginas pedidas, o que se han pedido algunas páginas pero no se sabe cuál: -0.5
+\item No se menciona que Trazad.or ha de enviar su propia cookie, o no se explica bien: -0.5
+\end{itemize}
