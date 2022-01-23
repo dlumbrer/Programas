@@ -1,0 +1,1048 @@
+%%
+%% $Revision: $"
+%%
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{url}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+  }
+
+\title{Servicios Telemáticos \\
+Grado en Ingeniería en Tecnologías de Telecomunicación \\
+Programa del curso 2020/2021}
+\author{Jesús M. González Barahona, Gregorio Robles Martínez, Francisco Servant \\
+GSyC, Universidad Rey Juan Carlos}
+
+%\date{}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\section{Datos generales}
+
+\begin{tabular}{ll}
+\textbf{Título:} & Servicios Telemáticos \\
+\textbf{Titulación:} & Grado en Ingeniería en Tecnologías de Telecomunicación \\
+\textbf{Cuatrimestre:} & Tercer curso, segundo cuatrimestre \\
+\textbf{Créditos:} & 6 (3 teóricos, 3 prácticos) \\
+\textbf{Horas lectivas:} & 4 horas semanales \\
+\textbf{Horario:} & lunes, 11:00--13:00 \\
+                  & jueves, 11:00--13:00 \\
+\textbf{Profesores:}
+& Jesús M. González Barahona \\
+& \hspace{1cm}jgb @ gsyc.es \\
+& \hspace{1cm}Despacho 101, Departamental III\\
+& Gregorio Robles Martínez\\
+& \hspace{1cm}grex @ gsyc.es \\
+& \hspace{1cm}Despacho 110, Departamental III\\
+& Francisco Servant\\
+& \hspace{1cm}francisco.servant @ urjc.es \\
+& \hspace{1cm}Despacho 110, Departamental III\\
+\textbf{Sedes telemáticas:} & \url{https://aulavirtual.urjc.es} \\
+                            & \url{https://cursosweb.github.io} \\
+                            & \url{https://gitlab.etsit.urjc.es/cursosweb} \\
+\textbf{Aulas:} & Laboratorio 3208, Edif. Laboratorios III
+\end{tabular}
+
+\newpage
+
+%%-------------------------------------------------------------------------
+%%-------------------------------------------------------------------------
+%%-------------------------------------------------------------------------
+\section{Objetivos}
+
+En esta asignatura se pretende que el alumno obtenga conocimientos detallados sobre los servicios y aplicaciones comunes en las redes de ordenadores, y en particular en Internet. Se pretende especialmente que conozcan las tecnologías básicas que los hacen posibles.
+
+\section{Metodología}
+
+La asignatura tiene un enfoque eminentemente práctico. Por ello se realizará en la medido de lo posible en el laboratorio, y las prácticas realizadas (incluyendo especialmente el proyecto final) tendrán gran importancia en la evaluación de la asignatura. Los conocimientos teóricos necesarios se intercalarán con los prácticos, en gran media mediante metodologías apoyadas en la resolución de problemas. En las clases teóricas se utilizan, en algunos casos, transparencias que sirven de guión. En todos los casos se recomendarán referencias (usualmente documentos disponibles en Internet) para profundizar conocimientos, y complementarias de los detalles necesarios para la resolución de los problemas prácticos. En el desarrollo diario, las sesiones docentes incluirán habitualmente tanto aspectos teóricos como prácticos.
+
+Se usa un sistema de apoyo telemático a la docencia (aula virtual de la URJC) para realizar actividades complementarias a las presenciales, y para organizar parte de la documentación ofrecida a los alumnos. La mayoría de los contenidos utilizados en la asignatura están disponibles o enlazados desde el sitio web CursosWeb. Asimismo, se utiliza el servicio GitLab de la ETSIT como repositorio, tanto de los materiales de la asignatura, como para entregar las prácticas por parte de los alumnos.
+
+\newpage
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\section{Evaluación}
+
+% \subsection{Cambios excepcionales para el curso 2019-2020}
+
+% Debido a las circunstancias excepcionales de este curso académico, hemos tenido que realizar algunos cambios a los criterios de evaluación. Estos cambios suponen sólo un cambio en cuanto a cómo se realizarán alguna de las actividades evaluables, y en cuanto a sus condiciones y plazos de entrega. No suponen en general un cambio en los criterios de evaluación, salvo que se tratará de tener una visión más global de la evaluación de la asignatura, sabiendo que los alumnos se han podido tener que enfrentar a situaciones excepcionales, y que se hará un esfuerzo por asegurar que el alumno ha conseguido los objetivos personales de conocimiento y habilidad que se esperan en esta asignatura.
+
+% Los cambios son los siguientes:
+
+% \begin{itemize}
+% \item Se tendrán en cuenta las microprácticas diarias y las miniprácticas preparatorias aunque se hayan entregado con posterioridad a la fecha indicada. No se tendrán en cuenta exactamente igual que si se hubieran entregado en plazo, sino (aproximadamente) con un 75\% de valoración. Aún así se podrán conseguir notas cercanas a los dos puntos (que es máximo para el total de estas prácticas) en casos en que estén realizadas especialmente bien, o se hayan entregado prácticamente todas y bien realizadas.
+  
+% \item En lugar de la prueba de teoría se propondrán unas preguntas para evaluar el contenido más teórico, en relación a el proyecto final de cada alumno. Estas preguntas cubrirán conocimientos y habilidades similares a los evaluados normalmente con la prueba de teoría. Las preguntas se entregarán, vía indicaciones en el campus virtual, el miércoles 10 de junio, y tendrán una fecha límite de entrega de viernes 12 de junio (detalles en las condiciones de entrega de la practica final).
+
+% \item Se realizará una entrevista personal, vía videoconferencia, o si eso no fuera posible por otros medios, con el mayor número posible de alumnos. Estas entrevistas tendrán lugar en las fechas que se indica en el enunciado de el proyecto final. El objetivo de esta entrevista es evaluar que el alumno puede explicar, en el contexto de los conocimientos y habilidades necesarios para aprobar esta asignatura, lo que ha realizado tanto en el proyecto final como en su respuesta a las preguntas que se usan este curso para evaluar el contenido más teórico. el resultado de esta entrevista puede tener un gran impacto en la calificación final, por la vía de aclarar o invalidar las respuestas, o el proyecto final entregada. Es fundamental que el alumno pueda explicar y razonar cualquier aspecto de ambas, y hacerlo en el contexto de los conocimientos y habilidades de la asignatura.
+% \end{itemize}
+
+% Estos cambios se aplicarán tanto para la convocatoria ordinaria como para la extraordinaria. Para la práctica extraordinaria se publicarán nuevas fechas de entrega y entrevistas, y el enunciado de el proyecto final (que será similar, pero no igual, a la propuesta para la convocatoria ordinaria).
+
+\subsection{Criterios de evaluación}
+
+Parámetros generales:
+
+\begin{itemize}
+\item Teoría (obligatorio): 0 a 5.
+\item Microprácticas diarias: 0 a 1
+\item Miniprácticas preparatorias: 0 a 1
+\item Proyecto final (obligatorio): 0 a 2.
+\item Opciones y mejoras del proyecto final: 0 a 3
+\item Nota final: Suma de notas, moderada por la interpretación del profesor
+\item Mínimo para aprobar:
+      \begin{itemize}
+      \item aprobado en teoría (2.5) y proyecto final (1)
+      \item 5 puntos de nota final
+      \end{itemize}
+\end{itemize}
+
+Evaluación teoría: prueba escrita
+
+Evaluación microprácticas diarias (evaluación continua):
+
+\begin{itemize}
+\item entre 0 y 1
+\item preguntas y ejercicios en foro y entragados en GitLab
+\item es muy recomendable hacerlas
+\end{itemize}
+
+Evaluación proyecto final:
+
+\begin{itemize}
+\item posibilidad de examen presencial para proyecto final
+\item tiene que funcionar en el laboratorio
+\item enunciado mínimo obligatorio supone 1, se llega a 2 sólo con calidad y cuidado en los detalles
+\item realización individual de la práctica
+\end{itemize}
+
+Opciones y mejoras proyecto final:
+
+\begin{itemize}
+\item permiten subir la nota mucho
+\end{itemize}
+
+Evaluación extraordinaria:
+
+\begin{itemize}
+\item prueba escrita (si no se aprobó la ordinaria)
+\item nuevo proyecto final (si no se aprobó la ordinaria)
+\item entrega de ejercicios de evaluación continua (con penalización)
+\end{itemize}
+
+\newpage
+
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\section{Calendario}
+
+\newcommand{\lunesAnl}{24 de enero} % no lectivo
+\newcommand{\lunesB}{31 de enero}
+\newcommand{\lunesC}{7 de febrero}
+\newcommand{\lunesD}{14 de febrero}
+\newcommand{\lunesE}{21 de febrero}
+\newcommand{\lunesF}{28 de febrero}
+\newcommand{\lunesG}{7 de marzo}
+\newcommand{\lunesH}{14 de marzo}
+\newcommand{\lunesI}{21 de marzo}
+\newcommand{\lunesJ}{28 de marzo}
+\newcommand{\lunesK}{4 de abril}
+\newcommand{\lunesLnl}{11 de abril} % no lectivo
+\newcommand{\lunesMnl}{18 de abril} % no lectivo
+\newcommand{\lunesN}{25 de abril}
+\newcommand{\lunesOnl}{2 de mayo} % no lectivo
+\newcommand{\lunesP}{9 de mayo}
+
+\newcommand{\juevesA}{27 de enero}
+\newcommand{\juevesB}{3 de febrero}
+\newcommand{\juevesC}{10 de febrero}
+\newcommand{\juevesD}{17 de febrero}
+\newcommand{\juevesE}{24 de febrero}
+\newcommand{\juevesF}{3 de marzo}
+\newcommand{\juevesG}{10 de marzo}
+\newcommand{\juevesH}{17 de marzo}
+\newcommand{\juevesI}{24 de marzo}
+\newcommand{\juevesJ}{31 de marzo}
+\newcommand{\juevesK}{7 de abril}
+\newcommand{\juevesLnl}{14 de abril} % no lectivo
+\newcommand{\juevesM}{21 de abril}
+\newcommand{\juevesN}{28 de abril}
+\newcommand{\juevesO}{5 de mayo}
+\newcommand{\juevesPnl}{12 de mayo} % no lectivo
+
+\begin{tabular}{|l|l|}
+   \hline
+  Lunes & Jueves \\ \hline \hline
+                       & \nameref{cal:juevesA} \\ \hline
+  \nameref{cal:lunesB} & \nameref{cal:juevesB} \\ 
+  \nameref{cal:lunesBb} &                       \\  \hline
+  \nameref{cal:lunesC} & \nameref{cal:juevesC} \\ 
+  \nameref{cal:lunesCb} &  \\  \hline  
+  \nameref{cal:lunesD} & \nameref{cal:juevesD} \\
+  \nameref{cal:lunesDb} &  \\  \hline
+  \nameref{cal:lunesE} & \nameref{cal:juevesE} \\ \hline
+  \nameref{cal:lunesF} & \nameref{cal:juevesF} \\ \hline
+  \nameref{cal:lunesG} & \nameref{cal:juevesG} \\ 
+                       & \nameref{cal:juevesGb} \\ \hline
+  \nameref{cal:lunesH} & \nameref{cal:juevesH} \\  \hline
+  \nameref{cal:lunesI} & \nameref{cal:juevesI} \\
+  \nameref{cal:lunesIb} & \nameref{cal:juevesIb} \\ \hline
+  \nameref{cal:lunesJ} & \nameref{cal:juevesJ} \\
+                       & \nameref{cal:juevesJb} \\ \hline
+  \nameref{cal:lunesK} & \nameref{cal:juevesK} \\ \hline
+                       &                      \\ \hline
+                       & \nameref{cal:juevesM} \\ \hline
+  \nameref{cal:lunesN} & \nameref{cal:juevesN} \\ \hline
+                       & \nameref{cal:juevesO} \\ \hline
+  \nameref{cal:lunesP} &                      \\ \hline
+\end{tabular}
+
+\newpage
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\section{Programa de teoría}
+
+Programa de la asignatura (el detalle evoluciona según avanza el curso).
+
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{00 - Presentación}
+
+%%-----------------------------------------------------------------------
+\subsubsection{\juevesA: Presentación  (1.5 horas)}
+\label{cal:juevesA}
+
+\begin{itemize}
+\item \textbf{Presentación:} Presentación de la temática de la asignatura
+\item \textbf{Presentación:} Qué son las aplicaciones web del lado del servidor (``back-end'') y del lado del cliente (``front-end''), y cómo se relacionan.
+\item \textbf{Presentación:} Detalles de la asignatura: teoría y prácticas, estructura de las clases, evaluación, etc.
+\item \textbf{Presentación:} Materiales de la asignatura: sitios web y documentos fundamentales que tenéis a vuesrta disposición.
+\item \textbf{Material:} Transparencias, tema ``Presentación''.
+\item \textbf{Ejercicio propuesto (voluntario, entrega en el foro):} ``Web 2.0'' (ejercicio~\ref{subsec:web-20}) \\
+  Entrega recomendada: antes del \lunesB.
+\end{itemize}
+
+
+%%----------------------------------------------------------------------
+\subsection{01 - Conceptos básicos de aplicaciones web}
+
+%%------------------------------------------------------------------------
+\subsubsection{\juevesB: Conceptos básicos I (2 horas)}
+\label{cal:juevesB}
+
+Páginas dinámicas (diferentes según cómo y cuándo se invocan). Cómo realizar sesiones en HTTP. Profundización en el concepto de sesión, y técnicas para conseguirla, incluyendo cookies y otros mecanismos.
+
+\begin{itemize}
+\item \textbf{Ejercicio (presentación en clase):} ``Espía a tu navegador (Firefox Developer Tools)'' (ejercicio~\ref{subsec:firefox-devel}) \\
+  Centrado en la pestaña de ``Red''.
+\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Explora tus cookies'' (ejercicio~\ref{subsec:explora-cookies}) \\
+  Entrega recomendada: antes del \juevesC.
+\item \textbf{Ejercicio (presentación):} ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda})
+\end{itemize}
+
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesC: Conceptos básicos II (2 horas)}
+\label{cal:juevesC}
+
+Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persistente frente a caídas del servidor.
+
+\begin{itemize}
+\item Resolución de ejericios pendientes.
+\item \textbf{Ejercicio (presentación en clase):} ``Espía a tu navegador (Firefox Developer Tools)'' (ejercicio~\ref{subsec:firefox-devel}) \\
+  Centrado en la pestaña de ``Inspección''.
+\item \textbf{Presentación:} Cookies
+\item \textbf{Material:} Transparencias, tema ``Cookies''
+\item \textbf{Ejercicio (discusión en clase, entrega en el foro):} ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda}) \\
+  Entrega recomendada: antes del \juevesD. \\
+  Se introducen las dos solucines típicas: cookie con la pregunta, y cookie con un identificador más tabla en el servidor.
+\end{itemize}
+
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesD: Conceptos básicos III (2 horas)}
+\label{cal:juevesD}
+
+\begin{itemize}
+\item \textbf{Ejercicio (discusión en clase):} ``Última búsqueda'' (ejercicio~\ref{subsec:ultima-busqueda}) \\
+  Discusión sobre el uso de cookies (u otros mecanismos) para conseguir la funcionalidad requerida. Se discute también el almacenamiento en el lado del servidor y en el lado del cliente. Relación entre peticiones HTTP. Cookies como herramienta para ambas situaciones. Analogía con la agencia de viajes física. Cómo tienen que ser las cookies de identificación para que no sean fácilmente ``adivinables''. Introducción al uso de cookies para autenticación (sólo queda planteado)
+\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Explora tus cookies (2)'' (ejercicio~\ref{subsec:explora-cookies-2}) \\
+  Entrega recomendada: antes del \juevesE.
+\end{itemize}
+
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesE: Conceptos básicos IV (2 horas)}
+\label{cal:juevesE}
+
+\begin{itemize}
+\item \textbf{Ejercicio (discusión en clase):} ``Explora tus cookies (2)'' (ejercicio~\ref{subsec:explora-cookies-2}).
+\item \textbf{Discusión:} Usos de las cookies. \\
+  Uso de las cookies para identificación de visitantes (como en el ejercicio~\ref{subsec:ultima-busqueda}), para autenticación (interacción de autenticación y cookie de sesión posterior), para almacenamiento (como en el ejercicio~\ref{subsec:ultima-busqueda}, con última búsqueda en la cookie). Implicaciones de trasladar una cookie de identificación o de sesión de un ordenador a otro. Implicaciones de almacenar datos en el lado del navegador.
+\item \textbf{Ejercicio propuesto:} ``Cookies en tu navegador'' (ejercicio~\ref{subsec:cookies-navegador}) \\
+\item \textbf{Ejercicio propuesto:} ``Cookies en tu navegador avanzado'' (ejercicio~\ref{subsec:cookies-navegador-2}) \\
+\item \textbf{Ejercicio propuesto:} ``Contador simple'' (ejercicio~\ref{subsec:contador-simple})
+\item \textbf{Discusión de ejercicio:} ``cURL básico'' (ejercicio~\ref{subsec:curl-basico})
+\item \textbf{Discusión de ejercicio:} ``Depurador básico'' (ejercicio~\ref{subsec:depurador-basico})
+\item \textbf{Ejercicio propuesto (entrega en el foro:} ``Transplante de cookies'' (ejercicio~\ref{subsec:transplante-cookies}) \\
+  Entrega recomendada: antes del \juevesF.
+\end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesF: Conceptos básicos V (2 horas)}
+\label{cal:juevesF}
+
+\begin{itemize}
+\item \textbf{Discusión:} Medición de audiencias y visitas únicas por un sitio web.
+\item \textbf{Ejercicio propouesto (entrega en el foro):} ``Traza de historiales de navegación por terceras partes'' (ejercicio~\ref{subsec:navegacion-terceras-partes}) \\
+  Entrega recomendada: antes del \juevesG.
+\end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesG: Conceptos básicos VI (1 hora)}
+\label{cal:juevesG}
+
+\begin{itemize}
+\item Relación de traza de historias de navegación con identidades personales.
+\item \textbf{Ejercicio (demo):} ``Trackers en páginas web'' (ejercicio~\ref{subsec:trackers-paginas-web})  
+\item Presentación de la minipráctica 1 (enunciado en~\ref{subsec:practica-vol-1-2016})
+\end{itemize}
+
+%%----------------------------------------------------------------
+%%----------------------------------------------------------------
+\subsection{02 - Servicios web que interoperan}
+
+Invocaciones a aplicaciones web desde aplicaciones web. Servicios web como un conjunto de aplicaciones que interoperan.
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesG: Interoperación web I (1 hora)}
+\label{cal:juevesGb}
+
+\begin{itemize}
+\item \textbf{Ejercicio (discusión en clase):} ``Contador simple con varios 
+navegadores intercalados'' (ejercicio~\ref{subsec:contador-simple-varios-intercalados})
+\item \textbf{Discusión:} Introducción al problema de los rearranques.
+\item \textbf{Ejercicio (entrega en el foro):} ``Contador simple con rearranques'' (ejercicio~\ref{subsec:contador-simple-rearranques}).
+\end{itemize}
+
+%%----------------------------------------------------------------
+% \subsubsection{\juevesG: Interoperación web I (1 hora)}
+% \label{cal:juevesG}
+
+% \begin{itemize}
+% \item \textbf{Ejercicio (discusión en clase):} ``Contador simple con varios 
+% navegadores intercalados'' (ejercicio~\ref{subsec:contador-simple-varios-intercalados})
+% \item \textbf{Discusión:} Introducción al problema de los rearranques.
+% \item \textbf{Ejercicio (entrega en el foro):} ``Contador simple con rearranques'' (ejercicio~\ref{subsec:contador-simple-rearranques}).
+% \end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesH: Interoperación web II (2 horas)}
+\label{cal:juevesH}
+
+\begin{itemize}
+\item Introducción al diseño de APIs HTTP
+\item \textbf{Ejercicio (discusión en clase)}: ``Lista de la compra'' (ejercicio~\ref{subsec:lista-compra}). \\
+  Trabajo en grupos y discusión de los detalles del ejercicio.
+\item \textbf{Presentación:} Arquitectura REST
+\item \textbf{Material:} Transparencias, tema ``REST''
+%\item \textbf{Discusión de ejercicio:} ``Cache de contenidos'' (ejercicio~\ref{subsec:cache-contenidos}). \\
+%  Trabajo en grupos y discusión de los detalles del ejercicio.
+%  Repo GitLab: \url{https://gitlab.etsit.urjc.es/CursosWeb/X-Serv-App-Cache}
+\item \textbf{Ejercicio (presentación):} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).
+\end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesI: Interoperación web III (1 hora)}
+\label{cal:juevesI}
+
+\begin{itemize}
+\item \textbf{Discusión:} Introducción a las operaciones idempotentes.
+\item \textbf{Ejercicio (discusión en clase):} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}).  
+\item \textbf{Ejercicio (entrega en el foro):} ``Listado de lo que tengo en la nevera'' (ejercicio~\ref{subsec:contenido-nevera}) \\
+  Entrega recomendada: \juevesJ
+\end{itemize}
+
+
+%% \item \textbf{Ejercicio (discusión en clase, entrega en el foro):} ``Calculadora simple versión REST'' (ejercicio~\ref{subsec:calc-simple-rest}). \\
+%%   Entrega recomendada: antes del 16 de marzo. \\
+%%   Repo GitLab: \url{https://github.com/CursosWeb/X-Serv-App-Calculadora-REST}
+
+%%\item \textbf{Ejercicio (discusión en clase, entrega en GitLab):} ``Aplicación redirectora'' (ejercicio~\ref{subsec:aplweb-redirectora}). \\
+%%  Entrega recomendada: antes del 9 de marzo. \\
+%%  Repo GitLab: \url{https://github.com/CursosWeb/X-Serv-App-Redirectora}
+
+%% \item \textbf{Ejercicio (entrega en el foro):} ``Cache de contenidos anotado'' (ejercicio~\ref{subsec:cache-contenidos-anotado}) \\
+%%   Entrega recomendada: antes del 23 de marzo. \\
+%%   Repo GitLab: \url{https://github.com/CursosWeb/X-Serv-App-Cache-Anotada}
+
+%% \item \textbf{Ejercicio (discusión en clase, entrega en el foro):} ``Sistema de transferencias bancarias'' (ejercicio~\ref{subsec:transferencias-bancarias}). \\
+%% Entrega recomendada: antes del 12 de marzo.
+%% \item \textbf{Ejercicio (entrega en el foro):} ``Sistema REST para calcular Pi'' (ejercicio~\ref{subsec:rest-pi}) \\
+%% Entrega recomendada: antes del 12 de marzo.
+
+%% \item \textbf{Ejercicio:} ``Arquitectura escalable'' (ejercicio~\ref{subsec:arq-escalable}).
+%% \item \textbf{Ejercicio:} ``Gestor de contenidos multilingue preferencias del navegador'' (ejercicio~\ref{subsec:contentappmulti-navegador}).
+%% \item \textbf{Ejercicio:} ``Gestor de contenidos multilingue con elección en la aplicación'' (ejercicio~\ref{subsec:contentappmulti-apli}).
+%\end{itemize}
+
+%%----------------------------------------------------------------
+%%----------------------------------------------------------------
+\subsection{03 - Modelo-vista-controlador}
+
+Explicación del patrón de diseño ``modelo-vista-controlador''.
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesI: MVC (1 hora)}
+\label{cal:juevesIb}
+
+\begin{itemize}
+\item \textbf{Presentación:} ``Tres implementaciones de una aplicación web simple: Counter''. \\
+  Comparación de tres formas de implementar una aplicación web muy sencilla, identificando los componentes y estructuras que se repiten, con el objetivo de ver cómo cuando pasamos a Django seguimos construyendo el mismo tipo de apicaciones, aunque el marco de programación nos proporcione ya muchos elementos que no tenemos que construir.
+\item \textbf{Código:} Programas \verb|counter-server-1.py| (directorio \verb|Python-Web/counter|, \verb|counterapp.py| (directorio \verb|Python-Web/http-server-classes/counterapp.py|) y projecto Django \verb|django-counter| (directorio \verb|Python-Django|).
+%\item \textbf{Videos:} ``Implementación de aplicaciones web: Counter Server'', ``Implementación de aplicaciones web: Counter WebApp'', ``Implementación de aplicaciones web: Counter Django''.
+\end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesJ: MVC II (1 hora)}
+\label{cal:juevesJ}
+
+\begin{itemize}
+\item \textbf{Presentación:} ``Modelo-vista-controlador''.
+\item \textbf{Material:} Transparencias ``Modelo-vista-controlador''.
+\item \textbf{Presentación:} ``Componentes de aplicaciones Django y MVC''.
+  Repaso de los componentes principales de una aplicación Django y su relación con el patrón modelo-vista-controlador.
+\item \textbf{Video:} ``Arquitectura Modelo-Vista-Controlador''
+\end{itemize}
+
+
+%%----------------------------------------------------------------
+%%----------------------------------------------------------------
+\subsection{04 - Introducción a XML y JSON}
+
+Uso de XML en aplicaciones web.
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesJ: XML, JSON I (0.5 horas)}
+\label{cal:juevesJb}
+
+\begin{itemize}
+\item \textbf{Presentación:} ``XML: Conceptos fundamentales''. \\
+  Introducción a XML, sintaxis básica, equivalencia con el árbol XML correspondiente a un documento.
+\item \textbf{Video:} ``XML: Conceptos fundamentales''.
+\end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesK: XML, JSON II (2 horas)}
+\label{cal:juevesK}
+
+
+\begin{itemize}
+\item \textbf{Presentación:} ``XML: Lenguajes de definición de vocabularios XML''. \\
+  Formas de especificar vocabularios XML, ejemplo de DTD simple.
+\item \textbf{Video:} ``XML: Lenguajes de definición de vocabularios XML''.
+\item \textbf{Presentación:} ``XML: Módulos habituales para trabajar con XML desde lenguajes de programación''. \\
+  Reconocedores SAX y DOM, y su uso en aplicaciones web.
+\item \textbf{Video:} ``XML: Módulos habituales para trabajar con XML desde lenguajes de programación''.
+\item \textbf{Presentación:} ``XML: Usos en aplicaciones web''. \\
+  Usos habituales de XML en aplicaciones web, incluyendo el DOM de los navegadores y los canales RSS.
+\item \textbf{Video:} ``XML: Usos en aplicaciones web''.
+\item \textbf{Material:} Transparencias ``Introducción a XML''.
+\item \textbf{Ejercicio (discusión en clase):} ``Chistes XML'' (ejercicio~\ref{subsec:xml-chistes}).
+\item \textbf{Ejercicio (discusión en clase):} ``Videos en canal de YouTube'' (ejercicio~\ref{subsec:xml-youtube}).
+\item \textbf{Ejercicio (entrega en GitLab):} ``Videos en canal de YouTube (con descarga)'' (ejercicio~\ref{subsec:xml-youtube-descarga}) \\
+  Repositorio: \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/youtube-descarga}
+\end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesM: XML, JSON III (2 horas)}
+\label{cal:juevesM}
+
+\begin{itemize}
+\item \textbf{Presentación:} ``JSON (JavaScript Object Nottion)''. \\
+  JSON como formato de intercambio de datos en aplicaciones web.
+\item \textbf{Video:}``JSON (JavaScript Object Nottion)''.
+\item \textbf{Presentación:} ``XML y JSON: Ejemplos reales''. \\
+  Ejemplo de canal XML de YouTube y documento JSON de GitLab.
+\item \textbf{Video:}``XML y JSON: Ejemplos reales''.
+\item \textbf{Ejercicio:} ``Forks de un repositorio GitLab''
+  (ejercicio~\ref{subsec:json-gitlab-forks})
+\item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (simple)'' (ejercicio~\ref{subsec:django-cms-youtube})
+\item \textbf{Ejercicio (entrega en GitLab):} ``Gestor de contenidos con videos de YouTube (2)'' (ejercicio~\ref{subsec:django-cms-youtube-2}) \\
+  Repositorio: \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-youtube} \\
+  Entrega: \juevesN
+\item \textbf{Ejercicio voluntario:} ``Municipios JSON via HTTP'' (ejercicio~\ref{subsec:json-municipios-http}).
+%\item \textbf{Ejercicio (entrega en GitLab):} ``Gestor de contenidos con video de Youtube (tests) (ejercicio~\ref{subsec:django-cms-youtube-tests}) \\
+%  Repositorio: \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-youtube-tests}
+\end{itemize}
+
+%%----------------------------------------------------------------
+%\subsubsection{Sesión del ... (2 horas)}
+
+%\item \textbf{Ejercicio (complementario):} ``Gestor de contenidos con titulares de BarraPunto versión SQL'' (ejercicio~\ref{subsec:contentapp-barrapunto-sql}). 
+%%----------------------------------------------------------------
+%\subsubsection{Sesión del ... (2 horas)}
+%
+%\begin{itemize}
+%\item \textbf{Presentación:} ``Introducción a XML''. \\
+%Uso básico de HTML DOM desde JavaScript. 
+%\item \textbf{Material:} Transparencias ``Introducción a XML''.
+%\item \textbf{Demo:} Manejo de HTML DOM con JavaScript.
+%\item \textbf{Ejercicio (entrega en el foro):} ``Modificación del contenido de una página HTML'' (ejercicio~\ref{subsec:xml-modificacion-html}). \\
+% Entrega recomendada: antes del 2 de mayo.
+%
+%\item \textbf{Material:} Fichero dom.html
+%\end{itemize}
+%
+%
+%%----------------------------------------------------------------
+%%----------------------------------------------------------------
+\subsection{05 - Hojas de estilo CSS}
+
+Hojas de estilo CSS, separación entre contenido y presentación.
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesN: CSS I (2 horas)}
+\label{cal:juevesN}
+
+Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
+
+\begin{itemize}
+\item \textbf{Presentación:} ``Hojas de estilo CSS''. Introducción a CSS. Principales elementos.
+ \item \textbf{Material:} Transparencias, tema ``CSS''.
+\item \textbf{Demo:} Inspección de datos de aspecto y hojas CSS con el depurador de Firefox.
+\item \textbf{Ejercicio (discusión en clase):} ``Django cms\_css simple'' (ejercicio~\ref{subsec:django-cms-css}).
+\item \textbf{Ejercicio (entrega en GitLab):} ``Django cms\_css elaborado'' (ejercicio~\ref{subsec:django-cms-css-2}). \\
+  Entrega recomendada: antes del 1 de mayo.
+\end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\juevesO: CSS II (2 horas)}
+\label{cal:juevesO}
+
+\begin{itemize}
+\item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (despliegue)'' (ejercicio~\ref{subsec:django-cms-youtube-despliegue}).
+\item Presentacion de el proyecto final (enunciado en apartado~\ref{practica-final-2020-05}).
+\end{itemize}
+
+%% ----------------------------------------------------------------
+%% ----------------------------------------------------------------
+%% \subsection{06 - AJAX}
+
+%% Introducción a Ajax, mashups y otros tipos de aplicaciones web con código en el lado del cliente.
+
+%% ----------------------------------------------------------------
+%% \subsubsection{Sesión del 3 de mayo (2 horas)}
+
+
+%% \begin{itemize}
+%% \item \textbf{Presentación:} Aplicaciones web con código en el lado del cliente. DHTML, SPA, AJAX
+%% \item \textbf{Material:} Transparencias de la asignatura, tema ``AJAX''.
+%% \item \textbf{Ejercicio (discusión en clase):} ``SPA Sentences generator'' (ejercicio~\ref{subsec:spa-sentences-generator})
+%% \item \textbf{Ejercicio (discusión en clase):} ``AJAX Sentences generator'' (ejercicio~\ref{subsec:ajax-sentences-generator})
+%% \end{itemize}
+
+%%% %----------------------------------------------------------------
+%\subsubsection{Sesión del ... (2 horas)}
+%
+%Ejercicios con gadgets y mashups.
+%
+%\begin{itemize}
+% \item \textbf{Presentación:} Aplicaciones web con código en el lado del cliente. Web 2.0, mashups, etc.
+% \item \textbf{Material:} Transparencias de la asignatura, tema ``Ajax''.
+% \item \textbf{Ejercicio opcional:} Gadget de Google (ejercicio~\ref{subsec:gadget-google}).
+%% \item \textbf{Ejercicio opcional:} EyeOS (ejercicio~\ref{subsec:eyeos}).
+%\end{itemize}
+%
+%%% \subsubsection{Sesión del 21 de noviembre}
+%
+%%% Ejercicios con gadgets y mashups.
+%
+%%% \begin{itemize}
+%%% \item \textbf{Ejercicio opcional:} Gadget de Google en Django cms (ejercicio~\ref{subsec:gadget-google-cms}).
+%%% \item \textbf{Ejercicio:} EzWeb (ejercicio~\ref{subsec:ezweb}).
+%%% \end{itemize}
+%
+\newpage
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\section{Programa de prácticas}
+
+Programa de las prácticas de la asignatura (tentativo).
+
+%%----------------------------------------------------------------------------
+\subsubsection{\lunesB: Lab remoto (0.5 horas)}
+\label{cal:lunesB}
+
+\begin{itemize}
+\item Mecanismos de conexión remota al laboratorio: VNC desde el navegador, ssh, etc.
+\end{itemize}
+%%----------------------------------------------------------------------------
+\subsubsection{\lunesB: Python I (1.5 horas)}
+\label{cal:lunesBb}
+
+\begin{itemize}
+\item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, ejecución en el intérprete, strings, listas, estructuras condicionales (if else), bucles for).
+\item \textbf{Material:} Transparencias ``Introducción a Python''
+\item \textbf{Material:} Ejercicios ``Uso interactivo del intérprete de Python'' (ejercicio~\ref{subsec:practicas-interprete}) y ``Haz un programa en Python'' (ejercicio~\ref{subsec:eje-python-primer-programa}).
+\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
+   Entrega recomendada: antes del \lunesC.
+\end{itemize}
+
+%%--------------------------------------------------------------------------
+\subsubsection{\lunesC: GitLab (0.5 horas)}
+\label{cal:lunesC}
+
+\begin{itemize}
+\item \textbf{Presentación:} Introducción a la entrega de prácticas en GitLab (seccion~\ref{sec:eje-entrega-practicas-incr}).
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+\subsubsection{\lunesC: Python II (1.5 horas)}
+\label{cal:lunesCb}
+
+\begin{itemize}
+\item \textbf{Presentación:} ``Introducción a Python''.
+\item \textbf{Material:} Transparencias ``Introducción a Python''
+\item \textbf{Material:} Ejercicio ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
+\item \textbf{Ejercicio:} ``Ficheros, diccionarios y excepciones''~\ref{subsec:ficheros-dic-excep}.
+\item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
+   Entrega recomendada: antes del \lunesD.
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+\subsubsection{\lunesD: Python III (1 hora)}
+\label{cal:lunesD}
+
+\begin{itemize}
+\item \textbf{Presentación:} ``Introducción a Python''.
+\item \textbf{Material:} Transparencias ``Introducción a Python''
+
+\item \textbf{Ejercicio propuesto (discusión en clase:} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
+
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsection{P2 - Aplicaciones web simples}
+
+
+Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python.
+
+
+%%----------------------------------------------------------------------------
+\subsubsection{\lunesD: Aplicaciones web I (1 hora)}
+\label{cal:lunesDb}
+
+\begin{itemize}
+ \item \textbf{Ejercicio:} ``Aplicación web hola mundo'' (ejercicio~\ref{subsec:aplweb-hola-mundo}) \\
+   Se muestra la solución del ejercicio, y se comenta en clase. Se pide a los alumnos que lo ejecuten, lo modifiquen y se fijen en las cabeceras HTTP enviadas por el cliente y que el servidor muestra en pantalla (pero no hay entrega específica).
+ \item \textbf{Ejercicio:} ``Variaciones de la aplicación web hola mundo'' (ejercicio~\ref{subsec:aplweb-hola-mundo-var}).
+\item \textbf{Explicación de ejercicio:} ``Aplicación web generadora de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-urls-aleatorias})
+\item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Aplicación redirectora'' (ejercicio~\ref{subsec:aplweb-redirectora})
+
+
+   Entrega recomendada: antes del \lunesE.
+\end{itemize}
+
+%%%----------------------------------------------------------------------------
+\subsection{P3 - Servidores simples de contenidos}
+
+Construcción de algunos servidores de contenidos que permitan comprender la estructura básica de una aplicación web, y de cómo implementarlos aprovechando algunas características de Python.
+
+%%----------------------------------------------------------------------------
+\subsubsection{\lunesE: Servidores con clase (2 horas)}
+\label{cal:lunesE}
+
+\begin{itemize}
+%\item \textbf{Ejercicio:} ``Sumador simple'' (ejercicio~\ref{subsec:sumador-simple}) (en una fase) 
+\item \textbf{Comentario de ejercicio:} ``Sumador simple'' (ejercicio~\ref{subsec:sumador-simple}) 
+\item \textbf{Explicación de ejercicio:} ``Aplicación web generadora de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-urls-aleatorias})
+\item \textbf{Trabajo y explicación del ejercicio:} ``Clase servidor de aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis}) \\
+  Explicación de la estructura general que tienen las aplicaciones web, y fundamentos de cómo esta estructura se puede encapsular en una clase.
+%\item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Clase servidor de aplicaciones, generador de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-clase-urls-aleatorias}). 
+  \item \textbf{Comentario de ejercicio:} ``Clase servidor de aplicaciones, generador de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-clase-urls-aleatorias}). 
+ \item \textbf{Comentario de ejercicio:}  ``Clase contentApp'' (ejercicio~\ref{subsec:contentapp}) 
+ \item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Clase contentPostApp'' (ejercicio~\ref{subsec:contentpostapp}).
+  Entrega recomendada: antes del \lunesF.
+\end{itemize}
+
+
+
+%%----------------------------------------------------------------------------
+%\subsubsection{\lunesF: Servidores simples I (2 horas)}
+%\label{cal:lunesF}
+
+%\begin{itemize}
+
+%\item \textbf{Ejercicio:} ``Clase servidor de aplicaciones, sumador'' (ejercicio~\ref{subsec:clase-sumador-simple}). 
+%\item \textbf{Ejercicio:}  ``Clase servidor varias aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis-multi}) \\
+%  Explicación de la estructura principal de una clase que gestiona varias aplicaciones (o varios recursos, cada uno manejado por una aplicación)
+% \item \textbf{Ejercicio:} ``Clase servidor, cuatro aplis'' (ejercicio~\ref{subsec:clase-serv-aplis-varias}).
+% \item \textbf{Ejercicio:}  ``Clase contentApp'' (ejercicio~\ref{subsec:contentapp}) \\
+%   Explicación de la estructura principal de una aplicación que sirve contenidos previamente almacenados.
+% \item \textbf{Ejercicio:} ``Instalación y prueba de Poster'' (ejercicio~\ref{subsec:inst-poster}).
+% \item \textbf{Ejercicio:} ``Clase contentPostApp'' (ejercicio~\ref{subsec:contentpostapp}).
+% \item \textbf{Ejercicio:} ``Clase contentPutApp'' (ejercicio~\ref{subsec:contentputapp}).
+%Entrega en GitLab. Fecha de entrega: antes del 3 de marzo.
+%\end{itemize}
+
+
+%%%----------------------------------------------------------------------------
+%\subsubsection{\lunesG: Servidores simples II (2 horas)}
+%\label{cal:lunesG}
+
+%\begin{itemize}
+%  \item \textbf{Discusión en clase:} ``Clase contentPutApp'' (ejercicio~\ref{subsec:contentputapp}).
+%  \item Presentación de la primera práctica de entrega voluntaria (\ref{subsec:practica-vol-1-2016}). Entrega en GitLab. Fecha de entrega: antes del 10 de marzo.
+%\end{itemize}
+
+
+%%%----------------------------------------------------------------------------
+%%%----------------------------------------------------------------------------
+\subsection{P4 - Introducción a Django}
+
+%%%----------------------------------------------------------------------------
+\subsubsection{\lunesF: Django I (2 horas)}
+\label{cal:lunesF}
+
+Presentación de Django como sistema de construcción de aplicaciones web.
+
+\begin{itemize}
+ \item \textbf{Presentación:} Introducción a Django (primera parte)
+ \item \textbf{Ejercicio:} ``Instalación de Django'' (ejercicio~\ref{subsec:django-install}).
+ \item \textbf{Ejercicio:} ``Django Intro'' (ejercicio~\ref{subsec:django-intro}).
+ \item \textbf{Material:} Transparencias ``Introducción a Django''
+ \item \textbf{Ejercicio (discusión en clase:} ``Django Primera Aplicación'' (ejercicio~\ref{subsec:django-primera}).
+ \item \textbf{Material:} Guión \url{https://gsyc.urjc.es/grex/cursosweb/guion.html}
+ \item \textbf{Ejercicio (discusión en clase):} ``Django Primera Aplicación'' (ejercicio~\ref{subsec:django-primera}).
+
+  \item \textbf{Ejercicio (entrega en GitLab:} ``Django calc'' (ejercicio~\ref{subsec:django-calc}). \\
+    Entrega recomendada: antes del \lunesG.
+\end{itemize}
+
+
+%%%----------------------------------------------------------------------------
+\subsubsection{\lunesG: Django II (2 horas)}
+\label{cal:lunesG}
+
+Primeros ejercicios con base de datos.
+
+Usuarios, administración y autenticación con Django.
+
+\begin{itemize}
+ \item \textbf{Presentación:} Introducción a Django (segunda parte)
+  \item \textbf{Material:} Guión \url{https://gsyc.urjc.es/grex/cursosweb/guion2.html}
+ \item \textbf{Ejercicio  (discusión en clase):} ``Django cms'' (ejercicio~\ref{subsec:django-cms}). \\
+ \item \textbf{Ejercicio (entrega en GitLab):} ``Django cms\_put'' (ejercicio~\ref{subsec:django-cms-put}). \\
+  Entrega recomendada: hasta el \lunesH.
+\end{itemize}
+
+%%%----------------------------------------------------------------------------
+\subsubsection{\lunesH: Django III (2 horas)}
+\label{cal:lunesH}
+
+\begin{itemize}
+ \item \textbf{Presentación:} Introducción a Django (tercera parte)
+  \item \textbf{Material:} Guión \url{https://gsyc.urjc.es/grex/cursosweb/guion3.html}
+ \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_templates'' (ejercicio~\ref{subsec:django-templates}).
+ \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_post'' (ejercicio~\ref{subsec:django-post}) \\
+  \item Presentación de la \textbf{Práctica 2} (ejercicio~\ref{subsec:practica-vol-2-2015}) \\
+  Entrega recomendada: antes del \lunesI.
+\end{itemize}
+
+
+%%%----------------------------------------------------------------------------
+\subsubsection{\lunesI: Django IV (0.5 horas)}
+\label{cal:lunesI}
+
+\begin{itemize}
+ \item \textbf{Presentación:} Tests con Django y GitLab
+  \item \textbf{Material:} Repositorio \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/testing-example}
+\end{itemize}
+
+%%%----------------------------------------------------------------------------
+\subsubsection{\lunesI: Django V (2 horas)}
+\label{cal:lunesIb}
+
+\begin{itemize}
+ \item \textbf{Presentación:} Introducción a Django (quinta parte)
+ \item \textbf{Material:} Guión \url{https://gsyc.urjc.es/grex/cursosweb/guion4.html}
+ \item \textbf{Material:} Transparencias ``Introducción a Django''
+ \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_users'' (ejercicio~\ref{subsec:django-users}).
+ \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_users\_put'' (ejercicio~\ref{subsec:django-users-put}). \\
+  Entrega recomendada: antes del \lunesJ.
+\end{itemize}
+
+%%%----------------------------------------------------------------------------
+\subsubsection{\lunesJ: Django VI (2 horas)}
+\label{cal:lunesJ}
+
+\begin{itemize}
+%  \item \textbf{Presentación:} Posibilidades de feedparser.py
+  %  \item \textbf{Presentación:} Posibilidades de BeautifulSoup.py
+
+ \item \textbf{Material:} Guión \url{https://gsyc.urjc.es/grex/cursosweb/guion5.html}
+ \item \textbf{Material:} Transparencias ``Introducción a Django''
+ \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_post'' (ejercicio~\ref{subsec:django-post}).
+  Entrega recomendada: antes del \lunesK.
+%    \item \textbf{Material:} Documentación de Django: ``Working with forms'' \\
+%          \url{http://docs.djangoproject.com/en/1.4/topics/forms}
+%  \item \textbf{Ejercicio voluntario:} ``Django feed\_expander'' (ejercicio~\ref{subsec:django-feed-expander}).
+%  \item \textbf{Presentación:} proyecto final (enunciado~\ref{practica-final-2019-05})
+\end{itemize}
+
+%%%----------------------------------------------------------------------------
+\subsubsection{\lunesK: Django VII (2 horas)}
+\label{cal:lunesK}
+
+\begin{itemize}
+  \item \textbf{Presentación:} Introducción a Django (formularios)
+  \item \textbf{Ejercicio:} ``Django cms\_forms'' (ejercicio~\ref{subsec:django-forms}) \\
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+ \subsubsection{\lunesN: Detalles finales I  (2 horas)}
+ \label{cal:lunesN}
+
+ \begin{itemize}
+%   \item \textbf{Presentación:} Introducción a CSS
+%   \item \textbf{Ejercicio:} ``Django cms\_css simple'' (ejercicio~\ref{subsec:django-cms-css}) \\
+   \item \textbf{Ejercicio:} ``Django cms\_bootstrap cuadrícula'' (ejercicio~\ref{subsec:django-cms-bootstrap-1})
+   \item \textbf{Presentación:} Práctica final (apartado~\ref{practica-final-2021-05})
+\end{itemize}
+
+%%----------------------------------------------------------------
+\subsubsection{\lunesP: Detalles finales II (2 horas)}
+\label{cal:lunesP}
+
+\begin{itemize}
+   \item \textbf{Ejercicio:} ``Django cms\_bootstrap componentes'' (ejercicio~\ref{subsec:django-cms-bootstrap-2})
+   \item \textbf{Ejercicio:} ``Django cms\_bootstrap componentes personalizados'' (ejercicio~\ref{subsec:django-cms-bootstrap-3})
+    \item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (despliegue)'' (ejercicio~\ref{subsec:django-cms-youtube-despliegue}).
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+ % \subsubsection{\lunesO: Detalles finales III  (2 horas)}
+ % \label{cal:lunesO}
+
+ % \begin{itemize}
+ % \item \textbf{Ejercicio:} ``Extractor de información de un documento HTML'' (ejercicio~\ref{subsec:html-extractor})
+ % \item \textbf{Presentación:} CSS Garden \\
+ %   \url{https://csszengarden.com}
+ % \item \textbf{Presentación:} Awesome Django \\
+ %   \url{https://github.com/wsvincent/awesome-django#readme}
+ % \item \textbf{Presentación:} Otras formas de despliegue de la práctica final.
+ % \item \textbf{Preguntas y comentarios:} Práctica final.
+ % \end{itemize}
+
+
+
+%%%----------------------------------------------------------------------------
+% \subsubsection{\lunesN: Django (2 horas)}
+% \label{cal:lunesN}
+
+% \begin{itemize}
+%   \item \textbf{Presentación:} Introducción a Django (repaso general)
+%   \item \textbf{Ejercicio:} ``Django Conciertos'' (ejercicio~\ref{subsec:django-conciertos}) \\
+%   Entrega recomendada: antes del 5 de mayo.
+
+% %  \item \textbf{Presentación:} Introducción a Django (ejercicio final)
+% \end{itemize}
+
+
+%%----------------------------------------------------------------------------
+%% \subsubsection{Sesión del XX de abril (2 horas)}
+
+%% \begin{itemize}
+%%   \item Tutoría para el proyecto final. Esta clase se aprovechará para presentar o asentar, si fuera necesario, cuestiones relacionadas con el proyecto final.
+%% \end{itemize}
+
+%%----------------------------------------------------------------------------
+%% \subsubsection{Sesión del XXX de abril (2 horas)}
+
+%% \begin{itemize}
+%%   \item Tutoría para el proyecto final. Esta clase se aprovechará para presentar o asentar, si fuera necesario, cuestiones relacionadas con el proyecto final.
+%% \end{itemize}
+
+%%% %----------------------------------------------------------------------------
+%\subsubsection{Sesión del ...}
+%
+%Prácticas con almacenamiento en base de datos
+%
+%\begin{itemize}
+% \item \textbf{Ejercicio (entrega en foro):} ``Django feed\_expander\_db'' (ejercicio~\ref{subsec:django-feed-expander-db}).
+%\end{itemize}
+
+
+%
+%%% %%----------------------------------------------------------------------------
+%%% \subsubsection{Sesión del ... (unos minutos)}
+
+%% \begin{itemize}
+%% \item \textbf{Presentación de ejercicio:} Práctica 2 de entrega voluntaria (ejercicio~\ref{subsec:practica-vol-2-2012}) \\
+%% Entrega recomendada: antes del 19 de noviembre de 2012.
+%% \end{itemize}
+
+%% %%----------------------------------------------------------------------------
+%% \subsubsection{Sesión del ... (20 min.)}
+
+%% \begin{itemize}
+%% \item \textbf{Presentación:} Enunciado de la práctica 2 de entrega voluntaria (\ref{subsec:practica-vol-2-2011}),
+%% \end{itemize}
+
+
+%%----------------------------------------------------------------------------
+%% \subsubsection{Sesión del ... (2 horas)}
+
+%% Recopilación final
+
+%% \begin{itemize}
+%% \item \textbf{Explicación de ejercicio:} ``Django feed\_expander'' (ejercicio~\ref{subsec:django-feed-expander}). Incluye implementación de referencia.
+%% \item \textbf{Explicación de ejercicio:} ``Django feed\_expander\_db'' (ejercicio~\ref{subsec:django-feed-expander-db}).
+%% \item \textbf{Presentación:} Algunos aspectos relevantes de las proyecto final
+%% \end{itemize}
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+%% \subsection{P4 - Servidores simples de contenidos}
+
+%% Construcción de algunos servidores de contenidos que permitan comprender la estructura básica de una aplicación web, y de cómo implementarlos aprovechando algunas características de Python.
+
+%% %%----------------------------------------------------------------------------
+%% \subsubsection{Sesión del 26 de septiembre (1 hora)}
+
+%% \begin{itemize}
+%% \item \textbf{Ejercicio propuesto (entrega en foro):}  ``Clase contentApp'' (ejercicio~\ref{subsec:contentapp}) \\
+%%   Explicación de la estructura principal de una aplicación que sirve contenidos previamente almacenados.
+%% \end{itemize}
+
+%% %%----------------------------------------------------------------------------
+%% \subsubsection{Sesión del 13 de octubre}
+
+%% \begin{itemize}
+%% \item \textbf{Ejercicio:} ``Instalación y prueba de Poster'' (ejercicio~\ref{subsec:inst-poster}).
+%% \item \textbf{Ejercicio propuesto (entrega en foro):} ``Clase contentPutApp'' (ejercicio~\ref{subsec:contentputapp}).
+%% \item \textbf{Ejercicio propuesto (entrega en foro):} ``Clase contentPostApp'' (ejercicio~\ref{subsec:contentpostapp}).
+%% \item \textbf{Presentación:} Enunciado de la práctica 1 de entrega voluntaria (\ref{subsec:practica-vol-1-2011}),
+%% %% \item \textbf{Ejercicio propuesto (entrega en foro):} ``Clase contentPersistentApp'' (ejercicio~\ref{subsec:contentpersistentapp}).
+
+%% \end{itemize}
+
+%% \subsubsection{Sesión del 13 de octubre}
+
+%% \begin{itemize}
+%% \item \textbf{Ejercicio propuesto (entrega en foro):} Clase ``contentStorageApp'' (ejercicio~\ref{subsec:contentstorageapp}).
+%% \item \textbf{Ejercicio propuesto (entrega en foro):} ``Gestor de contenidos con usuarios'' (ejercicio~\ref{subsec:contentappusers}). Sólo se plantea su entrega, se explicará en la próxima sesión.
+%% \end{itemize}
+
+
+%% \subsubsection{Sesión del 20 de octubre (1.5 horas)}
+
+%% \begin{itemize}
+%% \item \textbf{Explicación de ejercicio:}  ``Gestor de contenidos con usuarios'' (ejercicio~\ref{subsec:contentappusers}).
+%% \item \textbf{Ejercicio propuesto (entrega en foro):} ``Gestor de contenidos con usuarios, con control estricto de actualización'' (ejercicio~\ref{subsec:contentappusersstrict}).
+
+%% \item \textbf{Presentación:} Bibliotecas Python potencialmente útlies.
+  
+%%   Para las próximas sesiones, hasta que introduzcamos Django, quien quiera puede considerar usar los siguientes módulos, de la biblioteca estándar de Python
+  
+%%   \begin{itemize}
+%%   \item BaseHTTPServer. Proporciona las clases básicas para construcción de servidores web. SimpleHTTPServer y CGIHTTPServer heredan de ellas. Probablmente no te interese tocar la clase BaseHTTPServer.HTTPServer, pero sí te venga bien hacer que BaseHTTPServer.BaseHTTPRequestHandler sea la raíz de tu jerarquía de clases, redefiniendo probablmente el método handle, y usando send\_error, send\_response, send\_header, etc.
+    
+%%   \item SimpleHTTPServer. Proporciona un servidor HTTP que sirve ficheros. Probablmente incluye funcionalidad que no necesitas, pero tiene métodos do\_GET, do\_PUT que te podrían interesar.
+
+%%   \item CGIHTTPServer. Proporciona un servidor HTTP que entiende el protocolo CGI-BIN. Probablmente incluye demasiada funcionalidad que no necesitas.
+
+%%   \item Cookie. Gestión de cookies. Un poquito complicado de usar, pero puede serte muy útil.
+
+%%   \item mimetools. Te servirá para manejar las cabeceras de HTTP. Un poco complejo, pero también te puede ser muy útil.
+%%   \end{itemize}
+%% \end{itemize}
+
+%% %%----------------------------------------------------------------------------
+%% %%----------------------------------------------------------------------------
+%% \subsection{P4 - Aplicaciones web con base de datos}
+
+%% Construcción de aplicaciones web con almacenamiento estable en base de datos.
+
+
+%% \subsubsection{Sesión del 20 de octubre (0.5 horas)}
+
+%% \begin{itemize}
+%% \item \textbf{Ejercicio:} ``Introducción a SQLite3 con Python'' (ejercicio~\ref{subsec:sqlite3-python}). 
+
+%% \item \textbf{Ejercicio (entrega en el foro):} ``Gestor de contenidos con base de datos'' (ejercicio~\ref{subsec:gestor-contenidos-bbdd}). 
+
+%% \end{itemize}
+
+%% \subsubsection{Sesión del 27 de octubre (1.5 horas)}
+
+%% \begin{itemize}
+%% \item \textbf{Presentación:} ``SQL básico''
+%% \item \textbf{Material:} Transparecias ``SQL básico''
+
+%% \textbf{Ejercicio (entrega en el foro):} ``Gestor de contenidos con usuarios, control estricto de actualización y base de datos'' (ejercicio~\ref{subsec:gestor-contenidos-usuarios-bbdd}).
+
+%% \end{itemize}
+
+%% \subsubsection{Sesión del 1 de diciembre}
+
+%% Repaso de prácticas.
+
+%% \begin{itemize}
+%% \item \textbf{Ejercicio:} Trabajo con el proyecto final.
+%% \end{itemize}
+
+
+%% \subsubsection{Sesión del XXX de diciembre}
+
+%% Algunos aspectos más de Django. Modelos: relación entre tablas. Internacionalización. Generación de canales RSS y Atom.
+
+%% \begin{itemize}
+%% \item \textbf{Presentación:} Introducción a Django (sexta parte).
+%% \item \textbf{Material:} Transparencias ``Introducción a Django''.
+%% \item \textbf{Ejercicio:} Trabajo con el proyecto final.
+%% \end{itemize}
+
+%% \subsubsection{Sesión del XXX de diciembre}
+
+%% Repaso de prácticas.
+
+%% \begin{itemize}
+%% \item \textbf{Presentación:} Algunos aspectos e ideas sobre el proyecto final.
+%% \item \textbf{Ejercicio:} Trabajo con el proyecto final.
+%% \end{itemize}
+
+
+\newpage
+
+\input{practica-final-2021-05}
+\input{ejercicios-web}
+
+\end{document}
