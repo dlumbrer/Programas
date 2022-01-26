@@ -154,22 +154,19 @@ Evaluación extraordinaria:
 %%--------------------------------------------------------------------------
 \section{Calendario}
 
-\newcommand{\lunesAnl}{24 de enero} % no lectivo
-\newcommand{\lunesB}{31 de enero}
-\newcommand{\lunesC}{7 de febrero}
-\newcommand{\lunesD}{14 de febrero}
-\newcommand{\lunesE}{21 de febrero}
-\newcommand{\lunesF}{28 de febrero}
-\newcommand{\lunesG}{7 de marzo}
-\newcommand{\lunesH}{14 de marzo}
-\newcommand{\lunesI}{21 de marzo}
-\newcommand{\lunesJ}{28 de marzo}
-\newcommand{\lunesK}{4 de abril}
-\newcommand{\lunesLnl}{11 de abril} % no lectivo
-\newcommand{\lunesMnl}{18 de abril} % no lectivo
-\newcommand{\lunesN}{25 de abril}
-\newcommand{\lunesOnl}{2 de mayo} % no lectivo
-\newcommand{\lunesP}{9 de mayo}
+\newcommand{\lunesA}{31 de enero}
+\newcommand{\lunesB}{7 de febrero}
+\newcommand{\lunesC}{14 de febrero}
+\newcommand{\lunesD}{21 de febrero}
+\newcommand{\lunesE}{28 de febrero}
+\newcommand{\lunesF}{7 de marzo}
+\newcommand{\lunesG}{14 de marzo}
+\newcommand{\lunesH}{21 de marzo}
+\newcommand{\lunesI}{28 de marzo}
+\newcommand{\lunesJ}{4 de abril}
+\newcommand{\lunesK}{25 de abril}
+\newcommand{\lunesL}{9 de mayo}
+\newcommand{\lunesX}{XXX}
 
 \newcommand{\juevesA}{27 de enero}
 \newcommand{\juevesB}{3 de febrero}
@@ -182,37 +179,31 @@ Evaluación extraordinaria:
 \newcommand{\juevesI}{24 de marzo}
 \newcommand{\juevesJ}{31 de marzo}
 \newcommand{\juevesK}{7 de abril}
-\newcommand{\juevesLnl}{14 de abril} % no lectivo
-\newcommand{\juevesM}{21 de abril}
-\newcommand{\juevesN}{28 de abril}
-\newcommand{\juevesO}{5 de mayo}
-\newcommand{\juevesPnl}{12 de mayo} % no lectivo
+\newcommand{\juevesL}{21 de abril}
+\newcommand{\juevesM}{28 de abril}
+\newcommand{\juevesN}{5 de mayo}
+\newcommand{\juevesX}{XXX}
 
 \begin{tabular}{|l|l|}
    \hline
   Lunes & Jueves \\ \hline \hline
                        & \nameref{cal:juevesA} \\ \hline
-  \nameref{cal:lunesB} & \nameref{cal:juevesB} \\ 
-  \nameref{cal:lunesBb} &                       \\  \hline
-  \nameref{cal:lunesC} & \nameref{cal:juevesC} \\ 
-  \nameref{cal:lunesCb} &  \\  \hline  
-  \nameref{cal:lunesD} & \nameref{cal:juevesD} \\
-  \nameref{cal:lunesDb} &  \\  \hline
-  \nameref{cal:lunesE} & \nameref{cal:juevesE} \\ \hline
-  \nameref{cal:lunesF} & \nameref{cal:juevesF} \\ \hline
-  \nameref{cal:lunesG} & \nameref{cal:juevesG} \\ 
-                       & \nameref{cal:juevesGb} \\ \hline
-  \nameref{cal:lunesH} & \nameref{cal:juevesH} \\  \hline
-  \nameref{cal:lunesI} & \nameref{cal:juevesI} \\
-  \nameref{cal:lunesIb} & \nameref{cal:juevesIb} \\ \hline
-  \nameref{cal:lunesJ} & \nameref{cal:juevesJ} \\
-                       & \nameref{cal:juevesJb} \\ \hline
-  \nameref{cal:lunesK} & \nameref{cal:juevesK} \\ \hline
-                       &                      \\ \hline
-                       & \nameref{cal:juevesM} \\ \hline
-  \nameref{cal:lunesN} & \nameref{cal:juevesN} \\ \hline
-                       & \nameref{cal:juevesO} \\ \hline
-  \nameref{cal:lunesP} &                      \\ \hline
+  \nameref{cal:lunesA} & \nameref{cal:juevesB} \\ 
+  \nameref{cal:lunesAb} &                       \\  \hline
+  \nameref{cal:lunesB} & \nameref{cal:juevesC} \\ 
+  \nameref{cal:lunesBb} &                       \\  \hline  
+  \nameref{cal:lunesC} & \nameref{cal:juevesD} \\  \hline
+  \nameref{cal:lunesD} & \nameref{cal:juevesE} \\ \hline
+  \nameref{cal:lunesE} & \nameref{cal:juevesF} \\ \hline
+  \nameref{cal:lunesF} & \nameref{cal:juevesG} \\ \hline
+  \nameref{cal:lunesG} & \nameref{cal:juevesH} \\  \hline
+  \nameref{cal:lunesH} & \nameref{cal:juevesI} \\ \hline
+  \nameref{cal:lunesI} & \nameref{cal:juevesJ} \\ \hline
+  \nameref{cal:lunesJ} & \nameref{cal:juevesK}  \\ \hline
+  Festivo              & \nameref{cal:juevesL} \\ \hline
+  \nameref{cal:lunesK} & \nameref{cal:juevesM} \\ \hline
+  Festivo              & \nameref{cal:juevesN} \\ \hline
+  \nameref{cal:lunesL} &                        \\ \hline
 \end{tabular}
 
 \newpage
@@ -229,7 +220,7 @@ Programa de la asignatura (el detalle evoluciona según avanza el curso).
 \subsection{00 - Presentación}
 
 %%-----------------------------------------------------------------------
-\subsubsection{\juevesA: Presentación  (1.5 horas)}
+\subsubsection{\juevesA: Presentación  (2 horas)}
 \label{cal:juevesA}
 
 \begin{itemize}
@@ -318,13 +309,6 @@ Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persist
 \item \textbf{Discusión:} Medición de audiencias y visitas únicas por un sitio web.
 \item \textbf{Ejercicio propouesto (entrega en el foro):} ``Traza de historiales de navegación por terceras partes'' (ejercicio~\ref{subsec:navegacion-terceras-partes}) \\
   Entrega recomendada: antes del \juevesG.
-\end{itemize}
-
-%%----------------------------------------------------------------
-\subsubsection{\juevesG: Conceptos básicos VI (1 hora)}
-\label{cal:juevesG}
-
-\begin{itemize}
 \item Relación de traza de historias de navegación con identidades personales.
 \item \textbf{Ejercicio (demo):} ``Trackers en páginas web'' (ejercicio~\ref{subsec:trackers-paginas-web}) 
 \item Presentación de la minipráctica 1 (enunciado en~\ref{subsec:practica-vol-1-2016})
@@ -337,8 +321,8 @@ Datos persistentes entre operaciones HTTP diferentes. Concepto de estado persist
 Invocaciones a aplicaciones web desde aplicaciones web. Servicios web como un conjunto de aplicaciones que interoperan.
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesG: Interoperación web I (1 hora)}
-\label{cal:juevesGb}
+\subsubsection{\juevesG: Interoperación web I (2 horas)}
+\label{cal:juevesG}
 
 \begin{itemize}
 \item \textbf{Ejercicio (discusión en clase):} ``Contador simple con varios 
@@ -404,8 +388,8 @@ navegadores intercalados'' (ejercicio~\ref{subsec:contador-simple-varios-interca
 Explicación del patrón de diseño ``modelo-vista-controlador''.
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesI: MVC (2 horas)}
-\label{cal:juevesIb}
+\subsubsection{\juevesJ: MVC (2 horas)}
+\label{cal:juevesJ}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Tres implementaciones de una aplicación web simple: Counter''. \\
@@ -415,8 +399,8 @@ Explicación del patrón de diseño ``modelo-vista-controlador''.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesJ: MVC II (2 horas)}
-\label{cal:juevesJ}
+\subsubsection{\juevesK: MVC II (2 horas)}
+\label{cal:juevesK}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Modelo-vista-controlador''.
@@ -434,8 +418,8 @@ Explicación del patrón de diseño ``modelo-vista-controlador''.
 Uso de XML en aplicaciones web.
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesJ: XML, JSON I (2 horas)}
-\label{cal:juevesJb}
+\subsubsection{\juevesL: XML, JSON I (2 horas)}
+\label{cal:juevesL}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``XML: Conceptos fundamentales''. \\
@@ -506,7 +490,7 @@ Uso de XML en aplicaciones web.
 Hojas de estilo CSS, separación entre contenido y presentación.
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesN: CSS I (2 horas)}
+\subsubsection{\juevesN: CSS (2 horas)}
 \label{cal:juevesN}
 
 Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
@@ -574,35 +558,28 @@ Programa de las prácticas de la asignatura (tentativo).
 Introducción al lenguaje de programación Python, que se utilizará para la realización de las prácticas de la asignatura.
 
 %%----------------------------------------------------------------------------
-\subsubsection{\lunesB: Lab remoto (0.5 horas)}
-\label{cal:lunesB}
-
-\begin{itemize}
-\item Mecanismos de conexión remota al laboratorio: VNC desde el navegador, ssh, etc.
-\end{itemize}
-%%----------------------------------------------------------------------------
-\subsubsection{\lunesB: Python I (1.5 horas)}
-\label{cal:lunesBb}
+\subsubsection{\lunesA: Python I (1.5 horas)}
+\label{cal:lunesA}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, ejecución en el intérprete, strings, listas, estructuras condicionales (if else), bucles for).
 \item \textbf{Material:} Transparencias ``Introducción a Python''
 \item \textbf{Material:} Ejercicios ``Uso interactivo del intérprete de Python'' (ejercicio~\ref{subsec:practicas-interprete}) y ``Haz un programa en Python'' (ejercicio~\ref{subsec:eje-python-primer-programa}).
 \item \textbf{Ejercicio propuesto (entrega en el foro):} ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
-   Entrega recomendada: antes del \lunesC.
-\end{itemize}
-
-%%--------------------------------------------------------------------------
-\subsubsection{\lunesC: GitLab (0.5 horas)}
-\label{cal:lunesC}
-
-\begin{itemize}
-\item \textbf{Presentación:} Introducción a la entrega de prácticas en GitLab (seccion~\ref{sec:eje-entrega-practicas-incr}).
+   Entrega recomendada: antes del \lunesB.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{\lunesC: Python II (1.5 horas)}
-\label{cal:lunesCb}
+\subsubsection{\lunesA: Lab remoto (0.5 horas)}
+\label{cal:lunesAb}
+
+\begin{itemize}
+\item Mecanismos de conexión remota al laboratorio: VNC desde el navegador, ssh, etc.
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+\subsubsection{\lunesB: Python II (1.5 horas)}
+\label{cal:lunesB}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a Python''.
@@ -610,12 +587,20 @@ Introducción al lenguaje de programación Python, que se utilizará para la rea
 \item \textbf{Material:} Ejercicio ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
 \item \textbf{Ejercicio:} ``Ficheros, diccionarios y excepciones''~\ref{subsec:ficheros-dic-excep}.
 \item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
-   Entrega recomendada: antes del \lunesD.
+   Entrega recomendada: antes del \lunesC.
+\end{itemize}
+
+%% --------------------------------------------------------------------------
+\subsubsection{\lunesB: GitLab (0.5 horas)}
+\label{cal:lunesBb}
+
+\begin{itemize}
+\item \textbf{Presentación:} Introducción a la entrega de prácticas en GitLab (seccion~\ref{sec:eje-entrega-practicas-incr}).
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{\lunesD: Python III (2 horas)}
-\label{cal:lunesD}
+\subsubsection{\lunesC: Python III (2 horas)}
+\label{cal:lunesC}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a Python''.
@@ -634,8 +619,8 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 
 
 %%----------------------------------------------------------------------------
-\subsubsection{\lunesD: Aplicaciones web I (2 horas)}
-\label{cal:lunesDb}
+\subsubsection{\lunesD: Aplicaciones web (2 horas)}
+\label{cal:lunesD}
 
 \begin{itemize}
  \item \textbf{Ejercicio:} ``Aplicación web hola mundo'' (ejercicio~\ref{subsec:aplweb-hola-mundo}) \\
@@ -643,10 +628,9 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
  \item \textbf{Ejercicio:} ``Variaciones de la aplicación web hola mundo'' (ejercicio~\ref{subsec:aplweb-hola-mundo-var}).
 \item \textbf{Explicación de ejercicio:} ``Aplicación web generadora de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-urls-aleatorias})
 \item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Aplicación redirectora'' (ejercicio~\ref{subsec:aplweb-redirectora})
-
-
    Entrega recomendada: antes del \lunesE.
 \end{itemize}
+
 
 %%%----------------------------------------------------------------------------
 \subsection{P3 - Servidores simples de contenidos}
@@ -662,17 +646,16 @@ Construcción de algunos servidores de contenidos que permitan comprender la est
 \item \textbf{Comentario de ejercicio:} ``Sumador simple'' (ejercicio~\ref{subsec:sumador-simple}) 
 \item \textbf{Trabajo y explicación del ejercicio:} ``Clase servidor de aplicaciones'' (ejercicio~\ref{subsec:clase-serv-aplis}) \\
   Explicación de la estructura general que tienen las aplicaciones web, y fundamentos de cómo esta estructura se puede encapsular en una clase.
-  \item \textbf{Comentario de ejercicio:} ``Clase servidor de aplicaciones, generador de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-clase-urls-aleatorias}). 
+\item \textbf{Comentario de ejercicio:} ``Clase servidor de aplicaciones, generador de URLs aleatorias'' (ejercicio~\ref{subsec:aplweb-clase-urls-aleatorias}). 
  \item \textbf{Comentario de ejercicio:}  ``Clase contentApp'' (ejercicio~\ref{subsec:contentapp}) 
  \item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Clase contentPostApp'' (ejercicio~\ref{subsec:contentpostapp}).
-  Entrega recomendada: antes del \lunesF.
+  Entrega recomendada: antes del 23 de marzo.
 \end{itemize}
 
 
-
 %%----------------------------------------------------------------------------
-%\subsubsection{\lunesF: Servidores simples I (2 horas)}
-%\label{cal:lunesF}
+%\subsubsection{\martesF: Servidores simples I (2 horas)}
+%\label{cal:martesF}
 
 %\begin{itemize}
 
@@ -690,8 +673,8 @@ Construcción de algunos servidores de contenidos que permitan comprender la est
 
 
 %%%----------------------------------------------------------------------------
-%\subsubsection{\lunesG: Servidores simples II (2 horas)}
-%\label{cal:lunesG}
+%\subsubsection{\martesG: Servidores simples II (2 horas)}
+%\label{cal:martesG}
 
 %\begin{itemize}
 %  \item \textbf{Discusión en clase:} ``Clase contentPutApp'' (ejercicio~\ref{subsec:contentputapp}).
@@ -719,7 +702,7 @@ Presentación de Django como sistema de construcción de aplicaciones web.
  \item \textbf{Ejercicio (discusión en clase):} ``Django Primera Aplicación'' (ejercicio~\ref{subsec:django-primera}).
 
   \item \textbf{Ejercicio (entrega en GitLab:} ``Django calc'' (ejercicio~\ref{subsec:django-calc}). \\
-    Entrega recomendada: antes del \lunesG.
+    Entrega recomendada: antes del 6 de abril.
 \end{itemize}
 
 
@@ -736,7 +719,7 @@ Usuarios, administración y autenticación con Django.
   \item \textbf{Material:} Guión \url{https://gsyc.urjc.es/grex/cursosweb/guion2.html}
  \item \textbf{Ejercicio  (discusión en clase):} ``Django cms'' (ejercicio~\ref{subsec:django-cms}). \\
  \item \textbf{Ejercicio (entrega en GitLab):} ``Django cms\_put'' (ejercicio~\ref{subsec:django-cms-put}). \\
-  Entrega recomendada: hasta el \lunesH.
+  Entrega recomendada: hasta el 13 de abril.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
@@ -749,12 +732,11 @@ Usuarios, administración y autenticación con Django.
  \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_templates'' (ejercicio~\ref{subsec:django-templates}).
  \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_post'' (ejercicio~\ref{subsec:django-post}) \\
   \item Presentación de la \textbf{Práctica 2} (ejercicio~\ref{subsec:practica-vol-2-2015}) \\
-  Entrega recomendada: antes del \lunesI.
+  Entrega recomendada: antes del 20 de abril.
 \end{itemize}
 
-
 %%%----------------------------------------------------------------------------
-\subsubsection{\lunesI: Django IV (0.5 horas)}
+\subsubsection{\lunesI: Django IV (2 horas)}
 \label{cal:lunesI}
 
 \begin{itemize}
@@ -762,9 +744,10 @@ Usuarios, administración y autenticación con Django.
   \item \textbf{Material:} Repositorio \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/testing-example}
 \end{itemize}
 
+
 %%%----------------------------------------------------------------------------
-\subsubsection{\lunesI: Django V (2 horas)}
-\label{cal:lunesIb}
+\subsubsection{\lunesJ: Django V (2 horas)}
+\label{cal:lunesJ}
 
 \begin{itemize}
  \item \textbf{Presentación:} Introducción a Django (quinta parte)
@@ -772,12 +755,12 @@ Usuarios, administración y autenticación con Django.
  \item \textbf{Material:} Transparencias ``Introducción a Django''
  \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_users'' (ejercicio~\ref{subsec:django-users}).
  \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_users\_put'' (ejercicio~\ref{subsec:django-users-put}). \\
-  Entrega recomendada: antes del \lunesJ.
+  Entrega recomendada: antes del 27 de abril.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\lunesJ: Django VI (2 horas)}
-\label{cal:lunesJ}
+\subsubsection{\lunesK: Django VI (2 horas)}
+\label{cal:lunesK}
 
 \begin{itemize}
 %  \item \textbf{Presentación:} Posibilidades de feedparser.py
@@ -786,7 +769,7 @@ Usuarios, administración y autenticación con Django.
  \item \textbf{Material:} Guión \url{https://gsyc.urjc.es/grex/cursosweb/guion5.html}
  \item \textbf{Material:} Transparencias ``Introducción a Django''
  \item \textbf{Ejercicio (discusión en clase):} ``Django cms\_post'' (ejercicio~\ref{subsec:django-post}).
-  Entrega recomendada: antes del \lunesK.
+  Entrega recomendada: antes del 4 de mayo.
 %    \item \textbf{Material:} Documentación de Django: ``Working with forms'' \\
 %          \url{http://docs.djangoproject.com/en/1.4/topics/forms}
 %  \item \textbf{Ejercicio voluntario:} ``Django feed\_expander'' (ejercicio~\ref{subsec:django-feed-expander}).
@@ -794,8 +777,8 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\lunesK: Django VII (2 horas)}
-\label{cal:lunesK}
+\subsubsection{\lunesL: Django VII (2 horas)}
+\label{cal:lunesL}
 
 \begin{itemize}
   \item \textbf{Presentación:} Introducción a Django (formularios)
@@ -803,9 +786,10 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 
+
 %%----------------------------------------------------------------------------
- \subsubsection{\lunesN: Detalles finales I  (2 horas)}
- \label{cal:lunesN}
+ \subsubsection{\juevesX: Detalles finales I  (2 horas)}
+ \label{cal:juevesO}
 
  \begin{itemize}
 %   \item \textbf{Presentación:} Introducción a CSS
@@ -815,14 +799,29 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{\lunesP: Detalles finales II (2 horas)}
-\label{cal:lunesP}
+\subsubsection{\lunesX: Detalles finales II (2 horas)}
+\label{cal:lunesM}
 
 \begin{itemize}
    \item \textbf{Ejercicio:} ``Django cms\_bootstrap componentes'' (ejercicio~\ref{subsec:django-cms-bootstrap-2})
-   \item \textbf{Ejercicio:} ``Django cms\_bootstrap componentes personalizados'' (ejercicio~\ref{subsec:django-cms-bootstrap-3})
-    \item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (despliegue)'' (ejercicio~\ref{subsec:django-cms-youtube-despliegue}).
+\item \textbf{Ejercicio:} ``Django cms\_bootstrap componentes personalizados'' (ejercicio~\ref{subsec:django-cms-bootstrap-3})
+\item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (despliegue)'' (ejercicio~\ref{subsec:django-cms-youtube-despliegue}).
 \end{itemize}
+
+%%----------------------------------------------------------------------------
+ \subsubsection{\lunesX: Detalles finales III  (2 horas)}
+ \label{cal:lunesO}
+
+ \begin{itemize}
+ \item \textbf{Ejercicio:} ``Extractor de información de un documento HTML'' (ejercicio~\ref{subsec:html-extractor})
+ \item \textbf{Presentación:} CSS Garden \\
+   \url{https://csszengarden.com}
+ \item \textbf{Presentación:} Awesome Django \\
+   \url{https://github.com/wsvincent/awesome-django#readme}
+ \item \textbf{Presentación:} Otras formas de despliegue de la práctica final.
+ \item \textbf{Preguntas y comentarios:} Práctica final.
+ \end{itemize}
+
 
 %%----------------------------------------------------------------------------
  % \subsubsection{\lunesO: Detalles finales III  (2 horas)}
