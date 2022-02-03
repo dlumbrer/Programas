@@ -231,6 +231,14 @@ Sitio web de Firebug: \url{https://getfirebug.com/}
 
 En este ejercicio vamos a ver las cookies que intercambia nuestro navegador con un servidor simple. El servidor que vamos a usar es \verb|cookies-server-6.py| (en la carpeta \verb|Python-Web/cookies|). Ejecuta el servidor, y luego, utilizando las herramientas de desarrollador de Firefox (ver ejercicio~\ref{subsec:firefox-devel}, observa las cookies que se intercambian entre este servidor y el navegador. En concreto, carga en el navegador la página principal del servidor, escribe algo en el formulario que te aparecerá, y contesta a este ejercicio escribiendo las cookies que observes en la interacción que se produce cuando le das al botón ``Submit'' para enviar al servidor el texto que has escrito.
 
+Cuando lances el servidor, indicarás en qué puerto TCP escuchará (que tendrá que estar libre en la máquina donde se lance). Por ejemplo, para lanzarlo escuchando en el puerto 8000, usarás la línea:
+
+\begin{verbatim}
+python3 cookies-server-6.py -p 8000
+\end{verbatim}
+
+En el navegador, tendrás que indicar la url correspondiente al puerto que hayas indicado. Por ejemplo, para acceder al servidor lanzado en el puerto 8000, la url será \url{http://localhost:8000}.
+
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 \subsection{Explora tus cookies (2)}
@@ -1717,6 +1725,38 @@ La secuencia debería ser parecida a la siguiente.:
   \item (Navegador) Comprueba que tu repositorio en GitLab que se ha sincronizado correctamente (i.e., contiene los últimos cambios)
 \end{enumerate}
 
+%%------------------------------------------------------------------------
+%%------------------------------------------------------------------------
+\subsection{Descarga de documentos web}
+\label{subsec:eje-python-descarga-web}
+
+\textbf{Enunciado:}
+
+Crea un fichero Python con clases que ayuden en la descarga de documentos web. Todas las clases estarán en el mismo fichero, que tendrá también un programa principal (que se ejecutará sólo cuando el fichero sea ejecutado directamente) que probará las clases.
+
+Las clases serán las siguientes:
+
+\begin{itemize}
+\item Clase \verb|Robot|. Proporcionará un ``robot'' que se encarga de descargar, y en su caso mostrar, un documento web, dada su url. Cumplirá la siguiente especificación:
+  \begin{itemize}
+  \item Se instanciará indicando como argumento la url del documento del que se ocupará el robot.
+  \item Tendrá un método \verb|retrieve|, sin argumentos, que se encargará de descargar el documento de la url de la que se ocupa el robot, sólo si no se lo ha descargado ya antes. Si se lo descarga, mostrará un mensaje en pantalla: ``Descargando url'' (siendo ``url'' la url en cuestión).
+  \item Tendra un método \verb|show|, sin argumentos, que mostrará en pantalla el contenido del documento descargado. Para poder mostrarlo, \verb|show| se encargará de usar \verb|retrieve| cuando sea conveniente.
+  \item Tendrá un método \verb|content|, sin argumentos, que devolverá una cadena de caracteres (\emph{string}) con el contenido del documento descargado.
+  \end{itemize}
+\item Clase \verb|Cache|. Proporcionará una cache de documentos, y cumplirá la siguiente especificación:
+  \begin{itemize}
+  \item No aceptará ningún argumento para ser instanciada.
+  \item Tendrá un método \verb|retrieve|, con una url como argumento, que se encargará de descargar el documento correspondiente a esa url, si no ha sido ya descargado antes, y si lo hubiera sido, no hará nada.
+  \item Tendrá un método \verb|show|, con una url como argumento, que mostrará en pantalla el contenido del documento correspondiente con esa url, usando \verb|retrieve| para descargarlo si es necesario.
+  \item Tendrá un método \verb|show_all|, sin argumentos, que mostrará un listado de todas las urls cuyo documento se ha descargado ya.
+  \item Tendrá un método, \verb|content|, con una url como argumento, que devolverá una cadena de caracteres (\emph{string}) con el contenido del documento correspndiente a la url, usando \verb|retrieve| para descargarlo si es necesario.
+  \end{itemize}
+\end{itemize}
+
+Se recomienda que la clase \verb|Robot| use el módulo estándar de Python \verb|urllib.request|\footnote{Módulo urllib.request: \\ \url{https://docs.python.org/3/library/urllib.request.html}}\footnote{Ejemplos del módulo urllib.request: \\ \url{https://docs.python.org/3/library/urllib.request.html\#examples}} para descargar documentos, y se pide que la clase \verb|Cache| use la clase \verb|Robot| para descargar documentos.
+
+El programa principal creará al menos dos objetos de la clase Robot, llamará a varios de sus métodos, y creará al menos dos objetos de la clase Cache, llamando también a varios de sus métodos, para mostrar que todo funciona.
 
 \newpage
 
