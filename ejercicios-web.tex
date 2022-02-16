@@ -1810,8 +1810,13 @@ La práctica también sirve para introducir el esquema típico de prueba (carga 
 
 \textbf{Material:}
 
-Se ofrecen dos soluciones en \verb|https://gitlab.etsit.urjc.es/grex/x-serv-14.1-webserver|. La más simple es \verb|servidor-http-simple.py|. La otra, \verb|servidor-http-simple-2.py|, permite conexiones desde fuera de la máquina huésped, y es capaz de reusar el puerto de forma que se puede rearrancar en cuanto muere.
+Se ofrecen tres soluciones en el directorio \verb|Python-Web| del repositorio de código de la asignatura:
 
+\begin{itemize}
+\item \verb|servidor-http-simple.py|: permite conexiones desde localhost
+\item \verb|servidor-http-simple-2.py| permite conexiones desde fuera de la máquina huésped, y es capaz de reusar el puerto de forma que se puede rearrancar en cuanto muere.
+\item \verb|servidor-http-simple-3.py| permite conexiones tanto desde localhost como desde fuera de la máquina huésped, y es capaz de reusar el puerto de forma que se puede rearrancar en cuanto muere.
+\end{itemize}
 
 %%---------------------------------------------------------------------
 %%---------------------------------------------------------------------
@@ -1832,13 +1837,14 @@ Basándose en la aplicación ``Hola mundo'' construida para el ejercicio~\ref{su
 
 \textbf{Material:}
 
-%Soluciones de referencia:
+Soluciones de referencia, en el directorio \verb|Python-Web| del repositorio de código de la asignatura:
 
-%\begin{itemize}
-%\item \verb|02-aplicaciones-web-simples/servidor-http-simple-img.py|
-%\item \verb|02-aplicaciones-web-simples/servidor-http-simple-404.py|
-%\item \verb|02-aplicaciones-web-simples/servidor-http-simple-301.py|
-%\end{itemize}
+
+\begin{itemize}
+\item \verb|servidor-http-simple-img.py|
+\item \verb|servidor-http-simple-404.py|
+\item \verb|servidor-http-simple-301.py|
+\end{itemize}
 
 %%------------------------------------------------------------------------------------
 %%------------------------------------------------------------------------------------
@@ -1849,11 +1855,20 @@ Basándose en la aplicación ``Hola mundo'' construida para el ejercicio~\ref{su
 
 Construcción de una aplicación web que devuelva URLs aleatorias. Cada vez que os conectéis al servidor, debe aparecer en el navegador ``Hola. Dame otra'', donde ``Dame otra'' es un enlace a una URL aleatoria bajo \verb|localhost:1234| (esto es, por ejemplo, \url{http://localhost:1234/324324234}). Esa URL ha de ser distinta cada vez que un navegador se conecte a la aplicación.
 
-Parte para ello (i.e., haz un \emph{fork}) del siguiente repositorio: \url{https://gitlab.etsit.urjc.es/grex/x-serv-14.3-urlsaleatorias}
+%Parte para ello (i.e., haz un \emph{fork}) del siguiente repositorio: \url{https://gitlab.etsit.urjc.es/grex/x-serv-14.3-urlsaleatorias}
 
 \textbf{Motivación:}
 
 Explorar una aplicación web como extensión muy simple de ``Aplicación web hola mundo''.
+
+\textbf{Material:}
+
+Soluciones de referencia, en el directorio \verb|Python-Web| del repositorio de código de la asignatura:
+
+
+\begin{itemize}
+\item \verb|servidor-http-simple-random.py|
+\end{itemize}
 
 %%-----------------------------------------------------------------------------
 \subsection{Aplicación redirectora}
