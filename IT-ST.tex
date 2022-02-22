@@ -191,12 +191,13 @@ Evaluación extraordinaria:
    \hline
   Lunes & Jueves \\ \hline \hline
                        & \nameref{cal:juevesA} \\ \hline
-  \nameref{cal:lunesA} & \nameref{cal:juevesB} \\ 
-  \nameref{cal:lunesAb} &                       \\  \hline
+  \nameref{cal:lunesA} & \nameref{cal:juevesB} \\ \hline
   \nameref{cal:lunesB} & \nameref{cal:juevesC} \\ 
   \nameref{cal:lunesBb} &                       \\  \hline  
-  \nameref{cal:lunesC} & \nameref{cal:juevesD} \\  \hline
-  \nameref{cal:lunesD} & \nameref{cal:juevesE} \\ \hline
+  \nameref{cal:lunesC} & \nameref{cal:juevesD} \\
+  \nameref{cal:lunesCb} &                       \\  \hline
+  \nameref{cal:lunesD} & \nameref{cal:juevesE} \\
+  \nameref{cal:lunesDb} &                       \\  \hline
   \nameref{cal:lunesE} & \nameref{cal:juevesF} \\ \hline
   \nameref{cal:lunesF} & \nameref{cal:juevesG} \\ \hline
   \nameref{cal:lunesG} & \nameref{cal:juevesH} \\  \hline
@@ -560,20 +561,21 @@ Programa de las prácticas de la asignatura (tentativo).
 Introducción al lenguaje de programación Python, que se utilizará para la realización de las prácticas de la asignatura.
 
 %%----------------------------------------------------------------------------
-\subsubsection{\lunesA: Python I (1.5 horas)}
+\subsubsection{\lunesA: Python I (2 horas)}
 \label{cal:lunesA}
 
 \begin{itemize}
-\item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, ejecución en el intérprete, strings, listas, estructuras condicionales (if else), bucles for).
+% \item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, ejecución en el intérprete, strings, listas, estructuras condicionales (if else), bucles for).
+\item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, tipos, anotación de tipos, métodos, estructuras condicionales (if else)).
 \item \textbf{Material:} Transparencias ``Introducción a Python''
-\item \textbf{Material:} Ejercicios ``Uso interactivo del intérprete de Python'' (ejercicio~\ref{subsec:practicas-interprete}) y ``Haz un programa en Python'' (ejercicio~\ref{subsec:eje-python-primer-programa}).
-\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
-   Entrega recomendada: antes del \lunesB.
+% \item \textbf{Material:} Ejercicios ``Uso interactivo del intérprete de Python'' (ejercicio~\ref{subsec:practicas-interprete}) y ``Haz un programa en Python'' (ejercicio~\ref{subsec:eje-python-primer-programa}).
+% \item \textbf{Ejercicio propuesto (entrega en el foro):} ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
+   % Entrega recomendada: antes del \lunesB.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{\lunesA: Lab remoto (0.5 horas)}
-\label{cal:lunesAb}
+\subsubsection{\lunesB: Lab remoto (0.5 horas)}
+\label{cal:lunesB}
 
 \begin{itemize}
 \item Mecanismos de conexión remota al laboratorio: VNC desde el navegador, ssh, etc.
@@ -581,34 +583,51 @@ Introducción al lenguaje de programación Python, que se utilizará para la rea
 
 %%----------------------------------------------------------------------------
 \subsubsection{\lunesB: Python II (1.5 horas)}
-\label{cal:lunesB}
-
-\begin{itemize}
-\item \textbf{Presentación:} ``Introducción a Python''.
-\item \textbf{Material:} Transparencias ``Introducción a Python''
-\item \textbf{Material:} Ejercicio ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
-\item \textbf{Ejercicio:} ``Ficheros, diccionarios y excepciones''~\ref{subsec:ficheros-dic-excep}.
-\item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
-   Entrega recomendada: antes del \lunesC.
-\end{itemize}
-
-%% --------------------------------------------------------------------------
-\subsubsection{\lunesB: GitLab (0.5 horas)}
 \label{cal:lunesBb}
 
 \begin{itemize}
-\item \textbf{Presentación:} Introducción a la entrega de prácticas en GitLab (seccion~\ref{sec:eje-entrega-practicas-incr}).
+\item \textbf{Presentación:} ``Introducción a Python'' (listas, bucles (for), ficheros, strings)
+\item \textbf{Material:} Transparencias ``Introducción a Python''
+% \item \textbf{Material:} Ejercicio ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
+% \item \textbf{Ejercicio:} ``Ficheros, diccionarios y excepciones''~\ref{subsec:ficheros-dic-excep}.
+% \item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
+   % Entrega recomendada: antes del 2 de marzo.
+\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
+   Entrega recomendada: antes del \lunesC.
 \end{itemize}
 
+
 %%----------------------------------------------------------------------------
-\subsubsection{\lunesC: Python III (2 horas)}
+\subsubsection{\lunesC: Python III (1.5 horas)}
 \label{cal:lunesC}
 
 \begin{itemize}
-\item \textbf{Presentación:} ``Introducción a Python''.
+\item \textbf{Presentación:} ``Introducción a Python'' (revisión ejercicio ficheros y listas, depurador, guardar datos intermedios en memoria).
 \item \textbf{Material:} Transparencias ``Introducción a Python''
 
+\end{itemize}
+
+
+%% --------------------------------------------------------------------------
+\subsubsection{\lunesC: GitLab (0.5 horas)}
+\label{cal:lunesCb}
+
+\begin{itemize}
+\item \textbf{Presentación:} Introducción a la entrega de prácticas en GitLab (seccion~\ref{sec:eje-entrega-practicas-incr}).
+
 \item \textbf{Ejercicio propuesto (discusión en clase:} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
+   Entrega recomendada: antes del \lunesD.
+
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsubsection{\lunesD: Python IV (0.5 horas)}
+\label{cal:lunesD}
+
+\begin{itemize}
+\item \textbf{Presentación:} ``Introducción a Python'' (diccionarios, excepciones).
+\item \textbf{Material:} Transparencias ``Introducción a Python''
 
 \end{itemize}
 
@@ -621,8 +640,8 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 
 
 %%----------------------------------------------------------------------------
-\subsubsection{\lunesD: Aplicaciones web (2 horas)}
-\label{cal:lunesD}
+\subsubsection{\lunesD: Aplicaciones web (1.5 horas)}
+\label{cal:lunesDb}
 
 \begin{itemize}
  \item \textbf{Ejercicio:} ``Aplicación web hola mundo'' (ejercicio~\ref{subsec:aplweb-hola-mundo}) \\
