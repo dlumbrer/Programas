@@ -191,12 +191,13 @@ Evaluación extraordinaria:
 \begin{tabular}{|l|l|}
    \hline
   Martes & Jueves \\ \hline \hline
-  \nameref{cal:martesA} & \nameref{cal:juevesA} \\
-                        & \nameref{cal:juevesAa} \\ \hline
+  \nameref{cal:martesA} & \nameref{cal:juevesA} \\ \hline
+                        % & \nameref{cal:juevesAa} \\ \hline
   \nameref{cal:martesB} & \nameref{cal:juevesB} \\
                         & \nameref{cal:juevesBb} \\  \hline
   \nameref{cal:martesC} & \nameref{cal:juevesC} \\ \hline
-  \nameref{cal:martesD} & \nameref{cal:juevesD} \\ \hline
+  \nameref{cal:martesD} & \nameref{cal:juevesD} \\
+                        & \nameref{cal:juevesDa} \\ \hline
   \nameref{cal:martesE} & \nameref{cal:juevesE} \\  \hline
   \nameref{cal:martesF} & \nameref{cal:juevesF} \\ \hline
   \nameref{cal:martesG} & \nameref{cal:juevesG} \\ \hline
@@ -571,20 +572,21 @@ Programa de las prácticas de la asignatura (tentativo).
 Introducción al lenguaje de programación Python, que se utilizará para la realización de las prácticas de la asignatura.
 
 %%----------------------------------------------------------------------------
-\subsubsection{\juevesA: Python I (1.5 horas)}
+\subsubsection{\juevesA: Python I (2 horas)}
 \label{cal:juevesA}
 
 \begin{itemize}
-\item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, ejecución en el intérprete, strings, listas, estructuras condicionales (if else), bucles for).
+% \item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, ejecución en el intérprete, strings, listas, estructuras condicionales (if else), bucles for).
+\item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, tipos, anotación de tipos, métodos).
 \item \textbf{Material:} Transparencias ``Introducción a Python''
-\item \textbf{Material:} Ejercicios ``Uso interactivo del intérprete de Python'' (ejercicio~\ref{subsec:practicas-interprete}) y ``Haz un programa en Python'' (ejercicio~\ref{subsec:eje-python-primer-programa}).
-\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
-   Entrega recomendada: antes del 23 de febrero.
+% \item \textbf{Material:} Ejercicios ``Uso interactivo del intérprete de Python'' (ejercicio~\ref{subsec:practicas-interprete}) y ``Haz un programa en Python'' (ejercicio~\ref{subsec:eje-python-primer-programa}).
+% \item \textbf{Ejercicio propuesto (entrega en el foro):} ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
+   % Entrega recomendada: antes del 23 de febrero.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{\juevesA: Lab remoto (0.5 horas)}
-\label{cal:juevesAa}
+\subsubsection{\juevesB: Lab remoto (0.5 horas)}
+\label{cal:juevesB}
 
 \begin{itemize}
 \item Mecanismos de conexión remota al laboratorio: VNC desde el navegador, ssh, etc.
@@ -592,23 +594,15 @@ Introducción al lenguaje de programación Python, que se utilizará para la rea
 
 %%----------------------------------------------------------------------------
 \subsubsection{\juevesB: Python II (1.5 horas)}
-\label{cal:juevesB}
-
-\begin{itemize}
-\item \textbf{Presentación:} ``Introducción a Python''.
-\item \textbf{Material:} Transparencias ``Introducción a Python''
-\item \textbf{Material:} Ejercicio ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
-\item \textbf{Ejercicio:} ``Ficheros, diccionarios y excepciones''~\ref{subsec:ficheros-dic-excep}.
-\item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
-   Entrega recomendada: antes del 2 de marzo.
-\end{itemize}
-
-%% --------------------------------------------------------------------------
-\subsubsection{\juevesB: GitLab (0.5 horas)}
 \label{cal:juevesBb}
 
 \begin{itemize}
-\item \textbf{Presentación:} Introducción a la entrega de prácticas en GitLab (seccion~\ref{sec:eje-entrega-practicas-incr}).
+\item \textbf{Presentación:} ``Introducción a Python'' (estructuras condicionales (if else), listas, bucles (for))
+\item \textbf{Material:} Transparencias ``Introducción a Python''
+% \item \textbf{Material:} Ejercicio ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
+% \item \textbf{Ejercicio:} ``Ficheros, diccionarios y excepciones''~\ref{subsec:ficheros-dic-excep}.
+% \item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
+   % Entrega recomendada: antes del 2 de marzo.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
@@ -616,12 +610,40 @@ Introducción al lenguaje de programación Python, que se utilizará para la rea
 \label{cal:juevesC}
 
 \begin{itemize}
-\item \textbf{Presentación:} ``Introducción a Python''.
+\item \textbf{Presentación:} ``Introducción a Python'' (ficheros, strings, depurador, diccionarios)
 \item \textbf{Material:} Transparencias ``Introducción a Python''
 
-\item \textbf{Ejercicio propuesto (discusión en clase:} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
+\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
+   Entrega recomendada: antes del \juevesD.
+
+% \item \textbf{Ejercicio propuesto (discusión en clase:} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
 
 \end{itemize}
+
+
+
+%%----------------------------------------------------------------------------
+\subsubsection{\juevesD: Python IV (1 horas)}
+\label{cal:juevesD}
+
+\begin{itemize}
+\item \textbf{Presentación:} ``Introducción a Python'' (revisión ejercicio ficheros y listas, excepciones, guardar datos intermedios en memoria)
+\item \textbf{Material:} Transparencias ``Introducción a Python''
+
+\end{itemize}
+
+
+%% --------------------------------------------------------------------------
+\subsubsection{\juevesD: GitLab (1 horas)}
+\label{cal:juevesDa}
+
+\begin{itemize}
+\item \textbf{Presentación:} Introducción a la entrega de prácticas en GitLab (seccion~\ref{sec:eje-entrega-practicas-incr}).
+
+\item \textbf{Ejercicio propuesto (discusión en clase:} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}).
+   Entrega recomendada: antes del \juevesE.
+\end{itemize}
+
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
@@ -632,8 +654,8 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 
 
 %%----------------------------------------------------------------------------
-\subsubsection{\juevesD: Aplicaciones web (2 horas)}
-\label{cal:juevesD}
+\subsubsection{\juevesE: Aplicaciones web (2 horas)}
+\label{cal:juevesE}
 
 \begin{itemize}
  \item \textbf{Ejercicio:} ``Aplicación web hola mundo'' (ejercicio~\ref{subsec:aplweb-hola-mundo}) \\
@@ -643,7 +665,7 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 \item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Aplicación redirectora'' (ejercicio~\ref{subsec:aplweb-redirectora})
 
 
-   Entrega recomendada: antes del 9 de marzo.
+   Entrega recomendada: antes del \juevesF.
 \end{itemize}
 
 
@@ -653,8 +675,8 @@ Construcción de aplicaciones web mínimas sobre la biblioteca Sockets de Python
 Construcción de algunos servidores de contenidos que permitan comprender la estructura básica de una aplicación web, y de cómo implementarlos aprovechando algunas características de Python.
 
 %%----------------------------------------------------------------------------
-\subsubsection{\juevesE: Servidores con clase (2 horas)}
-\label{cal:juevesE}
+\subsubsection{\juevesF: Servidores con clase (2 horas)}
+\label{cal:juevesF}
 
 \begin{itemize}
 %\item \textbf{Ejercicio:} ``Sumador simple'' (ejercicio~\ref{subsec:sumador-simple}) (en una fase) 
@@ -702,8 +724,8 @@ Construcción de algunos servidores de contenidos que permitan comprender la est
 \subsection{P4 - Introducción a Django}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\juevesF: Django I (2 horas)}
-\label{cal:juevesF}
+\subsubsection{\juevesG: Django I (2 horas)}
+\label{cal:juevesG}
 
 Presentación de Django como sistema de construcción de aplicaciones web.
 
@@ -722,8 +744,8 @@ Presentación de Django como sistema de construcción de aplicaciones web.
 
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\juevesG: Django II (2 horas)}
-\label{cal:juevesG}
+\subsubsection{\juevesH: Django II (2 horas)}
+\label{cal:juevesH}
 
 Primeros ejercicios con base de datos.
 
@@ -738,8 +760,8 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\juevesH: Django III (2 horas)}
-\label{cal:juevesH}
+\subsubsection{\juevesI: Django III (2 horas)}
+\label{cal:juevesI}
 
 \begin{itemize}
  \item \textbf{Presentación:} Introducción a Django (tercera parte)
@@ -751,8 +773,8 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\juevesI: Django IV (2 horas)}
-\label{cal:juevesI}
+\subsubsection{\juevesJ: Django IV (2 horas)}
+\label{cal:juevesJ}
 
 \begin{itemize}
  \item \textbf{Presentación:} Tests con Django y GitLab
@@ -761,8 +783,8 @@ Usuarios, administración y autenticación con Django.
 
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\juevesJ: Django V (2 horas)}
-\label{cal:juevesJ}
+\subsubsection{\juevesK: Django V (2 horas)}
+\label{cal:juevesK}
 
 \begin{itemize}
  \item \textbf{Presentación:} Introducción a Django (quinta parte)
@@ -774,8 +796,8 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\juevesK: Django VI (2 horas)}
-\label{cal:juevesK}
+\subsubsection{\juevesL: Django VI (2 horas)}
+\label{cal:juevesL}
 
 \begin{itemize}
 %  \item \textbf{Presentación:} Posibilidades de feedparser.py
@@ -792,8 +814,8 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%%----------------------------------------------------------------------------
-\subsubsection{\juevesL: Django VII (2 horas)}
-\label{cal:juevesL}
+\subsubsection{\juevesM: Django VII (2 horas)}
+\label{cal:juevesM}
 
 \begin{itemize}
   \item \textbf{Presentación:} Introducción a Django (formularios)
@@ -803,8 +825,8 @@ Usuarios, administración y autenticación con Django.
 
 
 %%----------------------------------------------------------------------------
- \subsubsection{\juevesM: Detalles finales I  (2 horas)}
- \label{cal:juevesM}
+ \subsubsection{\juevesN: Detalles finales I  (2 horas)}
+ \label{cal:juevesN}
 
  \begin{itemize}
 %   \item \textbf{Presentación:} Introducción a CSS
@@ -814,21 +836,21 @@ Usuarios, administración y autenticación con Django.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{\juevesN: Detalles finales II (2 horas)}
-\label{cal:juevesN}
+% \subsubsection{\juevesN: Detalles finales II (2 horas)}
+% \label{cal:juevesN}
 
-\begin{itemize}
-   \item \textbf{Ejercicio:} ``Django cms\_bootstrap componentes'' (ejercicio~\ref{subsec:django-cms-bootstrap-2})
-\item \textbf{Ejercicio:} ``Django cms\_bootstrap componentes personalizados'' (ejercicio~\ref{subsec:django-cms-bootstrap-3})
-\item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (despliegue)'' (ejercicio~\ref{subsec:django-cms-youtube-despliegue}).
- \item \textbf{Ejercicio:} ``Extractor de información de un documento HTML'' (ejercicio~\ref{subsec:html-extractor})
- \item \textbf{Presentación:} CSS Garden \\
-   \url{https://csszengarden.com}
- \item \textbf{Presentación:} Awesome Django \\
-   \url{https://github.com/wsvincent/awesome-django#readme}
- \item \textbf{Presentación:} Otras formas de despliegue de la práctica final.
- \item \textbf{Preguntas y comentarios:} Práctica final.
- \end{itemize}
+% \begin{itemize}
+%    \item \textbf{Ejercicio:} ``Django cms\_bootstrap componentes'' (ejercicio~\ref{subsec:django-cms-bootstrap-2})
+% \item \textbf{Ejercicio:} ``Django cms\_bootstrap componentes personalizados'' (ejercicio~\ref{subsec:django-cms-bootstrap-3})
+% \item \textbf{Ejercicio (discusión en clase):} ``Gestor de contenidos con videos de YouTube (despliegue)'' (ejercicio~\ref{subsec:django-cms-youtube-despliegue}).
+%  \item \textbf{Ejercicio:} ``Extractor de información de un documento HTML'' (ejercicio~\ref{subsec:html-extractor})
+%  \item \textbf{Presentación:} CSS Garden \\
+%    \url{https://csszengarden.com}
+%  \item \textbf{Presentación:} Awesome Django \\
+%    \url{https://github.com/wsvincent/awesome-django#readme}
+%  \item \textbf{Presentación:} Otras formas de despliegue de la práctica final.
+%  \item \textbf{Preguntas y comentarios:} Práctica final.
+%  \end{itemize}
 
 
 
