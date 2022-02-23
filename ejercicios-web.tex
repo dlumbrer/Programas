@@ -414,6 +414,22 @@ curl -XGET -I http://localhost:1234/
 curl -XGET -Iv http://localhost:1234/
 \end{verbatim}
 
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Distinto contenido según navegador}
+\label{subsec:contador-simple-navegador}
+
+\textbf{Enunciado:}
+
+Realiza una versión del ejercicio ``Contador simple'' (\ref{subsec:contador-simple}) que sirva distinto contenido según el navegador que lo pida. En particular, si el navegador que pide una página es Firefox, se responderá con una página HTML tal y como se hace en el ejercicio ``Contador simple''. Pero si la petición la hace \verb|curl|, se responderá con un documento de texto plano sólo con el resultado.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Cabecera User Agent (MDN): \\
+  \url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent}
+\end{itemize}
+
 
 %%--------------------------------------------------------------------------
 %%--------------------------------------------------------------------------
@@ -1878,11 +1894,11 @@ Soluciones de referencia, en el directorio \verb|Python-Web| del repositorio de 
 
 Construir un programa en Python que sirva cualquier invocación que se le realice con una redirección (códigos de resultado HTTP en el rango 3xx) a otro recurso (aleatorio), que bien puede ser de sí mismo (como en el ejercicio~\ref{subsec:aplweb-urls-aleatorias}) o externo a partir de una lista con URLs.
 
+Parte para ello (i.e., haz un \emph{fork}) del siguiente repositorio: \url{https://gitlab.etsit.urjc.es/cursosweb/x-serv-15.4-aplicacion-redirectora}
+
 \textbf{Comentarios:}
 
-Para poder observar con más facilidad en el navegador lo que está ocurriendo, se puede hacer que la aplicación devuelva, en el cuerpo de la respuesta HTTP, un texto HTML indicando que se va a realizar una redirección, y a qué url va a realizarse. Para que este mensaje sea visible durante un tiempo razonable, se puede hacer que la aplicación, al recibir una petición, se quede ``parada'' durante unos segundos antes de contestar con la redirección.
-
-Parte para ello (i.e., haz un \emph{fork}) del siguiente repositorio: \url{https://gitlab.etsit.urjc.es/cursosweb/x-serv-15.4-aplicacion-redirectora}
+Para poder observar con más facilidad en el navegador lo que está ocurriendo, confgura el panel de Red de forma que mantenga el log de transacciones de forma permanente (en lugar de reiniciarlo cada vez que se pida una página nueva). En Firefox, esto se hace en la configuración del panel de Red, activando la opción ``Log persistente''.
 
 
 \textbf{Motivación:}
@@ -2342,8 +2358,12 @@ Construcción de la clase ``contentPostApp'', similar a contentApp (ejercicio~\r
 
 \textbf{Referencias:}
 
-Forms in HTML (HTML 4.01 Specification by W3C): \\
+\begin{itemize}
+\item The Form element (MDN): \\
+  \url{https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form}
+\item Forms in HTML (HTML 4.01 Specification by W3C): \\
 \url{http://www.w3.org/TR/html4/interact/forms.html}
+\end{itemize}
 
 %%----------------------------------------------------------------------------
 \subsection{Clase contentPersistentApp}
