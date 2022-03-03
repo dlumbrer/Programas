@@ -45,9 +45,96 @@ Conviene visitar el repositorio propio en GitLab, para comprobar que efectivamen
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
 \subsection{Minipráctica 1 (entrega voluntaria)}
-\label{subsec:practica-vol-1-2016}
+\label{subsec:practica-vol-1-2022}
 
-\textbf{Fecha recomendada de entrega:} Antes del 2 de abril de 2021.
+\textbf{Fecha recomendada de entrega:} Antes del \juevesH.
+
+Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs. Los usuarios de la aplicación podrán especificar URLs, y la aplicación generará para ellos un recurso aleatorio que, a partir de ese momento, redireccionará a la URL correspondiente. La aplicación podrá realizarse según el esquema de clases explicado en clase (usando, si se quiere, el módulo \texttt{webapp.py}), o de cualquier otra forma.
+
+El repositorio de partida es: \url{https://gitlab.etsit.urjc.es/cursosweb/mini-1-acortadora/}
+
+El código ha de guardarse en un fichero llamado \emph{randomshort.py}.
+
+El funcionamiento de la aplicación será el siguiente:
+
+\begin{itemize}
+\item Recurso ``/'', invocado mediante GET. Devolverá una página HTML con un formulario. En ese formulario habrá un campo para la url a acortar. El formulario se enviará al servidor mediante POST, y su campo se llamará \texttt{url}. Además, esa misma página incluirá un listado de todas las URLs reales y acortadas que ha configurado ese navegador hasta ese momento.
+
+\item Recurso ``/'', invocado mediante POST. Si el comando POST incluye una \texttt{qs} (query string) con un campo \texttt{url} se devolverá una página HTML con todas las URLs reales y acortadas que ha configurado ese navegador hasta ese momento (incluida esta), y se apuntará la correspondencia (ver más abajo).
+
+Si el POST no trae una \texttt{qs} que se haya podido generar en el formulario, devolverá una página HTML con un mensaje de error.
+
+Si la URL especificada en el formulario comienza por ``http://'' o ``https://'', se considerará que ésa es la URL a acortar. Si no es así, se le añadirá ``https://'' por delante, y se considerará que esa es la url a acortar. Por ejemplo, si en el formulario se escribe ``http://gsyc.es'', la URL a acortar será ``http://gsyc.es''. Si se escribe ``gsyc.es'', la URL a acortar será ``https://gsyc.es''.
+
+Si se recibe una petición para un nombre de recurso que ya corresponde con una URL conocida por el acortdor, usará el mismo recurso aleatorio acortado que ya se le asignó.
+
+Así, por ejemplo, si se quiere acortar \texttt{http://gsyc.urjc.es}, y la aplicación está en el puerto 1234 de la máquina ``localhost'', se invocará (mediante POST) la URL
+
+\texttt{https://localhost:1234/}
+
+y en el cuerpo de esa petición HTTP irá la \texttt{qs}
+
+\verb|url=https://gsyc.urjc.es|
+
+Normalmente, esta invocación POST se realizará rellenando el formulario que ofrece la aplicación.
+
+Como respuesta, la aplicación devolverá (en el cuerpo de la respuesta HTTP) una página HTML con el formulario, y la lista de URLs acortadas hasta el momento para este navegador, incluyendo esta.
+
+
+\item Recursos correspondientes a URLs acortadas. Estos serán los recursos aleatorios que se han ido construyendo para las urls a acortar, todos con el prefijo ``/''. Cuando la aplicación reciba un GET sobre uno de estos recursos, si el número corresponde a una URL acortada, devolverá un HTTP REDIRECT a la URL real. Si no la tiene, devolverá HTTP ERROR ``Recurso no disponible''.
+
+Por ejemplo, si se recibe 
+
+\verb|http://localhost:1234/sd34te|
+
+y ese recurso aleatorio está configurado para redirigir a \texttt{http://gsyc.urjc.es}, la aplicación devolverá un HTTP REDIRECT a la URL
+
+\verb|https://gsyc.urjc.es|
+
+\end{itemize}
+
+La aplicación funcionará con estado: se supone que cada vez que la aplicación muera y vuelva a ser lanzada, no perderá todo su estado anterior. Para ello, se guardarán las URLs acortadas en un fichero con \texttt{shelve}. Al lanzar la aplicación, se leerá el fichero con las URLs acortadas. Y cada vez que se incluya una nueva URL acortada en el sistema, también se guardará esta información en el fichero.
+
+\textbf{Comentario}
+
+Se recomienda utilizar un diccionario para almacenar las URLs reales y los nombres de recurso correspondientes. La clave de búsqueda será el nombre de recurso, y el valor, la URL real.
+
+Se recomienda realizar la aplicación en varios pasos:
+
+\begin{itemize}
+\item Comenzar por reconocer ``GET /'', y devolver el formulario correspondiente.
+\item Reconocer ``POST /'', y devolver la página HTML correspondiente (con la URL a acortar).
+\item Reconocer ``GET /recurso'' (para cualquier recurso), y realizar la redirección correspondiente.
+\item Manejar las condiciones de error y realizar el resto de la funcionalidad.
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Minipráctica 2 (entrega voluntaria)}
+\label{subsec:practica-vol-2-2015}
+
+\textbf{Fecha recomendada de entrega:} Hasta el 14 de abril.
+
+Esta práctica tendrá como objetivo la creación de una aplicación web (de nombre \emph{acorta}) simple para acortar URLs utilizando Django (en un nuevo proyecto Django llamado \emph{project}). Su enunciado será igual que el de la práctica 1 de entrega voluntaria (ejercicio~\ref{subsec:practica-vol-1-2016}), salvo en los siguientes aspectos:
+
+\begin{itemize}
+  \item Se implementará utilizando Django.
+  \item Tendrá que almacenar la información relativa a las URLs que acorta en una base de datos, de forma que aunque la aplicación sea rearrancada, las URLs acortadas sigan funcionando adecuadamente.
+  \item Utilizará plantillas, de manera que el código Python y el HTML estarán separados.
+\end{itemize}
+
+%Repositorio GitHub de entrega: \\
+%\url{https://github.com/CursosWeb/X-Serv-18.2-Practica2}
+
+Repositorio GitLab de partida: \\
+\url{https://gitlab.etsit.urjc.es/cursosweb/x-serv-18.2-practica2}
+
+\newpage
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsection{Minipráctica 1 (curso 2020-2021)}
+\label{subsec:practica-vol-1-2016}
 
 Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs. Los usuarios de la aplicación podrán especificar URLs y nombres de recurso, y a partir de ese momento, esos nombres de recurso redireccionarán a su URL correspondiente. La aplicación podrá realizarse según el esquema de clases explicado en clase (usando, si se quiere, el módulo \texttt{webapp.py}), o de cualquier otra forma.
 
@@ -107,30 +194,6 @@ Se recomienda realizar la aplicación en varios pasos:
 \item Reconocer ``GET /recurso'' (para cualquier recurso), y realizar la redirección correspondiente.
 \item Manejar las condiciones de error y realizar el resto de la funcionalidad.
 \end{itemize}
-
-%%---------------------------------------------------------------------
-%%---------------------------------------------------------------------
-\subsection{Minipráctica 2 (entrega voluntaria)}
-\label{subsec:practica-vol-2-2015}
-
-\textbf{Fecha recomendada de entrega:} Hasta el 14 de abril.
-
-Esta práctica tendrá como objetivo la creación de una aplicación web (de nombre \emph{acorta}) simple para acortar URLs utilizando Django (en un nuevo proyecto Django llamado \emph{project}). Su enunciado será igual que el de la práctica 1 de entrega voluntaria (ejercicio~\ref{subsec:practica-vol-1-2016}), salvo en los siguientes aspectos:
-
-\begin{itemize}
-  \item Se implementará utilizando Django.
-  \item Tendrá que almacenar la información relativa a las URLs que acorta en una base de datos, de forma que aunque la aplicación sea rearrancada, las URLs acortadas sigan funcionando adecuadamente.
-  \item Utilizará plantillas, de manera que el código Python y el HTML estarán separados.
-\end{itemize}
-
-%Repositorio GitHub de entrega: \\
-%\url{https://github.com/CursosWeb/X-Serv-18.2-Practica2}
-
-Repositorio GitLab de partida: \\
-\url{https://gitlab.etsit.urjc.es/cursosweb/x-serv-18.2-practica2}
-
-\newpage
-
 
 
 %%-----------------------------------------------------------------------------
