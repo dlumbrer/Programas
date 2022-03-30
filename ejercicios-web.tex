@@ -2291,6 +2291,57 @@ Repositorio en GitLab para entregar el ejercicio: \\
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
+\subsection{Django tests}
+\label{subsec:django-tests}
+
+\textbf{Enunciado:}
+
+Realizar un juego de pruebas (tests) para el ejercicio ``Django cms\_forms'' (ejercicio~\ref{subsec:django-forms}) utilizando los tests de Django (\texttt{django.test}. Para que las pruebas sean más completas, añádase un pie de página en todas las páginas que se sirven que incluya el número de páginas vistas del servidor hasta ese momento (sólo desde que se lanzó el servidor). Para anotar las páginas con el número de páginas vistas, se implementará un objeto contador, que tendrá un método para incrementar el contador, y que devolverá el valor del contador tras inscrementarlo.
+
+Las pruebas deberán ser de dos tipos:
+
+\begin{itemize}
+\item Pruebas unitarias del objeto contador.
+\item Pruebas extremo a extremo del servidor recibiendo ciertas peticiones HTTP.
+\end{itemize}
+
+En este ejercicio no importa mucho qué pruebas se hagan, lo importante es experimenar haciendo pruebas.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item ``Testing in Django'': \\
+  \url{https://docs.djangoproject.com/en/4.0/topics/testing/}
+
+\item ``Writing your first Django app, part 5'': \\
+\url{https://docs.djangoproject.com/en/3.2/intro/tutorial05/}
+
+\item Solución en el directorio \texttt{Python-Django/django-tests} del repositorio de código de la asignatura.
+
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsection{Django tests en GitLab}
+\label{subsec:django-tests-gitlab}
+
+\textbf{Enunciado:}
+
+Automatizar las pruebas de un projecto Django como el descrito en el ejercicio ``Django tests'' (ejercicio~\ref{subsec:django-tests}) utilizando el sistema de CI de GitLab, de forma que cada vez que se suba un nuevo commit al repositorio, se ejecuten esas pruebas.
+
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Repositorio con una solución a este ejercicio: \\
+  \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/testing-example}
+\item Video explicativo: \\
+  \url{https://www.youtube.com/watch?v=XjMseC6yGS8}
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
 \subsection{Django feed\_expander}
 \label{subsec:django-feed-expander}
 
