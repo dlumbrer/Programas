@@ -1065,11 +1065,42 @@ Quien esté interesado puede realizar una implementación de una aplicación web
 Explicación del cálculo de Pi mediante el método Monte Carlo, incluyendo ejemplo en Python: \\
 \url{http://www.eveandersson.com/pi/monte-carlo-circle}
 
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\section{Ejercicios 03: Modelo-Vista-Controlador}
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Red social muy simple}
+\label{subsec:mvc-red-social}
+
+\textbf{Enunciado:}
+
+Vamos a construir una red social muy simple como aplicación web. En esta red, los usuarios podrán poner tantos comentarios como quieran. Estos comentarios quedarán almacenados a su nombre (esto es, cada comentario estará relacionado con el usuario que lo puso). Se supone que lo usuarios ya están autenticados por algún mecanismo que no es relevante para este ejercicio. Por lo tanto, cada navegador, cuando pone un comentario, ya lo pone a nombre de un usuario.
+
+La funcionalidad de la aplicación web es la siguiente:
+
+\begin{itemize}
+\item En una cierta página podrán verse todos los comentarios que ha puesto cualquier usuario
+\item En una cierta página, diferente para cada usuario, podrán verse todos los comentarios de ese usuario.
+\item Los usuarios podrán poner, mediante un formulario, tantos comentarios como quieran (de uno en uno).
+\end{itemize}
+
+Supongamos que vamos a implementar esta aplicación sobre Django. Se pide:
+
+\begin{itemize}
+\item Descripción de la interfaz HTTP de la aplicación, siguiendo en la medida de lo posible los principios REST.
+\item Descripción del modelo de datos (si es posible, escribiendo el fichero \texttt{models.py} correspondiente).
+\item Descripción de las plantillas (templates) Django que se podrían utilizar. Para cada una describir qué mostraría la plantilla, y qué datos habría que utilizar para ``renderizarla''.
+\item Descripción de las vistas (contenido de \texttt{views.py}), en términos de qué interacción con la base de datos y con las plantillas habría que realizar en cada una de ellas, y qué relación con los recursos de la interfaz HTTP tendrían.
+\item Fichero \texttt{urls.py} que relacione los recursos de la interfaz HTTP con las vistas.
+\end{itemize}
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
-\section{Ejercicios 03: Introducción a XML}
+\section{Ejercicios 04: Introducción a XML}
 
 Ejercicios sobre XML, JSON, y HTML (reconocedores, generadores, etc).
 
@@ -1491,7 +1522,7 @@ Esta práctica puede realizarse usando el módulo \texttt{html.parser} de la bil
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
-\section{Ejercicios 04: Hojas de estilo CSS}
+\section{Ejercicios 05: Hojas de estilo CSS}
 
 %%-------------------------------------------------------------------------
 %%-------------------------------------------------------------------------
@@ -1597,7 +1628,7 @@ Repositorio de entrega en GitLab: \\
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
-\section{Ejercicios 05: AJAX}
+\section{Ejercicios 06: AJAX}
 
 Ejercicios con AJAX y tecnologías relacionadas.
 
