@@ -150,6 +150,19 @@ Se recogerá la imagen principal tal y como aparece en la Wikipedia en español.
 Más información en la página API de Mediawiki\footnote{API de Mediawiki: \\ \url{https://www.mediawiki.org/wiki/API:Main_page}}.
 
 %%----------------------------------------------------------------------------
+\subsubsection{DRAE: definición}
+
+Se recogerá la definición del Diccionario de la RAE. Por ejemplo, para la palabra ``silla'':
+
+\begin{itemize}
+\item URL: \url{https://dle.rae.es/silla}
+\item Formato: HTML
+\item Elemento a recoger: \texttt{meta (property="og:description")}>\texttt{content}
+\end{itemize}
+
+Más información: Documentos con tarjeta embebida (subsección~\ref{sec:practica-final-2022-05:tarjeta}).
+
+%%----------------------------------------------------------------------------
 \subsubsection{Flickr: imagen de etiqueta}
 
 Se recogerá la primera imagen de Flickr, usando la palabra como etiqueta. Por ejemplo, para la palabra ``silla'':
@@ -204,7 +217,7 @@ También puedes usar sitios que proporcionan una API de acceso a sitios terceros
 En el caso de los enlaces indicados por el usuario, se comprobará si tienen ``tarjeta embebida'' en su HTML, y en ese caso se extraerá información de ella para almacenarla con el enlace. Consideraremos como ``tarjeta embebida'' al marcado con propiedades de Open Graph\footnote{https://ogp.me/}. Se atenderá específicamente a las siguientes propiedades (las dos, o la que exista entre ellas):
 
 \begin{itemize}
-\item \texttt{og:description}. Descripción del documento
+\item \texttt{og:description}. Descripción del documento. Si no existiera, se puede usar también \texttt{og:title}
 \item \texttt{og:image}. Enlace (URL) de una imagen relacionada con el documento.
 \end{itemize}
 
@@ -223,6 +236,14 @@ Las propiedades Open Graph normalmente se encuentran como metadatos en la cabece
 
 Para obtener los elementos interesantes del documento HTML puede usarse el módulo \texttt{html.parser}\footnote{\texttt{html.parser}: \url{https://docs.python.org/3/library/html.parser.html}}\footnote{Ejemplo de uso de \texttt{html.parser}: \url{https://stackoverflow.com/a/36650753/2075265}} de Python3, o algún otro módulo que ayude en la identificación de elementos HTML, como BeautifulSoup4\footnote{\url{https://pypi.org/project/beautifulsoup4/}}.
 
+Muchos sitios incluyen tarjetas embebidas basadas en Open Graph. Se puede probar, por ejemplo, alguno de los siguientes:
+
+\begin{itemize}
+\item Imágenes en Pixabay. Incluyen campos  \texttt{og:title} y \texttt{og:image}. Ejemplo: \\
+  \url{https://pixabay.com/photos/chair-couch-furniture-road-1840011/}
+\item Palabras en el Diccionario de la RAE. Incluyen campos  \texttt{og:description} y \texttt{og:image}. Ejemplo: \\
+  \url{https://dle.rae.es/silla}
+\end{itemize}
 
 %%----------------------------------------------------------------------------
 \subsection{Despliegue}
