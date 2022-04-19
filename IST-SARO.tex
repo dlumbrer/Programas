@@ -4,6 +4,7 @@
 
 \documentclass[a4paper,12pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
 \usepackage{geometry}
 \usepackage{hyperref}
@@ -202,7 +203,8 @@ Evaluación extraordinaria:
   \nameref{cal:martesG} & \nameref{cal:juevesG} \\
   \nameref{cal:martesGb} &                      \\ \hline
   \nameref{cal:martesH} & \nameref{cal:juevesH} \\ \hline
-  \nameref{cal:martesI} & \nameref{cal:juevesI} \\ \hline
+  \nameref{cal:martesI} & \nameref{cal:juevesI} \\ 
+  \nameref{cal:martesIb} &                      \\ \hline
   \nameref{cal:martesJ} & \nameref{cal:juevesJ} \\ \hline
   \nameref{cal:martesK} & \nameref{cal:juevesK} \\ \hline
   \nameref{cal:martesL} & \nameref{cal:juevesL} \\ \hline
@@ -400,7 +402,7 @@ Explicación del patrón de diseño ``modelo-vista-controlador''.
 
 %%----------------------------------------------------------------
 \subsubsection{\martesI: MVC (1 hora)}
-\label{cal:martesI}
+\label{cal:martesIb}
 
 \begin{itemize}
 \item \textbf{Presentación:} ``Tres implementaciones de una aplicación web simple: Counter''. \\
@@ -520,7 +522,13 @@ Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
 \end{itemize}
 
 %%----------------------------------------------------------------
-\subsubsection{\martesO: Clase final}
+\subsubsection{\martesN: Clase final (1)}
+\label{cal:martesN}
+
+Clase final. Repaso, ejemplo de examen.
+
+%%----------------------------------------------------------------
+\subsubsection{\martesO: Clase final (2)}
 \label{cal:martesO}
 
 Clase final. Repaso, ejemplo de examen.
@@ -774,8 +782,9 @@ Usuarios, administración y autenticación con Django.
 \label{cal:juevesJ}
 
 \begin{itemize}
- \item \textbf{Presentación:} Tests con Django y GitLab
-  \item \textbf{Material:} Repositorio \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/testing-example}
+\item \textbf{Presentación:} Tests con Django y GitLab
+\item \textbf{Ejercicio (discusión en clase):} ``Django tests'' (ejercicio~\ref{subsec:django-tests}).
+\item \textbf{Ejercicio (discusión en clase):} ``Django tests en GitLab'' (ejercicio~\ref{subsec:django-tests-gitlab}).
 \end{itemize}
 
 
@@ -1009,7 +1018,7 @@ Usuarios, administración y autenticación con Django.
 
 \newpage
 
-\input{practica-final-2021-05}
+\input{practica-final-2022-05}
 \input{ejercicios-web}
 
 \end{document}

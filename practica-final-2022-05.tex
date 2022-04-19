@@ -1,0 +1,467 @@
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\section{Proyecto final: MisPalabras (2022)}
+\label{practica-final-2022-05}
+
+[ \textbf{Nota importante:} Por ahora esto es sólo es un borrador. Aún estamos definiendo cómo será el enunciado definitivo. ]
+%[ \textbf{Nota importante:} Este enunciado es aún tentativo, y puede sufrir cambios ]
+
+Este es el enunciado del proyecto final del curso 2021-2022, tanto para la convocatoria ordinaria como para la extraordinaria.
+
+La práctica final de la asignatura consiste en la creación de una aplicación web, llamada ``MisPalabras'', que permitirá gestionar información sobre palabras, obtenida automáticamente de ciertas fuentes soportadas, o aportada por usuarios. La información aportada por usuarios podrá consistir en comentarios e imágenes, o en enlaces. En este caso, si la página apuntada por el enlace tiene una ``tarjetas embebidas'', se mostrará también su contenido. Los usuarios podrán añadir aportaciones con enlaces a páginas que hayan visto, comentarlos, puntuarlos, compartirlos, etc. A continuación se describe el funcionamiento y la arquitectura general de la aplicación, la funcionalidad mínima que debe proporcionar, y otra funcionalidad optativa que podrá tener.
+
+%%----------------------------------------------------------------------------
+\subsection{Arquitectura y funcionamiento general}
+
+Arquitectura general:
+
+\begin{itemize}
+
+\item La práctica se construirá como un proyecto Django/Python3, que incluirá una o varias aplicaciones (\emph{apps}) Django que implementen la funcionalidad requerida.
+
+\item Para el almacenamiento de datos persistente se usará SQLite3, con tablas definidas en modelos de Django.
+
+\item Para implementar usuarios, cuando sea necesario, se usará como base el sistema de autenticación de usuarios que proporciona Django\footnote{User Authentication in Django:\\ \url{https://docs.djangoproject.com/en/3.0/topics/auth/}}.
+
+\item Todas las bases de datos que contenga la aplicación tendrán que ser accesibles vía la interfaz que proporciona el ``Admin Site'' (además de lo que pueda hacer falta para que funcione al aplicación).
+
+\item Se utilizarán plantillas Django (a ser posible, una jerarquía de plantillas, para que la práctica tenga un aspecto similar) para definir las páginas que se servirán a los navegadores de los usuarios. Estas plantillas incluirán en todas las páginas al menos:
+
+  \begin{itemize}
+  \item Una cabecera del sitio, preferentemente en la parte superior, que consistirá de un texto (el nombre del sitio, ``MisPalabras'') con una imagen de fondo.
+  \item Un formulario para entrar (hacer login en el sitio), o para salir (si ya se ha entrado).
+    \begin{itemize}
+    \item En caso de que no se haya entrado en una cuenta, este formulario permitirá al visitante introducir su identificador de usuario y su contraseña y o bien autenticarse (logearse) con esos datos, o bien crearse una cuenta con esos datos.
+    \item En caso de que ya se haya entrado, este formulario mostrará el identificador del usuario y permitirá salir de la cuenta (logout). Este formulario aparecerá preferentemente como una línea, justo debajo de la cabecera.
+    \end{itemize}
+  \item Un menú de opciones, como barra, preferentemente debajo de los dos elementos anteriores (banner y caja de entrada o salida). Los contenidos de este menú se indican más adelante en el enunciado.
+  \item Un formulario para ir a la página de una palabra, y un listado de las 10 palabras más votadas. Este formulario y esta lista aparecerán en una columna en el lado derecho de la página.
+  \item Un pie de página con una nota de atribución, indicando ``Esta aplicación tiene información sobre XXX palabras (ejemplo: YYY)'', siendo XXX el número de palabras sobre las que tiene información en ese momento, e YYY una de esas palabras, como enlace a la página de esa palabra.
+  \end{itemize}
+
+  Cada una de estas partes estará construida dentro de un elemento \texttt{div}, marcada con un atributo \texttt{id} en HTML, para poder ser referidas fácilmente en hojas de estilo CSS. Cuando sea conveniente, se podrán utilizar en lugar de \texttt{div} elementos de HTML5 (\texttt{header}, \texttt{footer}, \texttt{nav}, etc).
+
+\item Menú de opciones. En todas las páginas habrá un menú desde el que se podrá acceder, mediante enlaces, al menos a la página principal (con el texto ``Inicio''), a la de ayuda (con el texto ``Ayuda''), a la de usuario si el usuario está autentica (con el texto ``Mi página''), al documento de contenidos en formato XML (``Contenidos XML'') y JSON (``Contenidos JSON''). Estas opciones de menú estarán en cada página, salvo si la opción apunta a la página en la que se está, en cuyo caso no saldrá la opción correspondiente.
+  
+\item Se utilizarán hojas de estilo CSS para determinar la apariencia de la práctica. Estas hojas definirán al menos el tamaño y el tipo de la letra, y el color de fondo de cada una de las partes (elementos) marcadas con un \emph{id}, tal como se indica en el apartado anterior. Además, elementos que deban tener el mismo aspecto deberían estar en una misma clase CSS, para poder gestionarlo de forma común.
+
+\item Se utilizará Bootstrap para la maquetación (\emph{layout}) de las páginas, de forma que funcionen adecuadamente tanto en navegadores de escritorio como en móviles.
+
+\item En la página principal se ofrecerá un listado de todas las palabras almacenadas en el sitio, paginado de 5 en 5 palabras, ordenadas por orden inverso de creación (las páginas más nuevas primero). Junto a cada palabra se mostrará su descripción resumida e imagen principal, según se obtuvo automáticamente de Wikipedia en español, el nombre de usuario que la creó, y su número de votos.
+
+\item Para ver la página de información de una palabra, un usuario simplemente incluirá esa palabra en el formulario de palabras (que, según se ha indicado, aparecerá en todas las páginas del sitio). Tanto si la palabra ya existe en MisPalabras como si no, se mostrará su página de información (ver más abajo cómo es esta página).
+
+\item En la página de una palabra aparecerá, si no está aún almacenada en el sitio:
+  \begin{itemize}
+  \item La palabra, en tipo de letra grande.
+  \item La definición resumida de la palabra según Wikipedia en español (si no existiera, una nota indicando ``esta palabra no está en Wikipedia en español).
+  \item La imagen principal de la palabra en Wikipedia en español (si no existiera, una nota indicando ``esta palabra no tiene imagen en Wikipedia en español).
+  \item Un botón para almacenar la palabra.
+  \end{itemize}
+
+  Ver detalles en ``Información automática'' (apartado~\ref{sec:practica-final-2022-05:automatica}), más adelante, sobre cómo conseguir la definición y la imagen de Wikipedia. La palabra sólo se almacenará (junto con la definición y la imagen) si el usuario pulsa el botón de almacenar.
+
+\item En la página de una palabra aparecerá, si ya está almacenada en el sitio:
+  \begin{itemize}
+  \item La misma información que aparece si la palabra aún no está almacenada, salvo el botón para almacenar la palabra, que no aparecerá.
+  \item Los comentarios y enlaces de usuario, y la información automática (ver detalle más adelante) que se hayan almacenado para esa palabra.
+  \item Las opciones de información automática que no se hayan almacenado para esa palabra, como botones que al pulsarlos, obtenga y almacene la información automática correspondiente.
+  \item Una caja de texto para introducir un comentario. Si se introduce un comentario en ella, y se pulsa el botón correspondiente, el comentario quedará almacenado, y se volverá a ver la página de la palabra.
+  \item Una caja de texto para introducir un enlace relacionado. Si se introduce un enlace (URL) en ella, y el pulsa el botón correspondiente, el enlace quedará almacenado, y si la página correspondiente tiene ``tarjeta embebida'', se obtendrá y se almacenará también. Al terminar, se volverá a ver la página de la palabra.
+  \item El número de votos que ha recibido la palabra, junto a un botón para dar un voto a la palabra (sólo si el usuario no se lo ha dado ya).
+  \item Los comentarios, los enlaces de usuario y la información automática aparecerán junto al nombre del usuario que los almacenó.
+  \end{itemize}
+
+\item Para obtener información automáticamente de sitios soportados (incluida la Wikipedia en español), se utilizará la API del sitio al que corresponda, o quizás en algunos casos, ser hará un análisis de las páginas HTML del sitio. Ver detalles en ``Información automática'' (apartado~\ref{sec:practica-final-2022-05:automatica}), más adelante.
+
+\item En general, la forma de funcionamiento para obtener información automáticamente de sitios soportados será la siguiente:
+
+  \begin{itemize}
+  \item El usuario pulsará, en la página de una palabra, el botón correspondiente al sitio soportado.
+  \item La aplicación, vía HTTP, recibirá como resultado la palabra y un identificador del sitio soportado, obteniendo a partir de ellas la URL que tendrá que usar para acceder a la información en el sitio soportado.
+  \item La aplicación obtendrá del sitio correspondiente (vía API, o de otras formas) la información extendida ese recurso.
+  \item La aplicación almacenará al información obtenida para la palabra indicada.
+  \item La aplicación devolverá al navegador la página de la palabra, ya con esta información.
+  \end{itemize}
+
+\item Para obtener información de un enlace especificado por el usuario:
+
+  \begin{itemize}
+  \item El usuario especificará el enlace (URL) en la página de la palabra, escribiéndola en la caja de texto correspondiente, y pulsando el botón correspondiente.
+  \item La aplicación obtendrá el documento correspondiente a esa URL, y buscará si hay en ella una ``tarjeta embebida''. Ver detalles en ``Tarjetas embebidas'' (apartado~\ref{sec:practica-final-2022-05:tarjeta}), más adelante.
+  \item Si hay tarjeta, almacenará la URL y los campos indicados de la tarjeta.
+  \item Si no hay tarjeta, almacenará la URL.
+  \end{itemize}
+
+\item Cada palabra que se almacene, cada comentario, enlace o sitio soportado que almacene, quedará registrado a nombre del usuario que lo realizó.
+
+\item Página de usuario. Si el usuario está autenticado podrá acceder a la página de usuario, donde verá, en orden cronológico inverso (lo más reciente primero) el listado de todo lo que ha almacenado (palabras o comentarios, enlaces o sitios soportados para palabras). En caso de que sea una palabra, aparecerá la palabra y su definición resumida. En caso de que sea un comentario, aparecerá el comentario. En caso de que sea un enlace, aparecerá el enlace y la información de la tarjeta embebida correspondiente, si la hubiera. En caso de que sea información automática, aparecerá esa información. En todos los casos aparecerá también un enlace apuntando a la página de la palabra correspondiente.
+
+\item Documentos con todas las palabras del sitio. El sitio ofrecerá un documento JSON y un documento XML con todas las palabras del sitio, incluyendo, para cada palabra, la página de esa palabra. Este documento se ofrecerá cuando se pida la página principal, concatenando al final \verb|?format=xml| o \verb|?format=json|.
+ 
+\item Página de ayuda: Página con información en HTML indicando la autoría de la práctica, explicando su funcionamiento y una brevísima documentación.
+\end{itemize}
+
+Funcionamiento general:
+
+\begin{itemize}
+\item En general se podrá consultar el sitio sin haberse autenticado con una cuenta. En este caso se podrá ver toda la información, pero no se podrán añadir palabras ni ningún tipo de información para una palabra ya almacenada (ni se verán las opciones correspondientes).
+
+\item Cuando un visitante quiera, podrá crearse una cuenta (con lo que quedará autenticado con ella), o autenticarse en una cuenta ya existente. En este caso, la funcionalidad quedará ligada a su cuenta. En ese momento podrá almacenar nuevas palabras, o añadir comentarios, enlaces o información de sitios soportados a cada palabra. También podrá acceder a la página de usuario.
+
+\item La aplicación se encargará de controlar que no haya más de un voto por usuario para cada aportación. Por lo tanto, si un usuario ya ha votado una aportación, y vuelve a votarlo, se ignorará su voto.
+
+\item Además, la práctica incluirá tests, que se ejecutarán con \verb|python3 manage.py test|, y que incluirán al menos un test de API HTTP para cada recurso que sirva la aplicación, y para cada método (GET, POST) que admita cada recurso. Además, al menos la mitad de los test incluirán comprobar algo distinto del código HTTP retornado por la petición.
+
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Información automática}
+\label{sec:practica-final-2022-05:automatica}
+
+La aplicación será capaz de recoger y almacenar, de forma automática, información para una palabra de lo siguientes sitios.
+
+
+%%----------------------------------------------------------------------------
+\subsubsection{Wikipedia en español: definición resumida}
+
+Se recogerá la definición resumida de la palabra tal y como aparece en la Wikipedia en español. Por ejemplo, para la palabra ``silla'':
+
+\begin{itemize}
+\item URL: \url{https://es.wikipedia.org/w/api.php?action=query&format=xml&titles=silla&prop=extracts&exintro&explaintext}
+\item Formato: XML
+\item Elemento a recoger: \texttt{api}>\texttt{query}>\texttt{pages}>\texttt{page}>\texttt{extract} 
+\end{itemize}
+
+Más información en la página API de Mediawiki\footnote{API de Mediawiki: \\ \url{https://www.mediawiki.org/wiki/API:Main_page}}.
+
+%%----------------------------------------------------------------------------
+\subsubsection{Wikipedia en español: imagen principal}
+
+Se recogerá la imagen principal tal y como aparece en la Wikipedia en español. Por ejemplo, para la palabra ``silla'':
+
+\begin{itemize}
+\item URL: \url{https://es.wikipedia.org/w/api.php?action=query&titles=silla&prop=pageimages&format=json&pithumbsize=200}
+\item Formato: JSON
+\item Elemento a recoger: \texttt{query}>\texttt{pages}>\texttt{<id>}>\texttt{thumbnail}>\texttt{source}
+\end{itemize}
+
+Más información en la página API de Mediawiki\footnote{API de Mediawiki: \\ \url{https://www.mediawiki.org/wiki/API:Main_page}}.
+
+%%----------------------------------------------------------------------------
+\subsubsection{DRAE: definición}
+
+Se recogerá la definición del Diccionario de la RAE. Por ejemplo, para la palabra ``silla'':
+
+\begin{itemize}
+\item URL: \url{https://dle.rae.es/silla}
+\item Formato: HTML
+\item Elemento a recoger: \texttt{meta (property="og:description")}>\texttt{content}
+\end{itemize}
+
+Más información: Documentos con tarjeta embebida (subsección~\ref{sec:practica-final-2022-05:tarjeta}).
+
+%%----------------------------------------------------------------------------
+\subsubsection{Flickr: imagen de etiqueta}
+
+Se recogerá la primera imagen de Flickr, usando la palabra como etiqueta. Por ejemplo, para la palabra ``silla'':
+
+\begin{itemize}
+\item URL: \url{https://www.flickr.com/services/feeds/photos_public.gne?tags=silla}
+\item Formato: XML
+\item Elemento a recoger: \texttt{feed}>\texttt{entry}>\texttt{link (rel="enclosure")}>\texttt{href}
+\end{itemize}
+
+Más información en la página Public Feed de Flickr\footnote{Public Feed de Flickr: \\ \url{https://www.flickr.com/services/feeds/docs/photos_public/}}.
+
+%%----------------------------------------------------------------------------
+\subsubsection{Apimeme: imagen de meme}
+
+Se ofrecerá al usuario un formulario con una caja de texto y un menú donde pueda elegir entre al menos tres memes. La palabra se usará para el texto superior del meme, y el texto introducido por el usuario para el texto inferior. Por ejemplo, para la palabra ``silla'', habiendo elegido el meme ``Afraid-To-Ask-Andy'' y el texto ``¿o no?'':
+
+\begin{itemize}
+\item URL: \url{http://apimeme.com/meme?meme=Afraid-To-Ask-Andy&top=mesa&bottom=%C2%BFo+no%3F}
+\item Formato: Imagen
+\item Elemento a recoger: la imagen generada
+\end{itemize}
+
+Más información en la página API Meme Generator\footnote{API Meme Generator: \\ \url{http://apimeme.com/?ref=apilist.fun}}.
+
+
+%%----------------------------------------------------------------------------
+\subsubsection{Otra información automática}
+
+
+Además de lo sitios anteriores, puedes proponer otros sitios para descargar información automática. La información extendida de estos recursos reconocidos ha de ser accesibles públicamente (el acceso mediante un token de aplicación se considera público), y proporcionar datos en formato XML, JSON, texto o imagen. Si hay algún tipo de sitio para información automática que querrías utilizar, coméntalo con los profesores para que te indiquen si es válido. En caso de ser aceptado como válido, estos sitios para información automática serán puntuados positivamente, teniendo en cuenta la iniciativa del alumno que los propuso. En este caso, documéntalos en el documento de descripción de tu práctica, de forma similar a como se han documentado los anteriores (ejemplo de URL, formato, elementos a recoger, etc.). Ten en cuenta que sirven sitios para información automática que sólo funcionen con ciertos tipos de palabras (nombres de comidas, nombres de ciudades, etc.) o en ciertos idiomas (por ejemplo, sólo funcionen en inglés).
+
+Si quieres buscar servicios que ofrezcan APIs que podrían ser utilizadas, puedes buscarlos en Internet. Algunas listas que te pueden resultar interesantes:
+
+\begin{itemize}
+\item Programmable Web API Directory: \\
+  \url{https://www.programmableweb.com/apis/directory}.
+\item List of Free and Open Public APIs: \\
+  \url{https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/}
+\end{itemize}
+
+También puedes usar sitios que proporcionan una API de acceso a sitios terceros, como por ejemplo (ten en cuenta que en estos casos muy habitualmente necesitarás token de acceso, que normalmente se puede conseguir de forma gratuita):
+
+\begin{itemize}
+\item RapidAPI: \url{https://rapidapi.com}
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+\subsection{Documentos con tarjeta embebida}
+\label{sec:practica-final-2022-05:tarjeta}
+
+En el caso de los enlaces indicados por el usuario, se comprobará si tienen ``tarjeta embebida'' en su HTML, y en ese caso se extraerá información de ella para almacenarla con el enlace. Consideraremos como ``tarjeta embebida'' al marcado con propiedades de Open Graph\footnote{https://ogp.me/}. Se atenderá específicamente a las siguientes propiedades (las dos, o la que exista entre ellas):
+
+\begin{itemize}
+\item \texttt{og:description}. Descripción del documento. Si no existiera, se puede usar también \texttt{og:title}
+\item \texttt{og:image}. Enlace (URL) de una imagen relacionada con el documento.
+\end{itemize}
+
+Las propiedades Open Graph normalmente se encuentran como metadatos en la cabecera (\texttt{head}) del documento HTML. Por ejemplo:
+
+\begin{verbatim}
+<html>
+  <head>
+  <title>Este es el titulo</title>
+  <meta property="og:description" content="Esta es una descipción del documento" />
+  <meta property="og:image" content="https://..../imagen.jpg" />
+  ...
+</head>
+...
+\end{verbatim}
+
+Para obtener los elementos interesantes del documento HTML puede usarse el módulo \texttt{html.parser}\footnote{\texttt{html.parser}: \url{https://docs.python.org/3/library/html.parser.html}}\footnote{Ejemplo de uso de \texttt{html.parser}: \url{https://stackoverflow.com/a/36650753/2075265}} de Python3, o algún otro módulo que ayude en la identificación de elementos HTML, como BeautifulSoup4\footnote{\url{https://pypi.org/project/beautifulsoup4/}}.
+
+Muchos sitios incluyen tarjetas embebidas basadas en Open Graph. Se puede probar, por ejemplo, alguno de los siguientes:
+
+\begin{itemize}
+\item Imágenes en Pixabay. Incluyen campos  \texttt{og:title} y \texttt{og:image}. Ejemplo: \\
+  \url{https://pixabay.com/photos/chair-couch-furniture-road-1840011/}
+\item Palabras en el Diccionario de la RAE. Incluyen campos  \texttt{og:description} y \texttt{og:image}. Ejemplo: \\
+  \url{https://dle.rae.es/silla}
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+\subsection{Despliegue}
+\label{sec:practica-2021-05:despliegue}
+
+La práctica deberá estar desplegada en algún sitio de Internet, de forma que pueda accederse a ella. Deberá mantenerse desplegada y activa al menos desde el día de entrega de la práctica, hasta el día del cierre de actas.
+
+Para el despliegue, se puede utilizar Python Anywhere\footnote{Python Anywhere: \url{https://pythonanywhere.com}}, que proporciona un plan gratuito que incluye suficientes recursos como para poder desplegar la práctica.
+
+Si el alumno así lo desea, puede considerarse desplegar en un ordenador dedicado (por ejemplo, una Raspberry Pi accesible directamente desde Internet, alojada en su hogar), o en servicios como Google Computing Engine\footnote{GCP Engine Free: \url{https://cloud.google.com/free/}}. En general, dado que este tipo de despliegues no podrá contar con una ayuda detallada por los profesores, estará algo más valorado.
+
+En el caso de que la práctica se despliegue en Python Anywhere, hay que tener en cuenta que sus máquinas virtuales tienen cortado el acceso a todos los sitios de Internet salvo los que están en una ``lista blanca''\footnote{Lista blanca de Python Anywhere: \url{https://www.pythonanywhere.com/whitelist/}} (\emph{whitelist}). Esto afectará a vuestro despliegue de dos formas:
+
+\begin{itemize}
+\item Al clonar vuestro repositorio git dentro de la máquina virtual, para tener el código de vuestra aplicación. No debería dar problemas, porque el sitio GitLab de la ETSIT, donde está vuestro código fuente, está ya en la lista blanca.
+\item Cuando vuestra aplicación se conecte para obtener la información extendida de un recurso, si el sitio al que la aplicación se tiene que conectar para conseguir el documento JSON o XML no está en la lista blanca, vuestra aplicación no se podrá conectar. Wikipedia y algunos otros sitios para recibir información automática (como Flickr) están ya en la lista blanca. Pero otros sitios que podéis estar usando, no.
+\end{itemize}
+
+Para evitar los problemas con los sitios que no estén en la lista blanca, os pedimos que si hacéis el despliegue en Python Anywhere:
+
+\begin{itemize}
+\item Tiene que funcionar al menos con recursos reconocidos de Wikipedia y Flickr, recogiendo los documentos correspondientes, como indica el enunciado.
+\item Para los demás recursos reconocidos que hayáis implementado, tenéis dos opciones:
+  \begin{itemize}
+  \item Si están en la lista blanca de Python Anywhere, funcionarán sin problemas sin hacer nada especial, si os funcionaban ya en las pruebas locales, así que también deberían funcionar en el despliegue.
+  \item Si no están en la lista blanca de Python Anywhere, aseguraos de que la base de datos que subís al despliegue de vuestra práctica incluya información automática de esos sitios para algunas palabras.
+  \end{itemize}
+\end{itemize}
+
+Tened en cuenta que si usáis otras plataformas para el despliegue, puede que os encontréis problemas similares. Y tened en cuenta también que en cualquier caso, nosotros probaremos la práctica en otros despliegues, así que todos los recursos reconocidos que hayáis implementado deben funcionar correctamente si no hay restricciones de conexión.
+
+Tenéis más detalles sobre cómo se hace un despliegue de una aplicación Django en Python Anywayre en el vídeo ``Django: Despliegue en Python Anywhere''\footnote{\url{https://www.youtube.com/watch?v=hlZPC5L2Itc}}, que explica cómo desplegar allí la aplicación \texttt{django-youtube-4}\footnote{\url{https://github.com/CursosWeb/Code/tree/master/Python-Django/django-youtube-4}} (ver también el fichero \texttt{README.md} de esa aplicación para más detalles).
+
+%%----------------------------------------------------------------------------
+\subsection{Funcionalidad optativa}
+
+De forma optativa, se podrá incluir cualquier funcionalidad relevante en el contexto de la asignatura. Se valorarán especialmente las funcionalidades que impliquen el uso de técnicas nuevas, o de aspectos de Django no utilizados en los ejercicios previos, y que tengan sentido en el contexto de esta práctica y de la asignatura.
+
+En el formulario de entrega se pide que se justifique por qué se considera funcionalidad optativa lo que habéis implementado. Sólo a modo de sugerencia, se incluyen algunas posibles funcionalidades optativas:
+
+\begin{itemize}
+  \item Inclusión de un \emph{favicon} del sitio
+  
+  \item Visualización de la página de palabra en formato JSON y/o XML, de forma similar a como se ha indicado para la página principal.
+
+  \item Permitir que un usuario autenticado pueda eliminar su cuenta.
+
+  \item Permitir que el voto a una página se pueda revertir (quitar), y que no cuente más.
+
+  \item Generación de un documento XML y/o JSON para los comentarios puestos en el sitio.
+
+  \item Incorporación de otros sitios de información automática. Se valorará especialmente la búsqueda de otros tipos de recurso no descritos en este enunciado, y la implementación de tipos de recurso que requieran token de autenticación (en este caso, atención a no subir el token de autenticación a GitLab).
+ 
+  \item Atención al idioma indicado por el navegador. El idioma de la interfaz de usuario de la aplicación tendrá en cuenta lo que especifique el navegador.
+
+  \item Inclusión de imágenes (no solo texto) en los comentarios. Esto puede hacerse de dos formas: quien suba un comentario, además de rellenar una caja de texto con el comentario, puede indicar también la URL de una imagen, que se mostrará junto al comentario, o bien subiendo una imagen a la aplicación, que se mostrará junto al comentario (se valorará más la segunda opción, y se pueden implementar las dos).
+    
+  \item Mejora de los tests de la práctica, incluyendo test de condiciones de error, test de escenarios con más de una invocación de recurso, tests de API Python, etc.
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+\subsection{Entrega de la práctica}
+
+\begin{itemize}
+  % \item \textbf{Fecha límite de entrega (convocatoria ordinaria):} domingo, 6 de junio de 2021 a las 23:55 (hora española peninsular)
+\item \textbf{Fecha límite de entrega (convocatoria extraordinaria):} día del examen de la asignatura, a las 23:55 (hora española peninsular)
+  % \item \textbf{Notificación de alumnos que tendrán que realizar entrevista:} martes, 8 de junio, en el aula virtual.
+
+  % \item \textbf{Realización de entrevistas:} miércoles, 9 de junio, en la aplicación Teams. Si es necesario, se realizarán también el día 10.
+    
+  % \item \textbf{Fecha de publicación de notas:} jueves, 10 de junio, en el aula virtual.
+
+  % \item \textbf{Fecha de revisión:} viernes, 11 de junio, a las 9:00, en la aplicación Teams.
+\end{itemize}
+
+La entrega de la práctica consiste en:
+
+\begin{enumerate}
+
+  \item {\bf Rellenar un formulario} enlazado en el sitio de la asignatura en el aula virtual.
+  
+  \item {\bf Subir tu práctica a un repositorio en el GitLab de la Escuela}. El repositorio contendrá todos los ficheros necesarios para que funcione la aplicación (ver detalle más abajo). Es muy importante que el alumno haya realizado una derivación (fork) del repositorio que se indica a continuación, porque si no, la práctica no podrá ser identificada: 
+
+\url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/final-mispalabras/}
+
+Recordad que es importante ir haciendo commits de vez en cuando y que sólo al hacer push estos commits son públicos. Antes de entregar la práctica, haced un push. Y cuando la entreguéis y sepáis el nombre del repositorio, podéis cambiar el nombre del repositorio desde el interfaz web de GitLab. 
+
+Se recomienda mantener el repositorio como privado, hasta el momento en que se entregue la práctica.
+
+ \item {\bf Entregar un vídeo de demostración de la parte obligatoria, y otro vídeo de demostración de la parte opcional}, si se han realizado opciones avanzadas. Los vídeos serán de una {\bf duración máxima de 3 minutos} (cada uno), y consistirán en una captura de pantalla de un navegador web utilizando la aplicación, y mostrando lo mejor posible la funcionalidad correspondiente (básica u opcional). Siempre que sea posible, el alumno comentará en el audio del vídeo lo que vaya ocurriendo en la captura. Los vídeos se colocarán en algún servicio de subida de vídeos en Internet (por ejemplo, Vimeo, Twitch, o YouTube). Los vídeos de más de tres minutos tendrán penalización.
+
+Hay muchas herramientas que permiten realizar la captura de pantalla. Por ejemplo, en GNU/Linux puede usarse Gtk-RecordMyDesktop o Istanbul (ambas disponibles en Ubuntu). OBS Studio\footnote{OBS Studio: \url{https://obsproject.com/}} está disponible para varias plataformas (Linux, Windows, MacOS). Es importante que la captura sea realizada de forma que se distinga razonablemente lo que se grabe en el vídeo.
+
+En caso de que convenga editar el vídeo resultante (por ejemplo, para eliminar tiempos de espera) puede usarse un editor de vídeo, pero siempre deberá ser indicado que se ha hecho tal cosa con un comentario en el audio, o un texto en el vídeo. Hay muchas herramientas que permiten realizar esta edición. Por ejemplo, en GNU/Linux puede usarse OpenShot o PiTiVi.
+
+\end{enumerate}
+
+Sobre la entrega del repositorio:
+\begin{itemize}
+  \item Se han de entregar los siguientes ficheros:
+
+\begin{itemize}
+  \item El repositorio en la instancia GitLab de la ETSIT deberá contener un proyecto Django completo y listo para funcionar en el entorno del laboratorio, incluyendo la base de datos. Deberá poder ejecutarse directamente con \verb|python3 manage.py runserver| desde un entorno virtual en el que esté instalado Django~3.0.3. También ejecutará los tests con \verb|python3 manage.py test|, desde el mismo entorno virtual.
+
+  \item La base de datos habrá de tener datos suficientes como para poder probarlo. Estos datos incluirán al menos dos usuarios, con al menos diez aportaciones en total, cinco comentarios puestos en total, y al menos seis aportaciones votadas por cada usuario.
+
+  \item Un fichero \verb|requirements.txt|, con un nombre de paquete Python por línea, para indicar Cualquier biblioteca Python que pueda hacer falta para que la aplicación funcione, si es que fuera el caso. Este fichero no ha de incluir Django, dado que ya se supone que hace falta. Si es posible, se recomienda escribir este fichero en el formato que entiende \verb|pip install -r requirements.txt|
+
+  \item Cualquier fichero auxiliar que pueda hacer falta para que funcione la práctica, si es que fuera el caso.
+\end{itemize}
+
+  \item Se incluirán en el fichero README.md los siguientes datos (la mayoría de estos datos se piden también en el formulario que se ha de rellenar para entregar la práctica: se recomienda hacer un copia y pega de estos datos en el formulario):
+
+\begin{itemize}
+  \item Nombre y titulación.
+  \item Nombre de su cuenta en el laboratorio del alumno.
+  \item URL del vídeo demostración de la funcionalidad básica
+  \item URL del vídeo demostración de la funcionalidad optativa, si se ha realizado funcionalidad optativa
+  \item URL de la aplicación desplegada
+  \item Cuenta (login) y contraseña de los usuarios que están dados de alta en la aplicación.
+  \item Resumen de las peculiaridades que se quieran mencionar sobre lo implementado en la parte obligatoria.
+  \item Lista de funcionalidades opcionales que se hayan implementado, y breve descripción de cada una.
+\end{itemize}
+
+Estos datos se escribirán siguiendo estrictamente el siguiente formato:
+
+\begin{verbatim}
+# Entrega practica
+
+## Datos
+
+* Nombre:
+* Titulación:
+* Despliegue (url):
+* Video básico (url):
+* Video parte opcional (url):
+* Despliegue (url):
+*
+
+## Cuenta Admin Site
+
+* usuario/contraseña
+
+## Cuentas usuarios
+
+* usuario/contraseña
+* usuario/contraseña
+* ...
+
+## Resumen parte obligatoria
+
+## Lista partes opcionales
+
+* Nombre parte:
+* Nombre parte:
+* ...
+\end{verbatim}
+
+Asegúrate de que las URLs incluidas en este fichero están adecuadamente escritas en Markdown, de forma que la versión HTML que genera GitLab los incluya como enlaces ``pinchables''.
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+\subsection{Notas y comentarios}
+
+La práctica deberá funcionar en el entorno GNU/Linux (Ubuntu) del laboratorio de la asignatura con la versión de Django que se ha usado en prácticas.
+
+La práctica deberá funcionar desde el navegador Firefox disponible en el laboratorio de la asignatura.
+
+Los documentos XML que genere la práctica deberán ser correctos desde el punto de vista de la sintaxis XML, y por lo tanto reconocibles por un reconocedor XML, como por ejemplo el del módulo xml.sax de Python. Los documentos JSON generados deberán ser correctos desde el punto de vista de la sintaxis JSON, y por lo tanto reconocibles por un reconocedor JSON, como por ejemplo el del módulo json de Python
+
+%%----------------------------------------------------------------------------
+\subsection{Preguntas frecuentes}
+\label{sec:practica-2022-05:preguntas}
+
+A continuación, algunas preguntas relacionadas con el enunciado de esta práctica, junto con sus respuestas:
+
+\begin{itemize}
+
+\item Cuando despliego mi práctica en Python Anywhere, algunos recursos reconocidos no me funcionan, pero otros (YouTube entre ellos), sí. Todo me funciona bien en mi versión local. ¿Qué está pasando?
+
+  Las máquinas virtuales de Python Anywhere están limitadas en cuanto a los sitios a los que se pueden conectar: sólo se pueden conectar a aquellos que están en una cierta ``lista blanca''. Por eso, si el sitio al que tu programa se tiene que conectar para obtener recursos no está en la lista blanca, no va a poder descargarse el documento XML o JSON de esos recursos. Para evitar problemas, en el caso de despliegue en Python Anywhere pedimos que funcionen bien los recursos reconocidos que están en la lista blanca, y para los demás, que tengan recursos en la base de datos de despliegue. Más detalles en el apartado sobre despliegue de este enunciado (\ref{sec:practica-2021-05:despliegue}).
+  
+\item En la pagina de información que se menciona en el enunciado, ¿qué hay que incluir en el apartado de documentación?
+
+Casi que lo que queráis, lo importante es tener la página. Puede ser por ejemplo un resumen de un párrafo de lo que hace la aplicación.
+
+\item ¿Qué es la ``API key'' en la API de algunos sitios, como Last.fm y GitLab?
+\label{sec:practica-2021-05:preguntas-apikey}
+
+  Algunas API de servicio, entre ellas la de Last.fm y GitLab, requieren el uso de una ``API key'' (clave de API) para poder usarla. Normalmente, estas claves las usa el servicio para evitar abusos, o para limitar lo que se puede hacer con su API. El caso es que si no se incluye la clave de API en cada GET que se hace al servicio, no se reciben los datos (el documento XML o JSON).
+
+  Es habitual que estas claves se obtengan creándose una cuenta en el servicio en cuestión, y luego obteniendo la clave en una página al efecto, estando autenticados con el servicio.
+
+  Por ejemplo, en el caso de Last.fm, hay que ir a la página de petición de claves de API\footnote{Lastfm Create API Account: \url{https://www.last.fm/api/account/create}}, donde (una vez autenticados con una cuenta de Last.fm), rellenaremos los dato que nos pide: ``contact email'', ``application name'' (cualquier nombre de aplicación, por ejemplo MisPalabras), ``application description'' (cualquier descripción por ejemplo ``App to manage Last.fm artists''). En este caso, puedes ignorar los campos ``callback url'' y ``application homepage''. Cuando se hayan enviado estos datos, te devolverá entre otros datos tu ``API key''. Esa es la que tendrá que usar en tus llamadas a Last.fm.
+
+  Como las claves de API son personales, mantenlas en secreto. En particular, no las subas a repositorios públicos, pues cualquiera podrá verlas (y usarlas). Si quieres que el repositorio de tu práctica sea público, incluye la clave en un fichero que tengas sólo en tu disco, y no subas al repositorio git. Por ejemplo, puedes poner la clave en un fichero \verb|apikeys.py| del estilo de este:
+
+\begin{verbatim}
+LASTFM_APIKEY = "012345678"
+\end{verbatim}
+
+Luego, en el módulo Python que la uses (por ejemplo \verb|views.py|), pondrás algo como:
+
+\begin{verbatim}
+from .apikeys import LASTFM_APIKEY
+\end{verbatim}
+
+Y ya puedes usar la clave en tu código. Este fichero \verb|apikeys.py| no lo subirás al repositorio git público.
+
+Si usas claves de API en tu práctica, indícalo claramente en el fichero de entrega de la práctica, y o bien sube una clave de API válida (si el repositorio de entrega es privado) para que la podamos probar, o bien indica en qué fichero hay que ponerla, y cómo se consigue una clave API válida para el servicio que estés usando, de forma que la podamos conseguir y ejecutar tu práctica.
+  
+\item ¿Es necesario utilizar los mecanismos provistos por Django para el control de sesiones y autenticación?
+
+  En principio, esa es la solución recomendada. El principal problema suele ser asegurarse de que cualquier mecanismo alternativo funciona al menos tan bien como el de Django, lo que no es en general trivial. De todas formas, salvo muy buenos motivos, la aplicación es una aplicación Django, y por lo tanto cuantas más facilidades de Django se usen (bien usadas), mejor.
+
+\item ¿Dónde puedo realizar el despliegue de la aplicación?
+
+  El despliegue puede realizarse en cualquier ordenador que esté conectado permanentemente a Internet durante el periodo de corrección, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Internet, adecuadamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), o PythonAnywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}). Los profesores podremos ayudar de forma más detallada con PythonAnywhere.
+
+\end{itemize}

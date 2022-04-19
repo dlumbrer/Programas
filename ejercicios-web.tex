@@ -1065,11 +1065,42 @@ Quien esté interesado puede realizar una implementación de una aplicación web
 Explicación del cálculo de Pi mediante el método Monte Carlo, incluyendo ejemplo en Python: \\
 \url{http://www.eveandersson.com/pi/monte-carlo-circle}
 
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\section{Ejercicios 03: Modelo-Vista-Controlador}
+
+%%-----------------------------------------------------------------------------
+%%-----------------------------------------------------------------------------
+\subsection{Red social muy simple}
+\label{subsec:mvc-red-social}
+
+\textbf{Enunciado:}
+
+Vamos a construir una red social muy simple como aplicación web. En esta red, los usuarios podrán poner tantos comentarios como quieran. Estos comentarios quedarán almacenados a su nombre (esto es, cada comentario estará relacionado con el usuario que lo puso). Se supone que lo usuarios ya están autenticados por algún mecanismo que no es relevante para este ejercicio. Por lo tanto, cada navegador, cuando pone un comentario, ya lo pone a nombre de un usuario.
+
+La funcionalidad de la aplicación web es la siguiente:
+
+\begin{itemize}
+\item En una cierta página podrán verse todos los comentarios que ha puesto cualquier usuario
+\item En una cierta página, diferente para cada usuario, podrán verse todos los comentarios de ese usuario.
+\item Los usuarios podrán poner, mediante un formulario, tantos comentarios como quieran (de uno en uno).
+\end{itemize}
+
+Supongamos que vamos a implementar esta aplicación sobre Django. Se pide:
+
+\begin{itemize}
+\item Descripción de la interfaz HTTP de la aplicación, siguiendo en la medida de lo posible los principios REST.
+\item Descripción del modelo de datos (si es posible, escribiendo el fichero \texttt{models.py} correspondiente).
+\item Descripción de las plantillas (templates) Django que se podrían utilizar. Para cada una describir qué mostraría la plantilla, y qué datos habría que utilizar para ``renderizarla''.
+\item Descripción de las vistas (contenido de \texttt{views.py}), en términos de qué interacción con la base de datos y con las plantillas habría que realizar en cada una de ellas, y qué relación con los recursos de la interfaz HTTP tendrían.
+\item Fichero \texttt{urls.py} que relacione los recursos de la interfaz HTTP con las vistas.
+\end{itemize}
 
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
-\section{Ejercicios 03: Introducción a XML}
+\section{Ejercicios 04: Introducción a XML}
 
 Ejercicios sobre XML, JSON, y HTML (reconocedores, generadores, etc).
 
@@ -1491,7 +1522,7 @@ Esta práctica puede realizarse usando el módulo \texttt{html.parser} de la bil
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
-\section{Ejercicios 04: Hojas de estilo CSS}
+\section{Ejercicios 05: Hojas de estilo CSS}
 
 %%-------------------------------------------------------------------------
 %%-------------------------------------------------------------------------
@@ -1597,7 +1628,7 @@ Repositorio de entrega en GitLab: \\
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
 %%-----------------------------------------------------------------------------
-\section{Ejercicios 05: AJAX}
+\section{Ejercicios 06: AJAX}
 
 Ejercicios con AJAX y tecnologías relacionadas.
 
@@ -2287,6 +2318,57 @@ Además, se ha de intentar que un cambio en el modelo (p.ej. añadir un campo nu
 
 Repositorio en GitLab para entregar el ejercicio: \\ 
 \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/django-cms-forms}.
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsection{Django tests}
+\label{subsec:django-tests}
+
+\textbf{Enunciado:}
+
+Realizar un juego de pruebas (tests) para el ejercicio ``Django cms\_forms'' (ejercicio~\ref{subsec:django-forms}) utilizando los tests de Django (\texttt{django.test}. Para que las pruebas sean más completas, añádase un pie de página en todas las páginas que se sirven que incluya el número de páginas vistas del servidor hasta ese momento (sólo desde que se lanzó el servidor). Para anotar las páginas con el número de páginas vistas, se implementará un objeto contador, que tendrá un método para incrementar el contador, y que devolverá el valor del contador tras inscrementarlo.
+
+Las pruebas deberán ser de dos tipos:
+
+\begin{itemize}
+\item Pruebas unitarias del objeto contador.
+\item Pruebas extremo a extremo del servidor recibiendo ciertas peticiones HTTP.
+\end{itemize}
+
+En este ejercicio no importa mucho qué pruebas se hagan, lo importante es experimenar haciendo pruebas.
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item ``Testing in Django'': \\
+  \url{https://docs.djangoproject.com/en/4.0/topics/testing/}
+
+\item ``Writing your first Django app, part 5'': \\
+\url{https://docs.djangoproject.com/en/3.2/intro/tutorial05/}
+
+\item Solución en el directorio \texttt{Python-Django/django-tests} del repositorio de código de la asignatura.
+
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsection{Django tests en GitLab}
+\label{subsec:django-tests-gitlab}
+
+\textbf{Enunciado:}
+
+Automatizar las pruebas de un projecto Django como el descrito en el ejercicio ``Django tests'' (ejercicio~\ref{subsec:django-tests}) utilizando el sistema de CI de GitLab, de forma que cada vez que se suba un nuevo commit al repositorio, se ejecuten esas pruebas.
+
+
+\textbf{Materiales:}
+
+\begin{itemize}
+\item Repositorio con una solución a este ejercicio: \\
+  \url{https://gitlab.etsit.urjc.es/cursosweb/practicas/server/testing-example}
+\item Video explicativo: \\
+  \url{https://www.youtube.com/watch?v=XjMseC6yGS8}
+\end{itemize}
 
 
 %%----------------------------------------------------------------------------
@@ -4320,6 +4402,10 @@ session2\_id es un identificador de sesión (o de visitante), que se puede envia
   </foto>
 </fotos>
 \end{verbatim}
+
+\newpage
+
+\input{practica-final-2021-05}
 
 \newpage
 
