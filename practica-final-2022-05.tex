@@ -3,8 +3,8 @@
 \section{Proyecto final: MisPalabras (2022)}
 \label{practica-final-2022-05}
 
-[ \textbf{Nota importante:} Por ahora esto es sólo es un borrador. Aún estamos definiendo cómo será el enunciado definitivo. ]
-%[ \textbf{Nota importante:} Este enunciado es aún tentativo, y puede sufrir cambios ]
+%[ \textbf{Nota importante:} Por ahora esto es sólo es un borrador. Aún estamos definiendo cómo será el enunciado definitivo. ]
+[ \textbf{Nota importante:} Este enunciado puede sufrir cambios si se detectan errores en él. ]
 
 Este es el enunciado del proyecto final del curso 2021-2022, tanto para la convocatoria ordinaria como para la extraordinaria.
 
@@ -160,7 +160,7 @@ Se recogerá la definición del Diccionario de la RAE. Por ejemplo, para la pala
 \item Elemento a recoger: \texttt{meta (property="og:description")}>\texttt{content}
 \end{itemize}
 
-Más información: Documentos con tarjeta embebida (subsección~\ref{sec:practica-final-2022-05:tarjeta}).
+Más información: Documentos con tarjeta embebida (subsección~\ref{sec:practica-final-2022-05:tarjeta}). Importante: para poder acceder a DRAE es preciso usar una cabecera \texttt{User-Agent} adecuada. Consulta la subsección~\ref{sec:practica-2022-05:preguntas} para más detalles.
 
 %%----------------------------------------------------------------------------
 \subsubsection{Flickr: imagen de etiqueta}
@@ -464,4 +464,26 @@ Si usas claves de API en tu práctica, indícalo claramente en el fichero de ent
 
   El despliegue puede realizarse en cualquier ordenador que esté conectado permanentemente a Internet durante el periodo de corrección, en una dirección accesible desde cualquier navegador conectado a su vez a Internet. Esto puede ser por ejemplo un ordenador personal en un domicilio con acceso permanente a Internet, adecuadamente configurado (puede ser una Raspberry Pi o similar, si se busca una solución simple y de bajo coste). También puede ser un servicio en Internet, por ejemplo uno gratuito como los que ofrecen Google (instrucciones\footnote{GCP Quickstart Using a Linux VM:\\ \url{https://cloud.google.com/compute/docs/quickstart-linux}}, precios\footnote{Google Compute Engine Pricing:\\ \url{https://cloud.google.com/compute/pricing}}), o PythonAnywhere (instrucciones\footnote{Capítulo ``Deploy!'' de Django Girls Tutorial:\\ \url{https://tutorial.djangogirls.org/en/deploy/}}, precios\footnote{PythonAnywhere Plans and Pricing:\\ \url{https://www.pythonanywhere.com/pricing/}}). Los profesores podremos ayudar de forma más detallada con PythonAnywhere.
 
+\item Al acceder a la página en DRAE recibo un error. ¿Qué puedo hacer?
+
+  Si accedes a la página de una palabra en el DRAE desde el navegador, normalmente verás esa página sin problemas. Pero si lo haces desde un programa (por ejemplo, desde un script Python o desde tu aplicación Django) obtienes un error de acceso no permitido (``Forbidden'', o similar). El problema al parecer tiene que ver con que el servidor que sirve las páginas de DRAE comprueba la cabecera de identificación del cliente (\texttt{User-Agent}) y espera que corresponda a la de un navegdor. Por ello, podrás acceder a la página si usas una cabecera como:
+
+\begin{verbatim}
+User-Agent: Mozilla/5.0 (X11) Gecko/20100101 Firefox/100.0
+\end{verbatim}
+
+  Por ejemplo, puedes usar un código similar a este:
+
+\begin{verbatim}
+import urllib.request
+
+url = "https://dle.rae.es/silla"
+user_agent = "Mozilla/5.0 (X11) Gecko/20100101 Firefox/100.0"
+headers = {'User-Agent': user_agent}
+req = urllib.request.Request(url, headers=headers)
+
+with urllib.request.urlopen(req) as response:
+    html = response.read().decode('utf8')
+\end{verbatim}
+  
 \end{itemize}
