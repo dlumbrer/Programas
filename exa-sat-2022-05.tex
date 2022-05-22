@@ -1,0 +1,377 @@
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de ITT-SAT, 20 de mayo de 2022}
+
+Se quiere construir un sitio donde se puedan comentar programas de streaming, que llamaremos MiStreaming. El funcionamiento de MiStreaming seguirá el siguiente detalle:
+
+\begin{enumerate}
+\item Para ser usuario del sitio, habrá que tener una cuenta en él, y haber ``entrado'' en ella. Cuando un visitante intenta acceder al sitio sin haber entrado en una cuenta, se le muestran dos formularios: uno para acceder a una cuenta (introduciendo un nombre de usuario y una contraseña), y otro para crear una cuenta (con los mismos campos).
+\item Si un usuario introduce en el formulario para acceder a una cuenta un nombre de usuario y una contraseña correctas, ``entra'' en esa cuenta.
+\item Si un usuario introduce en el formulario para crear una cuenta un nombre de usuario que no existe y una contraseña, crea una nueva cuenta, y a la vez ``entra'' en ella.
+\item Cada hora, MiStreaming descarga documentos JSON de los sitios web de las empresas de streaming, para actualizar la lista de programas disponibles. Entre la información que está incluida en esos documentos JSON se encuentra el nombre del programa, un identificador único de programa entre los de ese servicio de streaming, la descripción del programa, y la URL de una foto del programa. Se supone que cada servicio de streaming mantiene un documento JSON como el descrito. MiStreaming no descarga las fotos, sólo sus URLs.
+\item Con la información que ha descargado de estos documentos JSON, MiStreaming mantiene una lista de programas, que se muestra a los usuarios en una página HTML. En esta página, los usuarios pueden ver todos los programas, y seleccionarlos (mediante un botón que realiza un POST sobre MiStreaming). Cuando un programa es seleccionado por un usuario, pasa a mostrarse en la página principal del sitio para ese usuario.
+\item Los usuarios que han ``entrado'' en su cuenta pueden ver en la página principal del sitio una lista con los programas de streaming que han seleccionado. El nombre de cada uno de estos programas estará enlazado con la página del programa (descrita a continuación). Cada usuario sólo puede ver la página de los programas que ha seleccionado.
+\item En la página de un programa se puede ver el nombre del programa, su descripción, su foto y los comentarios que cualquier usuario ha puesto sobre él. Cada comentario aparecerá acompañado del nombre de usuario de quien lo puso. Además, hay un formulario para poner un nuevo comentario (que tendrá un único campo: una cadena de texto).
+\item En la página principal habrá además un recuadro con los cinco últimos comentarios a los programas que ha seleccionado el usuario (puestos por cualquier usuario), un enlace para salir de la cuenta (mediante un GET), y una imagen de cabecera con el logo del sitio.
+\item Todas las páginas HTML del sitio incluyen una imagen de 1 pixel, servida por el sitio \texttt{tracking.com}. Cada una de estas imágenes se sirve con una URL diferente si está en una página diferente, pero igual si está en la misma página.
+
+\end{enumerate}
+
+\newpage
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas URLs (no se usarán los métodos PUT o DELETE). \textbf{Muy importante:} Coloca la información en una \textbf{tabla}, con los nombres de los recursos en una columna, los métodos en otra, la descripción de lo que realizará la aplicación al recibirlos en la tercera, y el contenido de los datos de la petición, si los hay en la cuarta (se consideran datos de la petición a los que vayan, normalmente como \emph{query string}, en el cuerpo de la petición HTTP o tras el nombre de recurso en la primera línea de la cabecera). Escribe también un fichero similar al fichero urls.py de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior. 
+\item Describe el modelo de datos que necesitará esta aplicación. Define las tablas necesarias y los campos principales. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero models.py en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones).
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario: el escenario comienza cuando un visitante que no ha entrado aún en una cuenta, pone la URL de MiStreaming en su navegador, y accede a la página principal. En ella, introduce un usuario y una contraseña válidos, y pasa a ver el listado de sus programas elegidos en la página principal. El escenario termina cuando el usuario ve esta página con el listado en su navegador.
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario: el escenario comienza con el usuario viendo en su navegador la página principal con sus programas elegidos. El usuario pulsa sobre uno de ellos, y pasa a ver la página de ese programa. En ella pone un comentario. El escenario termina cuando el usuario ve la página del programa con el nuevo comentario en ella.
+\item Se quiere añadir un enlace en la página principal para que cada usuario pueda acceder a su lista de programas como un documento XML. Ese documento debe tener un listado con los nombres de todos los programas que ha elegido, y para cada programa, los cinco últimos comentarios que se han puesto para ese programa, y el nombre de usuario que puso el comentario. Escribe un documento ejemplo de cómo sería ese XML, que incluya al menos dos programas y cuatro comentarios (en total).
+
+\end{enumerate}
+
+En todos los escenarios, ten en cuenta que tu respuesta debe considerar toda la funcionalidad que ofrece el servicio, y permitir que ésta pueda proporcionarse. Diseña la aplicación de forma que envíe cookies al navegador sólo cuando sea necesario.
+
+En las respuestas donde describas interacciones HTTP indica para cada una de ellas claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \end{itemize}
+
+Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
+
+\subsubsection{Soluciones}
+
+Hay muchas soluciones posibles. A continuación, una de ellas.
+
+\paragraph{Esquema REST}
+
+Este podría ser el esquema REST:
+
+\begin{tabular}{|l|l|p{5cm}|p{5cm}|}
+  \hline
+  Recurso & Método & Query String & Comentario \\ \hline \hline
+  /       & GET    & -- & Página principal (HTML) \\
+  /       & POST   & Registro (user=pepe\&pass=pepon) o selección de programa (pid=123) & Permite registrarse o seleccionar programa, devuelve página principal (HTML) \\ \hline
+  /\{id\_programa\} & GET & -- & Página del programa (HTML) \\ 
+  /\{id\_programa\} & POST & (comentario=Mola) & Envía comentario a programa \\ \hline
+  /banner.png & GET & -- & Banner de la web \\ \hline
+\end{tabular}
+
+Para que el POST sobre el recurso principal, tendremos dos posibilidades. La primera es que se utilice para registrarse, en cuyo caso el query string tendrá dos variables (user y pass). La segunda es que se utilice para seleccionar un programa en la lista de usuario. En ese cas para que
+se pueda indentificar como datos para ese programa, se tendrá que incluir
+el identificador del programa en la query string. Para ello, incluiremos
+un campo oculto en el formulario de datos, justamente con ese dato.
+
+No se incluye \emph{path} para el XML del ejercicio 5.
+
+\paragraph{urls.py}
+
+
+\begin{verbatim}
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('banner.png', views.banner, name='banner'),
+    path('<id_programa>', views.programa, name='programa'),
+]
+\end{verbatim}
+
+El recurso que sirve el banner podría servirse también configurando
+adecuadamente los mecanismos de Django para servirlo como fichero estático.
+
+\paragraph{models.py}
+
+Versión simplificada, que cumple el enunciado, aunque podría optimizarse:
+
+\begin{verbatim}
+from django.db import models
+
+class Usuario(models.Model):
+    usuario = models.CharField(max_length=16)
+    contrasena = models.CharField(max_length=16)
+
+class Plataforma(models.Model):
+    plataforma = models.CharField(max_length=64)
+    url_json = models.URLField()
+
+class Programa(models.Model):
+    plataforma = models.ForeignKey('Plataforma')
+    nombre = models.CharField(max_length=64)
+    descripcion = models.TextField()
+    imagen = models.URLField()
+
+class Comentario(models.Model):
+    programa = models.ForeignKey('Programa')
+    usuario = models.ForeignKey('Usuario')
+    contenido = models.TextField()
+    fecha = models.DateTimeField()
+    
+class Seleccion(models.Model):
+    programa = models.ForeignKey('Programa')
+    usuario = models.ForeignKey('Usuario')
+
+    
+\end{verbatim}
+
+Las plataformas las tenemos en la tabla ``Plataforma'', junto con la URL de donde podemos descargar su URL. A partir de esos JSON, obtenemos la información de los programas que se guardan en la tabla ``Programa". Un usuario puede seleccionar programas, por lo que tendremos una tabla ``Seleccion'' donde podremos ver qué programas han sido seleccionados por qué usuarios. Lo mismo con la tabla ``Comentarios''.
+
+Podríamos tener una tabla de ``Session'', pero nos vale con el usuario y mandar en la cookie el nombre de usuario.
+
+No se incluyen los campos identificador único para cada tabla. Nótese que en este esquema utilizamos identificadores propios para los progarmas, no los proporcionados por el JSON de las plataformas.
+
+\paragraph{Primer escenario}
+
+Todas las interacciones son entre el navegador y el sitio.
+
+\begin{itemize}
+
+\item Petición GET de la página principal.
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página principal, HTML]
+\end{verbatim}
+
+
+\item Petición GET para el banner, originada debido a que está referenciada en la página HTML anterior.
+
+\begin{verbatim}
+  GET /banner.png HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen con el banner]
+\end{verbatim}
+
+\item Petición GET para la imagen del sitio tracking.com, originada debido a que está referenciada en la página HTML anterior.
+
+\begin{verbatim}
+  GET /principal.png HTTP/1.1
+  Host: tracking.com
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  Set-Cookie: session_id=123456...
+  ...
+
+  [Imagen de 1px]
+\end{verbatim}
+
+\item Petición POST para identificarse
+
+\begin{verbatim}
+  POST /43 HTTP/1.1
+  ...
+  user=pepe&pass=pepon
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  Set-Cookie: usuario=pepe
+  ...
+
+  [Página principal, HTML]
+\end{verbatim}
+
+\item Petición GET para el banner, originada debido a que está referenciada en la página HTML anterior.
+
+\begin{verbatim}
+  GET /banner.png HTTP/1.1
+  Cookie: user=pepe
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen con el banner]
+\end{verbatim}
+
+\item Petición GET para la imagen del sitio tracking.com, originada debido a que está referenciada en la página HTML anterior.
+
+\begin{verbatim}
+  GET /principal.png HTTP/1.1
+  Host: tracking.com
+  Cookie: session_id=123456...
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen de 1px]
+\end{verbatim}
+
+\end{itemize}
+
+
+\paragraph{Segundo escenario}
+
+A continuación, las interacciones son entre el navegador y el sitio. Suponemos que el visitante ya ha recibido la cookie al venir del primer escenario.
+
+\begin{itemize}
+
+\item Petición GET de la página de un programa (el de identificador 12).
+
+\begin{verbatim}
+  GET /12 HTTP/1.1
+  Cookie: user=pepe
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página principal, HTML]
+\end{verbatim}
+
+
+\item Petición GET para el banner, originada debido a que está referenciada en la página HTML anterior.
+
+\begin{verbatim}
+  GET /banner.png HTTP/1.1
+  Cookie: user=pepe
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen con el banner]
+\end{verbatim}
+
+\item Petición GET para la imagen del sitio tracking.com, originada debido a que está referenciada en la página HTML anterior.
+
+\begin{verbatim}
+  GET /12.png HTTP/1.1
+  Host: tracking.com
+  Cookie: session_id=123456...
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen de 1px]
+\end{verbatim}
+
+\item Petición GET para la imagen del programa, originada debido a que está referenciada en la página HTML anterior (y que tenemos guardada en la tabla ``Programa'' del models.py).
+
+\begin{verbatim}
+  GET /principal.png HTTP/1.1
+  Host: disneyplus.com
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  [Potencialmente aquí disneyplus.com podria ponernos una cookie]
+  ...
+
+  [Imagen]
+\end{verbatim}
+
+\item Petición POST para enviar un comentario
+
+\begin{verbatim}
+  POST /12 HTTP/1.1
+  Cookie: user=pepe
+  ...
+  comentario=Pedazo%20de%20pelicula
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página del programa 12 con el comentario recién incluido, HTML]
+\end{verbatim}
+
+\item Se repite la petición GET para el banner, originada debido a que está referenciada en la página HTML anterior.
+
+\item Se repite la petición GET para la imagen del sitio tracking.com, originada debido a que está referenciada en la página HTML anterior.
+s
+\item Se repite la ptición GET para la imagen del programa, originada debido a que está referenciada en la página HTML anterior (y que tenemos guardada en la tabla ``Programa'' del models.py).
+
+\end{itemize}
+
+\paragraph{Documento XML}
+
+\begin{verbatim}
+<programas>
+  <usuario>pepe</usuario>
+  <programa>
+    <nombre>La cenicienta</nombre>
+    <comentarios>
+      <comentario>
+        <contenido>Me ha gustado mucho</contenido>
+        <usuario>Jacinta</contenido>
+      </comentario>
+      <comentario>
+        <contenido>Pichi, picha</contenido>
+        <usuario>Gerardo</contenido>
+      </comentario>
+  </programa>
+  <programa>
+    <nombre>La Bella y la bestia</nombre>
+    <comentarios>
+      <comentario>
+        <contenido>Me siento identificado... con la bestia</contenido>
+        <usuario>Gumersindo</contenido>
+      </comentario>
+      <comentario>
+        <contenido>Que bella es la bella</contenido>
+        <usuario>Antonia</contenido>
+      </comentario>
+  </programa>
+</programas>  
+\end{verbatim}
+
