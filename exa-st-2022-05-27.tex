@@ -1,0 +1,300 @@
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de IT-ST, 27 de mayo de 2022}
+
+Se quiere construir un sitio web, Pregunt.as, donde cualquier persona pueda hacer preguntas, que otros puedan contestar. La funcionalidad básica del sitio es la siguiente:
+
+\begin{enumerate}
+\item Cualquier visitante puede hacer preguntas, pero sólo los usuarios autenticados pueden poner respuestas.
+
+\item La página principal del sitio mostrará el listado con las 10 últimas preguntas realizadas. Para cada una de ellas se mostrará el título (que será un enlace a la página de la pregunta en Pregunt.as), y el número de respuestas que ha recibido.
+
+\item Además, la página principal también tendrá un formulario para subir una nueva pregunta, con un solo campo de texto (para escribir la pregunta).
+
+\item La página principal tendrá también un formulario, si el visitante no se ha autenticado, para autenticarse (se supone que el registro en el sitio se ha realizado previamente por algún mecanismo que no es de interés para este ejercicio). Ese formulario tendrá un campo para el nombre de usuario, otro para una contraseña, y un botón para enviarlos: si se envían correctamente, el usuario ya registrado pasará a ver la misma página principal, pero ya como usuario autenticado. Si el usuario ya está autenticado, en lugar de ese formulario verá un botón para salir de la sesión (``desautenticarse''): si lo pulsa, volverá a ver la página principal, pero ya como visitante sin autenticar.
+
+\item La página de cada pregunta incluye el texto de la pregunta, y el listado de las respuestas que se han puesto (cada una, junto con el autor de la respuesta). En caso de que la página se muestre a un usuario autenticado, además aparecerá un formulario para poner una respuesta, sólo si ese usuario no ha puesto ya una respuesta (cada usuario registrado sólo podrá poner una respuesta a una pregunta dada). Ese formulario tendrá un campo de texto (para poner la respuesta) y un botón para enviar la respuesta. Cuando se pulse el botón, se obtendrá como resultado la misma página de la pregunta que se estaba viendo, pero ya con la nueva respuesta.
+
+\item Todas las páginas HTML del sitio incluyen una imagen de 1 pixel, servida por el propio sitio. La imagen será siempre la misma (el recurso del sitio que sirve la imagen será siempre el mismo).
+
+\item Todas las páginas HTML del sitio usarán un único documento CSS, servido por el propio sitio, que definirá el estilo de todas ellas de forma uniforme.
+
+\item Pregunt.as servirá también un documento JSON con el listado completo de preguntas, indicando para cada pregunta el texto de esa pregunta, y la URL de la página de la pregunta correspondiente.
+\end{enumerate}
+
+En esta descripción, considérese que un ``visitante'' corresponde con un cierto navegador, con su propio almacén de cookies. Esto es, una misma persona que use dos navegadores distintos, cada uno con su propio almacén de cookies, será considerada como dos visitantes, mientras que varias personas usando el mismo navegador, con un único almacén de cookies para todas ellas, serán consideradas como un único visitante. Un ``usuario autenticado'' será un visitante que se ha autenticado vía el formulario de autenticación correspondiente.
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas URLs (no se usarán los métodos PUT o DELETE). \textbf{Muy importante:} Coloca la información en una \textbf{tabla}, con los nombres de los recursos en una columna, los métodos en otra, la descripción de lo que realizará la aplicación al recibirlos en la tercera, y el contenido de los datos de la petición, si los hay en la cuarta (se consideran datos de la petición a los que vayan, normalmente como \emph{query string}, en el cuerpo de la petición HTTP o tras el nombre de recurso en la primera línea de la cabecera). Escribe también un fichero similar al fichero \texttt{urls.py} de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior. (1 punto)
+
+\item Describe el modelo de datos que necesitará esta aplicación, incluyendo la clase ``Usuario'' que se describe más adelante. Define las tablas necesarias y los campos necesarios para la funcionalidad descrita. Asegúrate de que incluyes en el modelo de datos los campos o tablas necesarios para garantizar que usuario sólo responde a cada pregunta como mucho con una respuesta. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero \texttt{models.py} en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones). Se supondrá que hay ya una tabla de usuarios registrados con el nombre de usuario y la contraseña para cada uno de ellos (esa tabla se llamará ``usuarios'', correspondiente a la clase ``Usuario''). Para este modelo de datos, supóngase que no se usan las facilidades de Django para gestión de usuarios, sino que todo se basa en esta tabla de usuarios y las demás tablas que incluyas en el modelo de datos. (1 punto)
+  
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y el servidor web (la aplicación Pregunt.as) en el siguiente escenario. El escenario comienza cuando un visitante sin autenticar está viendo en su navegador la página principal del sitio. El visitante ve el formulario que hay en esta página para poner una pregunta, escribe en él una pregunta, y pulsa el botón para enviarlo. El escenario termina cuando el visitante recibe de nuevo la página principal, ya con la nueva pregunta en ella.
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y el servidor web (la aplicación Pregunt.as) en el siguiente escenario. El escenario comienza cuando el visitante anterior está viendo la página principal con la pregunta que acaba de poner. Rellena el formulario de autenticación (usuario y contraseña), y pulsa el botón para enviarlo. Cuando recibe de nuevo la página principal, ya autenticado, pulsa la página de la primera pregunta que aparece. El escenario termina cuando el visitante recibe la página de esa pregunta.
+
+\item Escribe cómo podría ser un documento JSON como los que sirve Pregunt.as, si tenemos tres preguntas almacenadas en su base de datos. (1 punto)
+
+\end{enumerate}
+
+  En las dos preguntas sobre interacciones HTTP, para cada interacción HTTP indica claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \item Si hubiera envío de datos de formulario, recuerda indicar de forma explícita dónde van esos datos, y si es posible, en qué formato.
+  \end{itemize}
+
+  Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
+  En general, para todas las interacciones descritas, considérese que la cache del navegador no se está usando, y que el navegador acepta cualquier cookie que se le envíe, y nunca la borra salvo que la cookie expire.
+
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 1 (solución)}
+
+Tabla de recursos:
+\vspace{.4cm}
+
+\begin{tabular}{|l|l|l|l|}
+  \hline
+  Recurso & Método & Semántica & Datos \\ \hline\hline
+  /       & GET    & Página principal & \\
+  /       & POST   & Nueva pregunta & \texttt{text="..."} \\
+  /       & POST   & Autenticación & \texttt{user=...\&passwd=...} \\
+  /       & POST   & Cierre sesión & \texttt{cerrar=true} \\
+  /\{id\_pregunta\} & GET & Página de una pregunta & \\
+  /\{id\_pregunta\} & POST & Nueva respuesta & \texttt{texto="..."} \\
+  /pixel.png & GET & Imagen de un pixel & \\
+  /main.css & GET & Documento CSS &  \\
+  /main.json & GET & Documento JSON &  \\
+  \hline
+\end{tabular}
+
+Como no se indica mucho sobre cómo se cierra la sesión, podría hacerse sobre un recurso separado también, en lugar de sobre el recurso principal, con un valor que iría en un campo escondido del formulario con el botón para cerrar la sesión.
+
+\vspace{.4cm}
+Fichero \texttt{urls.py}:
+
+\begin{verbatim}
+from django.urls import path
+from . import views
+
+urlpatterns = [
+  path('', views.index, name='index')
+  path('<id_pregunta>', views.pregunta, name='pregunta')
+  path('pixel.png', views.pixel, name='pixel')
+  path('main.css', views.css, name='css')
+  path('main.json', views.json, name='json')
+]
+\end{verbatim}
+
+Tanto \texttt{pixel.json} como \texttt{main.css} pueden servirse también como ficheros estáticos, con las facilidades que Django proporciona para ello.
+
+El documento JSON podría servirse también si se invoca el recurso / con una query string (por ejemplo, \texttt{/?format=json}).
+
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 2  (solución)}
+
+Hay varias soluciones, una podría ser:
+
+\begin{verbatim}
+from django.db import models
+
+class Usuario (models.Model):
+  nombre =  models.CharField(max_lenght = 20)
+  palabra = models.CharField(max_lenght = 20)
+
+class Sesion (models.Model):
+  cookie = models.CharField(max_lenght = 60)
+  usuario = models.ForeignKey('Usuario')
+
+class Pregunta (models.Model):
+  texto = models.TextField()
+  fecha = models.DateTimeField()
+
+class Respuesta (models.Model):
+  texto =    models.TextField()
+  autor =    models.ForeignKey('Usuario')
+  pregunta = models.ForeignKey('Pregunta')
+\end{verbatim}
+
+La tabla \texttt{Sesion} se usa para llevar cuenta de los usuarios registrados, y darles una cookie a cada uno de ellos. No se puede incluir la cookie en la tabla \texttt{Usuario} porque en ese caso un usuario no se podría autenticar simultáneamente desde varios navegadores, algo que no prohibe el enunciado.
+
+La tabla \texttt{Pregunta} necesita un campo \texttt{fecha} para poder ordenar las preguntas para la página principal.
+
+Como nombre de recurso para cada pregunta se podría utilizar el valor del campo \texttt{id} de la tabla \texttt{Pregunta}, que Django genera automáticamente como un entero único, al no habe especificado ningún campo como clave.
+
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 3  (solución)}
+
+Como según el enunciado el usuario no está autenticado, no ha hecho falta hasta el momento enviarle cookie de sesión, así que no se habrá hecho, y por lo tanto no habrá cookies en la interacción. Como ya está viendo la página principal, el escenario consistirá solamenete en un POST para subir los datos del formulario con la pregnta, su respueta, y las interacciones derivadas del documento HTML que recibirá en el cuerpo de esta respuesta.
+
+\begin{itemize}
+
+\item Petición POST a la página principal, para subir la pregunta. Suponemos que \texttt{yyy} es el texto de la pregunta. 
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+
+  text="yyy"
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página principal, con la nueva pregunta, HTML]
+\end{verbatim}
+
+\item Petición de la hoja de estilo CSS que incluye la página CSS (suponemos que no se usa la cache):
+
+  \begin{verbatim}
+  GET /main.css HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Documento CSS]
+\end{verbatim}
+
+\item Petición de la imagen de un pixel (suponemos que no se usa la cache):
+
+  \begin{verbatim}
+  GET /pixel.png HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen, PNG]
+\end{verbatim}
+\end{itemize}
+
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 4  (solución)}
+
+Como según el enunciado el usuario no está autenticado, no ha hecho falta hasta el momento enviarle cookie de sesión, así que no se habrá hecho, y por lo tanto no habrá cookies en la interacción. Como ya está viendo la página principal, el escenario consistirá en un POST para subir los datos de autenticación, su respueta, que incluirá el envío de una cookie de sesión para que las siguientes interacciones con el navegador se puedan identificar como autenticads, las interacciones derivadas del documento HTML que recibirá en el cuerpo de esta respuesta. A continuación, habrá un GET para acceder a la página de la noticia, que igualmente provocará interacciones derivadas del documento HTML que recibirá en el cuerpo de la respuesta
+
+\begin{itemize}
+
+\item Petición POST a la página principal, para autenticarse. Suponemos que \texttt{xxx} es el nombre de usuario y \texttt{yyy} es la contraseña. 
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+
+  user=xxx&passwd=yyy
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+  Set-Cookie: id=32fad-32dff1-weee54; Expires=Wed, 11 Oct 2022 07:28:00 GMT
+  ...
+
+  [Página principal, sesión ya autenticada, HTML]
+\end{verbatim}
+
+  (la cookie debería enviarse con el atributo ``Secure'', para evitar que se envíe por conexiones sin cifrar, por lo que esa cabecera sería más correcta así:
+
+\begin{verbatim}
+  Set-Cookie: id=32fad-32dff1-weee54; Secure; Expires=Wed, 11 Oct 2022 07:28:00 GMT
+\end{verbatim}
+  
+\item Petición de la hoja de estilo CSS que incluye la página CSS (suponemos que no se usa la cache):
+
+  \begin{verbatim}
+  GET /main.css HTTP/1.1
+  Cookie: id=32fad-32dff1-weee54
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Documento CSS]
+\end{verbatim}
+
+\item Petición de la imagen de un pixel (suponemos que no se usa la cache):
+
+  \begin{verbatim}
+  GET /pixel.png HTTP/1.1
+  Cookie: id=32fad-32dff1-weee54
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen, PNG]
+\end{verbatim}
+
+\item Petición GET de la página de la pregunta. Suponemos que el identificado rde la pregunta es ``56443''.. 
+
+\begin{verbatim}
+  GET /56443 HTTP/1.1
+  Cookie: id=32fad-32dff1-weee54
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página de la pregunta, sesión ya autenticada, HTML]
+\end{verbatim}
+  
+\item Petición de la hoja de estilo CSS que incluye la página CSS (suponemos que no se usa la cache): igual que la anterior petición de hoja de estilo, con la misma respuesta.
+
+\item Petición de la imagen de un pixel (suponemos que no se usa la cache):  igual que la anterior petición de imagen, con la misma respuesta.
+
+  Después de la primera respuesta, las demás respuestas no llevan cabecera \texttt{Set-Cookie} porque no es necesario reenviar la cookie, ya la tiene el navegador. Podrían volver a enviarla si se quisiera actualizar su fecha de expiración, o realizar alguna otra acción de refresco. Las peticiones, una vez el navegador recibió la cookie, incluyebn siempre una cabecera \texttt{Cookie} porque el navegador la reenviará siempre al servidor que se la envió.
+
+\end{itemize}
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 5  (solución)}
+
+Hay varias formas en que se puede construir el documento JSON, una de ellas puede ser:
+
+\begin{verbatim}
+[
+  {"text": "¿Cuál es el sentido de la vida, el universo y todo lo demás?",
+   "url": "https://pregunt.as/1"},
+  {"text": "¿Cuál es la pregunta cuya respuesta es 42?",
+   "url": "https://pregunt.as/2"},
+  {"text": "¿Cuál es al especie más inteligente de la Tierra?",
+   "url": "https://pregunt.as/3"}
+]
+\end{verbatim}
