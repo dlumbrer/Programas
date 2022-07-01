@@ -1,0 +1,44 @@
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de IST-SARO, 28 de junio de 2022}
+
+Se quiere construir un sitio donde se puedan puntuar partidos de tenis, que llamaremos BestTennis. El funcionamiento de BestTennis seguirá el siguiente detalle:
+
+\begin{enumerate}
+\item Para ser usuario del sitio, habrá que tener una cuenta en él, y haber ``entrado'' en ella. Cuando un visitante intenta acceder al sitio sin haber entrado en una cuenta, se le muestran dos formularios: uno para acceder a una cuenta (introduciendo un nombre de usuario y una contraseña), y otro para crear una cuenta (con los mismos campos).
+\item Si un usuario introduce en el formulario para acceder a una cuenta un nombre de usuario y una contraseña correctas, ``entra'' en esa cuenta.
+\item Si un usuario introduce en el formulario para crear una cuenta un nombre de usuario que no existe y una contraseña, crea una nueva cuenta, y a la vez ``entra'' en ella.
+\item BestTennis mantiene una lista de partidos históricos de tenis, que se muestra a los usuarios en una página HTML. En esta página, los usuarios pueden ver todos los partidos, y seleccionarlos (mediante un botón que realiza un POST sobre BestTennis). Cuando un partido es seleccionado por un usuario, pasa a mostrarse en la página principal del sitio para ese usuario.
+\item Los usuarios que han ``entrado'' en su cuenta pueden ver en la página principal del sitio una lista con los partidos de tenis que han seleccionado. Cada uno de estos partidos estará enlazado con la página del partido (descrita a continuación). Cada usuario sólo puede ver la página de los partidos que ha seleccionado.
+\item En la página de un partido se puede ver el nombre del campeonato, los contendientes, un breve relato, una foto y la puntuación que cualquier usuario ha puesto sobre él. Cada puntuación aparecerá acompañado del nombre de usuario de quien lo puso. Además, hay un formulario para poner una nueva puntuación (que tendrá un único campo: un valor de uno a cinco).
+\item En la página principal habrá además un recuadro con las cinco últimas puntuaciones a los partidos que ha seleccionado el usuario (puestos por cualquier usuario), un enlace para salir de la cuenta (mediante un GET), y una imagen de cabecera con el logo del sitio.
+\item Todas las páginas HTML del sitio incluyen una imagen de 1 pixel, servida por el sitio \texttt{tracking.com}. Cada una de estas imágenes se sirve con una URL diferente si está en una página diferente, pero igual si está en la misma página.
+
+\end{enumerate}
+
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas URLs (no se usarán los métodos PUT o DELETE). \textbf{Muy importante:} Coloca la información en una \textbf{tabla}, con los nombres de los recursos en una columna, los métodos en otra, la descripción de lo que realizará la aplicación al recibirlos en la tercera, y el contenido de los datos de la petición, si los hay en la cuarta (se consideran datos de la petición a los que vayan, normalmente como \emph{query string}, en el cuerpo de la petición HTTP o tras el nombre de recurso en la primera línea de la cabecera). Escribe también un fichero similar al fichero urls.py de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior. 
+\item Describe el modelo de datos que necesitará esta aplicación. Define las tablas necesarias y los campos principales. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero models.py en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones).
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario: el escenario comienza cuando un visitante que no ha entrado aún en una cuenta, pone la URL de BestTennis en su navegador, y accede a la página principal. En ella, introduce un usuario y una contraseña válidos, y pasa a ver el listado de sus programas elegidos en la página principal. El escenario termina cuando el usuario ve esta página con el listado en su navegador.
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario: el escenario comienza con el usuario viendo en su navegador la página principal con sus programas elegidos. El usuario pulsa sobre uno de ellos, y pasa a ver la página de ese programa. En ella pone una puntuación. El escenario termina cuando el usuario ve la página del programa con el nueva puntuación en ella.
+\item Se quiere añadir un enlace en la página principal para que cada usuario pueda acceder a su lista de programas como un documento XML. Ese documento debe tener un listado con los nombres de todos los programas que ha elegido, y para cada programa, las cinco últimas puntuaciones que se han puesto para ese partido, y el nombre de usuario que puso la puntuacioń. Escribe un documento ejemplo de cómo sería ese XML, que incluya al menos dos partidos y cuatro puntuaciones (en total).
+
+\end{enumerate}
+
+En todos los escenarios, ten en cuenta que tu respuesta debe considerar toda la funcionalidad que ofrece el servicio, y permitir que ésta pueda proporcionarse. Diseña la aplicación de forma que envíe cookies al navegador sólo cuando sea necesario.
+
+En las respuestas donde describas interacciones HTTP indica para cada una de ellas claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \end{itemize}
+
+Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+

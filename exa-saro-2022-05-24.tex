@@ -1,0 +1,48 @@
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de IST-SARO, 24 de mayo de 2022}
+
+Se quiere construir un sitio web, ComerFinoFino, donde se puede ver y comentar información sobre restaurantes de lujo. La funcionalidad básica del sitio es la siguiente:
+
+\begin{enumerate}
+\item En el sitio no hay cuentas para usuarios: toda la funcionalidad está disponible para cualquiera que lo visite.
+\item De todas formas, cualquier visitante podrá reservar un nombre que no esté ya en uso para cuando suba información al sitio. Este nombre se mantendrá mientras el visitante utilice el mismo navegador.
+\item La página principal del sitio mostrará a los visitantes un formulario para buscar restaurantes, como documento HTML. Ese formulario permitirá especificar el nombre de una ciudad. Una vez especificado, el sitio devolverá un listado de los restaurantes de lujo en esa ciudad, y un nuevo formulario como el anterior (por si el visitante quiere buscar restaurantes en otra ciudad). Este listado que aparecerá en la página principal incluirá, para cada restaurante, su nombre (como enlace a la página del restaurante, ver más abajo), y una foto. Los restaurantes aparecerán en orden aleatorio.
+\item La página principal tendrá también, cuando el visitante no haya reservado nombre, un formulario para ponerlo. Si se rellena ese formulario, volverá a verse la página principal, pero ahora ya con el nombre reservado (salvo que el nombre ya estuviera reservado previamente, en ese caso volverá a ver el formulario). Desde ese momento en adelante, en la página principal se verá siempre el nombre reservado, mientras se conecte desde el mismo navegador.
+\item Cada restaurante tendrá una página. En esa página aparecerá el nombre del restaurante, una breve descripción, una foto, los comentarios que ha habido para ese restaurante, y un formulario para poner un comentario. Los comentarios aparecerán en orden inverso de publicación (los más recientes primero).
+\item Cada visitante puede poner un comentario utilizando el formulario indicado anteriormente. Cuando lo ponga, aparecerá a su nombre (si ha reservado uno), o como anónimo (si no lo ha hecho). Al poner un comentario, el visitante volverá a ver la página del restaurante que estaba viendo, pero ahora con el comentario que acaba de poner.
+\item Todas las fotos que muestra ComerFinoFino se alojan en el propio ComerFinoFino.
+\item Todas las páginas del sitio tendrán una imagen de cabecera (banner).
+\item Todas las páginas HTML del sitio incluyen una imagen de 1 pixel, servida por el sitio \texttt{tracking.com}. Cada una de estas imágenes se sirve con una URL diferente si está en una página diferente, pero igual si está en la misma página.
+
+\end{enumerate}
+
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas URLs (no se usarán los métodos PUT o DELETE). \textbf{Muy importante:} Coloca la información en una \textbf{tabla}, con los nombres de los recursos en una columna, los métodos en otra, la descripción de lo que realizará la aplicación al recibirlos en la tercera, y el contenido de los datos de la petición, si los hay en la cuarta (se consideran datos de la petición a los que vayan, normalmente como \emph{query string}, en el cuerpo de la petición HTTP o tras el nombre de recurso en la primera línea de la cabecera). Escribe también un fichero similar al fichero urls.py de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior. 
+
+\item Describe el modelo de datos que necesitará esta aplicación. Define las tablas necesarias y los campos necesarios para la funcionalidad descrita. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero models.py en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones).
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza cuando un visitante que accede por primera vez al sitio pone en el navegador la URL de la página principal del sitio. A continuación, después de ver esta página principal, rellena el formulario para elegir un nombre. Pero el nombre elegido ya está reservado, y el visitante ha de rellenar el formulario por segunda vez (esta vez, el nombre no estará previamente reservado). El escenario termina cuando el visitante ve de nuevo la página principal, ya con el nombre que ha reservado.
+
+\item Describe las interacciones HTTP que ocurrirán entre el navegador y cualquier servidor web en el siguiente escenario. El escenario comienza con un visitante que ya ha reservado nombre y está viendo la página de un restaurante en su navegador. El visitante rellena el formulario de comentarios, poniendo uno. El escenario termina cuando el visitante ve la página del restaurante ya con su comentario.
+
+\item Se quiere añadir a ComerFinoFino la funcionalidad de ``transferir'' los nombres reservados a otro navegador. Describe un mecanismo que sirva para esto, basado en que el visitante pueda pedir alguna información a ComerFinoFino para poder probar, desde otro navegador, que es la misma persona. El mecanismo no puede usar otra cosa que la interacción desde los dos navegadores (el navegador A, con el que tiene nombre reservado, y el navegador B, al que va a transferir el registro) con ComerFinoFino. Describe todas las interacciones HTTP en los dos navegadores desde que el visitante solicite transferencia del nombre en el navegador A, hasta que vea, desde el navegador B, la primera página del sitio con su nombre ya reservado.
+\end{enumerate}
+
+En todos los escenarios, ten en cuenta que tu respuesta debe considerar toda la funcionalidad que ofrece el servicio, y permitir que ésta pueda proporcionarse. Diseña la aplicación de forma que envíe cookies al navegador sólo cuando sea necesario.
+
+En las respuestas donde describas interacciones HTTP indica para cada una de ellas claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \end{itemize}
+
+Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
