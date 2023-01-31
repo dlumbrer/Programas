@@ -1,0 +1,265 @@
+%%--------------------------------------------------------------------------
+%%--------------------------------------------------------------------------
+\subsection{Examen de IT-ST, 1 de julio de 2022}
+
+
+Se quiere construir un sitio web, Encuestam.os, donde cualquier persona pueda proponer encuestas simples, que otros puedan contestar. La funcionalidad básica del sitio es la siguiente:
+
+\begin{enumerate}
+\item Una encuesta en Encuestam.os será una pregunta (como mucho de 200 caracteres) a la que se puede contestar ``Sí'', ``No'' o ``No sé''. Por ejemplo, una encuesta podría ser ``¿Ha sido difícil el exámen de ST?''. Ante esta encuesta, las respuestas se ofrecerían como tres botones (uno para ``Sí'', otro para ``No'', otro para ``No sé''), que los visitantes podrían pulsar para responder la encuesta.
+  
+\item Cualquier visitante puede proponer encuestas, ver sus propias encuestas y las que hayan propuesto otros visitantes, y contestar las encuestas que hayan propuesto otros visitantes (pero no puede contestar las encuestas que ha propuesto).
+
+\item Una vez que un visitante haya respondido una encuesta, ya no puede volver a responderla, sólo ver sus resultados.
+
+\item Cada encuesta se mostrará a un visitante mostrando su pregunta y:
+  \begin{itemize}
+  \item Si el visitante puede responder, los tres botones para responder.
+  \item Si el visitante no puede responder, el número de respuestas para las tres categorías (``Sí'', ``No'' y ``No sé'').
+  \end{itemize}
+  
+\item La página principal del sitio mostrará el listado con todas las encuestas, mostradas tal y como se indica en el apartado anterior.
+
+\item Cuando un visitante responda una encuesta, pulsando el botón correspondienet, se contabilizará su respuesta y se le volverá a presentar la página principal, con todas las encuestas (incluyendo la que acaba de responder, pero ya con resultados en lugar de botones para contestar).
+
+\item Además, el sitio ofrecerá una página (recurso) de comentarios. Esta página incluirá un formulario para enviar comentarios, y todos los comentarios que se hayan enviado, por cualquier visitante, hasta ese momento. Un comentario será un texto de menos de 100 caracteres. Cuando un usuario rellene el formulario con un nuevo comentario, y lo envíe, recibirá como respueta la misma página de comentarios, con su comentario ya puesto (y todos los demás)
+
+\item La página principal incluirá un enlace a la página de comentarios, y la página de comentarios un enlace a la página principal.
+
+\item Las dos páginas (principal y de comentarios) incluirán una imagen de promoción del sitio ``CosasRic.As'', que servirá el sitio web ``CosasRic.As''. La URL de esa imagen será la misma para las dos páginas.
+  
+\item Las dos páginas HTML del sitio usarán un único documento CSS, servido por el propio sitio, que definirá su estilo de forma uniforme.
+\end{enumerate}
+
+En esta descripción, considérese que un ``visitante'' corresponde con un cierto navegador, con su propio almacén de cookies. Esto es, una misma persona que use dos navegadores distintos, cada uno con su propio almacén de cookies, será considerada como dos visitantes, mientras que varias personas usando el mismo navegador, con un único almacén de cookies para todas ellas, serán consideradas como un único visitante.
+
+Teniendo en cuenta los requisitos anteriores, se pide:
+
+\begin{enumerate}
+\item Diseña un esquema REST para proporcionar el servicio descrito. Se habrán de especificar los nombres de recurso empleados, y cómo reaccionará la aplicación cuando reciba los métodos POST o GET sobre esas URLs (no se usarán los métodos PUT o DELETE). \textbf{Muy importante:} Coloca la información en una \textbf{tabla}, con los nombres de los recursos en una columna, los métodos en otra, la descripción de lo que realizará la aplicación al recibirlos en la tercera, y el contenido de los datos de la petición, si los hay en la cuarta (se consideran datos de la petición a los que vayan, normalmente como \emph{query string}, en el cuerpo de la petición HTTP o tras el nombre de recurso en la primera línea de la cabecera). Escribe también un fichero similar al fichero \texttt{urls.py} de Django (aunque no es importante que se respete la sintaxis mientras se entienda y la estructura sea similar a la de Django), que refleje el esquema REST anterior. (1 punto)
+
+\item Describe el modelo de datos que necesitará esta aplicación, incluyendo la clase ``Usuario'' que se describe más adelante. Define las tablas necesarias y los campos necesarios para la funcionalidad descrita. Asegúrate de que incluyes en el modelo de datos los campos o tablas necesarios para garantizar que los visitantes no pueden responder a sus propias encuestas, o a una encuesta que ya han respondido, y en general, que se cumplen las condiciones del enunciado. Hazlo de forma lo más similar posible a lo que tendrías que escribir en el fichero \texttt{models.py} en Django (aunque no es importante que se respete la sintaxis mientras se entienda el modelo de datos que propones). (1 punto)
+  
+\item Describe las interacciones HTTP que ocurrirán entre el navegador, el servidor web (la aplicación Encuestam.os) y cualquier otro servidor que pueda ser necesario en el siguiente escenario. El escenario comienza cuando un visitante que nunca ha visitado Preguntam.os escribe en la barra de URLs de su navegdor la dirección del sitio. A continuación, ve en su navegador la página principal del sitio, y el formulario que hay en esta página para poner una encuesta. Escribe en él la pregunta, y pulsa el botón para enviarlo. El escenario termina cuando el visitante recibe de nuevo la página principal, ya con la nueva encuesta en ella. (1 punto)
+
+\item Se quiere ofrecer, en la página principal, un enlace con el texto ``Nuevo visitante'', que cuando se pulse, vuelva a mostrar la página principal, pero como si estuviera accediendo a ella un nuevo visitante (ahora no se considerará que este navegador haya creado ninguna encuesta, ni respondido a ninguna, ni puesto ningún comentario). ¿Qué cambios habría que hacer al esquema REST que se respondió en la primera pregunta para que esto funcionase? ¿Qué ocurrará desde que se pulse ese enalce hasta que se vuelva a ver la página principal, ya como nuevo visitante? Importante: para el resto de los ejercicios de este examen, hay que suponer que este enlace no existe. (1 punto)
+
+\item ¿Podría el sitio CosasRic.as llevar una cuenta de cuántos visitantes distintios diarios están viendo en sus navegadores la página principal de Encuestam.os, y cuántos visitantes dsitintos diarios están viendo la página de comentarios?. ¿Podría llevar una cuenta de cuántos visitantes distintos diarios están viendo en sus navegdores al menos una de las dos páginas? En cualquiera de los dos casos, si crees que sí, explica cómo, y si crees que no, explica porqué. Importante: para el resto de los ejercicios de este examen, hay que suponer que CosasRic.as no trata de llevar ninguna cuenta en particular, sólo sirve la imagen. (1 punto)
+
+\end{enumerate}
+
+  En las dos preguntas sobre interacciones HTTP, para cada interacción HTTP indica claramente y en este orden:
+  \begin{itemize}
+  \item La primera línea de la petición HTTP
+  \item Si lo hay, el contenido de la petición
+  \item La primera línea de la respuesta HTTP
+  \item Si lo hay, el contenido de la respuesta
+  \item Una brevísima explicación de para qué se usa la interacción
+  \item Tanto en la petición como en la respuesta, las cabeceras con cookies, si es que fueran necesarias para la funcionalidad del escenario que se está describiendo (incluyendo el aspecto que han de tener esas cabeceras). Si la cabecera con cookie va o no dependiendo de algún factor ajeno a tu aplicación, explica cuando irá y cuándo no, y cuál es ese factor.
+  \item Si hubiera envío de datos de formulario, recuerda indicar de forma explícita en qué parte de la petición HTTP van esos datos, y si es posible, en qué formato.
+  \end{itemize}
+
+  Además, asegúrate de que describes las interacciones HTTP en el orden en que ocurrirían en el escenario.
+
+  En general, para todas las interacciones descritas, considérese que la cache del navegador no se está usando, y que el navegador acepta cualquier cookie que se le envíe, y nunca la borra salvo que la cookie expire.
+
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 1  (solución)}
+
+Tabla de recursos:
+\vspace{.4cm}
+
+\begin{tabular}{|l|l|l|l|}
+  \hline
+  Recurso & Método & Semántica & Datos \\ \hline\hline
+  /       & GET    & Página principal & \\
+  /       & POST   & Nueva encuesta & \texttt{question="..."} \\
+  /comments & GET & Página de comentarios & \\
+  /comments & POST & Nuevo comentario & \texttt{text="..."} \\
+  /style.css & GET & Documento CSS &  \\
+  \hline
+\end{tabular}
+
+\vspace{.4cm}
+Fichero \texttt{urls.py}:
+
+\begin{verbatim}
+from django.urls import path
+from . import views
+
+urlpatterns = [
+  path('', views.main, name='main')
+  path('comments', views.comments, name='comments')
+  path('style.css', views.css, name='css')
+]
+\end{verbatim}
+
+El documento \texttt{style.css} puede servirse también directamente como fichero estáticos, con las facilidades que Django proporciona para ello.
+
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 2 (solución)}
+
+Hay varias soluciones, una podría ser:
+
+\begin{verbatim}
+from django.db import models
+
+class Visitante (models.Model):
+  cookie = models.CharField(max_lenght = 60)
+
+class Encuesta (models.Model):
+  pregunta =  models.TextField(max_lenght = 200)
+  autor =     models.ForeignKey('Visitante')
+
+class Respuesta (models.Model):
+  encuesta  = models.ForeignKey('Encuesta')
+  respuesta = models.CharField(
+    max_length=1,
+    choices=[('S', 'Sí'), ('N', 'No'), ('X', 'No sé')]
+  )
+  autor     = models.ForeignKey('Visitante')
+
+class Comentario (models.Model):
+  texto =    models.TextField(max_lenght = 100)
+\end{verbatim}
+
+La tabla \texttt{Visitante} se usa para identificar a los visitantes que hace falta identificar, almacenando la cookie que se les ha enviado.
+
+La tabla \texttt{Encuesta} necesita un campo \texttt{autor} para evitar que un visitante pueda responder a una encuesta que ha creado. Igualmente, el campo \texttt{autor} en \texttt{Respuesta} se necesita para evitar que un visitante responda varias veces a una misma encuesta.
+
+El campo \texttt{respuesta} en \texttt{Respuesta} puede ser simplemente un campo de texto ``normal''. En esta respuesta se fuerzan valores concretos (con \texttt{choices}) porque eso permite simplificar el código.
+
+\texttt{Comenario} no requiere un campo que relacione con el visitante que lo puso, porque no hay ninguna limitación sobre la puesta de comentarios.
+
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 3 (solución)}
+
+Como según el enunciado el usuario no ha visitado nunca el sitio, no se le ha enviado nunca una cookie, por lo que la primera interacción claramente no va a incluir una cookie en la petición. El escenario consistirá en un GET para obtener la página principal, y un POST para crear la encuesta. La respuesta al POST deberá incluir una cookie para identificar al navegador, pues habrá que evitar ya que este visitante responda a esta encuesta. A partir de este momento, todas las peticiones del navegador a Encuestam.os incluirán la cookie (pero no las que se hacen a CosasRic.as). Además, serán necesarias interacciones para obtener los demás elementos de la página principal (documento CSS de Encuestam.os e imagen de CosasRic.as).
+
+Si no se dice otra cosa, cada una de las siguientes interacciones son entre el navegador y el servidor Encuestam.os.
+
+\begin{itemize}
+
+\item Petición GET a la página principal, para verla.
+
+\begin{verbatim}
+  GET / HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Página principal, con la nueva pregunta, HTML]
+\end{verbatim}
+
+\item Petición GET para obtener el documento CSS.
+
+\begin{verbatim}
+  GET /style.css HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Documento CSS]
+\end{verbatim}
+
+\item Petición GET para obtener la imagen (esta petición se hará a CosasRic.as). Se supone que el nombre de recurso de la imagen es \texttt{/imagen}.
+
+\begin{verbatim}
+  GET /imagen HTTP/1.1
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Imagen]
+\end{verbatim}
+
+  
+\item Petición POST a la página principal, para crear la encuesta. Suponemos que \texttt{yyy} es el texto de la pregunta. 
+
+\begin{verbatim}
+  POST / HTTP/1.1
+  ...
+
+  question="yyy"
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+  Set-Cookie: id=fad32-dff132-54weee; Expires=Wed, 11 Oct 2022 07:29:00 GMT
+  ...
+
+  [Página principal, con la nueva encuesta, HTML]
+\end{verbatim}
+
+\item Petición GET para obtener el documento CSS.
+
+\begin{verbatim}
+  GET /style.css HTTP/1.1
+  ...
+  Cookie: id=fad32-dff132-54weee
+  ...
+\end{verbatim}
+
+\item Respuesta
+
+\begin{verbatim}
+  HTTP/1.1 200 OK
+  ...
+
+  [Documento CSS]
+\end{verbatim}
+
+\item Petición GET para obtener la imagen (esta petición se hará a CosasRic.as). Exactamente igual que antes.
+
+\end{itemize}
+
+
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 4 (solución)}
+
+El enlace que se ve como ``Nuevo visitante'' ha de apuntar a algún sitio, de forma que cuando el visitante pulse sobre él, vaya a ese recurso. Por lo tanto, añadimos al esquema REST el recurso \texttt{/nuevo}.
+
+Cuando nuestra aplicación reciba una petición sobre ese recurso, reconocerá que se quiere funcionar como nuevo visitante, y borrará la entrada correspondiente a la cookie que le ha llegado (si le ha llegado alguna) de la tabla \texttt{Visitantes}. En la respuesta puede enviar una cookie \texttt{id} vacía, para que el navegador la anule, pero eso estrictaemnte no hace falta (si recibe la cookie antigua, la aplicación la ignorará, porque ya no la tiene en la tabla \texttt{Visitantes}.
+
+Como después de pulsar el enlace el visitante tiene que volver a ver la página rprincipal, pero la petición se ha hecho al recurso \texttt{/nuevo}, la respuesta que enviará la aplicación después de borrar la entrada correspondiente a la cookie tendrá que ser un código de redirección, por ejemplo ``303 See Other''.
+
+La tabla de recursos de nuestra aplicación, por tanto, tendría una nueva entrada:
+
+\begin{tabular}{|l|l|l|l|}
+  \hline
+  Recurso & Método & Semántica & Datos \\ \hline\hline
+  ...     & ...    & ... & \\
+  /nuevo & GET & Borrado de cookie. Responde ``303 See Other'' con cabecera ``Location: /'' &  \\
+  \hline
+\end{tabular}
+
+
+% ------------------------------------------------
+\subsubsection{Ejercicio 5  (solución)}
+
+Primera pregunta. No podría llevar una cuenta distinta para las dos páginas, porque a CosasRic.as le van a pedir siempre el mismo nombre de recurso, y por tanto no va a poder discriminar cuándo el visitante está viendo la página principal, y cuándo la de comentarios.
+
+Segunda pregunta. Sí puede hacerlo. Basta con que cada vez que reciba una petición al recurso de la imagen, si esta petición no lleva cookie, devuelva una que sea única. Para llevar la cuenta de los visitantes diarios (que hayan visto cualquiera de los dos recursos de Encuestam.os) basta con que apunte en una tabla cada cookie que va viendo (bien porque le llegan en peticiones, bien porque las devuelve en respuestas), si no la tiena ya en la tabla. Esa tabla se borra completamente al comenzar el día, y el número de cookies que tenga al terminar el día será el número de visitantes que se quiere calcular para ese día.
+

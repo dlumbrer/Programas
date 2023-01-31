@@ -3175,7 +3175,18 @@ Con respecto a la opción de crear usuarios, ahora la opción cambia a servir un
 %%--------------------------------------------------------------------------
 \section{Pruebas escritas pasadas}
 
-\input{exa-sat-2022-05}
+
+\input{exa-sat-2022-06-23}
+
+\input{exa-sat-2022-05-20}
+
+\input{exa-saro-2022-06-28}
+
+\input{exa-saro-2022-05-24}
+
+\input{exa-st-2022-07-01}
+
+\input{exa-st-2022-05-27}
 
 \input{exa-saro-2021-06-04}
 
@@ -4239,10 +4250,10 @@ La cookie que se envió anteriormente, en realidad se podría enviar aquí, pues
   [Banner]
 \end{verbatim}
 
-\item Petición GET /Recurso (para ver la página del canal, a Fotogram)
+\item Petición GET al recurso del canal (para ver la página del canal, a Fotogram)
 
 \begin{verbatim}
-  GET / HTTP/1.1
+  GET /af34df45aed33 HTTP/1.1
   ...
   Cookie: session=session_id
 \end{verbatim}
@@ -4279,10 +4290,10 @@ La cookie que se envió anteriormente, en realidad se podría enviar aquí, pues
 Las interacciones son entre el navegador y el sitio que se indica.
 
 \begin{itemize}
-\item Petición GET /Recurso (a Fotogram)
+\item Petición GET al recurso del canal (a Fotogram)
 
 \begin{verbatim}
-  GET / HTTP/1.1
+  GET /af34df45aed33 HTTP/1.1
   ...
 \end{verbatim}
 
@@ -4331,10 +4342,10 @@ session2\_id es un identificador de sesión (o de visitante), que se puede envia
 \end{verbatim}
 
 
-\item Petición POST /Recurso (a Fotogram)
+\item Petición POST al recurso del canal (a Fotogram)
 
 \begin{verbatim}
-  POST /Recurso HTTP/1.1
+  POST /af34df45aed33 HTTP/1.1
   ...
   Cookie: session=session2_id
 
