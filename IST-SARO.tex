@@ -158,7 +158,7 @@ Evaluación extraordinaria:
 %%--------------------------------------------------------------------------
 \section{Calendario}
 
-\newcommand{\martesA}{25 de enero}
+\newcommand{\martesA}{24 de enero}
 \newcommand{\martesB}{31 de enero}
 \newcommand{\martesC}{7 de febrero}
 \newcommand{\martesD}{14 de febrero}
@@ -171,30 +171,31 @@ Evaluación extraordinaria:
 \newcommand{\martesK}{11 de abril}
 \newcommand{\martesL}{18 de abril}
 \newcommand{\martesM}{25 de abril}
-\newcommand{\martesN}{2 de mayo}
-\newcommand{\martesO}{9 de mayo}
+\newcommand{\martesN}{9 de mayo}
+%\newcommand{\martesO}{10 de mayo}
 
-\newcommand{\juevesA}{27 de enero}
-\newcommand{\juevesB}{3 de febrero}
-\newcommand{\juevesC}{10 de febrero}
-\newcommand{\juevesD}{17 de febrero}
-\newcommand{\juevesE}{24 de febrero}
-\newcommand{\juevesF}{3 de marzo}
-\newcommand{\juevesG}{10 de marzo}
-\newcommand{\juevesH}{17 de marzo}
-\newcommand{\juevesI}{24 de marzo}
-\newcommand{\juevesJ}{31 de marzo}
-\newcommand{\juevesK}{7 de abril}
-\newcommand{\juevesL}{21 de abril}
-\newcommand{\juevesM}{28 de abril}
-\newcommand{\juevesN}{5 de mayo}
+\newcommand{\juevesA}{26 de enero}
+\newcommand{\juevesB}{2 de febrero}
+\newcommand{\juevesC}{9 de febrero}
+\newcommand{\juevesD}{16 de febrero}
+\newcommand{\juevesE}{23 de febrero}
+\newcommand{\juevesF}{2 de marzo}
+\newcommand{\juevesG}{9 de marzo}
+\newcommand{\juevesH}{16 de marzo}
+\newcommand{\juevesI}{23 de marzo}
+\newcommand{\juevesJ}{30 de marzo}
+\newcommand{\juevesK}{13 de abril}
+\newcommand{\juevesL}{20 de abril}
+\newcommand{\juevesM}{27 de abril}
+\newcommand{\juevesN}{4 de mayo}
 
 \begin{tabular}{|l|l|}
    \hline
   Martes & Jueves \\ \hline \hline
   \nameref{cal:martesA} & \nameref{cal:juevesA} \\
-                        & \nameref{cal:juevesAa} \\ \hline
-  \nameref{cal:martesB} & \nameref{cal:juevesB} \\  \hline
+                        & \nameref{cal:juevesAb} \\ \hline
+  \nameref{cal:martesB} & \nameref{cal:juevesB} \\ 
+                        & \nameref{cal:juevesBb} \\ \hline
   \nameref{cal:martesC} & \nameref{cal:juevesC} \\
                         & \nameref{cal:juevesCb} \\  \hline
   \nameref{cal:martesD} & \nameref{cal:juevesD} \\ \hline
@@ -206,11 +207,12 @@ Evaluación extraordinaria:
   \nameref{cal:martesI} & \nameref{cal:juevesI} \\ 
   \nameref{cal:martesIb} &                      \\ \hline
   \nameref{cal:martesJ} & \nameref{cal:juevesJ} \\ \hline
+  Festivo               & Festivo               \\ \hline
   \nameref{cal:martesK} & \nameref{cal:juevesK} \\ \hline
   \nameref{cal:martesL} & \nameref{cal:juevesL} \\ \hline
   \nameref{cal:martesM} & \nameref{cal:juevesM} \\ \hline
-  \nameref{cal:martesN} & \nameref{cal:juevesN} \\ \hline
-  \nameref{cal:martesO} & \\ \hline
+  Festivo               & \nameref{cal:juevesN} \\ \hline
+  \nameref{cal:martesN} &                       \\ \hline
 \end{tabular}
 
 \newpage
@@ -528,10 +530,10 @@ Hojas de estilo CSS, y su uso para manejar la apariencia de las páginas HTML.
 Clase final. Repaso, ejemplo de examen.
 
 %%----------------------------------------------------------------
-\subsubsection{\martesO: Clase final (2)}
-\label{cal:martesO}
+%\subsubsection{\martesO: Clase final (2)}
+%\label{cal:martesO}
 
-Clase final. Repaso, ejemplo de examen.
+%Clase final. Repaso, ejemplo de examen.
 
 %% ----------------------------------------------------------------
 %% ----------------------------------------------------------------
@@ -586,7 +588,6 @@ Programa de las prácticas de la asignatura (tentativo).
 \subsection{P1 - Introducción a Python}
 
 Introducción al lenguaje de programación Python, que se utilizará para la realización de las prácticas de la asignatura.
-
 %%----------------------------------------------------------------------------
 \subsubsection{\juevesA: Python I (1.5 horas)}
 \label{cal:juevesA}
@@ -594,55 +595,73 @@ Introducción al lenguaje de programación Python, que se utilizará para la rea
 \begin{itemize}
 \item \textbf{Presentación:} ``Introducción a Python'' (introducción, entorno de ejecución, características básicas del lenguaje, ejecución en el intérprete, strings, listas, estructuras condicionales (if else), bucles for).
 \item \textbf{Material:} Transparencias ``Introducción a Python''
-\item \textbf{Material:} Ejercicios ``Uso interactivo del intérprete de Python'' (ejercicio~\ref{subsec:practicas-interprete}) y ``Haz un programa en Python'' (ejercicio~\ref{subsec:eje-python-primer-programa}).
+\item \textbf{Material:} Ejercicio ``Uso interactivo del intérprete de Python'' (ejercicio~\ref{subsec:practicas-interprete})
 %\item \textbf{Ejercicio propuesto (entrega en el foro):} ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
 %   Entrega recomendada: antes del \juevesB.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{\juevesA: Lab remoto (0.5 horas)}
-\label{cal:juevesAa}
+\subsubsection{\juevesA: Lab remoto, PyCharm (0.5 horas)}
+\label{cal:juevesAb}
 
 \begin{itemize}
 \item Mecanismos de conexión remota al laboratorio: VNC desde el navegador, ssh, etc.
+\item Introducción a PyCharm.
 \end{itemize}
 
 %%----------------------------------------------------------------------------
-\subsubsection{\juevesB: Python II (2 horas)}
+\subsubsection{\juevesB: Python II (1.5 horas)}
 \label{cal:juevesB}
 
 \begin{itemize}
-\item \textbf{Presentación:} ``Introducción a Python''.
+\item \textbf{Presentación:} ``Introducción a Python'' (estructuras condicionales (if else), listas, bucles (for))
 \item \textbf{Material:} Transparencias ``Introducción a Python''
-%\item \textbf{Material:} Ejercicio ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
-%\item \textbf{Ejercicio:} ``Ficheros, diccionarios y excepciones''~\ref{subsec:ficheros-dic-excep}.
-%\item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}). Entrega recomendada: antes de \juevesC.
-\item \textbf{Ejercicio propuesto (entrega en foro):} ``Descarga de documentos web'' (ejercicio~\ref{subsec:eje-python-descarga-web}). Entrega recomendada: antes de \juevesC.
+
+% \item \textbf{Material:} Ejercicio ``Ficheros y listas'' (ejercicio~\ref{subsec:ficheros-listas}).
+% \item \textbf{Ejercicio:} ``Ficheros, diccionarios y excepciones''~\ref{subsec:ficheros-dic-excep}.
+
 \end{itemize}
 
 
+\subsubsection{\juevesB: Lab remoto, PyCharm (0.5 horas)}
+\label{cal:juevesBb}
+
+\begin{itemize}
+\item Mecanismos de conexión remota al laboratorio: VNC desde el navegador, ssh, etc.
+\item Introducción al depurador de Python en PyCharm.
+\end{itemize}
+
 %%----------------------------------------------------------------------------
-\subsubsection{\juevesC: Python III (1.5 horas)}
+\subsubsection{\juevesC: Python III (1 horas)}
 \label{cal:juevesC}
 
 \begin{itemize}
-\item \textbf{Presentación:} ``Introducción a Python''.
+\item \textbf{Presentación:} ``Introducción a Python''. Clases y orientación a objetos en Python.
 \item \textbf{Material:} Transparencias ``Introducción a Python''
-\item \textbf{Ejercicio (explicado):} ``Descarga de documentos web con módulos'' (ejercicio~\ref{subsec:eje-python-descarga-web-modulos}).  
-\item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}). Entrega recomendada: antes de \juevesD.
+\item \textbf{Ejercicio propuesto (entrega en el campus virtual):} ``Descarga de documentos web'' (ejercicio~\ref{subsec:eje-python-descarga-web}).  
+  Entrega recomendada: antes del \juevesD.
 
 \end{itemize}
 
-%% --------------------------------------------------------------------------
-\subsubsection{\juevesC: GitLab (0.5 horas)}
+%%----------------------------------------------------------------------------
+\subsubsection{\juevesC: Gitlab (1 hora)}
 \label{cal:juevesCb}
 
 \begin{itemize}
+
+\item \textbf{Presentación:} ``El GitLab de la ETSIT''. Interacción básica vía web, creación de repositorios, ``fork'', clonado de repositorios. Acceso a repositorios en GitLab desde PyCharm.
+\item \textbf{Presentación:} ``Git desde la línea de comandos''.
 \item \textbf{Presentación:} Introducción a la entrega de prácticas en GitLab (seccion~\ref{sec:eje-entrega-practicas-incr}).
+\item \textbf{Recursos:} GitLab de la ETSIT, \url{gitlab.etsit.urjc.es}
+\item \textbf{Ejercicio propuesto (entrega en GitLab):} ``Calculadora'' (ejercicio~\ref{subsec:calculadora}). Entrega recomendada: antes de \martesE.
+
+
 \end{itemize}
+
 
 %%----------------------------------------------------------------------------
 %%----------------------------------------------------------------------------
+
 \subsection{P2 - Aplicaciones web simples}
 
 
