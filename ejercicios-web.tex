@@ -2248,10 +2248,10 @@ Recuerda que sólo tendrás que modificar los siguientes ficheros: \texttt{urls.
 
 Realizar una sistema de gestión de contenidos muy simple con Django. Corresponderá con la funcionalidad de ``contentApp'' (ejercicio~\ref{subsec:contentapp}), almacenando los contenidos en una base de datos. La aplicación Django se ha de llamar \texttt{cms}.
 
-El ejercicio ha de entregarse en el siguiente repositorio en GitLab: 
-\url{https://gitlab.etsit.urjc.es/grex/x-serv-15.5-django-cms}. El repositorio contiene
-un archivo check.py para comprobar que se han entregado todos los fichero necesarios (básicamente todos los ficheros con código Python del proyecto (\texttt{manage.py} y los contenidos en el directorio \texttt{myproject} y de la aplicación en \texttt{cms}, así como la base de datos en un fichero \texttt{db.sqlite3}), además de comprobar que el código en
-\texttt{views.py} sigue con las reglas de estilo de Python (PEP8).
+% El ejercicio ha de entregarse en el siguiente repositorio en GitLab: 
+% \url{https://gitlab.etsit.urjc.es/grex/x-serv-15.5-django-cms}. El repositorio contiene
+% un archivo check.py para comprobar que se han entregado todos los fichero necesarios (básicamente todos los ficheros con código Python del proyecto (\texttt{manage.py} y los contenidos en el directorio \texttt{myproject} y de la aplicación en \texttt{cms}, así como la base de datos en un fichero \texttt{db.sqlite3}), además de comprobar que el código en
+% \texttt{views.py} sigue con las reglas de estilo de Python (PEP8).
 
 %\textbf{Material:}
 %
@@ -2263,17 +2263,21 @@ un archivo check.py para comprobar que se han entregado todos los fichero necesa
 \subsection{Django cms\_put}
 \label{subsec:django-cms-put}
 
+\textbf{Repositorio plantilla (para entrega):} \\
+\url{https://gitlab.etsit.urjc.es/cursosweb/2022-2023/django-cms-put}
+
 \textbf{Enunciado:}
 
 Realizar una sistema de gestión de contenidos muy simple con Django. Corresponderá con la funcionalidad de ``contentPutApp'' (ejercicio~\ref{subsec:contentputapp}), almacenando los contenidos en una base de datos. En otras palabras, será como ``Django cms'' (ejercicio~\ref{subsec:django-cms}), añadiendo la funcionalidad de que el usuario pueda poner contenidos mediante PUT, tal y como se explicó en el ejercicio de ``contentPutApp''. La aplicación Django se ha de llamar \texttt{cms\_put}.
+
+\textbf{Entrega:}
+
+Incluye en el repositorio todos los ficheros con código Python del proyecto, incluido \texttt{manage.py} y los contenidos en el directorio de proyecto y en el directorio la app (\texttt{cms}), así como la base de datos en un fichero \texttt{db.sqlite3}). Comprueba también que el código en \texttt{views.py} sigue con las reglas de estilo de Python (PEP8), utilizando \texttt{pycodestyle}.
 
 
 \textbf{Comentario:}
 
 Para realizar este ejercicio, consultar el manual de Django, donde explica cómo se comporta el objeto HTTPRequest, que es siempre primer argumento en los métodos que estamos definiendo en \texttt{views.py}. En particular, nos interesarán sus atributos ``method'' (que sirve para saber si nos está llegando un GET o un PUT) y ``body'', que nos da acceso a los datos (cuerpo) de la petición en bytes. A pesar de su nombre, este último atributo tiene esos datos tanto si la petición es un POST como si es un PUT. 
-
-\textbf{Repositorio plantilla (para entrega):} \\
-\url{https://gitlab.etsit.urjc.es/cursosweb/x-serv-15.6-django-cms-put}
 
 %\textbf{Material:}
 %
