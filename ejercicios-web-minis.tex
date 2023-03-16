@@ -1,0 +1,482 @@
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+
+\subsection{Prácticas de entrega voluntaria (curso 2021-2022)}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsection{Minipráctica 2 (entrega voluntaria)}
+\label{subsec:practica-vol-2-2022}
+
+Esta práctica tendrá como objetivo la creación de una aplicación web (de nombre \emph{acorta}) simple para acortar URLs utilizando Django (en un nuevo proyecto Django llamado \emph{project}). Su enunciado será igual que el de la práctica 1 de entrega voluntaria (ejercicio~\ref{subsec:minipractica-1-2022}), salvo en los siguientes aspectos:
+
+\begin{itemize}
+  \item Se implementará utilizando Django.
+  \item Tendrá que almacenar la información relativa a las URLs que acorta en una base de datos, de forma que aunque la aplicación sea rearrancada, las URLs acortadas sigan funcionando adecuadamente.
+  \item Utilizará plantillas, de manera que el código Python y el HTML estarán separados.
+\end{itemize}
+
+Repositorio de partida: \\
+\url{https://gitlab.etsit.urjc.es/cursosweb/x-serv-18.2-practica2}
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+
+\subsection{Prácticas de entrega voluntaria (curso 2020-2021)}
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsection{Minipráctica 1 (entrega voluntaria)}
+\label{subsec:practica-vol-1-2016}
+
+Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs. Los usuarios de la aplicación podrán especificar URLs y nombres de recurso, y a partir de ese momento, esos nombres de recurso redireccionarán a su URL correspondiente. La aplicación podrá realizarse según el esquema de clases explicado en clase (usando, si se quiere, el módulo \texttt{webapp.py}), o de cualquier otra forma.
+
+El repositorio de partida es: \url{https://gitlab.etsit.urjc.es/cursosweb/mini-1-acortadora/}
+
+El código ha de guardarse en un fichero llamado \emph{shortener.py}.
+
+El funcionamiento de la aplicación será el siguiente:
+
+\begin{itemize}
+\item Recurso ``/'', invocado mediante GET. Devolverá una página HTML con un formulario. En ese formulario habrá dos campos, uno para la url a acortar, y el otro para escribir el nombre de recurso para esa url. El formulario se enviará al servidor mediante POST, y sus dos campos se llamarán, respectivamenet, \texttt{url} y \texttt{short}. Además, esa misma página incluirá un listado de todas las URLs reales y acortadas que maneja la aplicación en este momento.
+
+\item Recurso ``/'', invocado mediante POST. Si el comando POST incluye una \texttt{qs} (query string) que tenga campos \texttt{url} y \texttt{short} se devolverá una página HTML con la URL original y la URL acortada (ambas como enlaces pinchables), y se apuntará la correspondencia (ver más abajo).
+
+Si el POST no trae una \texttt{qs} que se haya podido generar en el formulario, devolverá una página HTML con un mensaje de error.
+
+Si la URL especificada en el formulario comienza por ``http://'' o ``https://'', se considerará que ésa es la URL a acortar. Si no es así, se le añadirá ``https://'' por delante, y se considerará que esa es la url a acortar. Por ejemplo, si en el formulario se escribe ``http://gsyc.es'', la URL a acortar será ``http://gsyc.es''. Si se escribe ``gsyc.es'', la URL a acortar será ``https://gsyc.es''.
+
+Si se recibe una petición para un nombre de recurso que ya corresponde con una URL, se cambiará la URL. Una URL podrá estar referenciada por más de un nombre de recurso.
+
+Así, por ejemplo, si se quiere acortar \texttt{http://gsyc.urjc.es} con el nombre de recurso \texttt{gsyc}, y la aplicación está en el puerto 1234 de la máquina ``localhost'', se invocará (mediante POST) la URL
+
+\texttt{https://localhost:1234/}
+
+y en el cuerpo de esa petición HTTP irá la \texttt{qs}
+
+\verb|url=https://gsyc.urjc.es&short=gsyc|
+
+Normalmente, esta invocación POST se realizará rellenando el formulario que ofrece la aplicación.
+
+Como respuesta, la aplicación devolverá (en el cuerpo de la respuesta HTTP) una página HTML con el formulario, y la lista de URLs acortadas, incluyendo esta.
+
+
+\item Recursos correspondientes a URLs acortadas. Estos serán los nombres de recurso (los que se escribieron en el campo \texttt{short}) con el prefijo ``/''. Cuando la aplicación reciba un GET sobre uno de estos recursos, si el número corresponde a una URL acortada, devolverá un HTTP REDIRECT a la URL real. Si no la tiene, devolverá HTTP ERROR ``Recurso no disponible''.
+
+Por ejemplo, si se recibe 
+
+\verb|http://localhost:1234/gsyc|
+
+la aplicación devolverá un HTTP REDIRECT a la URL
+
+\verb|https://gsyc.urjc.es|
+
+\end{itemize}
+
+%La aplicación funcionará con estado: se supone que cada vez que la aplicación muera y vuelva a ser lanzada, no perderá todo su estado anterior. Para ello, se guardarán las URLs acortadas en un fichero CSV. Al lanzar la aplicación, se leerá el fichero CSV con las URLs acortadas. Y cada vez que se incluya una nueva URL acortada en el sistema, también se guardará esta información en el fichero CSV.
+
+\textbf{Comentario}
+
+Se recomienda utilizar un diccionario para almacenar las URLs reales y los nombres de recurso correspondientes. La clave de búsqueda será el nombre de recurso, y el valor, la URL real.
+
+Se recomienda realizar la aplicación en varios pasos:
+
+\begin{itemize}
+\item Comenzar por reconocer ``GET /'', y devolver el formulario correspondiente.
+\item Reconocer ``POST /'', y devolver la página HTML correspondiente (con la URL real y el nombre de recurso).
+\item Reconocer ``GET /recurso'' (para cualquier recurso), y realizar la redirección correspondiente.
+\item Manejar las condiciones de error y realizar el resto de la funcionalidad.
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+
+\subsection{Prácticas de entrega voluntaria (curso 2014-2015)}
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsubsection{Práctica 1 (entrega voluntaria)}
+\label{subsec:practica-vol-1-2013}
+
+\textbf{Fecha recomendada de entrega:} Antes del 15 de marzo.
+
+Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs. La aplicación funcionará únicamente con datos en memoria: se supone que cada vez que la aplicación muera y vuelva a ser lanzada, habrá perdido todo su estado anterior. La aplicación tendrá que realizarse según un esquema de clases similar al explicado en clase.
+
+El funcionamiento de la aplicación será el siguiente:
+
+\begin{itemize}
+\item Recurso ``/'', invocado mediante GET. Devolverá una página HTML con un formulario. En ese formulario se podrá escribir una url, que se enviará al servidor mediante POST. Además, esa misma página incluirá un listado de todas las URLs reales y acortadas que maneja la aplicación en este momento.
+
+\item Recurso ``/'', invocado mediante POST. Si el comando POST incluye una qs (query string) que corresponda con una url enviada desde el formulario, se devolverá una página HTML con la url original y la url acortada (ambas como enlaces pinchables), y se apuntará la correspondencia (ver más abajo).
+
+Si el POST no trae una qs que se haya podido generar en el formulario, devolverá una página HTML con un mensaje de error.
+
+Si la URL especificada en el formulario comienza por ``http://'' o ``https://'', se considerará que ésa es la url a acortar. Si no es así, se le añadirá ``http://'' por delante, y se considerará que esa es la url a acortar. Por ejemplo, si en el formulario se escribe ``http://gsyc.es'', la url a acortar será ``http://gsyc.es''. Si se escribe ``gsyc.es'', la URL a acortar será ``http://gsyc.es''.
+
+Para determinar la URL acortada, utilizará un número entero secuencial, comenzando por 0, para cada nueva petición de acortamiento de una URL que se reciba. Si se recibe una petición para una URL ya acortada, se devolverá la URL acortada que se devolvió en su momento.
+
+Así, por ejemplo, si se quiere acortar
+
+\verb|http://docencia.etsit.urjc.es|
+
+y la aplicación está en el puerto 1234 de la máquina ``localhost'', se invocará (mediante POST) la URL
+
+\verb|http://localhost:1234/|
+
+y en el cuerpo de esa petición HTTP irá la qs
+
+\verb|url=http://docencia.etsit.urjc.es|
+
+si el campo donde el usuario puede escribir en el formulario tiene el nombre ``URL''. Normalmente, esta invocación POST se realizará rellenando el formulario que ofrece la aplicación.
+
+Como respuesta, la aplicación devolverá (en el cuerpo de la respuesta HTTP) la URL acortada, por ejemplo
+
+\verb|http://localhost:1234/3|
+
+Si a continuación se trata de acortar la URL
+
+\verb|http://docencia.etsit.urjc.es/moodle/course/view.php?id=25|
+
+mediante un procedimiento similar, se recibirá como respuesta la URL acortada
+
+\verb|http://localhost:1234/4|
+
+Si se vuelve a intentar acortar la URL
+
+\verb|http://docencia.etsit.urjc.es|
+
+como ya ha sido acortada previamente, se devolverá la misma URL corta:
+
+\verb|http://localhost:1234/3|
+
+\item Recursos correspondientes a URLs acortadas. Estos serán números con el prefijo ``/''. Cuando la aplicación reciba un GET sobre uno de estos recursos, si el número corresponde a una URL acortada, devolverá un HTTP REDIRECT a la URL real. Si no la tiene, devolverá HTTP ERROR ``Recurso no disponible''.
+
+Por ejemplo, si se recibe 
+
+\verb|http://localhost:1234/3|
+
+la aplicación devolverá un HTTP REDIRECT a la URL
+
+\verb|http://docencia.etsit.urjc.es|
+
+\end{itemize}
+
+\textbf{Comentario}
+
+Se recomienda utilizar dos diccionarios para almacenar las URLs reales y los números de las URLs acortadas. En uno de ellos, la clave de búsqueda será la URL real, y se utilizará para saber si una URL real ya está acortada, y en su caso saber cuál es el número de la URL corta correspondiente.
+
+En el otro diccionario la clave de búsqueda será el número de la URL acortada, y se utilizará para localizar las URLs reales dadas las cortas. De todas formas, son posibles (e incluso más eficientes) otras estructuras de datos.
+
+Se recomienda realizar la aplicación en varios pasos:
+
+\begin{itemize}
+\item Comenzar por reconocer ``GET /'', y devolver el formulario correspondiente.
+\item Reconocer ``POST /'', y devolver la página HTML correspondiente (con la URL real y la acortada).
+\item Reconocer ``GET /num'' (para cualquier número num), y realizar la redirección correspondiente.
+\item Manejar las condiciones de error y realizar el resto de la funcionalidad.
+\end{itemize}
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsubsection{Práctica 2 (entrega voluntaria)}
+\label{subsec:practica-vol-2-2013}
+
+\textbf{Fecha recomendada de entrega:} Antes del 19 de abril.
+
+Esta práctica tendrá como objetivo la creación de una aplicación web (de nombre \emph{acorta}) simple para acortar URLs utilizando Django (proyecto \emph{project}). Su enunciado será igual que el de la práctica 1 de entrega voluntaria (ejercicio~\ref{subsec:practica-vol-1-2013}), salvo en los siguientes aspectos:
+
+\begin{itemize}
+\item Se implementará utilizando Django.
+\item Tendrá que almacenar la información relativa a las URLs que acorta en una base de datos, de forma que aunque la aplicación sea rearrancada, las URLs acortadas sigan funcionando adecuadamente.
+\end{itemize}
+
+Repositorio GitLab de entrega: \\
+\url{https://gitlab.etsit.urjc.es/CursosWeb/X-Serv-18.2-Practica2}
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsection{Prácticas de entrega voluntaria (curso 2012-2013)}
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsubsection{Práctica 1 (entrega voluntaria)}
+\label{subsec:practica-vol-1-2012}
+
+\textbf{Fecha recomendada de entrega:} Antes del 12 de marzo.
+
+Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs. La aplicación funcionará únicamente con datos en memoria: se supone que cada vez que la aplicación muera y vuelva a ser lanzada, habrá perdido todo su estado anterior. La aplicación tendrá que realizarse según un esquema de clases similar al explicado en clase.
+
+El funcionamiento de la aplicación será el siguiente:
+
+\begin{itemize}
+\item Recursos que comienzan por el prefijo ``/acorta/'' (invocados mediante GET). Estos recursos se utilizarán para devolver URLs acortadas, por el procedimiento de proporcionar un número entero secuencial, comenzando por 0, para cada nueva petición de acortamiento de una URL que se reciba. Si se recibe una petición para una URL ya acortada, se devolverá la URL acortada que se devolvió en su momento. La URL a acortar se especificará como parte del nombre de recurso, justo a partir de ``/acorta/'' (quitando la parte ``http://'' de la URL.
+
+Así, por ejemplo, si se quiere acortar
+
+\verb|http://docencia.etsit.urjc.es|
+
+y la aplicación está en el puerto 1234 de la máquina ``localhost'', se invocará (mediante GET) la URL
+
+\verb|http://localhost:1234/acorta/docencia.etsit.urjc.es|
+
+Como respuesta, la aplicación devolverá (en el cuerpo de la respuesta HTTP) la URL acortada, por ejemplo
+
+\verb|http://localhost:1234/3|
+
+Si a continuación se trata de acortar la URL
+
+\verb|http://docencia.etsit.urjc.es/moodle/course/view.php?id=25|
+
+se invocará para ello la URL
+
+\verb|http://localhost:1234/acorta/docencia.etsit.urjc.es/moodle/course/view.php?id=25|
+
+y se recibirá como respuesta la URL acortada
+
+\verb|http://localhost:1234/4|
+
+Si se vuelve a intentar acortar la URL
+
+\verb|http://docencia.etsit.urjc.es|
+
+como ya ha sido acortada previamente, se devolverá la misma URL corta:
+
+\verb|http://localhost:1234/3|
+
+\item Recursos correspondientes a URLs acortadas. Estos serán números con el prefijo ``/''. Cuando la aplicación reciba un GET sobre uno de estos recursos, si el número corresponde a una URL acortada, devolverá un HTTP REDIRECT a la URL real. Si no la tiene, devolverá HTTP ERROR ``Recurso no disponible''.
+
+Por ejemplo, si se recibe 
+
+\verb|http://localhost:1234/3|
+
+la aplicación devolverá un HTTP redirect a la URL
+
+\verb|http://docencia.etsit.urjc.es|
+
+\item Recurso ``/''. Si se invoca este recurso con GET, se obtendrá un listado de todas las URLs reales y acortadas que maneja la aplicación en este momento.
+\end{itemize}
+
+\textbf{Comentario}
+
+Se recomienda utilizar dos diccionarios para almacenar las URLs reales y los números de las URLs acortadas. En uno de ellos, la clave de búsqueda será la URL real, y se utilizará para saber si una URL real ya está acortada, y en su caso saber cuál es el número de la URL corta correspondiente.
+
+En el otro diccionario la clave de búsqueda será el número de la URL acortada, y se utilizará para localizar las URLs reales dadas las cortas. De todas formas, son posibles (e incluso más eficientes) otras estructuras de datos.
+
+%%---------------------------------------------------------------------
+%%---------------------------------------------------------------------
+\subsubsection{Práctica 2 (entrega voluntaria)}
+\label{subsec:practica-vol-2-2012}
+
+\textbf{Fecha recomendada de entrega:} Antes del 9 de abril.
+
+Esta práctica tendrá como objetivo la creación de una aplicación web simple para acortar URLs utilizando Django. Su enunciado será igual que el de la práctica 1 de entrega voluntaria (ejercicio~\ref{subsec:practica-vol-1-2012}), salvo en los siguientes aspectos:
+
+\begin{itemize}
+\item Se implementará utilizando Django.
+\item Tendrá que almacenar la información relativa a las URLs que acorta en una base de datos, de forma que aunque la aplicación sea rearrancada, las URLs acortadas sigan funcionando adecuadamente.
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsection{Prácticas de entrega voluntaria (curso 2011-2012)}
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsubsection{Práctica 1 (entrega voluntaria)}
+\label{subsec:practica-vol-1-2011}
+
+%\textbf{Fecha recomendada de entrega:} Antes del 31 de octubre.
+
+Esta práctica tendrá como objetivo la creación de una aplicación web para acceso a los artículos de Wikipedia con almacenamiento en cache.
+
+La aplicación servirá dos tipos de recursos:
+
+\begin{itemize}
+\item ``/decorated/article'': servirá la página correspondiente al artículo ``article'' de la Wikipedia en inglés, decorado con las cajas auxiliares.
+\item ``/raw/article'': servirá la página correspondiente al artículo ``article'' de la Wikipedia en inglés, sin decorar con las cajas auxiliares.
+\end{itemize}
+
+La página ``decorada'' es accesible mediante URLs de la siguiente forma (para el artículo ``pencil'' de la Wikipedia en inglés):
+
+\begin{verbatim}
+http://en.wikipedia.org/w/index.php?title=pencil&action=view
+\end{verbatim}
+
+El contenido que sirven estas URLs está previsto para ser directamente mostrado, como página HTML completa, por un navegador.
+
+La página ``no decorada'' es accesible mediante URLs de la siguiente forma (para el artículo ``pencil'' de la Wikipedia en inglés):
+
+\begin{verbatim}
+http://en.wikipedia.org/w/index.php?title=pencil&action=render
+\end{verbatim}
+
+El contenido que sirven estas URLs está previsto para ser directamente empotrable en una página HTML, dentro del elemento ``body'' (y por lo tanto la aplicación web tendrá que aportar el HTML necesario para acabar teniendo una página HTML correcta).
+
+Cualquiera de los dos tipos de recursos se comportará de la misma forma. Si es invocado mediante GET, usará para responder el artículo que tenga en cache. Si no lo tiene, lo bajará previamente accediendo a la URL adecuada, que se indicó anteriormente, lo almacenará en la cache, y lo usará para responder.
+
+La respuesta, en cada caso, será una página HTML que contenga en la parte superior la siguiente información:
+
+\begin{itemize}
+\item Nombre del artículo, junto con la indicación ``(decorated)'' o ``(non decorated)'', según corresponda. Por ejemplo, ``Pencil (decorated)''.
+\item Enlaces a las páginas con el artículo en la Wikipedia (versiones decorada y no decorada)
+\item Enlace a la historia de modificaciones del artículo en la Wikipedia
+\item Enlace al último artículos de la Wikipedia que ha servido la aplicación (al navegador que le hizo la petición, o a cualquier otro).
+\item Línea de separación (elemento ``hr'').
+\end{itemize}
+
+Y a continuación el texto correspondiente del  artículo de la Wikipedia (decorado o no decorado, según sea el nombre del recurso invocado).
+
+En caso de que se pida un artículo que no exista en la Wikipedia, se devolverá el código de error correspondiente, y se marcará en la cache, de alguna forma, que ese artículo no existe, para no tener que buscarlo en caso de que vuelva a ser pedido. En general, puede usarse algún texto que aparezca en la página que devuelve Wikipedia cuando sirve la página de un artículo que no existe, como por ejemplo:
+
+\begin{verbatim}
+<div class="noarticletext">
+\end{verbatim}
+
+\textbf{Materiales de apoyo:}
+
+\begin{itemize}
+\item Parámetros de index.php en Wikipedia (MediaWiki):
+\url{http://www.mediawiki.org/wiki/Manual:Parameters_to_index.php#View_and_render}
+\end{itemize}
+
+\textbf{Comentario:}
+
+En algunas circunstancias, el servidor de Wikipedia puede devolver un código de redirección (por ejmeplo, un ``301 Moved permanently''). Téngase en cuenta que la aplicación ha de reconocer esta situación, y repetir el GET en la URL a la que se redirige.
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsubsection{Práctica 2 (entrega voluntaria)}
+\label{subsec:practica-vol-2-2011}
+
+%\textbf{Fecha recomendada de entrega:} Antes del 20 de noviembre.
+
+Realiza lo especificado en la práctica 1 (ejercicio~\ref{subsec:practica-vol-1-2011}), pero usando el entorno de desarrollo Django. En particular, utiliza plantillas (templates) para la generación de las páginas HTML, tablas en base de datos para almacenar las páginas de Wikipedia descargada, y añade la siguiente funcionalidad:
+
+\begin{itemize}
+\item Utilizando el módulo correspondiente de Django, añade usuarios, que se autenticarán en el recurso ``/login''. Las cuentas de usuario estarán dadas de alta por el administrador (vía módulo Admin de Django). Si una página es bajada por un usuario autenticado se incluirá en la parte superior el mensaje ``Usuario: user (logout)'', siendo ``user'' el identificador de usuario correspondiente, y ``logout'' un enlace al recurso que puede utilizar el usuario para salir de su cuenta. Si la página es bajada sin haberse autenticado previamente, en lugar de ese mensaje se incluirá ``Usuario anónimo (login)'', siendo ``login'' un enlace al recurso ``/login''.
+\item La aplicación atenderá el recurso ``/'', en el que ofrecerá (si se invoca con ``GET'') una lista de los artículos de Wikipedia disponibles en la base de datos, junto al enlace correspondiente (bajo ``/decorated'' o bajo ``/raw'') para descargarla, y el mensaje ``decorated'' o ``raw'', según el tipo de artículo descargado.
+\end{itemize}
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsection{Prácticas de entrega voluntaria (curso 2010-2011)}
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsubsection{Práctica 1 (entrega voluntaria)}
+\label{subsec:practica-vol-1-2010}
+
+Esta práctica tendrá como objetivo la creación de una aplicación web para acceso a los artículos de Wikipedia, con almacenamiento en cache, y con consulta en varios idiomas.
+
+La aplicación servirá dos tipos de recursos:
+
+\begin{itemize}
+\item ``/article'': servirá la página correspondiente al artículo ``article'' de la Wikipedia en inglés.
+\item ``/language/article'': servirá la página correspondiente al artículo ``article'' correspondiente al idioma ``language'', expresado mediante el código ISO de dos letras. Bastará con que funcione con los idiomas inglés (en) y español (es).
+\end{itemize}
+
+La página que se bajará de la Wikipedia para cada artículo será la ``no decorada'', accesible mediante URLs de la siguiente forma (para el artículo ``pencil'' de la Wikipedia en inglés):
+
+\begin{verbatim}
+http://en.wikipedia.org/w/index.php?action=render&title=pencil
+\end{verbatim}
+
+El contenido que sirve esta URL está previsto para ser directamente empotrable en una página HTML, dentro del elemento ``body''.
+
+Cualquiera de los dos tipos de recursos se comportará de la misma forma. Si es invocado mediante GET, usará para responder el artículo que tenga en cache. Si no lo tiene, lo bajará previamente accediendo a la URL de página no decorada, que se indicó anteriormente, lo almacenará en la cache, y lo usará para responder.
+
+La respuesta será una página HTML que contenga:
+
+\begin{itemize}
+\item Título de la página (nombre del artículo).
+\item Enlace a la página con el artículo en la Wikipedia (versión decorada)
+\item Enlace a la historia de modificaciones del artículo en la Wikipedia
+\item Enlace a los tres últimos artículos de la Wikipedia que ha servido la aplicación (al navegador que le hizo la petición, o a cualquier otro).
+\item Texto de la página no decorada del artículo de la Wikipedia.
+\end{itemize}
+
+En caso de que se pida un artículo que no exista en la Wikipedia, se devolverá el código de error correspondiente, y se marcará en la cache, de alguna forma, que ese artículo no existe, para no tener que buscarlo en caso de que vuelva a ser pedido. En general, puede usarse algún texto que aparezca en la página que devuelve Wikipedia cuando sirve la página de un artículo que no existe, como por ejemplo:
+
+\begin{verbatim}
+<div class="noarticletext">
+\end{verbatim}
+
+\textbf{Materiales de apoyo:}
+
+\begin{itemize}
+\item Parámetros de index.php en Wikipedia (MediaWiki):
+\url{http://www.mediawiki.org/wiki/Manual:Parameters_to_index.php#View_and_render}
+\end{itemize}
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsubsection{Práctica 2 (entrega voluntaria)}
+\label{subsec:practica-vol-2-2010}
+
+Esta práctica consistirá en la realización de un gestor de contenidos que tenga las siguientes características:
+
+\begin{itemize}
+\item Funcionalidad de ``Gestor de contenidos con usuarios, con control estricto de actualización y uso de base de datos'' (ejercicio~\ref{subsec:gestor-contenidos-usuarios-bbdd})
+
+\item Implementación de HEAD para todos los recursos.
+
+\item Terminación de una sesión autenticada. Para ello se usará el recurso ``/logout''.
+
+\item Además, cada página que se obtenga con un GET irá anotada con la siguiente información:
+  \begin{itemize}
+  \item Sólo si la página no la está viendo un usuario autenticado. Enlace que permita la autenticación del usuario que creó la página (a falta de la contraseña). Aparecerá con la cadena ``Autor: user'', siendo ``user'' el nombre de usuario que creó la página, y estando enlazado a ``/login,user,''.
+  \item Enlace que permita ver el mensaje HTTP que envió el navegador para poder ver esa página (se puede suponer que esa fue la última página descargada desde este navegador).
+  \item Enlace que permita ver la respuesta HTTP que envió el servidor para poder ver esa página (se puede suponer que esa fue la última página descargada desde este navegador).
+  \end{itemize}
+\end{itemize}
+
+Además, opcionalmente, podrá tener:
+
+\begin{itemize}
+\item Creación de cuentas de usuario. Para ello se usará un recurso ``/signin,user,passwd'', sobre el que un GET creará el usuario ``user'' con la contraseña ``passwd'', si ese usuario no existía ya.
+\item Subida de páginas con POST. en lugar de PUT. Se usará un POST para subir una nueva página. No hace falta implementar un formulario HTML que invoque el POST, pero también se podría hacer.
+\item Una implementación que no tenga la limitación de que los enlaces al mensaje HTTP del navegador y del servidor sean de la última página descargada, sino de los de la descarga de la página que los tiene, sea la última o no.
+\end{itemize}
+
+Realizar la entrega en un fichero tar.gz o .zip, incluyendo además del código fuente los ficheros de SQLite3 necesarios, y un fichero README que resuma la funcionalidad exacta que se ha implementado (en particular, que detalle la funcionalidad opcional implementada).
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsubsection{Práctica 3 (entrega voluntaria)}
+\label{subsec:practica-vol-3-2010}
+
+Realiza lo especificado en la práctica 2, pero usando el entorno de desarrollo Django. Donde lo creas oportuno, interpreta las especificaciones en el contexto de las facilidades que proporciona Django. Por ejemplo, la autenticación de usuarios se puede hacer vía un formulario de login (con el POST correspondiente) usando los módulos que proporciona Django para ello.
+
+Igualmente, extiende las especificaciones en lo que te sea simple al usar las facilidades de Django. Por ejemplo, la gestión de usuarios (creación y borrado de usuarios) puede hacerse fácilmente usando módulos Django.
+
+En la medida que sea razonable, usa POST (con los correspondientes formularios) en lugar de PUT. Opcionalmente, mantén ambas funcionalidades (subida de contenidos vía PUT, como se indicaba en la práctica 2, y vía POST, como se está recomendando para ésta).
+
+\textbf{Notas:}
+
+Parte de la especificación requiere almacenar las cabeceras de la respuesta del servidor al navegador. En Django, las cabeceras se van añadiendo al objeto HTTPResponse (o similar), y por tanto será necesario extraerlas de él. La forma más simple, y suficiente para estas prácticas, es simplemente convertir el objeto HTTPResponse en string: ``str(response)''. Si se quiere, se puede manipular el string resultante, para obtener las cabeceras en un formato más parecido al de la práctica 1, pero esto no será necesario para la versión básica.
+
+
+%%----------------------------------------------------------------------------
+%%----------------------------------------------------------------------------
+\subsubsection{Práctica 4 (entrega voluntaria)}
+\label{subsec:practica-vol-4-2010}
+
+Realización de lo especificado en la práctica 3 de entrega voluntaria, utilizando para la implementación las posibilidades avanzadas de Django, incluyendo especialmente las plantillas, y si es posible el sitio de administración, los usuarios y las sesiones Django. La parte básica seguirá siendo básica, y la opcional, opcional (más la adición, opcional, que se comenta más adelante).
+
+La funcionalidad de esta práctica es, por lo tanto, la misma que la de la práctica 3. Pero a diferencia de la práctica 3, en este caso sí se pide usar los módulos ``de alto nivel'' de Django.
+
+La URL que se usaba en las prácticas 2 y 3 para autenticarse pasa a ser ``/login'', que en el caso de recibir un GET devolverá el formulario para autenticarse, y en caso de recibir un POST gestionará la autenticación.
+
+A la parte opcional de las prácticas 2 y 3, que sigue siendo opcional, se añade la de modificar el contenido de las páginas con formularios (usando métodos POST para la actualización), y de crear nuevas páginas también mediante formularios y POST. Para la actualización se sugiere que se usen nombres de recurso de la forma ``/edit/name'', siendo ``name'' el nombre de la página. Para la creación se sugiere que se use un nombre de recurso de la forma ``/create''.
+
+Con respecto a la opción de crear usuarios, ahora la opción cambia a servir una URL ``/signin'' que devuelva el formulario para crearse una cuenta, y que cuanto reciba un POST gestione la creación de la cuenta.
