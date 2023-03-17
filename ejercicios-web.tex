@@ -119,6 +119,36 @@ Esta práctica tendrá como objetivo la creación de una aplicación web (de nom
 
 \begin{itemize}
   \item Se implementará utilizando Django.
+  \item Se añadirá una nueva entrada en el formulario para elegir manualmente el recurso para la url acortada. Por lo tanto, en el recurso ``/'' invocado mediante POST, incluirá una qs que tenga campos \texttt{url} y \texttt{short}. 
+  
+  Así, por ejemplo, si se quiere acortar \texttt{http://gsyc.urjc.es} con el nombre de recurso \texttt{gsyc}, y la aplicación está en el puerto 1234 de la máquina ``localhost'', se invocará (mediante POST) la URL
+
+  \texttt{https://localhost:1234/}
+
+  y en el cuerpo de esa petición HTTP irá la \texttt{qs}
+
+  \verb|url=https://gsyc.urjc.es&short=gsyc|
+
+  Normalmente, esta invocación POST se realizará rellenando el formulario que ofrece la aplicación.
+
+  Como respuesta, la aplicación devolverá (en el cuerpo de la respuesta HTTP) una página HTML con el formulario, y la lista de URLs acortadas hasta el momento para este navegador, incluyendo esta.
+
+  \item Además si el recurso para la url acortada está vacío, se deberá acortar mediante un número entero que irá aumentando un valor de manera secuencial.
+  
+  Así, por ejemplo, si se quiere acortar \texttt{http://gsyc.urjc.es} con el nombre de recurso vacío, y la aplicación está en el puerto 1234 de la máquina ``localhost'', se invocará (mediante POST) la URL
+
+  \texttt{https://localhost:1234/}
+
+  y en el cuerpo de esa petición HTTP irá la \texttt{qs}
+
+  \verb|url=https://gsyc.urjc.es&short=|
+
+  Y se eligirá para acortar el número ``1'', por lo que la url acortada sería \texttt{https://localhost:1234/1}
+
+  Seguidamente si se quiere acortar \texttt{http://www.urjc.es} con el nombre de recurso vacío de nuevo, se eligirá para acortar el número ``2'' por lo que la url acortada sería \texttt{https://localhost:1234/2}
+
+  Así sucesivamente siempre y cuando el formulario para el nombre de recurso este vacío.
+
   \item Tendrá que almacenar la información relativa a las URLs que acorta en una base de datos, de forma que aunque la aplicación sea rearrancada, las URLs acortadas sigan funcionando adecuadamente.
   \item Utilizará plantillas, de manera que el código Python y el HTML estarán separados.
 \end{itemize}
