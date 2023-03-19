@@ -2248,6 +2248,27 @@ Incluye en el repositorio todos los ficheros con código Python del proyecto, in
 
 Para realizar este ejercicio, consultar el manual de Django, donde explica cómo se comporta el objeto HTTPRequest, que es siempre primer argumento en los métodos que estamos definiendo en \texttt{views.py}. En particular, nos interesarán sus atributos ``method'' (que sirve para saber si nos está llegando un GET o un PUT) y ``body'', que nos da acceso a los datos (cuerpo) de la petición en bytes. A pesar de su nombre, este último atributo tiene esos datos tanto si la petición es un POST como si es un PUT. 
 
+\subsection{Django cms\_put-post}
+\label{subsec:django-cms-put-post}
+
+\textbf{Repositorio plantilla (para entrega):} \\
+\url{https://gitlab.etsit.urjc.es/cursosweb/2022-2023/django-cms-put}
+
+\textbf{Enunciado:}
+
+Realizar una sistema de gestión de contenidos muy simple con Django. Corresponderá con la funcionalidad de ``contentPostApp'' (ejercicio~\ref{subsec:contentpostapp}), almacenando los contenidos en una base de datos. En otras palabras, será como ``Django cms'' (ejercicio~\ref{subsec:django-cms}), añadiendo la funcionalidad en la que cuando se realice un GET sobre un recurso que no exista en la base de datos, se muestre un formulario que permita añadir el nuevo contenido mediante POST, tal y como se explicó en el ejercicio de ``contentPostApp''. La aplicación Django se ha de llamar \texttt{cms\_put\_post}.
+
+\textbf{Entrega:}
+
+Incluye en el repositorio todos los ficheros con código Python del proyecto, incluido \texttt{manage.py} y los contenidos en el directorio de proyecto y en el directorio la app (\texttt{cms}), así como la base de datos en un fichero \texttt{db.sqlite3}). Comprueba también que el código en \texttt{views.py} sigue con las reglas de estilo de Python (PEP8), utilizando \texttt{pycodestyle}.
+
+
+\textbf{Comentario:}
+
+Para realizar este ejercicio, consultar el manual de Django, donde explica cómo se comporta el objeto HTTPRequest, que es siempre primer argumento en los métodos que estamos definiendo en \texttt{views.py}. En particular, nos interesarán sus atributos ``method'' (que sirve para saber si nos está llegando un GET o un PUT) y ``body'', que nos da acceso a los datos (cuerpo) de la petición en bytes. A pesar de su nombre, este último atributo tiene esos datos tanto si la petición es un POST como si es un PUT. 
+
+
+
 %\textbf{Material:}
 %
 %cms\_put.tar.gz: Ejemplo de solución del ejercicio ``Django cms\_put''.
